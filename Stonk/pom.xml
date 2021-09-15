@@ -95,7 +95,7 @@
                 <!-- Default configuration for running -->
                 <!-- Usage: mvn javafx:run -->
                 <configuration>
-                    <mainClass>app.App</mainClass>
+                    <mainClass>stonk.StonkApp</mainClass>
                 </configuration>
             </plugin>
         </plugins>
