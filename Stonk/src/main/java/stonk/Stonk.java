@@ -65,6 +65,7 @@ public class Calc {
     }
     
     /**
+     * Dette har Tage endret!
      * Performs the provided operation in the top operand, and
      * replaces it with the result.
      *
