@@ -147,7 +147,6 @@ public class DataHandler {
                 containsStock = true;
                 stock = x;
             }
-            index++;
         }
         if(containsStock){
         
