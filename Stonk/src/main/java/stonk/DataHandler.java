@@ -36,7 +36,7 @@ public class DataHandler {
 
         userArray.add(user);
         jsonObject.put("users", userArray);
-       
+    
         try (FileWriter file = new FileWriter("Stonk/src/main/resources/app/database.json", false)){
             file.write(jsonObject.toJSONString());
             file.flush();
