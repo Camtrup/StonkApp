@@ -14,16 +14,8 @@ public class DataHandler {
     
     //Creates new user in the database
     public void newUser(String username, String password, String firstname, String lastname, int age, int cash, JSONArray portfolio) {
-        JSONParser parser = new JSONParser();
-        Object fileReaderObj = null;
-        try {
-            fileReaderObj = parser.parse(new FileReader("Stonk/src/main/resources/app/database.json"));
-        } catch (IOException | ParseException e1) {
-            e1.printStackTrace();
-        }
-        JSONObject jsonObject = (JSONObject) fileReaderObj;
+        JSONObject jsonObject = new JSONObject();
         JSONArray userArray = getAllUsers();
-        
         JSONObject user = new JSONObject();
 
         user.put("username",username);
@@ -78,17 +70,11 @@ public class DataHandler {
     }
 
     //Returns a given user by index in the database
-    public User getUser(int index){
+    public JSONObject getUser(int index){
         JSONArray userArray = getAllUsers();
         JSONObject user = (JSONObject) userArray.get(index);
 
-        return new User(user.get("firstname").toString(), 
-                        user.get("lastname").toString(), 
-                        user.get("username").toString(), 
-                        user.get("password").toString(), 
-                        Integer.parseInt(user.get("cash").toString()), 
-                        Integer.parseInt(user.get("age").toString()),
-                        getPortfolio(index));
+        return user;
     }
 
     public JSONArray getPortfolio(int userIndex){
@@ -111,13 +97,23 @@ public class DataHandler {
     }
 
     public void addToPortfoilio(int userIndex, String ticker, float price, int count){
+        JSONArray userArray = getAllUsers();
+        System.out.println(userArray.get(userIndex).toString());
         JSONArray portfolio = getPortfolio(userIndex);
         JSONObject stock = new JSONObject();
         stock.put("ticker", ticker);
         stock.put("price", price);
         stock.put("count", count);
         portfolio.add(stock);
-        //SKRIV TIL FIL AT PORTFOLIO ER ENDRRET
+
+        for(int i = 0; i < getUserCount(); i ++){
+            JSONObject x = (JSONObject) userArray.get(i);
+            if(x.equals(getUser(userIndex))){
+                System.out.println("yeet");
+                x.put("portfolio", portfolio);
+            }
+        }
+        System.out.println(userArray.get(userIndex).toString());
     }
 
     public void removeFromPortfolio(int userIndex, String ticker){
@@ -126,6 +122,7 @@ public class DataHandler {
 
     public static void main(String[] args){
         DataHandler d = new DataHandler();
-        System.out.println(d.findUser("Casper"));
+        d.addToPortfoilio(0, "gme", 202, 3);
+        System.out.println(d.findUser("Mattis"));
     }
 }
