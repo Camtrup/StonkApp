@@ -28,6 +28,14 @@ public class Stonk {
         }
     }
 
+    public void buyStonk() {
+        try {
+            getTickerPrice(ticker);
+        } catch (IOException e) {
+            
+        }
+        
+    }
 
     public static void main(String[] args) throws IOException {
         Stonk s = new Stonk();
