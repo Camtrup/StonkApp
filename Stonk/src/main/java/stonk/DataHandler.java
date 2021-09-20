@@ -66,12 +66,14 @@ public class DataHandler {
         return user;
     }
 
+    //Returs a user portfolio
     public JSONArray getPortfolio(int userIndex){
         JSONObject user = (JSONObject) getAllUsers().get(userIndex);
         JSONArray portfolio = (JSONArray) user.get("portfolio");
         return portfolio;
     }
 
+    //Returns the index of a stock in a users portfolio
     public int getStockInPortfolio(String ticker, int userIndex){
         JSONArray portfolio = getPortfolio(userIndex);
         int count = 0;
@@ -84,6 +86,7 @@ public class DataHandler {
         }
         return -1;
     }
+
     //Checks if portfolio containsStock(user has bought this stock earlier)
     //If it has, the new price is the average, with a count += newCount
     //If not, it adds the new stock in the portfolio
@@ -131,6 +134,9 @@ public class DataHandler {
         
     }
 
+    //Checks if the amount of stocks is valid, and then subtracts from the user
+    //If one sells the full amount of stocks, the stock is removed from the portfolio
+    //Adds the cash back in the account
     public void removeFromPortfolio(int userIndex, String ticker, int count){
         JSONArray userArray = getAllUsers();
         JSONObject user = (JSONObject) userArray.get(userIndex);
@@ -171,6 +177,7 @@ public class DataHandler {
 
     }
 
+    //Adds cash to the users account
     public void addCash(float num, int userIndex){
         JSONArray userArray = getAllUsers();
         JSONObject user = (JSONObject) userArray.get(userIndex);
@@ -178,6 +185,8 @@ public class DataHandler {
         writeToFile(userArray);
     }
 
+
+    //Checks if withdrawing the amount is valid
     public void removeCash(float num, int userIndex){
         JSONArray userArray = getAllUsers();
         JSONObject user = (JSONObject) userArray.get(userIndex);
@@ -193,12 +202,16 @@ public class DataHandler {
 
     }
 
+    //Returns the users cash
     public float getCash(int userIndex){
         JSONArray userArray = getAllUsers();
         JSONObject user = (JSONObject) userArray.get(userIndex);
         return Float.parseFloat(user.get("cash").toString());
     }
 
+    //Throws Excpetion if username doesnt exists
+    //Returns null if password is incorrect
+    //Returns a new instance of a user if the login is valid
     public User isLoginValid(String username, String password){
         int index = findUser(username);
         if(index >= 0){
@@ -220,12 +233,12 @@ public class DataHandler {
         return null;
     }
 
+    //Writes the array to the file
     public void writeToFile(JSONArray arr){
         JSONObject obj = new JSONObject();
         obj.put("users", arr);
         try(FileWriter file = new FileWriter("Stonk/src/main/resources/stonk/database.json", false)) {
             file.write(obj.toJSONString());
-            file.flush();
             file.close();
         } catch (IOException e) {
             e.printStackTrace();

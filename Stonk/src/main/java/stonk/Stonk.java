@@ -14,12 +14,17 @@ public class Stonk {
     //Henter aksjeprisen til "ticker" som bruker søker på
     //Hvis "ticker" ikke er nøyaktig, får en en NullPointerException siden elementet i HTMLen = NULL
     //en blir en viderført til en liste med lignende aksjer, der velger en bare den første og satser på at det er riktig
-    public double getStockInfo(String ticker) throws IOException{
+    public double getStockInfo(String ticker) {
         this.ticker = ticker;
         String link = "https://www.marketwatch.com/investing/stock/" + ticker;
-        Document doc = Jsoup.connect(link)
-                .cookie("AMCVS_CB68E4BA55144CAA0A4C98A5%40AdobeOrg","1")
-                .get();
+        Document doc = null;
+        try {
+            doc = Jsoup.connect(link)
+                    .cookie("AMCVS_CB68E4BA55144CAA0A4C98A5%40AdobeOrg","1")
+                    .get();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
         try {
             this.name = (doc.select("h1.company__name").first().text());
             return this.price = Double.parseDouble(doc.select("bg-quote.value").first().text());
@@ -38,7 +43,7 @@ public class Stonk {
     }
 
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Stonk s = new Stonk();
         System.out.println(s);
         System.out.println(s.getStockInfo("apple"));
