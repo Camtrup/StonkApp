@@ -1,1 +1,1 @@
-{"users":[{"user1":{"password":"12345","firstname":"Casper","lists":"","cash":"","username":"casper","lastname":"SASAS"}},{"user2":{"password":"12345","firstname":"Casper","lists":"","cash":"","username":"casper","lastname":"SASAS"}}]}
+{"users":[{"password":"123456","firstname":"Casper","lists":"","cash":10000,"age":20,"username":"casper","lastname":"Amtrup"},{"password":"abcdefg","firstname":"Karan","lists":"","cash":10000,"age":20,"username":"Karan","lastname":"Sandhu"}]}
