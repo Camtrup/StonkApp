@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+
+<GridPane alignment="CENTER" hgap="10.0" vgap="10.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stonk.StonkController">
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+   <children>
+      <AnchorPane prefHeight="476.0" prefWidth="436.0">
+         <children>
+            <TextField layoutX="144.0" layoutY="72.0" promptText="Search stocks" />
+            <TextField layoutX="342.0" layoutY="26.0" prefHeight="25.0" prefWidth="63.0" text="Balance " />
+            <TextField layoutX="144.0" layoutY="288.0" text="My Stocks:" />
+            <TextField layoutX="144.0" layoutY="26.0" text="Welcome" />
+         </children>
+      </AnchorPane>
+   </children>
+</GridPane>
