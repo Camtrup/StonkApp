@@ -97,16 +97,30 @@ public class DataHandler {
         return portfolio;
     }
 
-    public int getStockInPortfolio(String ticker){
-        JSONArray portfolio = getPortfolio(index)
+    public int getStockInPortfolio(String ticker, int userIndex){
+        JSONArray portfolio = getPortfolio(userIndex);
+        int count = 0;
+        for (Object i : portfolio){
+            JSONObject stock = (JSONObject) i;
+            if(stock.get("ticker").equals(ticker)){
+                return count;
+            }
+            count++;
+        }
         return -1;
     }
 
-    public void addToPortfoilio(String ticker, float price, int count){
-        JSONArray portfolio = getPortfolio(index);
+    public void addToPortfoilio(int userIndex, String ticker, float price, int count){
+        JSONArray portfolio = getPortfolio(userIndex);
+        JSONObject stock = new JSONObject();
+        stock.put("ticker", ticker);
+        stock.put("price", price);
+        stock.put("count", count);
+        portfolio.add(stock);
+        //SKRIV TIL FIL AT PORTFOLIO ER ENDRRET
     }
 
-    public void removeFromPortfolio(){
+    public void removeFromPortfolio(int userIndex, String ticker){
 
     }
 
