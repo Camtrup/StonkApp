@@ -91,8 +91,8 @@ public class DataHandler {
                         getPortfolio(index));
     }
 
-    public JSONArray getPortfolio(int index){
-        JSONObject user = (JSONObject) getAllUsers().get(index);
+    public JSONArray getPortfolio(int userIndex){
+        JSONObject user = (JSONObject) getAllUsers().get(userIndex);
         JSONArray portfolio = (JSONArray) user.get("portfolio");
         return portfolio;
     }
