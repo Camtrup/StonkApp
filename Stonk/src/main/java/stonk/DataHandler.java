@@ -27,22 +27,13 @@ public class DataHandler {
         user.put("portfolio",portfolio);
 
         userArray.add(user);
-        jsonObject.put("users", userArray);
-       
-        try (FileWriter file = new FileWriter("Stonk/src/main/resources/app/database.json", false)){
-            file.write(jsonObject.toJSONString());
-            file.flush();
-            file.close();
-        }
-        catch(IOException e){
-            System.out.println(e);
-        }
+        writeToFile(userArray);
     }
     //Array of all users
     public JSONArray getAllUsers(){
         JSONObject jsonObject = null;
         try {
-            jsonObject = (JSONObject)new JSONParser().parse(new FileReader("Stonk/src/main/resources/app/database.json"));
+            jsonObject = (JSONObject)new JSONParser().parse(new FileReader("Stonk/src/main/resources/stonk/database.json"));
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
@@ -100,25 +91,21 @@ public class DataHandler {
     //If not, it adds the new stock in the portfolio
     public void addToPortfoilio(int userIndex, String ticker, float price, int count){
         JSONArray userArray = getAllUsers();
-        System.out.println(userArray.get(userIndex).toString());
         JSONArray portfolio = getPortfolio(userIndex);
         JSONObject stock = new JSONObject();
         
         boolean containsStock = false;
-        int stockIndex = 0;
         
         for(Object i : portfolio){
             JSONObject checkStock = (JSONObject) i;
             if(checkStock.get("ticker").equals(ticker)){
+                stock = checkStock;
                 containsStock = true;
                 break;
             }
-            stockIndex++;
         }
         
         if(containsStock){
-            stock = (JSONObject) portfolio.get(stockIndex);
-            
             float oldPrice = (float) Double.parseDouble(stock.get("price").toString());
             int oldCount = Integer.parseInt(stock.get("count").toString());
             
@@ -140,23 +127,95 @@ public class DataHandler {
                 x.put("portfolio", portfolio);
             }
         }
+        removeCash(price * count, userIndex);
+        writeToFile(userArray);
+
+        
+    }
+
+    public void removeFromPortfolio(int userIndex, String ticker, int count){
+        JSONArray userArray = getAllUsers();
+        JSONObject user = (JSONObject) userArray.get(userIndex);
+        JSONArray portfolio = (JSONArray) user.get("portfolio");
+        JSONObject stock = new JSONObject();
+
+        boolean containsStock = false;
+        int index = 0;
+
+        float plusCash = 0;
+
+        for(Object i : portfolio){
+            JSONObject x = (JSONObject) i;
+            if(x.get("ticker").equals(ticker)){
+                containsStock = true;
+                stock = x;
+            }
+            index++;
+        }
+        if(containsStock){
+        
+            if(Integer.parseInt(stock.get("count").toString()) >= count){
+                int newCount = Integer.parseInt(stock.get("count").toString()) - count;
+                plusCash = Float.parseFloat(stock.get("price").toString()) + Float.parseFloat(stock.get("price").toString()) * count;
+
+                if(newCount == 0){
+                    portfolio.remove(stock);
+                }
+                else {
+                    stock.put("count", newCount);
+                }
+            }
+            user.put("cash",plusCash);
+            user.put("portfolio", portfolio);
+            writeToFile(userArray);
+        }
+        else {
+            throw new IllegalArgumentException("Stock not in portfolio");
+        }
+
+    }
+
+    public void addCash(float num, int userIndex){
+        JSONArray userArray = getAllUsers();
+        JSONObject user = (JSONObject) userArray.get(userIndex);
+        user.put("cash", getCash(userIndex) + num);
+        writeToFile(userArray);
+    }
+
+    public void removeCash(float num, int userIndex){
+        JSONArray userArray = getAllUsers();
+        JSONObject user = (JSONObject) userArray.get(userIndex);
+        Float cash = Float.parseFloat(user.get("cash").toString());
+        if(cash > num){
+            cash -= num;
+            user.put("cash", cash);
+            writeToFile(userArray);
+        }
+        else{
+            throw new IllegalArgumentException("Not enough cash");
+        }
+
+    }
+
+    public float getCash(int userIndex){
+        JSONArray userArray = getAllUsers();
+        JSONObject user = (JSONObject) userArray.get(userIndex);
+        return Float.parseFloat(user.get("cash").toString());
+    }
+
+    public void writeToFile(JSONArray arr){
         JSONObject obj = new JSONObject();
-        obj.put("users", userArray);
-        System.out.println(obj.toJSONString());
-        try(FileWriter file = new FileWriter("Stonk/src/main/resources/app/database.json", false)) {
+        obj.put("users", arr);
+        try(FileWriter file = new FileWriter("Stonk/src/main/resources/stonk/database.json", false)) {
             file.write(obj.toJSONString());
+            file.flush();
+            file.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void removeFromPortfolio(int userIndex, String ticker){
-
-    }
-
     public static void main(String[] args){
         DataHandler d = new DataHandler();
-        d.addToPortfoilio(0, "gme", 1000, 3);
-        System.out.println(d.findUser("Mattis"));
     }
 }
