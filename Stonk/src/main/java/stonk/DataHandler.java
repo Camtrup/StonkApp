@@ -12,7 +12,7 @@ import org.json.simple.parser.ParseException;
 public class DataHandler {
     
     //Creates new user in the database
-    public void newUser(String username, String password, String firstname, String lastname, int age, int cash, JSONArray portfolio) {
+    public void newUser(String username, String password, String firstname, String lastname, int age, float cash, JSONArray portfolio) {
         JSONArray userArray = getAllUsers();
         JSONObject user = new JSONObject();
 
@@ -199,6 +199,27 @@ public class DataHandler {
         return Float.parseFloat(user.get("cash").toString());
     }
 
+    public User isLoginValid(String username, String password){
+        int index = findUser(username);
+        if(index >= 0){
+            JSONObject user = getUser(index);
+            if(user.get("password").toString().equals(password)){
+                JSONArray portfolio = (JSONArray) user.get("portfolio");
+                return new User(username, 
+                            password,
+                            user.get("firstname").toString(), 
+                            user.get("lastname").toString(),
+                            Float.parseFloat(user.get("cash").toString()),
+                            Integer.parseInt(user.get("age").toString()), 
+                            portfolio);
+            }
+        }
+        else {
+            throw new IllegalArgumentException("Username not in databse");
+        }
+        return null;
+    }
+
     public void writeToFile(JSONArray arr){
         JSONObject obj = new JSONObject();
         obj.put("users", arr);
@@ -213,5 +234,7 @@ public class DataHandler {
 
     public static void main(String[] args){
         DataHandler d = new DataHandler();
+        d.isLoginValid("username", "password");
+        System.out.println(d.isLoginValid("username", "password"));
     }
 }

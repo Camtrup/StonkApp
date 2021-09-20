@@ -7,19 +7,19 @@ public class User {
     private String lastName;
     private String username;
     private String password;
-    private int cash;
+    private float cash;
     private int age;
     private JSONArray portfolio;
 
 
-public User(String firstName, String lastName, String username, String password, int cash, int age, JSONArray portfolio){
+public User(String firstName, String lastName, String username, String password, float cash, int age, JSONArray portfolio){
     this.firstName = firstName;
     this.lastName = lastName;
     this.username = username;
     this.password = password;
     this.cash = cash;
     this.age = age;
-    this.portfolio = portfolio;
+    this.portfolio = new JSONArray();
 }
 
     public void setFirstName(String firstName){
@@ -71,7 +71,7 @@ public User(String firstName, String lastName, String username, String password,
     public String getLastName(){
     return lastName;
     } 
-    public int getCash(){
+    public float getCash(){
     return cash;
     } 
 
