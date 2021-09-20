@@ -1,7 +1,7 @@
 package stonk;
 
 import java.io.IOException;
-
+// import javafx.fxml.FXML; uvisst om vi bruker denne 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
