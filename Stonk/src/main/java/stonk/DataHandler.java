@@ -36,7 +36,7 @@ public class DataHandler {
 
         userArray.add(user);
         jsonObject.put("users", userArray);
-    
+       
         try (FileWriter file = new FileWriter("Stonk/src/main/resources/app/database.json", false)){
             file.write(jsonObject.toJSONString());
             file.flush();
@@ -88,11 +88,26 @@ public class DataHandler {
                         user.get("password").toString(), 
                         Integer.parseInt(user.get("cash").toString()), 
                         Integer.parseInt(user.get("age").toString()),
-                        null);
+                        getPortfolio(index));
     }
 
-    public void addStock(String ticker, float price, int count){
-        
+    public JSONArray getPortfolio(int index){
+        JSONObject user = (JSONObject) getAllUsers().get(index);
+        JSONArray portfolio = (JSONArray) user.get("portfolio");
+        return portfolio;
+    }
+
+    public int getStockInPortfolio(String ticker){
+        JSONArray portfolio = getPortfolio(index)
+        return -1;
+    }
+
+    public void addToPortfoilio(String ticker, float price, int count){
+        JSONArray portfolio = getPortfolio(index);
+    }
+
+    public void removeFromPortfolio(){
+
     }
 
     public static void main(String[] args){
