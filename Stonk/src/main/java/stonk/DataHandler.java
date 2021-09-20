@@ -101,15 +101,40 @@ public class DataHandler {
         System.out.println(userArray.get(userIndex).toString());
         JSONArray portfolio = getPortfolio(userIndex);
         JSONObject stock = new JSONObject();
-        stock.put("ticker", ticker);
-        stock.put("price", price);
-        stock.put("count", count);
-        portfolio.add(stock);
+        
+        boolean containsStock = false;
+        int stockIndex = 0;
+        
+        for(Object i : portfolio){
+            JSONObject checkStock = (JSONObject) i;
+            if(checkStock.get("ticker").equals(ticker)){
+                containsStock = true;
+                break;
+            }
+            stockIndex++;
+        }
+        
+        if(containsStock){
+            stock = (JSONObject) portfolio.get(stockIndex);
+            
+            float oldPrice = (float) Double.parseDouble(stock.get("price").toString());
+            int oldCount = Integer.parseInt(stock.get("count").toString());
+            
+            int newCount = oldCount + count;
+            float newPrice = (oldPrice * oldCount + price * count)/newCount;
 
+            stock.put("price", newPrice);
+            stock.put("count", newCount);
+        }
+        else {
+            stock.put("ticker", ticker);
+            stock.put("price", price);
+            stock.put("count", count);
+            portfolio.add(stock);
+        }
         for(int i = 0; i < getUserCount(); i ++){
             JSONObject x = (JSONObject) userArray.get(i);
             if(x.equals(getUser(userIndex))){
-                System.out.println("yeet");
                 x.put("portfolio", portfolio);
             }
         }
@@ -122,7 +147,7 @@ public class DataHandler {
 
     public static void main(String[] args){
         DataHandler d = new DataHandler();
-        d.addToPortfoilio(0, "gme", 202, 3);
+        d.addToPortfoilio(0, "gme", 1000, 3);
         System.out.println(d.findUser("Mattis"));
     }
 }
