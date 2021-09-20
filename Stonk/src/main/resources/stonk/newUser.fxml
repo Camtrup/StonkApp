@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
 <GridPane alignment="CENTER" hgap="10.0" vgap="10.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stonk.StonkController">
    <columnConstraints>
       <ColumnConstraints />
@@ -18,7 +17,7 @@
    <children>
       <AnchorPane prefHeight="360.0" prefWidth="353.0">
          <children>
-            <Button layoutX="135.0" layoutY="305.0" mnemonicParsing="false" text="Create new user" />
+            <Button layoutX="135.0" layoutY="305.0" mnemonicParsing="false" onAction="#fromRegisterToMain" text="Create new user" />
             <TextField layoutX="113.0" layoutY="192.0" promptText="Username" />
             <TextField layoutX="113.0" layoutY="234.0" promptText="Password" />
             <TextField layoutX="111.0" layoutY="45.0" promptText="First Name " />
