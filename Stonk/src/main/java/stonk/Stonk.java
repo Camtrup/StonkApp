@@ -30,14 +30,6 @@ public class Stonk {
         }
     }
 
-    public void buyStonk() {
-        try {
-            getTickerPrice(ticker);
-        } catch (IOException e) {
-            
-        }
-        
-    }
 
 
 	@Override

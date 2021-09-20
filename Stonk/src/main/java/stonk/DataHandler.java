@@ -1,7 +1,10 @@
 package stonk;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.StringWriter;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -10,39 +13,63 @@ import org.json.simple.parser.ParseException;
 
 public class DataHandler {
     
-    public void newUser(String username, String password, String firstname, String lastname) throws ParseException {
-        String jsonString = "{\"users\": []}";
+    public void newUser(String username, String password, String firstname, String lastname) throws ParseException, FileNotFoundException, IOException {
+        JSONParser parser = new JSONParser();
+        Object fileReaderObj = parser.parse(new FileReader("Stonk/src/main/resources/app/database.json"));
+        JSONObject jsonObject = (JSONObject) fileReaderObj;
+        JSONArray userArray = getAllUsers();
+        
         JSONObject user = new JSONObject();
+
         user.put("username",username);
         user.put("password",password);
         user.put("firstname",firstname);
         user.put("lastname",lastname);
         user.put("cash","");
         user.put("lists","");
+
         JSONObject userSuper = new JSONObject();
-        String userCountName = "user" + (getUserCount()+1);
-        userSuper.put(userCountName, user);
+        String userCount = "user" + (getUserCount()+1);
+
+        userSuper.put(userCount, user);
+
+        userArray.add(userSuper);
+        jsonObject.put("users", userArray);
        
-        try (FileWriter file = new FileWriter("Stonk/src/main/resources/app/database.json")){
-            JSONParser parser = new JSONParser();
-            JSONObject obj = (JSONObject) parser.parse(jsonString);
-            JSONArray arr = (JSONArray) obj.get("users");
-            arr.add(userSuper);
-            file.write(arr.toJSONString());
+        try (FileWriter file = new FileWriter("Stonk/src/main/resources/app/database.json", false)){
+            file.write(jsonObject.toJSONString());
             file.flush();
+            file.close();
         }
         catch(IOException e){
             System.out.println(e);
         }
     }
 
-    public JSONArray getAllUsers(){
-        JSONArray arr = new JSONArray();
-        return arr;
+    public JSONArray getAllUsers() throws FileNotFoundException, IOException, ParseException{
+        JSONObject jsonObject = (JSONObject)new JSONParser().parse(new FileReader("Stonk/src/main/resources/app/database.json"));
+        JSONArray userArray = (JSONArray) jsonObject.get("users");
+        return userArray;
     }
 
-    public int getUserCount(){
-        return 0;
+    public int getUserCount() throws FileNotFoundException, IOException, ParseException{
+        JSONObject jsonObject = (JSONObject)new JSONParser().parse(new FileReader("Stonk/src/main/resources/app/database.json"));
+        JSONArray userArray = (JSONArray) jsonObject.get("users");
+        return userArray.size();
+    }
+
+    public int findUser(String username) throws FileNotFoundException, IOException, ParseException{
+        JSONArray userArray = getAllUsers();
+        for(int i = 0; i < getUserCount(); i++){
+            JSONObject x = (JSONObject) userArray.get(i).get("")
+        }
+
+
+        return (Integer) null;
+    }
+
+    public User getUser(int index){
+        return new User();
     }
 
     public static void main(String[] args) throws IOException, ParseException {
