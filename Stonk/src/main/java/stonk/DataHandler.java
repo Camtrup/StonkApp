@@ -36,7 +36,7 @@ public class DataHandler {
 
         userArray.add(user);
         jsonObject.put("users", userArray);
-       
+    
         try (FileWriter file = new FileWriter("Stonk/src/main/resources/app/database.json", false)){
             file.write(jsonObject.toJSONString());
             file.flush();
@@ -98,7 +98,7 @@ public class DataHandler {
     }
 
     public int getStockInPortfolio(String ticker){
-        JSONArray portfolio = getPortfolio(index)
+        JSONArray portfolio = getPortfolio(int index);
         return -1;
     }
 
