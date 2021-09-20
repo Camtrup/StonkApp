@@ -1,5 +1,7 @@
 package stonk;
 
+import org.json.simple.JSONArray;
+
 public class User {
     private String firstName;
     private String lastName;
@@ -7,15 +9,17 @@ public class User {
     private String password;
     private int cash;
     private int age;
+    private JSONArray portfolio;
 
 
-public User(String firstName, String lastName, String username, String password, int cash, int age){
+public User(String firstName, String lastName, String username, String password, int cash, int age, JSONArray portfolio){
     this.firstName = firstName;
     this.lastName = lastName;
     this.username = username;
     this.password = password;
     this.cash = cash;
     this.age = age;
+    this.portfolio = portfolio;
 }
 
     public void setFirstName(String firstName){
@@ -82,7 +86,7 @@ return "Hello " + username + " you have " + cash + " dollars in your account. Ha
     }
 
 public static void main(String[] args) {
-    var user = new User("Karan", "Singh", "XXPussyDestroyerXX", "password", 98765438, 20);
+    var user = new User("Karan", "Singh", "XXPussyDestroyerXX", "password", 98765438, 20,null);
     System.out.println(user);
 }
 

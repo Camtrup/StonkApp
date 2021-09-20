@@ -12,7 +12,8 @@ import org.json.simple.parser.ParseException;
 
 public class DataHandler {
     
-    public void newUser(String username, String password, String firstname, String lastname, int age, int cash) {
+    //Creates new user in the database
+    public void newUser(String username, String password, String firstname, String lastname, int age, int cash, JSONArray portfolio) {
         JSONParser parser = new JSONParser();
         Object fileReaderObj = null;
         try {
@@ -31,7 +32,7 @@ public class DataHandler {
         user.put("lastname",lastname);
         user.put("age", age);
         user.put("cash", cash);
-        user.put("lists","");
+        user.put("portfolio",portfolio);
 
         userArray.add(user);
         jsonObject.put("users", userArray);
@@ -45,7 +46,7 @@ public class DataHandler {
             System.out.println(e);
         }
     }
-
+    //Array of all users
     public JSONArray getAllUsers(){
         JSONObject jsonObject = null;
         try {
@@ -61,24 +62,56 @@ public class DataHandler {
         return getAllUsers().size();
     }
 
+    //Returns the index of a given username in the database
+    //If the username is not found, then return -1
     public int findUser(String username) {
         JSONArray userArray = getAllUsers();
         int count = 0;
         for(Object i : userArray){
             JSONObject user = (JSONObject) i;
-            if(user.get("username")==username){
+            if(user.get("username").equals(username)){
                 return count;
             }
             count++;
         }
-        return getUserCount() + 1;
+        return -1;
     }
 
+    //Returns a given user by index in the database
     public User getUser(int index){
-        return new User("","","","", index, index);
+        JSONArray userArray = getAllUsers();
+        JSONObject user = (JSONObject) userArray.get(index);
+
+        return new User(user.get("firstname").toString(), 
+                        user.get("lastname").toString(), 
+                        user.get("username").toString(), 
+                        user.get("password").toString(), 
+                        Integer.parseInt(user.get("cash").toString()), 
+                        Integer.parseInt(user.get("age").toString()),
+                        getPortfolio(index));
     }
+
+    public JSONArray getPortfolio(int index){
+        JSONObject user = (JSONObject) getAllUsers().get(index);
+        JSONArray portfolio = (JSONArray) user.get("portfolio");
+        return portfolio;
+    }
+
+    public int getStockInPortfolio(String ticker){
+        JSONArray portfolio = getPortfolio(index)
+        return -1;
+    }
+
+    public void addToPortfoilio(String ticker, float price, int count){
+        JSONArray portfolio = getPortfolio(index);
+    }
+
+    public void removeFromPortfolio(){
+
+    }
+
     public static void main(String[] args){
         DataHandler d = new DataHandler();
-        d.findUser("username");
+        System.out.println(d.findUser("Casper"));
     }
 }
