@@ -95,7 +95,9 @@ public class DataHandler {
         }
         return -1;
     }
-
+    //Checks if portfolio containsStock(user has bought this stock earlier)
+    //If it has, the new price is the average, with a count += newCount
+    //If not, it adds the new stock in the portfolio
     public void addToPortfoilio(int userIndex, String ticker, float price, int count){
         JSONArray userArray = getAllUsers();
         System.out.println(userArray.get(userIndex).toString());
@@ -138,7 +140,14 @@ public class DataHandler {
                 x.put("portfolio", portfolio);
             }
         }
-        System.out.println(userArray.get(userIndex).toString());
+        JSONObject obj = new JSONObject();
+        obj.put("users", userArray);
+        System.out.println(obj.toJSONString());
+        try(FileWriter file = new FileWriter("Stonk/src/main/resources/app/database.json", false)) {
+            file.write(obj.toJSONString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void removeFromPortfolio(int userIndex, String ticker){
