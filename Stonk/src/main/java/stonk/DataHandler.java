@@ -1,6 +1,5 @@
 package stonk;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -14,7 +13,6 @@ public class DataHandler {
     
     //Creates new user in the database
     public void newUser(String username, String password, String firstname, String lastname, int age, int cash, JSONArray portfolio) {
-        JSONObject jsonObject = new JSONObject();
         JSONArray userArray = getAllUsers();
         JSONObject user = new JSONObject();
 
@@ -140,7 +138,6 @@ public class DataHandler {
         JSONObject stock = new JSONObject();
 
         boolean containsStock = false;
-        int index = 0;
 
         float plusCash = 0;
 
