@@ -8,10 +8,8 @@ import org.json.simple.JSONArray;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.NodeOrientation;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.PieChart.Data;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage; 
@@ -23,7 +21,6 @@ public class StonkController {
 
     private Stage stage; 
     private Scene scene; 
-    private Parent parent;
     private User user;
 
     public void fromLoginToRegister(ActionEvent event) throws IOException{
