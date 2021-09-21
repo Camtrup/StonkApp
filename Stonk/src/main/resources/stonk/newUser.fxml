@@ -5,9 +5,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<GridPane alignment="CENTER" hgap="10.0" vgap="10.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stonk.StonkController">
+<GridPane alignment="CENTER" hgap="10.0" vgap="10.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stonk.StonkController">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
@@ -17,12 +20,19 @@
    <children>
       <AnchorPane prefHeight="360.0" prefWidth="353.0">
          <children>
-            <Button layoutX="135.0" layoutY="305.0" mnemonicParsing="false" onAction="#fromRegisterToMain" text="Create new user" />
-            <TextField layoutX="113.0" layoutY="192.0" promptText="Username" />
-            <TextField layoutX="113.0" layoutY="234.0" promptText="Password" />
-            <TextField layoutX="111.0" layoutY="45.0" promptText="First Name " />
-            <TextField layoutX="111.0" layoutY="86.0" promptText="Last Name " />
-            <TextField layoutX="110.0" layoutY="127.0" prefHeight="25.0" prefWidth="149.0" promptText="Age" />
+            <Pane prefHeight="57.0" prefWidth="353.0" style="-fx-background-color: BLACK;" />
+            <Button layoutX="129.0" layoutY="290.0" mnemonicParsing="false" onAction="#fromRegisterToMain" prefHeight="35.0" prefWidth="124.0" text="Create new user" />
+            <TextField layoutX="112.0" layoutY="209.0" promptText="Username" />
+            <TextField layoutX="112.0" layoutY="244.0" promptText="Password" />
+            <TextField layoutX="111.0" layoutY="90.0" promptText="First Name " />
+            <TextField layoutX="111.0" layoutY="123.0" promptText="Last Name " />
+            <TextField layoutX="112.0" layoutY="160.0" prefHeight="26.0" prefWidth="160.0" promptText="Age" />
+            <Text fill="#fdfbfb" layoutX="137.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="STONKS">
+               <font>
+                  <Font name="Plantagenet Cherokee" size="24.0" />
+               </font>
+            </Text>
+            <Text layoutX="153.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NEW USER" />
          </children>
       </AnchorPane>
    </children>
