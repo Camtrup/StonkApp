@@ -11,6 +11,7 @@ import org.json.simple.parser.ParseException;
 
 public class DataHandler {
 
+
     private final String filePath = "src/main/resources/stonk/database.json";
     
     //Creates new user in the database

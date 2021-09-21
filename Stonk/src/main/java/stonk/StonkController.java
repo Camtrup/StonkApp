@@ -69,7 +69,7 @@ public class StonkController {
         DataHandler dataHandler = new DataHandler();
         try {
             System.out.println(username.getText().equals("username"));
-            user = dataHandler.isLoginValid(username.getText(), password.getText());
+            user = dataHandler.isLoginValid(username.getText().toString(), password.getText().toString());
             if(user.equals(null)){
                 throw new IllegalArgumentException("Password is incorrect");
             }
