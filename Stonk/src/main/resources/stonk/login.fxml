@@ -18,9 +18,9 @@
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <Button layoutX="74.0" layoutY="120.0" mnemonicParsing="false" onAction="#fromLoginToMain" text="Login" />
-            <PasswordField layoutX="23.0" layoutY="87.0" promptText="Passord" />
-            <TextField layoutX="23.0" layoutY="54.0" promptText="Brukernavn" />
+            <Button layoutX="74.0" layoutY="120.0" mnemonicParsing="false" onAction="#isLoginValid" text="Login" />
+            <PasswordField fx:id="password" layoutX="23.0" layoutY="87.0" promptText="Passord" />
+            <TextField fx:id="username" layoutX="23.0" layoutY="54.0" promptText="Brukernavn" />
             <Button layoutX="37.0" layoutY="154.0" mnemonicParsing="false" onAction="#fromLoginToRegister" prefHeight="25.0" prefWidth="125.0" text="Registrer ny bruker" />
          </children>
       </AnchorPane>

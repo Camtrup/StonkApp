@@ -19,7 +19,7 @@ public User(String firstName, String lastName, String username, String password,
     this.password = password;
     this.cash = cash;
     this.age = age;
-    this.portfolio = new JSONArray();
+    this.portfolio = portfolio;
 }
 
     public void setFirstName(String firstName){

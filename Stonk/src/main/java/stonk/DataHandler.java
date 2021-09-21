@@ -36,6 +36,7 @@ public class DataHandler {
             e.printStackTrace();
         }
         JSONArray userArray = (JSONArray) jsonObject.get("users");
+        System.out.println("getAllUsers --- " + userArray.toJSONString());
         return userArray;
     }
 
@@ -62,7 +63,6 @@ public class DataHandler {
     public JSONObject getUser(int index){
         JSONArray userArray = getAllUsers();
         JSONObject user = (JSONObject) userArray.get(index);
-
         return user;
     }
 
@@ -130,8 +130,6 @@ public class DataHandler {
         }
         removeCash(price * count, userIndex);
         writeToFile(userArray);
-
-        
     }
 
     //Checks if the amount of stocks is valid, and then subtracts from the user
