@@ -57,8 +57,6 @@ public class StonkController {
             }
             catch(IllegalArgumentException e){
                 System.out.println(e);
-                stage.close();
-                fromLoginToRegister(event);
             }
         }
     }
