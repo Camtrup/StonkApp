@@ -11,7 +11,8 @@ import org.json.simple.parser.ParseException;
 
 public class DataHandler {
 
-    private final String filePath = "././resources/stonk/database.json";
+
+    private final String filePath = "src/main/resources/stonk/database.json";
     
     //Creates new user in the database
     public void newUser(String username, String password, String firstname, String lastname, int age, float cash, JSONArray portfolio) {
@@ -34,13 +35,13 @@ public class DataHandler {
         JSONParser parser = new JSONParser();
         JSONArray userArray = new JSONArray();
         try(FileReader reader = new FileReader(filePath)){
-            Object obj = parser.parse(reader);
-            userArray = (JSONArray) obj;
+            JSONObject obj = (JSONObject) parser.parse(reader);
+            userArray = (JSONArray) obj.get("users");
         }
         catch(IOException | ParseException e){
-
+            System.out.println(e);
         }
-        
+        System.out.println("GetAllUsers: " + userArray.toJSONString());
         return userArray;
     }
 
@@ -52,11 +53,12 @@ public class DataHandler {
     //If the username is not found, then return -1
     public int findUser(String username) {
         JSONArray userArray = getAllUsers();
+        System.out.println(userArray.toJSONString());
         int count = 0;
         for(Object i : userArray){
             JSONObject user = (JSONObject) i;
             System.out.println(user.get("username").toString().equals(username));
-            if(user.get("username").toString().equals(username)){
+            if(username.equals(user.get("username").toString())){
                 return count;
             }
             count++;
@@ -216,6 +218,7 @@ public class DataHandler {
     //Returns null if password is incorrect
     //Returns a new instance of a user if the login is valid
     public User isLoginValid(String username, String password){
+        System.out.println(username.equals("username"));
         int index = findUser(username);
         System.out.println("Found user at: " + index);
         if(index >= 0){
@@ -251,6 +254,6 @@ public class DataHandler {
 
     public static void main(String[] args){
         DataHandler d = new DataHandler();
-        d.getAllUsers().toJSONString();
+        d.getAllUsers();
     }
 }
