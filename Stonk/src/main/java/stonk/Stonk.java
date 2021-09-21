@@ -8,7 +8,7 @@ import org.jsoup.nodes.Document;
 public class Stonk {
 
     String ticker;
-    double price;
+    float price;
     String name;
 
     //Henter aksjeprisen til "ticker" som bruker søker på
@@ -30,7 +30,7 @@ public class Stonk {
         }
         try {
             this.name = (doc.select("h1.company__name").first().text());
-            this.price = Double.parseDouble(doc.select("bg-quote.value").first().text());
+            this.price = Float.parseFloat(doc.select("bg-quote.value").first().text());
         }
         catch (NullPointerException e){
             ticker = doc.select(".results table tbody tr td a").first().text();
@@ -38,6 +38,15 @@ public class Stonk {
         }
     }
 
+    public String getName(){
+        return name;
+    }
+    public float getPrice(){
+        return price;
+    }
+    public String getTicker(){
+        return ticker;
+    }
 
 
 	@Override

@@ -101,7 +101,15 @@ public class StonkController {
         stage.show();
     }
 
+    @FXML
+    private String searchBar;
 
+    public void generateStockPage(){
+        Stonk stock = new Stonk();
+        stock.getStockInfo(searchBar.toString());
+        Stage stonkStage = new Stage();
+        stonkStage.setTitle(stock.getName());
+    }
 public static void main(String[] args) {
     DataHandler d = new DataHandler();
     d.getAllUsers();
