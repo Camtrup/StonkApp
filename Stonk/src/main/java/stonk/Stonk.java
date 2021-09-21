@@ -14,7 +14,10 @@ public class Stonk {
     //Henter aksjeprisen til "ticker" som bruker søker på
     //Hvis "ticker" ikke er nøyaktig, får en en NullPointerException siden elementet i HTMLen = NULL
     //en blir en viderført til en liste med lignende aksjer, der velger en bare den første og satser på at det er riktig
-    public double getStockInfo(String ticker) {
+    public void getStockInfo(String ticker) {
+        if(ticker.equals(null)){
+            throw new IllegalArgumentException("Ticker i null");
+        }
         this.ticker = ticker;
         String link = "https://www.marketwatch.com/investing/stock/" + ticker;
         Document doc = null;
@@ -27,11 +30,11 @@ public class Stonk {
         }
         try {
             this.name = (doc.select("h1.company__name").first().text());
-            return this.price = Double.parseDouble(doc.select("bg-quote.value").first().text());
+            this.price = Double.parseDouble(doc.select("bg-quote.value").first().text());
         }
         catch (NullPointerException e){
             ticker = doc.select(".results table tbody tr td a").first().text();
-            return getStockInfo(ticker);
+            getStockInfo(ticker);
         }
     }
 
@@ -46,7 +49,6 @@ public class Stonk {
     public static void main(String[] args) {
         Stonk s = new Stonk();
         System.out.println(s);
-        System.out.println(s.getStockInfo("apple"));
         System.out.println(s.name);
     }
 }

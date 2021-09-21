@@ -17,12 +17,12 @@
    <children>
       <AnchorPane prefHeight="360.0" prefWidth="353.0">
          <children>
-            <Button layoutX="135.0" layoutY="305.0" mnemonicParsing="false" onAction="#fromRegisterToMain" text="Create new user" />
-            <TextField layoutX="113.0" layoutY="192.0" promptText="Username" />
-            <TextField layoutX="113.0" layoutY="234.0" promptText="Password" />
-            <TextField layoutX="111.0" layoutY="45.0" promptText="First Name " />
-            <TextField layoutX="111.0" layoutY="86.0" promptText="Last Name " />
-            <TextField layoutX="110.0" layoutY="127.0" prefHeight="25.0" prefWidth="149.0" promptText="Age" />
+            <Button layoutX="135.0" layoutY="305.0" mnemonicParsing="false" onAction="#registerUser" text="Create new user" />
+            <TextField fx:id="username" layoutX="113.0" layoutY="192.0" promptText="Username" />
+            <TextField fx:id="password" layoutX="113.0" layoutY="234.0" promptText="Password" />
+            <TextField fx:id="firstname" layoutX="111.0" layoutY="45.0" promptText="First Name " />
+            <TextField fx:id="lastname" layoutX="111.0" layoutY="86.0" promptText="Last Name " />
+            <TextField fx:id="age" layoutX="110.0" layoutY="127.0" prefHeight="25.0" prefWidth="149.0" promptText="Age" />
          </children>
       </AnchorPane>
    </children>

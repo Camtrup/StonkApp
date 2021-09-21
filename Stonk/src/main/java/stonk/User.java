@@ -21,6 +21,13 @@ public User(String firstName, String lastName, String username, String password,
     this.age = age;
     this.portfolio = portfolio;
 }
+    public void setPortfolio(JSONArray portfolio){
+        this.portfolio = portfolio;
+    }
+
+    public JSONArray getPortfolio(){
+        return portfolio;
+    }
 
     public void setFirstName(String firstName){
     this.firstName = firstName;

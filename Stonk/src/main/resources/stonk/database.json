@@ -1,1 +1,1 @@
-{"users":[{"password":"password","firstname":"firstname","portfolio":[{"ticker":"gme","price":101.0,"count":4},{"ticker":"amc","price":1000.0,"count":5}],"cash":606.0,"age":20,"username":"username","lastname":"lastname"}]}
+{"users":[{"password":"12345","firstname":"Casper","portfolio":[],"cash":10000.0,"age":20,"username":"casper","lastname":"Amtrup"}]}

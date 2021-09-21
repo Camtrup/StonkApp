@@ -11,12 +11,18 @@ import org.json.simple.parser.ParseException;
 
 public class DataHandler {
 
-    private final String filePath = "Stonk/src/main/resources/stonk/database.json";
+    private final String filePath = "src/main/resources/stonk/database.json";
     
     //Creates new user in the database
     public void newUser(String username, String password, String firstname, String lastname, int age, float cash, JSONArray portfolio) {
         JSONArray userArray = getAllUsers();
         JSONObject user = new JSONObject();
+        if(age != (int) age){
+            throw new IllegalArgumentException("Age must be a number");
+        }
+        if(findUser(username) <= 0){
+            throw new IllegalArgumentException("Username is already registered");
+        }
 
         user.put("username",username);
         user.put("password",password);
@@ -40,7 +46,6 @@ public class DataHandler {
         catch(IOException | ParseException e){
             System.out.println(e);
         }
-        System.out.println("GetAllUsers: " + userArray.toJSONString());
         return userArray;
     }
 
@@ -52,11 +57,9 @@ public class DataHandler {
     //If the username is not found, then return -1
     public int findUser(String username) {
         JSONArray userArray = getAllUsers();
-        System.out.println(userArray.toJSONString());
         int count = 0;
         for(Object i : userArray){
             JSONObject user = (JSONObject) i;
-            System.out.println(user.get("username").toString().equals(username));
             if(username.equals(user.get("username").toString())){
                 return count;
             }
@@ -217,9 +220,7 @@ public class DataHandler {
     //Returns null if password is incorrect
     //Returns a new instance of a user if the login is valid
     public User isLoginValid(String username, String password){
-        System.out.println(username.equals("username"));
         int index = findUser(username);
-        System.out.println("Found user at: " + index);
         if(index >= 0){
             JSONObject user = getUser(index);
             if(user.get("password").toString().equals(password)){
