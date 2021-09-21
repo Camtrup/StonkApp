@@ -9,6 +9,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import javafx.fxml.FXML;
+
 public class DataHandler {
 
 
@@ -251,10 +253,6 @@ public class DataHandler {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public void generateStockPage(){
-        Stonk stock = new Stonk();
     }
 
     public static void main(String[] args){

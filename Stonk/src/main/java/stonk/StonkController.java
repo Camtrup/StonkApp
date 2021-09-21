@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart.Data;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage; 
 import javafx.scene.Node;
 
@@ -100,13 +101,17 @@ public class StonkController {
     }
 
     @FXML
-    private String searchBar;
+    private TextField searchbar;
 
+    @FXML
     public void generateStockPage(){
         Stonk stock = new Stonk();
-        stock.getStockInfo(searchBar.toString());
+        stock.getStockInfo(searchbar.toString());
         Stage stonkStage = new Stage();
         stonkStage.setTitle(stock.getName());
+        VBox x = new VBox();
+        stonkStage.setScene(new Scene(x));
+        stonkStage.show();
     }
 public static void main(String[] args) {
     DataHandler d = new DataHandler();
