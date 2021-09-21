@@ -10,6 +10,8 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 public class DataHandler {
+
+    private final String filePath = "Stonk/src/main/resources/stonk/database.json";
     
     //Creates new user in the database
     public void newUser(String username, String password, String firstname, String lastname, int age, float cash, JSONArray portfolio) {
@@ -29,14 +31,16 @@ public class DataHandler {
     }
     //Array of all users
     public JSONArray getAllUsers(){
-        JSONObject jsonObject = null;
-        try {
-            jsonObject = (JSONObject)new JSONParser().parse(new FileReader("Stonk/src/main/resources/stonk/database.json"));
-        } catch (IOException | ParseException e) {
-            e.printStackTrace();
+        JSONParser parser = new JSONParser();
+        JSONArray userArray = new JSONArray();
+        try(FileReader reader = new FileReader(filePath)){
+            Object obj = parser.parse(reader);
+            userArray = (JSONArray) obj;
         }
-        JSONArray userArray = (JSONArray) jsonObject.get("users");
-        System.out.println("getAllUsers --- " + userArray.toJSONString());
+        catch(IOException | ParseException e){
+
+        }
+        
         return userArray;
     }
 
@@ -51,7 +55,8 @@ public class DataHandler {
         int count = 0;
         for(Object i : userArray){
             JSONObject user = (JSONObject) i;
-            if(user.get("username").equals(username)){
+            System.out.println(user.get("username").toString().equals(username));
+            if(user.get("username").toString().equals(username)){
                 return count;
             }
             count++;
@@ -212,6 +217,7 @@ public class DataHandler {
     //Returns a new instance of a user if the login is valid
     public User isLoginValid(String username, String password){
         int index = findUser(username);
+        System.out.println("Found user at: " + index);
         if(index >= 0){
             JSONObject user = getUser(index);
             if(user.get("password").toString().equals(password)){
@@ -235,7 +241,7 @@ public class DataHandler {
     public void writeToFile(JSONArray arr){
         JSONObject obj = new JSONObject();
         obj.put("users", arr);
-        try(FileWriter file = new FileWriter("Stonk/src/main/resources/stonk/database.json", false)) {
+        try(FileWriter file = new FileWriter(filePath, false)) {
             file.write(obj.toJSONString());
             file.close();
         } catch (IOException e) {
@@ -245,7 +251,6 @@ public class DataHandler {
 
     public static void main(String[] args){
         DataHandler d = new DataHandler();
-        d.isLoginValid("username", "password");
-        System.out.println(d.isLoginValid("username", "password"));
+        d.getAllUsers().toJSONString();
     }
 }

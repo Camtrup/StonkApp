@@ -19,6 +19,7 @@ public class StonkController {
     private Stage stage; 
     private Scene scene; 
     private Parent parent;
+    private User user;
 
     public void fromLoginToRegister(ActionEvent event) throws IOException{
         Parent fxmlLoader = FXMLLoader.load(getClass().getResource("newUser.fxml"));
@@ -26,7 +27,6 @@ public class StonkController {
         scene = new Scene(fxmlLoader);
         stage.setScene(scene);
         stage.show();
-
 
     }
     @FXML
@@ -38,7 +38,8 @@ public class StonkController {
     public void isLoginValid(ActionEvent event) throws IOException {
         DataHandler dataHandler = new DataHandler();
         try {
-            User user = dataHandler.isLoginValid(username.getText(), password.getText());
+            System.out.println(username.getText().equals("username"));
+            user = dataHandler.isLoginValid(username.getText().toString(), password.getText().toString());
             if(user.equals(null)){
                 throw new IllegalArgumentException("Password is incorrect");
             }
