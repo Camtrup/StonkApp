@@ -16,7 +16,7 @@ public class Stonk {
     //en blir en viderført til en liste med lignende aksjer, der velger en bare den første og satser på at det er riktig
     public void getStockInfo(String ticker) {
         if(ticker.equals(null)){
-            throw new IllegalArgumentException("Ticker i null");
+            throw new IllegalArgumentException("Ticker is null");
         }
         this.ticker = ticker;
         String link = "https://www.marketwatch.com/investing/stock/" + ticker;
