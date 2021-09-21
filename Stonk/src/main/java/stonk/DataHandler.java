@@ -253,6 +253,10 @@ public class DataHandler {
         }
     }
 
+    public void generateStockPage(){
+        Stonk stock = new Stonk();
+    }
+
     public static void main(String[] args){
         DataHandler d = new DataHandler();
         d.getAllUsers();
