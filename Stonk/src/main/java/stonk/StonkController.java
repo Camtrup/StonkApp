@@ -11,8 +11,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage; 
@@ -46,8 +44,12 @@ public class StonkController {
     private TextField age;
 
     @FXML
+    private TextField cash;
+
+
+    @FXML
     public void registerUser(ActionEvent event) throws IOException{
-        if(username.getText().isBlank() || password.getText().isBlank() || firstname.getText().isBlank() || lastname.getText().isBlank() || age.getText().isBlank()){
+        if(username.getText().isBlank() || password.getText().isBlank() || firstname.getText().isBlank() || lastname.getText().isBlank() || age.getText().isBlank()|| cash.getText().isBlank()){
             throw new IllegalArgumentException("You must fill out all inputfields");
         }
         else {
@@ -104,11 +106,11 @@ public class StonkController {
 
     @FXML
     private TextField searchbar;
-    //Generates a page for each stock
+
     @FXML
     public void generateStockPage(){
         Stonk stock = new Stonk();
-        stock.getStockInfo(searchbar.getText());
+        stock.getStockInfo(searchbar.toString());
         Stage stonkStage = new Stage();
         stonkStage.setTitle(stock.getName());
         
