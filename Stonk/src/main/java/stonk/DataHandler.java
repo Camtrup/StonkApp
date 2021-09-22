@@ -23,7 +23,7 @@ public class DataHandler {
         if(age != (int) age){
             throw new IllegalArgumentException("Age must be a number");
         }
-        if(findUser(username) <= 0){
+        if(findUser(username) >= 0){
             throw new IllegalArgumentException("Username is already registered");
         }
 
