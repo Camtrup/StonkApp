@@ -23,7 +23,7 @@ public class DataHandler {
         if(age != (int) age){
             throw new IllegalArgumentException("Age must be a number");
         }
-        if(findUser(username) <= 0){
+        if(findUser(username) >= 0){
             throw new IllegalArgumentException("Username is already registered");
         }
 
@@ -106,6 +106,10 @@ public class DataHandler {
         JSONArray userArray = getAllUsers();
         JSONArray portfolio = getPortfolio(userIndex);
         JSONObject stock = new JSONObject();
+
+        if(count >= 0){
+            throw new IllegalArgumentException("Amount cannot be negative or 0");
+        }
         
         boolean containsStock = false;
         
