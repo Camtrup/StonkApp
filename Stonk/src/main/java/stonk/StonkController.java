@@ -9,10 +9,17 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage; 
 import javafx.scene.Node;
 
@@ -42,9 +49,10 @@ public class StonkController {
     private TextField lastname;
     @FXML
     private TextField age;
-
     @FXML
-    private TextField cash;
+    private Label cash;
+    @FXML
+    private Label nameMain;
 
 
     @FXML
@@ -56,7 +64,7 @@ public class StonkController {
             DataHandler dataHandler = new DataHandler();
 
             try {
-                dataHandler.newUser(username.getText(), password.getText(), firstname.getText(), lastname.getText(), Integer.parseInt(age.getText()), 10000, new JSONArray());
+                dataHandler.newUser(username.getText(), password.getText(), firstname.getText(), lastname.getText(), Integer.parseInt(age.getText()), Integer.parseInt(cash.getText()), new JSONArray());
                 user = dataHandler.isLoginValid(username.getText(), password.getText());
                 fromRegisterToMain(event);
             }
@@ -78,6 +86,7 @@ public class StonkController {
             }
             else {
                 fromLoginToMain(event);
+
             }
         }
         catch(IllegalArgumentException e){
@@ -92,7 +101,7 @@ public class StonkController {
         scene = new Scene(fxmlLoader);
         stage.setScene(scene);
         stage.show();
-
+        updateMain();
 
     }
 
@@ -102,7 +111,22 @@ public class StonkController {
         scene = new Scene(fxmlLoader);
         stage.setScene(scene);
         stage.show();
+        updateMain();
+
     }
+    public void updateMain(){
+        DataHandler dataHandler = new DataHandler();
+        user = dataHandler.isLoginValid(username.getText(), password.getText());
+        System.out.println("hei");
+        System.out.println(user.getFirstName());
+        System.out.println(user.getCash());
+
+        nameMain.setText(" " + user.getFirstName());
+        cash.setText(Float.toString(user.getCash()));
+
+    }
+
+
 
     @FXML
     private TextField searchbar;
@@ -114,6 +138,7 @@ public class StonkController {
         Stage stonkStage = new Stage();
         stonkStage.setTitle(stock.getName());
         
+
         Label price = new Label("Price : " + stock.getPrice());
         Label ticker = new Label(stock.getTicker().toUpperCase());
         Button buy = new Button("Buy stock");
@@ -138,6 +163,7 @@ public class StonkController {
     private void buyStocks(Stonk stock, int count){
             DataHandler handler = new DataHandler();
             handler.addToPortfoilio(userIndex, stock.getTicker(), stock.getPrice(), count);
+            updateMain();
     }
 
 

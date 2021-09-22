@@ -38,5 +38,7 @@
             <Text layoutX="154.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NEW USER:" />
          </children>
       </AnchorPane>
+      <Label fx:id="cash" GridPane.rowIndex="1" />
+      <Label fx:id="nameMain" GridPane.rowIndex="1" />
    </children>
 </GridPane>
