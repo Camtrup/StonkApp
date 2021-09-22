@@ -106,6 +106,10 @@ public class DataHandler {
         JSONArray userArray = getAllUsers();
         JSONArray portfolio = getPortfolio(userIndex);
         JSONObject stock = new JSONObject();
+
+        if(count >= 0){
+            throw new IllegalArgumentException("Amount cannot be negative or 0");
+        }
         
         boolean containsStock = false;
         

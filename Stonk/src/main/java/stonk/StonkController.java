@@ -6,6 +6,7 @@ import org.json.simple.JSONArray;
 
 // import javafx.fxml.FXML; uvisst om vi bruker denne 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -24,6 +25,7 @@ public class StonkController {
     private Stage stage; 
     private Scene scene; 
     private User user;
+    private int userIndex;
 
     public void fromLoginToRegister(ActionEvent event) throws IOException{
         Parent fxmlLoader = FXMLLoader.load(getClass().getResource("newUser.fxml"));
@@ -66,8 +68,8 @@ public class StonkController {
         System.out.println();
         DataHandler dataHandler = new DataHandler();
         try {
-            System.out.println(username.getText().equals("username"));
             user = dataHandler.isLoginValid(username.getText().toString(), password.getText().toString());
+            userIndex = dataHandler.findUser(username.getText());
             if(user.equals(null)){
                 throw new IllegalArgumentException("Password is incorrect");
             }
@@ -114,13 +116,29 @@ public class StonkController {
         Button buy = new Button("Buy stock");
         
         TextField buyCount = new TextField();
-        buyCount.setId("buyCount");
         buyCount.setPromptText("Amount of stocks");
         
-        VBox x = new VBox(ticker,price,buyCount,buy);
+        buy.setOnAction(Event ->{
+            try{
+                buyStocks(stock, Integer.parseInt(buyCount.getText()));
+            }
+            catch(IllegalArgumentException e){
+                System.out.println(e);
+            }
+        });
+        
+        VBox x = new VBox(ticker, price, buyCount, buy);
         stonkStage.setScene(new Scene(x));
         stonkStage.show();
     }
+
+    private void buyStocks(Stonk stock, int count){
+            DataHandler handler = new DataHandler();
+            handler.addToPortfoilio(userIndex, stock.getTicker(), stock.getPrice(), count);
+    }
+
+
+
 public static void main(String[] args) {
     DataHandler d = new DataHandler();
     d.getAllUsers();
