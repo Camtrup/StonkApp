@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -24,7 +25,6 @@
          <children>
             <Pane layoutY="-12.0" prefHeight="85.0" prefWidth="436.0" style="-fx-background-color: black;">
                <children>
-                  <TextField layoutX="336.0" layoutY="30.0" prefHeight="26.0" prefWidth="79.0" text="My profile" />
                   <Text fill="#f0f0f0" layoutX="175.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Balance: ">
                      <font>
                         <Font size="17.0" />
@@ -34,26 +34,32 @@
                         <Font name="Plantagenet Cherokee" size="26.0" />
                      </font>
                   </Text>
-                  <Text id="cash" fill="WHITE" layoutX="244.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="balance">
+                  <Button id="profile" layoutX="351.0" layoutY="31.0" mnemonicParsing="false" onAction="#generateStockPage" prefHeight="29.0" prefWidth="71.0" text="my profile" textOverrun="WORD_ELLIPSIS" />
+                  <Label fx:id="cash" layoutX="248.0" layoutY="33.0" text="aaaa" textFill="WHITE">
                      <font>
-                        <Font size="17.0" />
+                        <Font size="16.0" />
                      </font>
-                  </Text>
+                  </Label>
                </children>
             </Pane>
             <TextField fx:id="searchbar" layoutX="92.0" layoutY="132.0" prefHeight="42.0" prefWidth="187.0" promptText="Search stocks" />
-          <Button layoutX="283.0" layoutY="132.0" mnemonicParsing="false" onAction="#generateStockPage" prefHeight="42.0" prefWidth="71.0" text="SEARCH" />
+         <Button layoutX="283.0" layoutY="132.0" mnemonicParsing="false" onAction="#generateStockPage" prefHeight="42.0" prefWidth="71.0" text="SEARCH" />
             <ScrollPane layoutX="118.0" layoutY="282.0" prefHeight="180.0" prefWidth="200.0" />
             <Text layoutX="143.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MY STOCKS">
                <font>
                   <Font size="25.0" />
                </font>
             </Text>
-            <Text layoutX="139.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hello xxxxx xx">
+            <Text layoutX="151.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hello">
                <font>
                   <Font name="Rockwell" size="19.0" />
                </font>
             </Text>
+            <Label fx:id="nameMain" layoutX="218.0" layoutY="87.0" text="....">
+               <font>
+                  <Font name="Rockwell" size="19.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>
