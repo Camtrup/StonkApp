@@ -30,8 +30,7 @@ public User(String firstName, String lastName, String username, String password,
     }
 
     public JSONArray getPortfolio(){
-        DataHandler d = new DataHandler();
-        return d.getPortfolio(d.findUser(username));
+        return handler.getPortfolio(handler.findUser(username));
     }
 
     public void setFirstName(String firstName){
