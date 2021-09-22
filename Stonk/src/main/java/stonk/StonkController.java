@@ -10,8 +10,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage; 
@@ -42,8 +40,6 @@ public class StonkController {
     private TextField lastname;
     @FXML
     private TextField age;
-    @FXML 
-    private TextField balance; 
 
     @FXML
     public void registerUser(ActionEvent event) throws IOException{
@@ -61,10 +57,6 @@ public class StonkController {
                 System.out.println(e);
             }
         }
-    }
-
-    private void showBalance(){
-        balance.setText(Float.toString(user.getCash());
     }
 
     @FXML
@@ -107,23 +99,14 @@ public class StonkController {
 
     @FXML
     private TextField searchbar;
-    //Generates a page for each stock
+
     @FXML
     public void generateStockPage(){
         Stonk stock = new Stonk();
-        stock.getStockInfo(searchbar.getText());
+        stock.getStockInfo(searchbar.toString());
         Stage stonkStage = new Stage();
         stonkStage.setTitle(stock.getName());
-        
-        Label price = new Label("Price : " + stock.getPrice());
-        Label ticker = new Label(stock.getTicker().toUpperCase());
-        Button buy = new Button("Buy stock");
-        
-        TextField buyCount = new TextField();
-        buyCount.setId("buyCount");
-        buyCount.setPromptText("Amount of stocks");
-        
-        VBox x = new VBox(ticker,price,buyCount,buy);
+        VBox x = new VBox();
         stonkStage.setScene(new Scene(x));
         stonkStage.show();
     }
