@@ -93,7 +93,7 @@ return "Hello " + username + " you have " + cash + " dollars in your account. Ha
     }
 
 public static void main(String[] args) {
-    var user = new User("Karan", "Singh", "XXPussyDestroyerXX", "password", 98765438, 20,null);
+    var user = new User("Karan", "Singh", "heisann123", "password", 98765438, 20,null);
     System.out.println(user);
 }
 
