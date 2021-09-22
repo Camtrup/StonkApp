@@ -24,7 +24,7 @@
          <children>
             <Pane layoutY="-12.0" prefHeight="85.0" prefWidth="436.0" style="-fx-background-color: black;">
                <children>
-                  <TextField fx:id="balance" layoutX="233.0" layoutY="30.0" prefHeight="26.0" prefWidth="79.0" promptText="balance" />
+                  <Text fx:id="cash" layoutX="233.0" layoutY="30.0" prefHeight="26.0" prefWidth="79.0" text="balance" />
                   <TextField layoutX="336.0" layoutY="30.0" prefHeight="26.0" prefWidth="79.0" text="My profile" />
                   <Text fill="#f0f0f0" layoutX="175.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Balance: " />
                   <Text fill="#f3f0f0" layoutX="25.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="STONKS" wrappingWidth="123.384765625">
@@ -35,7 +35,7 @@
                </children>
             </Pane>
             <TextField fx:id="searchbar" layoutX="92.0" layoutY="132.0" prefHeight="42.0" prefWidth="187.0" promptText="Search stocks" />
-          <Button layoutX="283.0" layoutY="132.0" mnemonicParsing="false" onAction="#generateStockPage" prefHeight="42.0" prefWidth="71.0" text="SEARCH" />
+         <Button layoutX="283.0" layoutY="132.0" mnemonicParsing="false" onAction="#generateStockPage" prefHeight="42.0" prefWidth="71.0" text="SEARCH" />
             <ScrollPane layoutX="118.0" layoutY="282.0" prefHeight="180.0" prefWidth="200.0" />
             <Text layoutX="143.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MY STOCKS">
                <font>
