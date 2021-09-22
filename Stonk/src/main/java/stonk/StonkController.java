@@ -134,7 +134,7 @@ public class StonkController {
     @FXML
     public void generateStockPage(){
         Stonk stock = new Stonk();
-        stock.getStockInfo(searchbar.toString());
+        stock.getStockInfo(searchbar.getText());
         Stage stonkStage = new Stage();
         stonkStage.setTitle(stock.getName());
         

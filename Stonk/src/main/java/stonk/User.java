@@ -2,6 +2,8 @@ package stonk;
 
 import org.json.simple.JSONArray;
 
+import javafx.scene.chart.PieChart.Data;
+
 public class User {
     private String firstName;
     private String lastName;
@@ -26,7 +28,8 @@ public User(String firstName, String lastName, String username, String password,
     }
 
     public JSONArray getPortfolio(){
-        return portfolio;
+        DataHandler d = new DataHandler();
+        return d.getPortfolio(d.findUser(username));
     }
 
     public void setFirstName(String firstName){
@@ -79,7 +82,8 @@ public User(String firstName, String lastName, String username, String password,
     return lastName;
     } 
     public float getCash(){
-    return cash;
+        DataHandler d = new DataHandler();
+        return d.getCash(d.findUser(username));
     } 
 
     public int getAge(){
@@ -88,7 +92,7 @@ public User(String firstName, String lastName, String username, String password,
 
 	@Override
 	public String toString() {
-return "Hello " + username + " you have " + cash + " dollars in your account. Happy trading!!";
+        return "Hello " + username + " you have " + cash + " dollars in your account. Happy trading!!";
 
     }
 
