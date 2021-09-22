@@ -42,6 +42,8 @@ public class StonkController {
     private TextField lastname;
     @FXML
     private TextField age;
+    @FXML 
+    private TextField balance; 
 
     @FXML
     public void registerUser(ActionEvent event) throws IOException{
@@ -59,6 +61,10 @@ public class StonkController {
                 System.out.println(e);
             }
         }
+    }
+
+    private void showBalance(){
+        balance.setText(Float.toString(user.getCash());
     }
 
     @FXML
