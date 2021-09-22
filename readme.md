@@ -1,19 +1,17 @@
+![](https://i.ibb.co/qxM02Nc/fb2bfc2bf0ed4c569cdf5b8168878d1b.png)
+
 # STONK APP
-the stonk, is an application that lets you trade stocks with fake money, where the stock prices get updated in real time. its a great way for learning to trade better, without dthe risk. The stock prices are gotten through web-scraping from marketwatch.com instead of using an API because they cost money. We use .json files for saving inforamtion such ass username, password and your wallet. This is because we don't see any reason for better safety than that for a game. 
 
-## Project file:
-Stonk>src>main>java>...
-## fxml and json files can you find in:
-Stonk>src>main>java>resources>app...
+**Stonk** is a stock ["Paper Trading"](https://www.investopedia.com/terms/p/papertrade.asp) application, where the stock prices get updated in real time. Trading with virtual money is a great way for beginners to learn how to trade in the financial markets, but also to experienced traders that want to test their trading strategies without any risk.
 
-## files we have:
-Datahandler.java: This file is how we save data to our json file.
+Our initial thought was to pull the stock prices using an API, but we decided against it as we needed a service that was free-of-charge. Therefore we get the stocks current price by web-scraping from marketwatch.com. We use .json files for saving information such as username, password and your balance. The reasoning behind this is that more advanced systems is not needed for a game like Stonk.
+  
 
-Stonk.java: Gets us the stock we want and information about it by webscraping
+## Project file
+You can find more information about the code in the project file.
 
-StonkApp.java: connects the app to the fxml files to get an UI
+[Stonk>src>main>java>stonk...](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2135/gr2135/-/tree/master/Stonk/src/main/java/stonk)
 
-User.java: code for making and changing a users information  
+## FXML and json files
 
-database.json: file for saving inforamtion such ass username, password and your wallet.
-
+[Stonk>src>main>resources>stonk...](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2135/gr2135/-/tree/master/Stonk/src/main/resources/stonk)
