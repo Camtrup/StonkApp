@@ -55,6 +55,7 @@ public class StonkController {
 
             try {
                 dataHandler.newUser(username.getText(), password.getText(), firstname.getText(), lastname.getText(), Integer.parseInt(age.getText()), 10000, new JSONArray());
+                user = dataHandler.
                 fromRegisterToMain(event);
             }
             catch(IllegalArgumentException e){
