@@ -20,13 +20,6 @@ public class DataHandler {
     public void newUser(String username, String password, String firstname, String lastname, int age, float cash, JSONArray portfolio) {
         JSONArray userArray = getAllUsers();
         JSONObject user = new JSONObject();
-        if(age != (int) age){
-            throw new IllegalArgumentException("Age must be a number");
-        }
-        if(findUser(username) >= 0){
-            throw new IllegalArgumentException("Username is already registered");
-        }
-
         user.put("username",username);
         user.put("password",password);
         user.put("firstname",firstname);
@@ -107,7 +100,7 @@ public class DataHandler {
         JSONArray portfolio = getPortfolio(userIndex);
         JSONObject stock = new JSONObject();
 
-        if(count >= 0){
+        if(count <= 0){
             throw new IllegalArgumentException("Amount cannot be negative or 0");
         }
         
@@ -238,7 +231,8 @@ public class DataHandler {
                             user.get("lastname").toString(),
                             Float.parseFloat(user.get("cash").toString()),
                             Integer.parseInt(user.get("age").toString()), 
-                            portfolio);
+                            portfolio,
+                            false);
             }
         }
         else {
