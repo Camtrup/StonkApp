@@ -42,15 +42,19 @@ public class StonkController {
     private TextField age;
 
     @FXML
+    private TextField cash;
+
+
+    @FXML
     public void registerUser(ActionEvent event) throws IOException{
-        if(username.getText().isBlank() || password.getText().isBlank() || firstname.getText().isBlank() || lastname.getText().isBlank() || age.getText().isBlank()){
+        if(username.getText().isBlank() || password.getText().isBlank() || firstname.getText().isBlank() || lastname.getText().isBlank() || age.getText().isBlank()|| cash.getText().isBlank()){
             throw new IllegalArgumentException("You must fill out all inputfields");
         }
         else {
             DataHandler dataHandler = new DataHandler();
 
             try {
-                dataHandler.newUser(username.getText(), password.getText(), firstname.getText(), lastname.getText(), Integer.parseInt(age.getText()), 10000, new JSONArray());
+                dataHandler.newUser(username.getText(), password.getText(), firstname.getText(), lastname.getText(), Integer.parseInt(age.getText()), Integer.parseInt(cash.getText()), new JSONArray());
                 fromRegisterToMain(event);
             }
             catch(IllegalArgumentException e){

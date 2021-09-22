@@ -32,8 +32,8 @@
                   <Font name="Plantagenet Cherokee" size="24.0" />
                </font>
             </Text>
-            <TextField fx:id="password1" layoutX="113.0" layoutY="261.0" promptText="eg: 1000 " />
-            <Text layoutX="55.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="balance:" />
+            <TextField fx:id="cash" layoutX="113.0" layoutY="261.0" promptText="eg: 1000 " />
+            <Text layoutX="55.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="cash:" />
             <Text layoutX="275.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$" />
             <Text layoutX="154.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NEW USER:" />
          </children>
