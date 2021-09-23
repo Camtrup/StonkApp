@@ -21,9 +21,9 @@
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="209.0">
          <children>
-            <Button fx:id="login" layoutX="82.0" layoutY="122.0" mnemonicParsing="false" onAction="#login" text="Login" />
-            <PasswordField layoutX="23.0" layoutY="87.0" promptText="Passord" />
-            <TextField layoutX="23.0" layoutY="54.0" promptText="Brukernavn" />
+            <Button fx:id="login" layoutX="82.0" layoutY="122.0" mnemonicParsing="false" onAction="#isLoginValid" text="Login" />
+            <PasswordField fx:id ="password" layoutX="23.0" layoutY="87.0" promptText="Passord" />
+            <TextField  fx:id = "username" layoutX="23.0" layoutY="54.0" promptText="Brukernavn" />
             <Button fx:id="registerUser" layoutX="45.0" layoutY="154.0" mnemonicParsing="false" onAction="#registerUser" text="Registrer ny bruker" />
             <Text layoutX="55.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="STONKS">
                <font>
