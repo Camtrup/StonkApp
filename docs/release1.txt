@@ -1,11 +1,16 @@
-## INNLEVERING 1
+##INNLEVERING 1
 
-## FUNKSJONALITET:
-Vi har fått til å få funksjonaliteten for å søke opp en aksje fra marketwatch.com og få pris, navn for nå i Stonk.java. Planen er å senere kunne ta ut enda mer informasjon for hver aksje. 
+##FUNKSJONALITET:
+Vi har fått til å få funksjonaliteten for å søke opp en aksje fra marketwatch.com og få pris, navn for nå i Stonk.java. 
+Planen er å senere kunne ta ut enda mer informasjon for hver aksje. 
 Dette ble gjort med market scraping ved hjelp av Jsoup som det står mer om i ReadME filen.
-Mye av tiden har gått på å få login og regustrer bruker til å funkere
+Mye av tiden har gått på å få login og registrer bruker sidene til å funkere. 
+Vi har også hatt problemer med å overføre informasjon fra de forskjellige javafxml filene til en controller. 
+Derfor fant vi ut at det var bedre å lage en controller klas for hver fxml fil.
+
 ## FIL LAGRING: 
 Vi bruker databas.json filen for å lagre kontoen til brukere. Her mangler vi kun å få lagret aksjene en person ønsker å kjøpe.
+
 
 ## JAVA FXML:
 Til nå så har vi 3 ganske ferdige javafxml sider. Totalt vil det være 5 sider. 
