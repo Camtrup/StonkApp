@@ -24,7 +24,8 @@ Using this we are able to get information about every given stock in real-time.
 
 "As a stock broker I want to have a list over the stocks I own virtually, so that I can easily compare my virtual stocks to my actual stock holdings."
 
-**Acceptance criteria**
+**Acceptance criteria**:
+
 "If I open the homepage I expect to see which stocks I own, and also that it updates when I buy a new stock, or sell one that I already own. I also expect to be able to update the stock prices to see how all of them have performed after I bought them."
 
 
