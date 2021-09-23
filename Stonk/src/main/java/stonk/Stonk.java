@@ -1,7 +1,6 @@
 package stonk;
 
 import java.io.IOException;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -37,7 +36,7 @@ public class Stonk {
             getStockInfo(ticker);
         }
     }
-
+    
     public String getName(){
         return name;
     }
@@ -48,16 +47,19 @@ public class Stonk {
         return ticker;
     }
 
-
+    
 	@Override
 	public String toString() {
-        return "your stock " + name + " har a price of " + price;
+        return "your stock " + name + " has a price of " + price;
     }
 
 
     public static void main(String[] args) {
         Stonk s = new Stonk();
+        s.getStockInfo("GME");
         System.out.println(s);
+        System.out.println(s.ticker);
+        System.out.println(s.price);
         System.out.println(s.name);
     }
 }
