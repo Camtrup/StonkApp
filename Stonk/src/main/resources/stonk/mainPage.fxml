@@ -34,12 +34,8 @@
                         <Font name="Plantagenet Cherokee" size="26.0" />
                      </font>
                   </Text>
-                  <Button id="profile" layoutX="351.0" layoutY="31.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="71.0" text="my profile" textOverrun="WORD_ELLIPSIS" />
-                  <Label fx:id="cash" layoutX="248.0" layoutY="33.0" text="aaaa" textFill="WHITE">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
+                  <Button id="profile" layoutX="351.0" layoutY="31.0" mnemonicParsing="false" onAction="#displayCash" prefHeight="29.0" prefWidth="71.0" text="my profile" textOverrun="WORD_ELLIPSIS" />
+                  <TextField fx:id="cashMoneyFlow" layoutX="249.0" layoutY="33.0" prefHeight="25.0" prefWidth="71.0" />
                </children>
             </Pane>
             <TextField fx:id="searchbar" layoutX="92.0" layoutY="132.0" prefHeight="42.0" prefWidth="187.0" promptText="Search stocks" />
