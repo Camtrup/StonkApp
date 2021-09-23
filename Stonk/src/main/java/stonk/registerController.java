@@ -35,8 +35,6 @@ public class registerController {
     @FXML
     private TextField cash;
 
-
-
     @FXML
     private Button registerUser; 
 

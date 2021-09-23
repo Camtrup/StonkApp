@@ -60,21 +60,21 @@ public User(String firstName, String lastName, String username, String password,
 
     public void setFirstName(String firstName){
         if(firstName.isBlank()){
-            throw new IllegalArgumentException("Name cannot be blank");
+            throw new IllegalArgumentException("First name cannot be blank");
         }
         this.firstName = firstName;
     } 
 
     public void setLastName(String lastName){
         if(lastName.isBlank()){
-            throw new IllegalArgumentException("Name cannot be blank");
+            throw new IllegalArgumentException("Last name cannot be blank");
         }
         this.lastName = lastName;
     } 
 
     public void setUserName(String name){
         if(name.isBlank()){
-            throw new IllegalArgumentException("Name cannot be blank");
+            throw new IllegalArgumentException("username cannot be blank");
         }
         if(handler.findUser(name) != -1){
             throw new IllegalArgumentException("Username is already registered");
