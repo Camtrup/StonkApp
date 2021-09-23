@@ -38,8 +38,8 @@
                   <TextField fx:id="cashMoneyFlow" layoutX="249.0" layoutY="33.0" prefHeight="25.0" prefWidth="71.0" />
                </children>
             </Pane>
-            <TextField fx:id="searchbar" layoutX="92.0" layoutY="132.0" prefHeight="42.0" prefWidth="187.0" promptText="Search stocks" />
-         <Button layoutX="283.0" layoutY="132.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="71.0" text="SEARCH" />
+            <TextField fx:id="searchBar" layoutX="92.0" layoutY="132.0" prefHeight="42.0" prefWidth="187.0" promptText="Search stocks" />
+         <Button fx:id="searchButton" onAction="#toStockPage" layoutX="283.0" layoutY="132.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="71.0" text="SEARCH" />
             <ScrollPane layoutX="118.0" layoutY="282.0" prefHeight="180.0" prefWidth="200.0" />
             <Text layoutX="143.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MY STOCKS">
                <font>

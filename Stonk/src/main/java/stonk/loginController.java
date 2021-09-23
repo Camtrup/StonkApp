@@ -33,7 +33,8 @@ public class loginController {
 
     public void login() throws IOException{
         StonkApp app = new StonkApp();
-        app.changeScene("mainPage.fxml");
+        app.changeScene("mainPage.fxml",user.getUserName());
+
     }
 
     @FXML
@@ -43,7 +44,6 @@ public class loginController {
             user = dataHandler.isLoginValid(username.getText().toString(), password.getText().toString());
             userIndex = dataHandler.findUser(username.getText());
             if(user.equals(null)){
-            
                 throw new IllegalArgumentException("Password is incorrect");
             }
             else{
@@ -59,7 +59,7 @@ public class loginController {
 
     public void registerUser(ActionEvent event) throws IOException{
         StonkApp app = new StonkApp();
-        app.changeScene("newUser.fxml");
+        app.changeScene("newUser.fxml", user.getUserName());
     }
 
 }
