@@ -138,8 +138,8 @@ public User(String firstName, String lastName, String username, String password,
 
 	@Override
 	public String toString() {
-        return "Hello " + username + " you have " + cash + " dollars in your account. Happy trading!!";
-
+        System.out.println("yet");
+        return "Hello " + username + " you have " + cash + " dollars in your account. Happy trading!!"; 
     }
 
 public static void main(String[] args) {
