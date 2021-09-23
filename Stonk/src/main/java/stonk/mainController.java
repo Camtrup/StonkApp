@@ -3,6 +3,7 @@ package stonk;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -11,6 +12,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
@@ -41,13 +44,13 @@ public class mainController{
     private TextField searchbar;
     @FXML
     private Text balanceString; 
-
-
+    @FXML
+    private GridPane gridpane;
     @FXML
     private TextField searchBar;
 
     @FXML
-    public void toStockPage(){
+    public void updateMain(){
         Parent s = searchBar.getScene().getRoot();
         user = handler.generateUser(s.getId());
         System.out.println(user.getUserName());
@@ -57,23 +60,26 @@ public class mainController{
     public void displayCash(){
         cashMoneyFlow.setText(Float.toString(user.getCash()));
     }
-    
-    public void updateMain(){
-        DataHandler dataHandler = new DataHandler();
-        user = dataHandler.isLoginValid(username.getText(), password.getText());
-        System.out.println("hei");
-        System.out.println(user.getFirstName());
-        System.out.println(user.getCash());
-
-        fullName.setText(" " + user.getFirstName());
-        cash.setText(Float.toString(user.getCash()));
-
+    public void toStockPage(){
+        
     }
+
+    
+    
 
 
     public static void main(String[] args) {
         mainController controller = new mainController();
         controller.displayCash();
     }
+
+    @FXML
+    public void initialize() {
+        Parent s = searchBar.getScene().getRoot();
+        user = handler.generateUser(s.getId());
+        System.out.println(user.getUserName());
+    }
+
+
 
 }
