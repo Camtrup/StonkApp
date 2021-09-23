@@ -14,20 +14,45 @@ public class User {
 
 
 public User(String firstName, String lastName, String username, String password, float cash, int age, JSONArray portfolio, boolean isNewUser){
-    setFirstName(firstName);
-    setLastName(lastName);
-    setUserName(username);
-    setPassword(password);
-    setCash(cash);
-    setAge(age);
-    setPortfolio(portfolio);
     if(isNewUser){
+        setFirstName(firstName);
+        setLastName(lastName);
+        setUserName(username);
+        setPassword(password);
+        setCash(cash);
+        setAge(age);
+        this.portfolio = portfolio;
         handler.newUser(username, password, firstName, lastName, age, cash, new JSONArray());
     }
-}
-    public void setPortfolio(JSONArray portfolio){
+    else {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
+        this.cash = cash;
+        this.age = age;
         this.portfolio = portfolio;
     }
+}
+    public void addToPortfoilio(String ticker, int count){
+        if(count <= 0){
+            throw new IllegalArgumentException("Amount of stocks cant be negative or 0");
+        }
+        Stonk stock = new Stonk();
+        stock.getStockInfo(ticker);
+        setCash(cash - (stock.getPrice() * count));
+        handler.addToPortfoilio(handler.findUser(username), ticker, stock.getPrice(), count);
+    }
+
+    public void removeFromPortfolio(String ticker, int count){
+        Stonk stock = new Stonk();
+        stock.getStockInfo(ticker);
+        stock.getPrice();
+        handler.removeFromPortfolio(handler.findUser(username), ticker, count);
+        setCash(cash + (stock.getPrice() * count));
+    }
+
+
 
     public JSONArray getPortfolio(){
         return handler.getPortfolio(handler.findUser(username));
@@ -48,10 +73,10 @@ public User(String firstName, String lastName, String username, String password,
     } 
 
     public void setUserName(String name){
-        if(username.isBlank()){
+        if(name.isBlank()){
             throw new IllegalArgumentException("Name cannot be blank");
         }
-        if(handler.findUser(username) != -1){
+        if(handler.findUser(name) != -1){
             throw new IllegalArgumentException("Username is already registered");
         }
         this.username = name;

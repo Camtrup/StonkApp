@@ -64,6 +64,19 @@ public class DataHandler {
         return -1;
     }
 
+    public User generateUser(String username){
+        JSONObject user = getUser(findUser(username));
+        return new User(user.get("firstname").toString(),
+                                user.get("lastname").toString(),
+                                user.get("username").toString(),
+                                user.get("password").toString(),
+                                Float.parseFloat(user.get("cash").toString()),
+                                Integer.parseInt(user.get("age").toString()),
+                                (JSONArray) user.get("portfolio"),
+                                false);
+
+    }
+
     //Returns a given user by index in the database
     public JSONObject getUser(int index){
         JSONArray userArray = getAllUsers();
@@ -99,10 +112,6 @@ public class DataHandler {
         JSONArray userArray = getAllUsers();
         JSONArray portfolio = getPortfolio(userIndex);
         JSONObject stock = new JSONObject();
-
-        if(count <= 0){
-            throw new IllegalArgumentException("Amount cannot be negative or 0");
-        }
         
         boolean containsStock = false;
         
@@ -137,7 +146,6 @@ public class DataHandler {
                 x.put("portfolio", portfolio);
             }
         }
-        removeCash(price * count, userIndex);
         writeToFile(userArray);
     }
 
@@ -152,8 +160,6 @@ public class DataHandler {
 
         boolean containsStock = false;
 
-        float plusCash = 0;
-
         for(Object i : portfolio){
             JSONObject x = (JSONObject) i;
             if(x.get("ticker").equals(ticker)){
@@ -162,11 +168,8 @@ public class DataHandler {
             }
         }
         if(containsStock){
-        
-            if(Integer.parseInt(stock.get("count").toString()) >= count){
-                int newCount = Integer.parseInt(stock.get("count").toString()) - count;
-                plusCash = Float.parseFloat(stock.get("price").toString()) + Float.parseFloat(stock.get("price").toString()) * count;
-
+            int newCount = Integer.parseInt(stock.get("count").toString()) - count;
+            if(newCount < 0){
                 if(newCount == 0){
                     portfolio.remove(stock);
                 }
@@ -174,39 +177,12 @@ public class DataHandler {
                     stock.put("count", newCount);
                 }
             }
-            user.put("cash",plusCash);
             user.put("portfolio", portfolio);
             writeToFile(userArray);
         }
         else {
             throw new IllegalArgumentException("Stock not in portfolio");
         }
-
-    }
-
-    //Adds cash to the users account
-    public void addCash(float num, int userIndex){
-        JSONArray userArray = getAllUsers();
-        JSONObject user = (JSONObject) userArray.get(userIndex);
-        user.put("cash", getCash(userIndex) + num);
-        writeToFile(userArray);
-    }
-
-
-    //Checks if withdrawing the amount is valid
-    public void removeCash(float num, int userIndex){
-        JSONArray userArray = getAllUsers();
-        JSONObject user = (JSONObject) userArray.get(userIndex);
-        Float cash = Float.parseFloat(user.get("cash").toString());
-        if(cash > num){
-            cash -= num;
-            user.put("cash", cash);
-            writeToFile(userArray);
-        }
-        else{
-            throw new IllegalArgumentException("Not enough cash");
-        }
-
     }
 
     //Returns the users cash
@@ -225,14 +201,14 @@ public class DataHandler {
             JSONObject user = getUser(index);
             if(user.get("password").toString().equals(password)){
                 JSONArray portfolio = (JSONArray) user.get("portfolio");
-                return new User(username, 
-                            password,
-                            user.get("firstname").toString(), 
-                            user.get("lastname").toString(),
-                            Float.parseFloat(user.get("cash").toString()),
-                            Integer.parseInt(user.get("age").toString()), 
-                            portfolio,
-                            false);
+                return new User(user.get("firstname").toString(),
+                                user.get("lastname").toString(),
+                                user.get("username").toString(),
+                                user.get("password").toString(),
+                                Float.parseFloat(user.get("cash").toString()),
+                                Integer.parseInt(user.get("age").toString()),
+                                (JSONArray) user.get("portfolio"),
+                                false);
             }
         }
         else {
