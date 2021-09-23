@@ -6,9 +6,9 @@ import org.jsoup.nodes.Document;
 
 public class Stonk {
 
-    String ticker;
-    float price;
-    String name;
+    private String ticker;
+    private float price;
+    private String name;
 
     //Henter aksjeprisen til "ticker" som bruker søker på
     //Hvis "ticker" ikke er nøyaktig, får en en NullPointerException siden elementet i HTMLen = NULL

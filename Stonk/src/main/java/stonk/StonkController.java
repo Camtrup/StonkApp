@@ -66,6 +66,7 @@ public class StonkController {
             try {
                 dataHandler.newUser(username.getText(), password.getText(), firstname.getText(), lastname.getText(), Integer.parseInt(age.getText()), Integer.parseInt(cash.getText()), new JSONArray());
                 user = dataHandler.isLoginValid(username.getText(), password.getText());
+                System.out.println(user);
                 fromRegisterToMain(event);
             }
             catch(IllegalArgumentException e){
@@ -76,7 +77,6 @@ public class StonkController {
 
     @FXML
     public void isLoginValid(ActionEvent event) throws IOException {
-        System.out.println();
         DataHandler dataHandler = new DataHandler();
         try {
             user = dataHandler.isLoginValid(username.getText().toString(), password.getText().toString());
@@ -85,8 +85,7 @@ public class StonkController {
                 throw new IllegalArgumentException("Password is incorrect");
             }
             else {
-                fromLoginToMain(event);
-
+                fromLoginToMain(event, user);
             }
         }
         catch(IllegalArgumentException e){
@@ -95,14 +94,13 @@ public class StonkController {
     }
 
 
-    public void fromLoginToMain(ActionEvent event) throws IOException{
+    public void fromLoginToMain(ActionEvent event, User user) throws IOException{
         Parent fxmlLoader = FXMLLoader.load(getClass().getResource("mainPage.fxml"));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(fxmlLoader);
         stage.setScene(scene);
         stage.show();
-        updateMain();
-
+        searchbar.setId(username.getText());
     }
 
     public void fromRegisterToMain(ActionEvent event) throws IOException{
@@ -111,9 +109,8 @@ public class StonkController {
         scene = new Scene(fxmlLoader);
         stage.setScene(scene);
         stage.show();
-        updateMain();
-
     }
+
     public void updateMain(){
         DataHandler dataHandler = new DataHandler();
         user = dataHandler.isLoginValid(username.getText(), password.getText());
@@ -133,22 +130,21 @@ public class StonkController {
 
     @FXML
     public void generateStockPage(){
+        FXMLLoader loader = new FXMLLoader();
         Stonk stock = new Stonk();
         stock.getStockInfo(searchbar.getText());
         Stage stonkStage = new Stage();
         stonkStage.setTitle(stock.getName());
-        
-
         Label price = new Label("Price : " + stock.getPrice());
         Label ticker = new Label(stock.getTicker().toUpperCase());
         Button buy = new Button("Buy stock");
-        
         TextField buyCount = new TextField();
         buyCount.setPromptText("Amount of stocks");
-        
         buy.setOnAction(Event ->{
             try{
-                buyStocks(stock, Integer.parseInt(buyCount.getText()));
+                DataHandler d = new DataHandler();
+                User u = d.generateUser(searchbar.getId());
+                u.addToPortfoilio(ticker.getText(), Integer.parseInt(buyCount.getText()));
             }
             catch(IllegalArgumentException e){
                 System.out.println(e);
@@ -158,12 +154,6 @@ public class StonkController {
         VBox x = new VBox(ticker, price, buyCount, buy);
         stonkStage.setScene(new Scene(x));
         stonkStage.show();
-    }
-
-    private void buyStocks(Stonk stock, int count){
-            DataHandler handler = new DataHandler();
-            handler.addToPortfoilio(userIndex, stock.getTicker(), stock.getPrice(), count);
-            updateMain();
     }
 
 
