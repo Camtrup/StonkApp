@@ -39,6 +39,7 @@ public class DataHandler {
             JSONObject obj = (JSONObject) parser.parse(reader);
             userArray = (JSONArray) obj.get("users");
         }
+        
         catch(IOException | ParseException e){
             System.out.println(e);
         }
