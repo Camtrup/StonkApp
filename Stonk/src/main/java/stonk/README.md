@@ -19,6 +19,15 @@ Using this we are able to get information about every given stock in real-time.
    
    - database.json: Saves information like username, password and balance.
 
+## User Story
+<sub>*Connected to issue [#9](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2135/gr2135/-/issues/9).*</sub>
+
+"As a stock broker I want to have a list over the stocks I own virtually, so that I can easily compare my virtual stocks to my actual stock holdings."
+
+**Acceptance criteria**
+"If I open the homepage I expect to see which stocks I own, and also that it updates when I buy a new stock, or sell one that I already own. I also expect to be able to update the stock prices to see how all of them have performed after I bought them."
+
+
 ## Illustrations
 ***The illustrations are due to change as we will keep making changes to the UI going forward.***
 
