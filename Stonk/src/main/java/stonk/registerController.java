@@ -40,7 +40,7 @@ public class registerController {
 
     public void loginFromRegister() throws IOException{
         StonkApp app = new StonkApp();
-        app.changeScene("mainPage.fxml");
+        app.changeScene("mainPage.fxml",user.getUserName());
     }
 
     @FXML
