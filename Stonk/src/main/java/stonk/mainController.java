@@ -1,6 +1,10 @@
 package stonk;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -41,16 +45,12 @@ public class mainController {
     public void toStockPage(){
         Parent s = searchBar.getScene().getRoot();
         user = handler.generateUser(s.getId());
-        
+        System.out.println(user.getUserName());
     }
 
     @FXML
     public void displayCash(){
         cashMoneyFlow.setText(Float.toString(user.getCash()));
-    }
-
-    public void setUser(User user){
-        this.user = user; 
     }
     
     public void updateMain(){
