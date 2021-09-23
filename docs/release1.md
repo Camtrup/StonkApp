@@ -1,7 +1,7 @@
-##INNLEVERING 1
+## INNLEVERING 1
 
-##FUNKSJONALITET:
-Vi har fått til å få funksjonaliteten for å søke opp en aksje fra marketwatch.com og få pris, navn for nå i Stonk.java. 
+## FUNKSJONALITET:
+Vi har fått til å få funksjonaliteten for å søke opp en aksje fra marketwatch.com og få pris, navn og ticker for nå, i Stonk.java. 
 Planen er å senere kunne ta ut enda mer informasjon for hver aksje. 
 Dette ble gjort med market scraping ved hjelp av Jsoup som det står mer om i ReadME filen.
 Mye av tiden har gått på å få login og registrer bruker sidene til å funkere. 
