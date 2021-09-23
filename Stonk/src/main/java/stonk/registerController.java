@@ -36,7 +36,8 @@ public class registerController {
     private TextField cash;
 
     @FXML
-    private Button registerUser; 
+    private Button registerUser;
+     
 
     public void loginFromRegister() throws IOException{
         StonkApp app = new StonkApp();
