@@ -4,7 +4,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -14,14 +13,22 @@ import java.io.IOException;
  */
 public class StonkApp extends Application {
 
+    private static Stage stg; 
+
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("login.fxml"));
-        Parent parent = fxmlLoader.load();
-        stage.getIcons().add(new Image("/images/stonkpicture.png"));
+        stg = stage;
+        stage.setResizable(false);
+        Parent fxmlLoader = FXMLLoader.load(getClass().getResource("login.fxml"));
+        
         stage.setTitle("Stonk");
-        stage.setScene(new Scene(parent));
+        stage.setScene(new Scene(fxmlLoader, 800,600));
         stage.show();
+    }
+
+    public void changeScene(String fxml) throws IOException{
+        Parent pane = FXMLLoader.load(getClass().getResource(fxml));
+        stg.getScene().setRoot(pane);
     }
 
     public static void main(String[] args) {
