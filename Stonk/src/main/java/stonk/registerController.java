@@ -14,7 +14,4 @@ public class registerController {
         StonkApp app = new StonkApp();
         app.changeScene("mainPage.fxml");
     }
-
-
-    
 }
