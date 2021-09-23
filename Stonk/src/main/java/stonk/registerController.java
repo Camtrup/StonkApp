@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -32,7 +33,9 @@ public class registerController {
     @FXML
     private TextField age;
     @FXML
-    private Label cash;
+    private TextField cash;
+
+
 
     @FXML
     private Button registerUser; 
@@ -43,7 +46,7 @@ public class registerController {
     }
 
     @FXML
-    public void registerUser(ActionEvent event) throws IOException{
+    public void registerUser() throws IOException{
         if(username.getText().isBlank() || password.getText().isBlank() || firstname.getText().isBlank() || lastname.getText().isBlank() || age.getText().isBlank()|| cash.getText().isBlank()){
             throw new IllegalArgumentException("You must fill out all inputfields");
         }
