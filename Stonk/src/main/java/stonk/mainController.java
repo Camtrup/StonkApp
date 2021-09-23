@@ -5,12 +5,17 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 
-public class mainController implements Initializable{
+public class mainController{
     DataHandler handler = new DataHandler();
     private User user;
     
@@ -39,12 +44,18 @@ public class mainController implements Initializable{
 
 
     @FXML
-    public void displayCash(){
-        cashMoneyFlow.setText(Float.toString(user.getCash()));
+    private TextField searchBar;
+
+    @FXML
+    public void toStockPage(){
+        Parent s = searchBar.getScene().getRoot();
+        user = handler.generateUser(s.getId());
+        System.out.println(user.getUserName());
     }
 
-    public void setUser(User user){
-        this.user = user; 
+    @FXML
+    public void displayCash(){
+        cashMoneyFlow.setText(Float.toString(user.getCash()));
     }
     
     public void updateMain(){
@@ -64,18 +75,5 @@ public class mainController implements Initializable{
         mainController controller = new mainController();
         controller.displayCash();
     }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        Parent s = balanceString.getScene().getRoot();
-        user = handler.generateUser(s.getId());
-        System.out.println(user.getUserName()); 
-        
-    }
-
-
-
-
-    
 
 }

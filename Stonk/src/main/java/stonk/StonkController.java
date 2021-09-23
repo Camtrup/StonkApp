@@ -74,34 +74,6 @@ public class StonkController {
         }
     }
 
-    @FXML
-    public void isLoginValid(ActionEvent event) throws IOException {
-        DataHandler dataHandler = new DataHandler();
-        try {
-            user = dataHandler.isLoginValid(username.getText().toString(), password.getText().toString());
-            userIndex = dataHandler.findUser(username.getText());
-            if(user.equals(null)){
-                throw new IllegalArgumentException("Password is incorrect");
-            }
-            else {
-                fromLoginToMain(event, user);
-            }
-        }
-        catch(IllegalArgumentException e){
-            System.out.println(e);
-        } 
-    }
-
-
-    public void fromLoginToMain(ActionEvent event, User user) throws IOException{
-        Parent fxmlLoader = FXMLLoader.load(getClass().getResource("mainPage.fxml"));
-        stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(fxmlLoader);
-        stage.setScene(scene);
-        stage.show();
-        searchbar.setId(username.getText());
-    }
-
     public void fromRegisterToMain(ActionEvent event) throws IOException{
         Parent fxmlLoader = FXMLLoader.load(getClass().getResource("mainPage.fxml"));
         stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
@@ -120,39 +92,6 @@ public class StonkController {
         nameMain.setText(" " + user.getFirstName());
         cash.setText(Float.toString(user.getCash()));
 
-    }
-
-
-
-    @FXML
-    private TextField searchbar;
-
-    @FXML
-    public void generateStockPage(){
-        FXMLLoader loader = new FXMLLoader();
-        Stonk stock = new Stonk();
-        stock.getStockInfo(searchbar.getText());
-        Stage stonkStage = new Stage();
-        stonkStage.setTitle(stock.getName());
-        Label price = new Label("Price : " + stock.getPrice());
-        Label ticker = new Label(stock.getTicker().toUpperCase());
-        Button buy = new Button("Buy stock");
-        TextField buyCount = new TextField();
-        buyCount.setPromptText("Amount of stocks");
-        buy.setOnAction(Event ->{
-            try{
-                DataHandler d = new DataHandler();
-                User u = d.generateUser(searchbar.getId());
-                u.addToPortfoilio(ticker.getText(), Integer.parseInt(buyCount.getText()));
-            }
-            catch(IllegalArgumentException e){
-                System.out.println(e);
-            }
-        });
-        
-        VBox x = new VBox(ticker, price, buyCount, buy);
-        stonkStage.setScene(new Scene(x));
-        stonkStage.show();
     }
 
 
