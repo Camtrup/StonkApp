@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane fx:id="gridane" alignment="CENTER" hgap="10.0" vgap="10.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stonk.mainController">
+<GridPane fx:id="gridane" alignment="CENTER" hgap="10.0" vgap="10.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.mainController">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>

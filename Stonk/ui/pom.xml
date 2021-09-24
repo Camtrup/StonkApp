@@ -89,7 +89,7 @@
         		<artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
                     <argLine>
-                    --add-opens Stonk.ui/ui=ALL-UNNAMED --add-exports javafx.graphics/com.sun.javafx.application=ALL-UNNAMED
+                    --add-opens calc.ui/ui=ALL-UNNAMED --add-exports javafx.graphics/com.sun.javafx.application=ALL-UNNAMED
                     </argLine>
                 </configuration>
 	        </plugin>
@@ -102,10 +102,9 @@
                 <!-- Usage: mvn javafx:run -->
                 <configuration>
                     <!-- syntax: module-name/full-app-class-name -->
-                    <!-- 
 
-                        <mainClass>Stonk.ui/ui.StonkApp</mainClass>
-                    -->
+                        <mainClass>ui.StonkApp</mainClass>
+                    
                 </configuration>
             </plugin>
         </plugins>

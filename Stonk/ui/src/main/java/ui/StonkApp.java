@@ -1,6 +1,7 @@
 package ui;
 
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -17,12 +18,13 @@ public class StonkApp extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        System.out.println("yeet");
         stg = stage;
         stage.setResizable(false);
-        Parent fxmlLoader = FXMLLoader.load(getClass().getResource("Stonk/ui/src/main/resources/ui/fxml/login.fxml"));
-        
+        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("fxml/login.fxml"));
+        Parent parent = fxmlLoader.load();
         stage.setTitle("Stonk");
-        stage.setScene(new Scene(fxmlLoader, 800,600));
+        stage.setScene(new Scene(parent, 800,600));
         stage.show();
     }
 
