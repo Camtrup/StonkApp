@@ -5,8 +5,8 @@
     <artifactId>modules-core</artifactId>
 
     <parent>
-        <groupId>it1901</groupId>
-        <artifactId>modules-template</artifactId>
+        <groupId>GR2135</groupId>
+        <artifactId>parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>..</relativePath>
     </parent>
