@@ -2,6 +2,8 @@ package ui;
 
 import java.io.IOException;
 
+import core.DataHandler;
+import core.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
