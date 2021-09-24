@@ -1,6 +1,8 @@
 package ui;
 
 
+import core.DataHandler;
+import core.User;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
@@ -10,7 +12,7 @@ import javafx.scene.text.Text;
 
 public class mainController {
     DataHandler handler = new DataHandler();
-    private User user;
+    private User user; 
     
     @FXML
     private Label cashMoneyFlow; 
