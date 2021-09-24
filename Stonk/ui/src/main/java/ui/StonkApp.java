@@ -19,7 +19,7 @@ public class StonkApp extends Application {
     public void start(Stage stage) throws IOException {
         stg = stage;
         stage.setResizable(false);
-        Parent fxmlLoader = FXMLLoader.load(getClass().getResource("login.fxml"));
+        Parent fxmlLoader = FXMLLoader.load(getClass().getResource("Stonk/ui/src/main/resources/ui/fxml/login.fxml"));
         
         stage.setTitle("Stonk");
         stage.setScene(new Scene(fxmlLoader, 800,600));

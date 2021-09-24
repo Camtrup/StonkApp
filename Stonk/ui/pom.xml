@@ -94,7 +94,6 @@
                     </argLine>
                 </configuration>
 	        </plugin>
-
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
@@ -106,6 +105,7 @@
                     <mainClass>Stonk.ui/ui.StonkApp</mainClass>
                 </configuration>
             </plugin>
+        
         </plugins>
     </build>
 </project>
