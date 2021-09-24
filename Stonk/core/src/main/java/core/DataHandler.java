@@ -12,7 +12,7 @@ import org.json.simple.parser.ParseException;
 public class DataHandler {
 
 
-    private final String filePath = "src/main/resources/stonk/database.json";
+    private final String filePath = "core/src/main/java/core/database.json";
     
     //Creates new user in the database
     public void newUser(String username, String password, String firstname, String lastname, int age, float cash, JSONArray portfolio) {
@@ -33,6 +33,7 @@ public class DataHandler {
     public JSONArray getAllUsers(){
         JSONParser parser = new JSONParser();
         JSONArray userArray = new JSONArray();
+        System.out.println(filePath);
         try(FileReader reader = new FileReader(filePath)){
             JSONObject obj = (JSONObject) parser.parse(reader);
             userArray = (JSONArray) obj.get("users");
@@ -199,7 +200,6 @@ public class DataHandler {
         if(index >= 0){
             JSONObject user = getUser(index);
             if(user.get("password").toString().equals(password)){
-                JSONArray portfolio = (JSONArray) user.get("portfolio");
                 return new User(user.get("firstname").toString(),
                                 user.get("lastname").toString(),
                                 user.get("username").toString(),
