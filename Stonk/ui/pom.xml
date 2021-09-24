@@ -1,14 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <artifactId>modules-ui</artifactId>
 
     <parent>
-        <groupId>GR2135</groupId>
-        <artifactId>parent</artifactId>
+        <groupId>it1901-gr2135</groupId>
+        <artifactId>Stonk</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-
-    <artifactId>ui</artifactId>
 
     <dependencies>
 
@@ -103,7 +102,10 @@
                 <!-- Usage: mvn javafx:run -->
                 <configuration>
                     <!-- syntax: module-name/full-app-class-name -->
-                    <mainClass>src.main.java.ui.StonkApp</mainClass>
+                    <!-- 
+
+                        <mainClass>Stonk.ui/ui.StonkApp</mainClass>
+                    -->
                 </configuration>
             </plugin>
         </plugins>
