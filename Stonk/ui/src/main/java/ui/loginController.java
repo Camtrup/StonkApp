@@ -1,4 +1,4 @@
-package stonk;
+package ui;
 
 import java.io.IOException;
 

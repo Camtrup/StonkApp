@@ -1,4 +1,4 @@
-package Stonk.core;
+package core;
 
 import java.io.IOException;
 import org.jsoup.Jsoup;

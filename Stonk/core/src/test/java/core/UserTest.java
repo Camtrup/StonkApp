@@ -1,4 +1,4 @@
-package stonk;
+package core;
 
 
 import static org.junit.Assert.assertFalse;

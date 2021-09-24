@@ -1,4 +1,6 @@
-package stonk;
+package ui;
+import core.DataHandler;
+import core.User;
 
 import java.io.IOException;
 
@@ -46,7 +48,7 @@ public class registerController {
                 dataHandler.newUser(username.getText(), password.getText(), firstname.getText(), lastname.getText(), Integer.parseInt(age.getText()), Integer.parseInt(cash.getText()), new JSONArray());
                 user = dataHandler.isLoginValid(username.getText(), password.getText());
                 System.out.println(user);
-                loginFromRegister();
+                loginFromRegister(); 
             }
             catch(IllegalArgumentException e){
                 System.out.println(e);
