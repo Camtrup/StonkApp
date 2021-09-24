@@ -28,6 +28,7 @@ public class StonkApp extends Application {
 
     public void changeScene(String fxml, String username) throws IOException{
         Parent pane = FXMLLoader.load(getClass().getResource(fxml));
+        stg.setUserData(username);
         pane.setId(username);
         stg.getScene().setRoot(pane);
     }

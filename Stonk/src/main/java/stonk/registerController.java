@@ -4,22 +4,12 @@ import java.io.IOException;
 
 import org.json.simple.JSONArray;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
-import javafx.scene.Scene;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 
 public class registerController {
-    private Stage stage; 
-    private Scene scene; 
     private User user;
-    private int userIndex;
 
 
     @FXML

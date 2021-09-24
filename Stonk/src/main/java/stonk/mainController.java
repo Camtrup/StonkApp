@@ -1,24 +1,20 @@
 package stonk;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.io.IOException;
+import java.util.List;
 
-import javafx.animation.Timeline;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
-import javafx.scene.Parent;
-import javafx.scene.control.Label;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 
-public class mainController{
+public class mainController {
     DataHandler handler = new DataHandler();
     private User user;
     
@@ -64,22 +60,8 @@ public class mainController{
         
     }
 
-    
-    
-
-
-    public static void main(String[] args) {
-        mainController controller = new mainController();
-        controller.displayCash();
-    }
-
     @FXML
-    public void initialize() {
-        Parent s = searchBar.getScene().getRoot();
-        user = handler.generateUser(s.getId());
-        System.out.println(user.getUserName());
+    public void initialize() throws IOException{
+        
     }
-
-
-
 }
