@@ -18,7 +18,6 @@ public class StonkApp extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        System.out.println("yeet");
         stg = stage;
         stage.setResizable(false);
         FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("fxml/login.fxml"));
@@ -29,7 +28,7 @@ public class StonkApp extends Application {
     }
 
     public void changeScene(String fxml, String username) throws IOException{
-        Parent pane = FXMLLoader.load(getClass().getResource(fxml));
+        Parent pane = FXMLLoader.load(getClass().getResource("fxml/" + fxml));
         stg.setUserData(username);
         pane.setId(username);
         stg.getScene().setRoot(pane);
