@@ -9,7 +9,7 @@ Vi har også hatt problemer med å overføre informasjon fra de forskjellige jav
 Derfor fant vi ut at det var bedre å lage en controller klas for hver fxml fil.
 
 ## FIL LAGRING: 
-Vi bruker databas.json filen for å lagre kontoen til brukere. Her mangler vi kun å få lagret aksjene en person ønsker å kjøpe.
+Vi bruker databas.json filen for å lagre kontoen til brukere. Her mangler vi kun å få lagret aksjene en person har kjøpt og ønsker å kjøpe.
 
 
 ## JAVA FXML:
