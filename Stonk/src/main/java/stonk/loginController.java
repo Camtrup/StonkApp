@@ -55,7 +55,7 @@ public class loginController {
 
     public void registerUserNew() throws IOException{
         StonkApp app = new StonkApp();
-        app.changeScene("newUser.fxml", user.getUserName());
+        app.changeScene("newUser.fxml", "");
     }
 
 }
