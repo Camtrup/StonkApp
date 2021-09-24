@@ -3,16 +3,12 @@ package stonk;
 import java.io.IOException;
 
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 public class loginController {
 
 
-    private Stage stage; 
-    private Scene scene; 
     private User user;
     private int userIndex;
 
@@ -39,7 +35,7 @@ public class loginController {
         DataHandler dataHandler = new DataHandler();
         try {
             user = dataHandler.isLoginValid(username.getText().toString(), password.getText().toString());
-            userIndex = dataHandler.findUser(username.getText());
+            //userIndex = dataHandler.findUser(username.getText()); Trenger vi denne linjen?
             if(user.equals(null)){
                 throw new IllegalArgumentException("Password is incorrect");
             }
