@@ -12,8 +12,7 @@ import org.json.simple.parser.ParseException;
 public class DataHandler {
 
 
-    private String filePath = "/Users/casperamtrup/Desktop/ITPROSJEKT1/gr2135/Stonk/core/src/main/java/core/database.json";
-    String filepath2 = "../database.json";
+    private String filePath = System.getProperty("user.home") + "/workspace/gr2135/Stonk/core/src/main/java/core/database.json";
     
     //Creates new user in the database
     public void newUser(String username, String password, String firstname, String lastname, int age, float cash, JSONArray portfolio) {
@@ -233,6 +232,7 @@ public class DataHandler {
 
     public static void main(String[] args){
         DataHandler d = new DataHandler();
-        d.getAllUsers();
+        System.out.println(d.getAllUsers().toJSONString());
+        System.out.println(System.getProperty("user.home"));
     }
 }
