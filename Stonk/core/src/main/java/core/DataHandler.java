@@ -11,8 +11,8 @@ import org.json.simple.parser.ParseException;
 
 public class DataHandler {
 
-
-    private String filePath = System.getProperty("user.home") + "/workspace/gr2135/Stonk/core/src/main/java/core/database.json";
+    //Since the app runs from the pom.xml in the module ui. It seems that this had to be the natural position to put the databse
+    private String filePath = "src/main/resources/ui/database.json";
     
     //Creates new user in the database
     public void newUser(String username, String password, String firstname, String lastname, int age, float cash, JSONArray portfolio) {
