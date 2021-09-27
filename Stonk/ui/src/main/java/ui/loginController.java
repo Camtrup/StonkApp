@@ -12,8 +12,6 @@ public class loginController {
 
 
     private User user;
-    private int userIndex;
-
 
     @FXML
     private Button login; 
@@ -37,7 +35,6 @@ public class loginController {
         DataHandler dataHandler = new DataHandler();
         try {
             user = dataHandler.isLoginValid(username.getText().toString(), password.getText().toString());
-            //userIndex = dataHandler.findUser(username.getText()); Trenger vi denne linjen?
             if(user.equals(null)){
                 throw new IllegalArgumentException("Password is incorrect");
             }
@@ -47,6 +44,7 @@ public class loginController {
         }
     
         catch(IllegalArgumentException e){
+            System.out.println(dataHandler);
             System.out.println(e);
         } 
     }

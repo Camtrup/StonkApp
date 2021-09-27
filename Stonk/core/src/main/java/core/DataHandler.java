@@ -12,7 +12,8 @@ import org.json.simple.parser.ParseException;
 public class DataHandler {
 
 
-    private final String filePath = "core/src/main/java/core/database.json";
+    private String filePath = "/Users/casperamtrup/Desktop/ITPROSJEKT1/gr2135/Stonk/core/src/main/java/core/database.json";
+    String filepath2 = "../database.json";
     
     //Creates new user in the database
     public void newUser(String username, String password, String firstname, String lastname, int age, float cash, JSONArray portfolio) {
@@ -29,24 +30,25 @@ public class DataHandler {
         userArray.add(user);
         writeToFile(userArray);
     }
+
+    public int getUserCount(){
+        return getAllUsers().size();
+    }
+
     //Array of all users
     public JSONArray getAllUsers(){
         JSONParser parser = new JSONParser();
         JSONArray userArray = new JSONArray();
-        System.out.println(filePath);
         try(FileReader reader = new FileReader(filePath)){
             JSONObject obj = (JSONObject) parser.parse(reader);
             userArray = (JSONArray) obj.get("users");
         }
         
         catch(IOException | ParseException e){
+            System.out.println("det er min feil");
             System.out.println(e);
         }
         return userArray;
-    }
-
-    public int getUserCount() {
-        return getAllUsers().size();
     }
 
     //Returns the index of a given username in the database
@@ -196,6 +198,7 @@ public class DataHandler {
     //Returns null if password is incorrect
     //Returns a new instance of a user if the login is valid
     public User isLoginValid(String username, String password){
+        System.out.println("yeet");
         int index = findUser(username);
         if(index >= 0){
             JSONObject user = getUser(index);
