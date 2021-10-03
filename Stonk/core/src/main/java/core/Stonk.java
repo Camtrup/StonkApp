@@ -1,6 +1,7 @@
 package core;
 
 import java.io.IOException;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -20,7 +21,7 @@ public class Stonk {
         this.ticker = ticker;
         String link = "https://www.marketwatch.com/investing/stock/" + ticker;
         Document doc = null;
-        try {
+        try { 
             doc = Jsoup.connect(link)
                     .cookie("AMCVS_CB68E4BA55144CAA0A4C98A5%40AdobeOrg","1")
                     .get();
@@ -30,6 +31,7 @@ public class Stonk {
         try {
             this.name = (doc.select("h1.company__name").first().text());
             this.price = Float.parseFloat(doc.select("bg-quote.value").first().text());
+            // this.graph = (doc.select("mikey-chart")); // highcharts-8
         }
         catch (NullPointerException e){
             ticker = doc.select(".results table tbody tr td a").first().text();

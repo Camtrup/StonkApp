@@ -1,5 +1,7 @@
 package ui;
 
+import java.io.IOException;
+
 import core.DataHandler;
 import core.Stonk;
 import core.User;
@@ -43,28 +45,25 @@ public class mainController {
     @FXML
     private TextField searchBar;
 
-    @FXML
+
+
     public void updateMain(){
         Parent s = searchBar.getScene().getRoot();
         user = handler.generateUser(s.getId());
         System.out.println(user.getUserName());
         displayOnMain();
-
-        
     }
 
-    @FXML
+
     public void displayOnMain(){
-        cashMoneyFlow.setText(Float.toString(user.getCash()));
+        cashMoneyFlow.setText(Float.toString(user.getCash()) + " $");
         cashMoneyFlow.setStyle("-fx-text-fill: white;");
         fullName.setText((user.getFirstName()) + " " + (user.getLastName()));
     }
 
-    public void toStockPage(){
-        String searchText = searchBar.getText();
-        s.getStockInfo(searchText);
-        System.out.println(s);
-
+    public void toStockPage() throws IOException{
+        StonkApp app = new StonkApp();
+        app.changeScene("stockPage.fxml",user.getUserName());
     }
 
 

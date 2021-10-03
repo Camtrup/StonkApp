@@ -1,0 +1,44 @@
+package ui;
+
+import core.DataHandler;
+import core.Stonk;
+import core.User;
+import javafx.fxml.FXML;
+import javafx.scene.Parent;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
+
+
+public class StockPageController {
+
+    DataHandler handler = new DataHandler();
+    private User user; 
+    Stonk s = new Stonk();
+
+    
+    @FXML
+    private Label moneyFlow; 
+    
+    @FXML
+    private Text priceTicker; 
+
+    @FXML
+    private TextField username;
+
+
+    @FXML
+    public void updateStockPage(){
+        moneyFlow.setText(Float.toString(user.getCash()) + " $");
+        //priceTicker.setText(s.getName());
+        // priceChange.set
+        // owning.set
+
+    
+    } 
+
+
+}
+
+
