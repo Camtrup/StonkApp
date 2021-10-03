@@ -1,7 +1,7 @@
 package ui;
 
-
 import core.DataHandler;
+import core.Stonk;
 import core.User;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -13,6 +13,8 @@ import javafx.scene.text.Text;
 public class mainController {
     DataHandler handler = new DataHandler();
     private User user; 
+    Stonk s = new Stonk();
+
     
     @FXML
     private Label cashMoneyFlow; 
@@ -46,13 +48,25 @@ public class mainController {
         Parent s = searchBar.getScene().getRoot();
         user = handler.generateUser(s.getId());
         System.out.println(user.getUserName());
+        displayOnMain();
+
+        
     }
 
     @FXML
-    public void displayCash(){
+    public void displayOnMain(){
         cashMoneyFlow.setText(Float.toString(user.getCash()));
+        cashMoneyFlow.setStyle("-fx-text-fill: white;");
+        fullName.setText((user.getFirstName()) + " " + (user.getLastName()));
     }
+
     public void toStockPage(){
-        
+        String searchText = searchBar.getText();
+        s.getStockInfo(searchText);
+        System.out.println(s);
+
     }
+
+
+
 }
