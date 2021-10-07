@@ -6,7 +6,6 @@ import core.DataHandler;
 import core.Stonk;
 import core.User;
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -48,8 +47,6 @@ public class mainController {
 
 
     public void updateMain(){
-        Parent s = searchBar.getScene().getRoot();
-        user = handler.generateUser(s.getId());
         System.out.println(user.getUserName());
         displayOnMain();
     }
@@ -63,7 +60,12 @@ public class mainController {
 
     public void toStockPage() throws IOException{
         StonkApp app = new StonkApp();
-        app.changeScene("stockPage.fxml",user.getUserName());
+        app.changeScene("stockPage.fxml");
+    }
+
+    @FXML
+    private void initialize(){
+        this.user = StonkApp.user;
     }
 
 

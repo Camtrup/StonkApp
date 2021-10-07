@@ -1,6 +1,5 @@
 package ui;
 import core.DataHandler;
-import core.User;
 
 import java.io.IOException;
 
@@ -11,9 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 public class registerController {
-    private User user;
-
-
     @FXML
     private TextField username;
     @FXML
@@ -33,7 +29,7 @@ public class registerController {
 
     public void loginFromRegister() throws IOException{
         StonkApp app = new StonkApp();
-        app.changeScene("mainPage.fxml", user.getUserName());
+        app.changeScene("mainPage.fxml");
     }
 
     @FXML
@@ -46,8 +42,7 @@ public class registerController {
 
             try {
                 dataHandler.newUser(username.getText(), password.getText(), firstname.getText(), lastname.getText(), Integer.parseInt(age.getText()), Integer.parseInt(cash.getText()), new JSONArray());
-                user = dataHandler.isLoginValid(username.getText(), password.getText());
-                System.out.println(user);
+                StonkApp.user = dataHandler.isLoginValid(username.getText(), password.getText());
                 loginFromRegister(); 
             }
             catch(IllegalArgumentException e){

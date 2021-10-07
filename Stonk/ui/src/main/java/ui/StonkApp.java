@@ -9,12 +9,16 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import core.User;
+
 /**
  * JavaFX App
  */
 public class StonkApp extends Application {
 
     private static Stage stg; 
+    public static User user;
+
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -27,10 +31,8 @@ public class StonkApp extends Application {
         stage.show();
     }
 
-    public void changeScene(String fxml, String username) throws IOException{
+    public void changeScene(String fxml) throws IOException{
         Parent pane = FXMLLoader.load(getClass().getResource("fxml/" + fxml));
-        stg.setUserData(username);
-        pane.setId(username);
         stg.getScene().setRoot(pane);
     }
 
