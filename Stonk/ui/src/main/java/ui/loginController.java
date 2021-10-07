@@ -3,15 +3,11 @@ package ui;
 import java.io.IOException;
 
 import core.DataHandler;
-import core.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 public class loginController {
-
-
-    private User user;
 
     @FXML
     private Button login; 

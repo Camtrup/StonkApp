@@ -1,7 +1,6 @@
 package ui;
 
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -31,8 +30,16 @@ public class StonkApp extends Application {
         stage.show();
     }
 
-    public void changeScene(String fxml) throws IOException{
-        Parent pane = FXMLLoader.load(getClass().getResource("fxml/" + fxml));
+    public void changeScene(String fxml){
+        Parent pane = null;
+        try {
+            pane = FXMLLoader.load(getClass().getResource("fxml/" + fxml));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if(pane== null){
+            throw new IllegalArgumentException("file does not exist");
+        }
         stg.getScene().setRoot(pane);
     }
 
