@@ -9,6 +9,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
+import javafx.scene.paint.Color;
+
+
 
 
 public class StockPageController {
@@ -31,15 +34,23 @@ public class StockPageController {
     
     @FXML
     private Label priceChange; 
-
+    @FXML
+    private Label stockTicker; 
 
 
     @FXML
     public void updateStockPage(){
+        stockTicker.setText(stock.getName());
+        priceTicker.setText(Float.toString(stock.getPrice()));
         moneyFlow.setText(Float.toString(user.getCash()) + " $");
-        //priceTicker.setText(s.getName());
-        // priceChange.set
-        // owning.set
+        float priceChangeFloat = Float.parseFloat(stock.getPriceChange());
+        priceChange.setText(stock.getPriceChange());
+        priceChange.setStyle( "-fx-text-fill: Red;");
+        if (priceChangeFloat > 0){
+            priceChange.setStyle( "-fx-text-fill: Green;");
+        }
+        priceChange.setText(stock.getPriceChange());
+
     } 
 
     @FXML
