@@ -33,12 +33,11 @@ public class StockPageController {
     private Label priceChange; 
 
 
-
     @FXML
     public void updateStockPage(){
         moneyFlow.setText(Float.toString(user.getCash()) + " $");
-        //priceTicker.setText(s.getName());
-        // priceChange.set
+        priceTicker.setText(stock.getName());
+        //priceChange.set
         // owning.set
     } 
 
