@@ -1,10 +1,11 @@
 package ui;
 
+import java.io.IOException;
+
 import core.DataHandler;
 import core.Stonk;
 import core.User;
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -13,7 +14,7 @@ import javafx.scene.text.Text;
 public class mainController {
     DataHandler handler = new DataHandler();
     private User user; 
-    Stonk s = new Stonk();
+    Stonk stock = new Stonk();
 
     
     @FXML
@@ -43,30 +44,33 @@ public class mainController {
     @FXML
     private TextField searchBar;
 
-    @FXML
+
     public void updateMain(){
-        Parent s = searchBar.getScene().getRoot();
-        user = handler.generateUser(s.getId());
         System.out.println(user.getUserName());
         displayOnMain();
+    }
 
-        
+
+    public void displayOnMain(){
+        cashMoneyFlow.setText(Float.toString(user.getCash()) + " $");
+        cashMoneyFlow.setStyle("-fx-text-fill: white;");
+        fullName.setText((user.getFirstName()) + "  " + (user.getLastName()));
+    }
+
+    public void toStockPage() throws IOException{
+        StonkApp app = new StonkApp();
+        try {
+            StockPageController.stock.getStockInfo(searchBar.getText());
+            app.changeScene("stockPage.fxml");
+        }
+        catch(IllegalArgumentException e){
+
+        }
     }
 
     @FXML
-    public void displayOnMain(){
-        cashMoneyFlow.setText(Float.toString(user.getCash()));
-        cashMoneyFlow.setStyle("-fx-text-fill: white;");
-        fullName.setText((user.getFirstName()) + " " + (user.getLastName()));
+    private void initialize(){
+        this.user = StonkApp.user;
     }
-
-    public void toStockPage(){
-        String searchText = searchBar.getText();
-        s.getStockInfo(searchText);
-        System.out.println(s);
-
-    }
-
-
 
 }
