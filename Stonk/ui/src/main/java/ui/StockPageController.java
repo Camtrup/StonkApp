@@ -4,11 +4,8 @@ import core.DataHandler;
 import core.Stonk;
 import core.User;
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
-import javafx.scene.text.Text;
 
 
 public class StockPageController {

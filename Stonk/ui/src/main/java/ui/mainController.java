@@ -1,14 +1,22 @@
 package ui;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import core.DataHandler;
 import core.Stonk;
 import core.User;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 public class mainController {
@@ -22,7 +30,6 @@ public class mainController {
     
     @FXML
     private Label fullName; 
-
     @FXML
     private TextField username;
     @FXML
@@ -36,28 +43,22 @@ public class mainController {
     @FXML
     private TextField cash;
     @FXML
-    private TextField searchbar;
+    private TextField searchBar;
     @FXML
     private Text balanceString; 
     @FXML
     private GridPane gridpane;
-    @FXML
-    private TextField searchBar;
-
-
-    public void updateMain(){
-        System.out.println(user.getUserName());
-        displayOnMain();
-    }
-
+    @FXML 
+    private VBox scrollPane; 
 
     public void displayOnMain(){
         cashMoneyFlow.setText(Float.toString(user.getCash()) + " $");
         cashMoneyFlow.setStyle("-fx-text-fill: white;");
         fullName.setText((user.getFirstName()) + "  " + (user.getLastName()));
+        displayPortfolio();
     }
 
-    public void toStockPage() throws IOException{
+    public void toStockPage(){
         StonkApp app = new StonkApp();
         try {
             StockPageController.stock.getStockInfo(searchBar.getText());
@@ -68,9 +69,52 @@ public class mainController {
         }
     }
 
+    public void displayPortfolio(){
+        ArrayList<ArrayList<String>> arr = new ArrayList<ArrayList<String>>();
+        JSONArray json = handler.getPortfolio(handler.findUser(user.getUserName()));
+
+        for (Object i : json){
+            JSONObject tempObj = (JSONObject) i;
+            ArrayList<String> tempArr = new ArrayList<>();
+            tempArr.add(String.valueOf(tempObj.get("ticker")));
+            tempArr.add(String.valueOf(tempObj.get("price")));
+            tempArr.add(String.valueOf(tempObj.get("count")));
+            //LEGG TIL CURRENTS PRICE OG NÅVERENDE VERDI
+            arr.add(tempArr);
+        }
+
+        if (arr.size() == 0){
+            //"NO STOCKS IN PORTFOLIO"
+        }
+        else {
+            for (ArrayList<String> row : arr){
+                Stonk s = new Stonk();
+                s.getStockInfo(row.get(0)); 
+
+
+                //Adds info
+                Label l = new Label(row.get(0).toUpperCase() + "    Amount: " + row.get(2) + "    Average: " + row.get(1) + "     Current: " + s.getPrice());
+                Button b = new Button("Sell");
+                HBox h = new HBox(l, b);
+                
+                //Style of elements
+                b.maxHeight(l.getHeight());
+                l.setPadding(new Insets(10)); 
+
+                b.setOnMouseClicked(Event -> {
+                    searchBar.setText(row.get(0));
+                    toStockPage();
+                });
+                
+                scrollPane.getChildren().addAll(h);
+            }
+        }
+    }
+
     @FXML
     private void initialize(){
         this.user = StonkApp.user;
+        displayOnMain();
     }
 
 }
