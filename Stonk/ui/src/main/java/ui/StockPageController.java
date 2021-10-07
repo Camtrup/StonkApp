@@ -22,10 +22,16 @@ public class StockPageController {
     private Label moneyFlow; 
     
     @FXML
-    private Text priceTicker; 
+    private Label priceTicker; 
 
     @FXML
     private TextField username;
+    @FXML
+    private TextField amountStock;
+    
+    @FXML
+    private Label priceChange; 
+
 
 
     @FXML

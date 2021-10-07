@@ -60,7 +60,7 @@ public class mainController {
     public void toStockPage() throws IOException{
         StonkApp app = new StonkApp();
         try {
-            StockPageController.stock = stock.getStockInfo(searchBar.getText());
+            StockPageController.stock.getStockInfo(searchBar.getText());
             app.changeScene("stockPage.fxml");
         }
         catch(IllegalArgumentException e){
