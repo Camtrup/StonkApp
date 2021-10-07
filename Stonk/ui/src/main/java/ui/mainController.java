@@ -14,7 +14,7 @@ import javafx.scene.text.Text;
 public class mainController {
     DataHandler handler = new DataHandler();
     private User user; 
-    Stonk s = new Stonk();
+    Stonk stock = new Stonk();
 
     
     @FXML
@@ -59,7 +59,13 @@ public class mainController {
 
     public void toStockPage() throws IOException{
         StonkApp app = new StonkApp();
-        app.changeScene("stockPage.fxml");
+        try {
+            StockPageController.stock = stock.getStockInfo(searchBar.getText());
+            app.changeScene("stockPage.fxml");
+        }
+        catch(IllegalArgumentException e){
+
+        }
     }
 
     @FXML

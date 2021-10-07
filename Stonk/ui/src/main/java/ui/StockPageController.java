@@ -15,7 +15,7 @@ public class StockPageController {
 
     DataHandler handler = new DataHandler();
     private User user; 
-    Stonk s = new Stonk();
+    public static Stonk stock = new Stonk();
 
     
     @FXML
@@ -34,9 +34,12 @@ public class StockPageController {
         //priceTicker.setText(s.getName());
         // priceChange.set
         // owning.set
-
-    
     } 
+
+    @FXML
+    public void initialize(){
+        this.user = StonkApp.user;
+    }
 
 
 }
