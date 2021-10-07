@@ -46,7 +46,6 @@ public class mainController {
     private TextField searchBar;
 
 
-
     public void updateMain(){
         Parent s = searchBar.getScene().getRoot();
         user = handler.generateUser(s.getId());
@@ -58,14 +57,12 @@ public class mainController {
     public void displayOnMain(){
         cashMoneyFlow.setText(Float.toString(user.getCash()) + " $");
         cashMoneyFlow.setStyle("-fx-text-fill: white;");
-        fullName.setText((user.getFirstName()) + " " + (user.getLastName()));
+        fullName.setText((user.getFirstName()) + "  " + (user.getLastName()));
     }
 
     public void toStockPage() throws IOException{
         StonkApp app = new StonkApp();
         app.changeScene("stockPage.fxml",user.getUserName());
     }
-
-
 
 }
