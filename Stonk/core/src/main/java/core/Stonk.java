@@ -10,7 +10,7 @@ public class Stonk {
     private String ticker;
     private float price;
     private String name;
-    private float priceChange;
+    private String priceChange;
 
     //Henter aksjeprisen til "ticker" som bruker søker på
     //Hvis "ticker" ikke er nøyaktig, får en en NullPointerException siden elementet i HTMLen = NULL
@@ -32,7 +32,7 @@ public class Stonk {
         try {
             this.name = (doc.select("h1.company__name").first().text());
             this.price = Float.parseFloat(doc.select("bg-quote.value").first().text());
-            this.priceChange = (doc.select("span.change--percent--q bg-quote").first().text());
+            this.priceChange = Float.parseFloat(doc.select("change--percent--q.value").first().text());
             // this.graph = (doc.select("mikey-chart")); // highcharts-8
         }
         catch (NullPointerException e){
