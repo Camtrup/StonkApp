@@ -1,6 +1,6 @@
 package ui;
 
-import java.io.IOException;
+import org.json.simple.JSONObject;
 
 import core.DataHandler;
 import core.Stonk;
@@ -8,9 +8,6 @@ import core.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
-import javafx.scene.text.Text;
-import javafx.scene.paint.Color;
 
 
 
@@ -37,16 +34,13 @@ public class StockPageController {
     private Label priceChange; 
     @FXML
     private Label stockTicker; 
+    @FXML 
+    private Label owning;
 
 
     public void backToMain(){
         StonkApp app = new StonkApp();
-        try {
-            app.changeScene("mainPage.fxml");
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        app.changeScene("mainPage.fxml");
     }
 
 
@@ -55,10 +49,22 @@ public class StockPageController {
         stockTicker.setText(stock.getName());
         priceTicker.setText(Float.toString(stock.getPrice()));
         moneyFlow.setText(Float.toString(user.getCash()) + " $");
-        float priceChangeFloat = Float.parseFloat(stock.getPriceChange());
+        
+        char priceChangeFloat = stock.getPriceChange().charAt(0); //Checks if priceChange is negative
         priceChange.setText(stock.getPriceChange());
-        priceChange.setStyle( "-fx-text-fill: Red;");
-        if (priceChangeFloat > 0){
+
+        for (Object i : user.getPortfolio()){
+            JSONObject temp = (JSONObject) i;
+            if(temp.get("ticker").equals(stock.getTicker())){
+                owning.setText(String.valueOf(temp.get("count")));
+            }
+        }
+
+
+        if (priceChangeFloat == '-'){
+            priceChange.setStyle( "-fx-text-fill: Red;");
+        }
+        else {
             priceChange.setStyle( "-fx-text-fill: Green;");
         }
         priceChange.setText(stock.getPriceChange());
@@ -68,6 +74,7 @@ public class StockPageController {
     @FXML
     public void initialize(){
         this.user = StonkApp.user;
+
     }
 
 

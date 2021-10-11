@@ -19,7 +19,7 @@
          </font>
       </Text>
       <Text layoutX="146.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="amount to BUY/SELL:" />
-      <TextField fx:id="amountStock" layoutX="143.0" layoutY="223.0" promptText="number of stocks " />
+      <TextField layoutX="143.0" layoutY="223.0" promptText="number of stocks " />
       <Text layoutX="45.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="owning:" />
       <Text layoutX="44.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Balance:" />
       <Label fx:id="priceTicker" layoutX="80.0" layoutY="86.0" text="price here">
