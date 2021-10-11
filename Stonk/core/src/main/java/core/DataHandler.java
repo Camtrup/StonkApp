@@ -12,7 +12,7 @@ import org.json.simple.parser.ParseException;
 public class DataHandler {
 
     //Since the app runs from the pom.xml in the module ui. It seems that this had to be the natural position to put the databse
-    private String filePath = "src/main/resources/ui/database.json";
+    private String filePath = "Stonk/ui/src/main/resources/ui/database.json";
     
     //Creates new user in the database
     public void newUser(String username, String password, String firstname, String lastname, int age, float cash, JSONArray portfolio) {
@@ -197,7 +197,6 @@ public class DataHandler {
     //Returns null if password is incorrect
     //Returns a new instance of a user if the login is valid
     public User isLoginValid(String username, String password){
-        System.out.println("yeet");
         int index = findUser(username);
         if(index >= 0){
             JSONObject user = getUser(index);
@@ -232,7 +231,5 @@ public class DataHandler {
 
     public static void main(String[] args){
         DataHandler d = new DataHandler();
-        System.out.println(d.getAllUsers().toJSONString());
-        System.out.println(System.getProperty("user.home"));
     }
 }
