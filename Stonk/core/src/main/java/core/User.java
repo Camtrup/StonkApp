@@ -1,6 +1,7 @@
 package core;
 
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 public class User {
     private String firstName;

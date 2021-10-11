@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane alignment="CENTER" hgap="10.0" vgap="10.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.loginController">
+<GridPane alignment="CENTER" hgap="10.0" vgap="10.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.loginController">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
@@ -21,9 +21,9 @@
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="209.0">
          <children>
+            <TextField fx:id="username" layoutX="23.0" layoutY="54.0" promptText="Brukernavn" />
+            <PasswordField fx:id="password" layoutX="23.0" layoutY="87.0" promptText="Passord" />
             <Button fx:id="login" layoutX="82.0" layoutY="122.0" mnemonicParsing="false" onAction="#isLoginValid" text="Login" />
-            <PasswordField fx:id ="password" layoutX="23.0" layoutY="87.0" promptText="Passord" />
-            <TextField  fx:id = "username" layoutX="23.0" layoutY="54.0" promptText="Brukernavn" />
             <Button fx:id="registerUserNew" layoutX="45.0" layoutY="154.0" mnemonicParsing="false" onAction="#registerUserNew" text="Registrer ny bruker" />
             <Text layoutX="55.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="STONKS">
                <font>

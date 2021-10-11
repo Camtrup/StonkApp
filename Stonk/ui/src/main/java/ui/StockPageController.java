@@ -16,7 +16,7 @@ public class StockPageController {
 
     DataHandler handler = new DataHandler();
     private User user; 
-    public static Stonk stock = new Stonk();
+    public static Stonk stock = new Stonk(); //Is static an public so the mainController can access it and send the stock-object forward
 
     
     @FXML
@@ -38,12 +38,14 @@ public class StockPageController {
     private Label owning;
 
 
+    //Is fired when user clicks "EXIT"
     public void backToMain(){
         StonkApp app = new StonkApp();
         app.changeScene("mainPage.fxml");
     }
 
-
+    //Is fired on initialize of fxml
+    //Updates all the fields relevant to the stock
     @FXML
     public void updateStockPage(){
         stockTicker.setText(stock.getName());
