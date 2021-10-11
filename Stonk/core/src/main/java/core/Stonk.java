@@ -64,7 +64,7 @@ public class Stonk {
 
     public static void main(String[] args) {
         Stonk s = new Stonk();
-        s.getStockInfo("GME");
+        s.getStockInfo("amc");
         System.out.println(s);
         System.out.println(s.ticker);
         System.out.println(s.price);
