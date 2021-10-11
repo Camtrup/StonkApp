@@ -43,7 +43,8 @@ public class StockPageController {
         StonkApp app = new StonkApp();
         try {
             app.changeScene("mainPage.fxml");
-        } catch (IOException e) {
+        } 
+        catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
@@ -55,13 +56,18 @@ public class StockPageController {
         stockTicker.setText(stock.getName());
         priceTicker.setText(Float.toString(stock.getPrice()));
         moneyFlow.setText(Float.toString(user.getCash()) + " $");
-        float priceChangeFloat = Float.parseFloat(stock.getPriceChange());
-        priceChange.setText(stock.getPriceChange());
+        //float priceChangeFloat = Float.parseFloat(stock.getPriceChange());
+        String priceChanged  = stock.getPriceChange();
+        if (priceChanged.charAt(0) = "-"){
+            
+        }
+
+        /*         priceChange.setText(stock.getPriceChange());
         priceChange.setStyle( "-fx-text-fill: Red;");
         if (priceChangeFloat > 0){
             priceChange.setStyle( "-fx-text-fill: Green;");
         }
-        priceChange.setText(stock.getPriceChange());
+        priceChange.setText(stock.getPriceChange()); */
 
     } 
 
