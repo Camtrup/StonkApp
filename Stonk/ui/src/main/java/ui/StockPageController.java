@@ -73,6 +73,8 @@ public class StockPageController {
 
     } 
 
+    
+
     @FXML
     public void initialize(){
         this.user = StonkApp.user;
