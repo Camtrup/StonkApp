@@ -10,7 +10,7 @@ public class Stonk {
     private String ticker;
     private float price;
     private String name;
-    private String priceChange;
+    private float priceChange;
 
     //Henter aksjeprisen til "ticker" som bruker søker på
     //Hvis "ticker" ikke er nøyaktig, får en en NullPointerException siden elementet i HTMLen = NULL
