@@ -46,7 +46,6 @@ public class mainController {
 
 
     public void updateMain(){
-        System.out.println(user.getUserName());
         displayOnMain();
     }
 

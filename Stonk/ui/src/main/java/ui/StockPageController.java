@@ -1,5 +1,7 @@
 package ui;
 
+import java.io.IOException;
+
 import core.DataHandler;
 import core.Stonk;
 import core.User;
@@ -36,6 +38,17 @@ public class StockPageController {
     private Label priceChange; 
     @FXML
     private Label stockTicker; 
+
+
+    public void backToMain(){
+        StonkApp app = new StonkApp();
+        try {
+            app.changeScene("mainPage.fxml");
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
 
 
     @FXML
