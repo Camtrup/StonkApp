@@ -57,6 +57,10 @@ public class Stonk {
         return "your stock " + name + " has a price of " + price;
     }
 
+    public String getPriceChange() {
+        return priceChange;
+    }
+
 
     public static void main(String[] args) {
         Stonk s = new Stonk();
