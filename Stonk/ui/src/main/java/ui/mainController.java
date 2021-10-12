@@ -20,7 +20,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 public class mainController {
-    DataHandler handler = new DataHandler();
     private User user; 
     Stonk stock = new Stonk();
 
@@ -71,7 +70,7 @@ public class mainController {
 
     public void displayPortfolio(){
         ArrayList<ArrayList<String>> arr = new ArrayList<ArrayList<String>>();
-        JSONArray json = handler.getPortfolio(handler.findUser(user.getUserName()));
+        JSONArray json = user.getPortfolio();
 
         for (Object i : json){
             JSONObject tempObj = (JSONObject) i;

@@ -41,6 +41,7 @@ public class StockPageController {
     //Is fired when user clicks "EXIT"
     public void backToMain(){
         StonkApp app = new StonkApp();
+        StonkApp.user = user;
         app.changeScene("mainPage.fxml");
     }
 
@@ -73,6 +74,14 @@ public class StockPageController {
 
     } 
 
+    public void buy(){
+        user.addToPortfoilio(stock.getTicker(), Integer.parseInt(amountStock.getText()));
+        backToMain();
+    }
+    public void sell(){
+        user.removeFromPortfolio(stock.getTicker(), Integer.parseInt(amountStock.getText()));
+        backToMain();
+    }
     
 
     @FXML
