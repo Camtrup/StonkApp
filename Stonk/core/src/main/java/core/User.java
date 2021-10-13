@@ -1,6 +1,7 @@
 package core;
 
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 public class User {
     private String firstName;
@@ -34,6 +35,11 @@ public User(String firstName, String lastName, String username, String password,
         this.portfolio = portfolio;
     }
 }
+
+    public User(){
+        firstName = "This is a dummy, used as temp";
+    }
+
     public void addToPortfoilio(String ticker, int count){
         if(count <= 0){
             throw new IllegalArgumentException("Amount of stocks cant be negative or 0");
@@ -94,6 +100,8 @@ public User(String firstName, String lastName, String username, String password,
             throw new IllegalArgumentException("Cant set a negative balance");
         }
         this.cash = cash;
+        handler.setCash(handler.findUser(username), cash);
+        
         } 
 
     public void setAge(int age){
@@ -106,21 +114,21 @@ public User(String firstName, String lastName, String username, String password,
         this.age = age;
         } 
 
+    public User isLoginValid(String username, String password){
+        return handler.isLoginValid(username, password);
+    }
 
-    public String getUserName()
-    {
+    public String getUserName(){
         return username;
     } 
 
 
-    public String getPassword()
-    {
+    public String getPassword(){
         return password;
     } 
 
 
-    public String getFirstName()
-    {
+    public String getFirstName(){
         return firstName;
     } 
 
@@ -128,8 +136,7 @@ public User(String firstName, String lastName, String username, String password,
         return lastName;
     } 
     public float getCash(){
-        DataHandler d = new DataHandler();
-        return d.getCash(d.findUser(username));
+        return cash;
     } 
 
     public int getAge(){
@@ -143,6 +150,4 @@ public User(String firstName, String lastName, String username, String password,
 
 public static void main(String[] args) {
 }
-
-
 }

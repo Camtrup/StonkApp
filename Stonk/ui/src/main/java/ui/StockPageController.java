@@ -1,6 +1,6 @@
 package ui;
 
-import java.io.IOException;
+import org.json.simple.JSONObject;
 
 import core.DataHandler;
 import core.Stonk;
@@ -8,9 +8,6 @@ import core.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
-import javafx.scene.text.Text;
-import javafx.scene.paint.Color;
 
 
 
@@ -19,7 +16,7 @@ public class StockPageController {
 
     DataHandler handler = new DataHandler();
     private User user; 
-    public static Stonk stock = new Stonk();
+    public static Stonk stock = new Stonk(); //Is static an public so the mainController can access it and send the stock-object forward
 
     
     @FXML
@@ -37,43 +34,60 @@ public class StockPageController {
     private Label priceChange; 
     @FXML
     private Label stockTicker; 
+    @FXML 
+    private Label owning;
 
 
+    //Is fired when user clicks "EXIT"
     public void backToMain(){
         StonkApp app = new StonkApp();
-        try {
-            app.changeScene("mainPage.fxml");
-        } 
-        catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        StonkApp.user = user;
+        app.changeScene("mainPage.fxml");
     }
 
-
+    //Is fired on initialize of fxml
+    //Updates all the fields relevant to the stock
     @FXML
     public void updateStockPage(){
         stockTicker.setText(stock.getName());
         priceTicker.setText(Float.toString(stock.getPrice()));
         moneyFlow.setText(Float.toString(user.getCash()) + " $");
-        //float priceChangeFloat = Float.parseFloat(stock.getPriceChange());
-        String priceChanged  = stock.getPriceChange();
-        if (priceChanged.charAt(0) = "-"){
-            
+        
+        char priceChangeFloat = stock.getPriceChange().charAt(0); //Checks if priceChange is negative
+        priceChange.setText(stock.getPriceChange());
+
+        for (Object i : user.getPortfolio()){
+            JSONObject temp = (JSONObject) i;
+            if(temp.get("ticker").equals(stock.getTicker())){
+                owning.setText(String.valueOf(temp.get("count")));
+            }
         }
 
-        /*         priceChange.setText(stock.getPriceChange());
-        priceChange.setStyle( "-fx-text-fill: Red;");
-        if (priceChangeFloat > 0){
+
+        if (priceChangeFloat == '-'){
+            priceChange.setStyle( "-fx-text-fill: Red;");
+        }
+        else {
             priceChange.setStyle( "-fx-text-fill: Green;");
         }
-        priceChange.setText(stock.getPriceChange()); */
+        priceChange.setText(stock.getPriceChange()); 
 
     } 
+
+    public void buy(){
+        user.addToPortfoilio(stock.getTicker(), Integer.parseInt(amountStock.getText()));
+        backToMain();
+    }
+    public void sell(){
+        user.removeFromPortfolio(stock.getTicker(), Integer.parseInt(amountStock.getText()));
+        backToMain();
+    }
+    
 
     @FXML
     public void initialize(){
         this.user = StonkApp.user;
+
     }
 
 

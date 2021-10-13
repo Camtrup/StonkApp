@@ -2,7 +2,7 @@ package ui;
 
 import java.io.IOException;
 
-import core.DataHandler;
+import core.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -27,20 +27,19 @@ public class loginController {
     }
 
     @FXML
-    public void isLoginValid() throws IOException {
-        DataHandler dataHandler = new DataHandler();
+    public void isLoginValid() {
         try {
-            StonkApp.user = dataHandler.isLoginValid(username.getText().toString(), password.getText().toString());
+            User temp = new User();
+            StonkApp.user = temp.isLoginValid(username.getText().toString(), password.getText().toString());
             if(StonkApp.user.equals(null)){
                 throw new IllegalArgumentException("Password is incorrect");
             }
             else{
-            login();
+                login();
             }
         }
     
-        catch(IllegalArgumentException e){
-            System.out.println(dataHandler);
+        catch(IllegalArgumentException | IOException e){
             System.out.println(e);
         } 
     }

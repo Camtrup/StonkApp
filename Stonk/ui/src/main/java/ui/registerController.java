@@ -1,5 +1,5 @@
 package ui;
-import core.DataHandler;
+import core.User;
 
 import java.io.IOException;
 
@@ -38,11 +38,8 @@ public class registerController {
             throw new IllegalArgumentException("You must fill out all inputfields");
         }
         else {
-            DataHandler dataHandler = new DataHandler();
-
             try {
-                dataHandler.newUser(username.getText(), password.getText(), firstname.getText(), lastname.getText(), Integer.parseInt(age.getText()), Integer.parseInt(cash.getText()), new JSONArray());
-                StonkApp.user = dataHandler.isLoginValid(username.getText(), password.getText());
+                StonkApp.user = new User(firstname.getText(), lastname.getText(), username.getText(), password.getText(), Float.parseFloat(cash.getText()), Integer.parseInt(age.getText()), new JSONArray(), true);
                 loginFromRegister(); 
             }
             catch(IllegalArgumentException e){

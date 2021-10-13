@@ -12,7 +12,7 @@ import org.json.simple.parser.ParseException;
 public class DataHandler {
 
     //Since the app runs from the pom.xml in the module ui. It seems that this had to be the natural position to put the databse
-    private String filePath = "Stonk/ui/src/main/resources/ui/database.json";
+    private String filePath = "src/main/resources/ui/database.json";
     
     //Creates new user in the database
     public void newUser(String username, String password, String firstname, String lastname, int age, float cash, JSONArray portfolio) {
@@ -170,13 +170,16 @@ public class DataHandler {
         }
         if(containsStock){
             int newCount = Integer.parseInt(stock.get("count").toString()) - count;
-            if(newCount < 0){
+            if(newCount > 0){
                 if(newCount == 0){
                     portfolio.remove(stock);
                 }
                 else {
                     stock.put("count", newCount);
                 }
+            }
+            else {
+                throw new IllegalArgumentException("Not enough stocks to sell");
             }
             user.put("portfolio", portfolio);
             writeToFile(userArray);
@@ -191,6 +194,13 @@ public class DataHandler {
         JSONArray userArray = getAllUsers();
         JSONObject user = (JSONObject) userArray.get(userIndex);
         return Float.parseFloat(user.get("cash").toString());
+    }
+
+    public void setCash(int userIndex, float cash){
+        JSONArray arr = getAllUsers();
+        JSONObject user = (JSONObject) arr.get(0);
+        user.put("cash", cash);
+        writeToFile(arr);
     }
 
     //Throws Excpetion if username doesnt exists
@@ -231,5 +241,6 @@ public class DataHandler {
 
     public static void main(String[] args){
         DataHandler d = new DataHandler();
+        d.setCash(0, 10);
     }
 }
