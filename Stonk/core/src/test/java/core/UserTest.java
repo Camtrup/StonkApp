@@ -34,12 +34,12 @@ public class UserTest {
     @Test
     public void testCash(){
         assertEquals(1000, user.getCash(), "Not correct cash");
-        assertThrows(IllegalArgumentException.class,() -> {
-            user.setCash(-1);
-        });
         user.setCash(20000);
         assertEquals(20000, user.getCash(), "setCash does not work");
 
+        assertThrows(IllegalArgumentException.class,() -> {
+            user.setCash(-1);
+        });
     }
 
     @Test
@@ -55,7 +55,6 @@ public class UserTest {
         }); */
     }
 
-
     @Test
     public void testName(){
         assertTrue(user.getFirstName() == "Tage", "getfirstName not correct");
@@ -64,12 +63,28 @@ public class UserTest {
 
         assertTrue(user.getLastName() == "Berg", "getfirstName not correct");
         user.setLastName("Y");
-        assertFalse(user.getLastName() == "Tage", "setFirstName not working");
+        assertFalse(user.getLastName() == "XXXX", "setFirstName not working");
     }
-    /* 
+    @Test
+    public void testPassword(){
+        assertTrue(user.getPassword() == "123", "getPassword not correct");
+        user.setPassword("XXX");
+        assertFalse(user.getPassword() == "YYYY", "setPassword not working");
+    }
+    @Test
+    public void testPortfolio(){
+        assertNotEquals(user.getPortfolio(), true, "getPortfolio should be false");
+        user.addToPortfoilio("GME", 20);
+        user.addToPortfoilio("BB", 20);
+        assertEquals(user.getPortfolio(), true, "getPortfolio should be true");
+        assertThrows(IllegalArgumentException.class,() -> {
+            user.addToPortfoilio("GME", -120);
+        });
 
-      
-        setPassword(password); */
+        user.removeFromPortfolio("GME", 20);
+        assertEquals(user.getPortfolio().size(), 1, "The length og the portfolio should be 1");
+
+    }
 
 
 
