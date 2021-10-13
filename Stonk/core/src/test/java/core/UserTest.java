@@ -22,5 +22,19 @@ public class UserTest {
         });
     }
 
+    @Test
+    public void testCash(){
+        assertThrows(IllegalArgumentException.class,() -> {
+            user.setCash(-1);
+        });
+    }
+
+    @Test
+    public void testUsername(){
+        assertThrows(IllegalArgumentException.class,() -> {
+            user.setCash(-1);
+        });
+    }
+
 
 }
