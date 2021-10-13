@@ -91,13 +91,13 @@ public class mainController {
 
 
                 //Adds info
-                Label l = new Label(row.get(0).toUpperCase() + "\nAmount: " + row.get(2) + "\nAverage: " + row.get(1) + "\nCurrent: " + s.getPrice() + "\n\n-");
+                Label l = new Label("-\n" + row.get(0).toUpperCase() + "\nAmount: " + row.get(2) + "\nAverage: " + row.get(1) + "\nCurrent: " + s.getPrice());
                 Button b = new Button("Sell");
-                HBox h = new HBox(l, b);
+                VBox h = new VBox(l, b);
                 
                 //Style of elements
                 b.maxHeight(l.getHeight());
-                l.setPadding(new Insets(10)); 
+                h.setPadding(new Insets(10,10,10,10));
 
                 b.setOnMouseClicked(Event -> {
                     searchBar.setText(row.get(0));
