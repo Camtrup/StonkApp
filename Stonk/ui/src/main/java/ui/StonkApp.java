@@ -26,7 +26,8 @@ public class StonkApp extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("fxml/login.fxml"));
         Parent parent = fxmlLoader.load();
         stage.setTitle("Stonk");
-        stage.setScene(new Scene(parent, 800,600));
+        stage.setScene(new Scene(parent, 292,580));
+        stage.setResizable(false);
         stage.show();
     }
 
