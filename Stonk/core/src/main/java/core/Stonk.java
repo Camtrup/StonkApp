@@ -36,6 +36,7 @@ public class Stonk {
             // this.graph = (doc.select("mikey-chart")); // highcharts-8
         }
         catch (NullPointerException e){
+            System.out.println(doc.select(".results table tbody tr td a").first().text());
             ticker = doc.select(".results table tbody tr td a").first().text();
             getStockInfo(ticker);
         }
@@ -64,7 +65,7 @@ public class Stonk {
 
     public static void main(String[] args) {
         Stonk s = new Stonk();
-        s.getStockInfo("amc");
+        s.getStockInfo("google");
         System.out.println(s);
         System.out.println(s.ticker);
         System.out.println(s.price);
