@@ -21,15 +21,15 @@
    <children>
       <AnchorPane maxHeight="408.0" maxWidth="209.0" prefHeight="408.0" prefWidth="209.0">
          <children>
-            <ImageView fitHeight="585.0" fitWidth="292.0" layoutX="-2.0" layoutY="-17.0">
+            <ImageView fitHeight="585.0" fitWidth="298.0" layoutY="-17.0">
                <image>
                   <Image url="@../images/signup.png" />
                </image>
             </ImageView>
-            <TextField fx:id="username" layoutX="64.0" layoutY="470.0" promptText="Brukernavn" />
-            <PasswordField fx:id="password" layoutX="64.0" layoutY="499.0" promptText="Passord" />
-            <Button fx:id="login" layoutX="191.0" layoutY="535.0" mnemonicParsing="false" onAction="#isLoginValid" text="Logg inn" />
-            <Button fx:id="registerUserNew" layoutX="14.0" layoutY="535.0" mnemonicParsing="false" onAction="#registerUserNew" text="Registrer ny bruker" />
+            <TextField fx:id="username" layoutX="73.0" layoutY="470.0" promptText="Brukernavn" />
+            <PasswordField fx:id="password" layoutX="73.0" layoutY="499.0" promptText="Passord" />
+            <Button fx:id="login" layoutX="73.0" layoutY="531.0" mnemonicParsing="false" onAction="#isLoginValid" text="Logg inn" />
+            <Button fx:id="registerUserNew" layoutX="167.0" layoutY="531.0" mnemonicParsing="false" onAction="#registerUserNew" text="Registrer" />
          </children>
       </AnchorPane>
    </children>
