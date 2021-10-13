@@ -70,7 +70,7 @@ public class StockPageController {
         else {
             priceChange.setStyle( "-fx-text-fill: Green;");
         }
-        priceChange.setText(stock.getPriceChange());
+        priceChange.setText(stock.getPriceChange()); */
 
     } 
 
