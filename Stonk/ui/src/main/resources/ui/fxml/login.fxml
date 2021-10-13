@@ -3,33 +3,33 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<GridPane alignment="CENTER" hgap="10.0" vgap="10.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.loginController">
+<GridPane alignment="CENTER" hgap="10.0" maxHeight="576.0" maxWidth="270.0" prefHeight="576.0" prefWidth="270.0" vgap="10.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.loginController">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints />
-      <RowConstraints />
+      <RowConstraints maxHeight="303.0" minHeight="303.0" prefHeight="303.0" />
+      <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
    </rowConstraints>
    <children>
-      <AnchorPane prefHeight="200.0" prefWidth="209.0">
+      <AnchorPane maxHeight="408.0" maxWidth="209.0" prefHeight="408.0" prefWidth="209.0">
          <children>
-            <TextField fx:id="username" layoutX="23.0" layoutY="54.0" promptText="Brukernavn" />
-            <PasswordField fx:id="password" layoutX="23.0" layoutY="87.0" promptText="Passord" />
-            <Button fx:id="login" layoutX="82.0" layoutY="122.0" mnemonicParsing="false" onAction="#isLoginValid" text="Login" />
-            <Button fx:id="registerUserNew" layoutX="45.0" layoutY="154.0" mnemonicParsing="false" onAction="#registerUserNew" text="Registrer ny bruker" />
-            <Text layoutX="55.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="STONKS">
-               <font>
-                  <Font name="Plantagenet Cherokee" size="24.0" />
-               </font>
-            </Text>
+            <ImageView fitHeight="585.0" fitWidth="292.0" layoutX="-2.0" layoutY="-17.0">
+               <image>
+                  <Image url="@../images/signup.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="username" layoutX="64.0" layoutY="470.0" promptText="Brukernavn" />
+            <PasswordField fx:id="password" layoutX="64.0" layoutY="499.0" promptText="Passord" />
+            <Button fx:id="login" layoutX="191.0" layoutY="535.0" mnemonicParsing="false" onAction="#isLoginValid" text="Logg inn" />
+            <Button fx:id="registerUserNew" layoutX="14.0" layoutY="535.0" mnemonicParsing="false" onAction="#registerUserNew" text="Registrer ny bruker" />
          </children>
       </AnchorPane>
    </children>
