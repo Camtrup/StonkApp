@@ -25,6 +25,12 @@ public class StonkLoginTest extends ApplicationTest{
     }
 
     @Test
+    public void deez(){
+        System.out.println("asda");
+
+    }
+
+    //@Test
     public void testLoginFalse() {
         try {
             clickOn("#username").write("tes");
