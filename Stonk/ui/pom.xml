@@ -4,7 +4,7 @@
     <artifactId>ui</artifactId>
 
     <parent>
-        <groupId>it1901</groupId>
+        <groupId>GR2135</groupId>
         <artifactId>modules</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
