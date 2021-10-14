@@ -1,5 +1,9 @@
 package ui;
-import org.junit.jupiter.api.Test;
+
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.Test;
 import org.testfx.framework.junit5.ApplicationTest;
 
 import javafx.fxml.FXMLLoader;
@@ -7,9 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-
-
-public class StonkAppTest extends ApplicationTest {
+public class StonkLoginTest extends ApplicationTest{
     private loginController controller;
 
     @Override
@@ -23,10 +25,31 @@ public class StonkAppTest extends ApplicationTest {
     }
 
     @Test
+    public void testLoginFalse() {
+        try {
+            clickOn("#username").write("tes");
+            clickOn("#password").write("1");
+            clickOn("#login");
+        }
+        catch(IllegalArgumentException e){
+            assertEquals(e.getMessage(), "Username not in databse");
+        }
+
+        try {
+            clickOn("#username").write("t");
+            clickOn("#password").write("2");
+            clickOn("#login");
+        }
+        catch(IllegalArgumentException e){
+            assertEquals(e.getMessage(), "Password is incorrect");
+        }
+    }
+
+    @Test
     public void testLoginTrue() {
         clickOn("#username").write("test");
         clickOn("#password").write("test");
         clickOn("#login");
     }
-
+    
 }

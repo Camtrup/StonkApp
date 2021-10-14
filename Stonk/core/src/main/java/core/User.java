@@ -80,7 +80,7 @@ public User(String firstName, String lastName, String username, String password,
 
     public void setUserName(String name){
         if(name.isBlank()){
-            throw new IllegalArgumentException("username cannot be blank");
+            throw new IllegalArgumentException("Username cannot be blank");
         }
         if(handler.findUser(name) != -1){
             throw new IllegalArgumentException("Username is already registered");
