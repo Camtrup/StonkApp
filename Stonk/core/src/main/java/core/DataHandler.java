@@ -220,11 +220,13 @@ public class DataHandler {
                                 (JSONArray) user.get("portfolio"),
                                 false);
             }
+            else {
+                throw new IllegalArgumentException("Password ins incorrect");
+            }
         }
         else {
             throw new IllegalArgumentException("Username not in databse");
         }
-        return null;
     }
 
     //Writes the array to the file

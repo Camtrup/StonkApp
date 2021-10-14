@@ -37,7 +37,22 @@ public class registerController {
         if(username.getText().isBlank() || password.getText().isBlank() || firstname.getText().isBlank() || lastname.getText().isBlank() || age.getText().isBlank()|| cash.getText().isBlank()){
             throw new IllegalArgumentException("You must fill out all inputfields");
         }
+
         else {
+            try {
+                Integer.parseInt(age.getText());
+            }
+            catch(Exception e){
+                    throw new IllegalArgumentException("Age must be an integer");
+            }
+            
+            try {
+                Float.parseFloat(cash.getText());
+            }
+            catch(Exception e){
+                    throw new IllegalArgumentException("Cash must be a float");
+            }
+            
             try {
                 StonkApp.user = new User(firstname.getText(), lastname.getText(), username.getText(), password.getText(), Float.parseFloat(cash.getText()), Integer.parseInt(age.getText()), new JSONArray(), true);
                 loginFromRegister(); 

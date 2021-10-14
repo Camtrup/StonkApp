@@ -100,8 +100,9 @@ public User(String firstName, String lastName, String username, String password,
             throw new IllegalArgumentException("Cant set a negative balance");
         }
         this.cash = cash;
-        handler.setCash(handler.findUser(username), cash);
-        
+        if (handler.findUser(username)!=-1){
+            handler.setCash(handler.findUser(username), cash);
+        }
         } 
 
     public void setAge(int age){
