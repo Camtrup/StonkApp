@@ -48,7 +48,35 @@ public class StonkAppTest extends ApplicationTest {
 
     @Test
     public void testRegisterFalse(){
-        
+        try {
+            clickOn("#registerUserNew");
+            clickOn("#firstname").write("test");
+            clickOn("#lastname").write("test");
+            clickOn("#username").write("test");
+            clickOn("#password").write("test");
+            clickOn("#age").write("notInt");
+            clickOn("#cash").write("notFloat");
+            clickOn("#registerUser");
+        }
+        catch(IllegalArgumentException e){
+            assertEquals(e.getMessage(), "Age must be an integer");
+        }
+
+        try {
+            clickOn("#age").eraseText(6).write("10");
+            clickOn("#registerUser");
+        }
+        catch(IllegalArgumentException e){
+            assertEquals(e.getMessage(), "Cash must be a number");
+        }
+
+        try {
+            clickOn("#cash").eraseText(8).write("10");
+            clickOn("#registerUser");
+        }
+        catch (IllegalArgumentException e) {
+            assertEquals(e.getMessage(), "You need to be over 18 years");
+        }
     }
 
  

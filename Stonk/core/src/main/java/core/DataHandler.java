@@ -221,7 +221,7 @@ public class DataHandler {
                                 false);
             }
             else {
-                throw new IllegalArgumentException("Password ins incorrect");
+                throw new IllegalArgumentException("Password is incorrect");
             }
         }
         else {
