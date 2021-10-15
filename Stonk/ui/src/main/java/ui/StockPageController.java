@@ -68,7 +68,7 @@ public class StockPageController {
             priceChange.setStyle( "-fx-text-fill: Red;");
         }
         else {
-            priceChange.setStyle( "-fx-text-fill: Green;");
+            priceChange.setStyle( "-fx-text-fill: #7ff00;");
         }
         priceChange.setText(stock.getPriceChange()); 
 
