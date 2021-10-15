@@ -6,7 +6,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.profileController">
    <children>
       <Button onAction="#logOut" fx:id="logOut" layoutX="256.0" layoutY="292.0" mnemonicParsing="false" text="Log Out" />
-      <Button onAction="#deleteUser" fx:id="deleteUSer" layoutX="246.0" layoutY="342.0" mnemonicParsing="false" text="Delete User" />
-      <Button layoutX="25.0" layoutY="24.0" mnemonicParsing="false" onAction="#toMain" text="Back" />
+      <Button onAction="#deleteUser" fx:id="deleteUser" layoutX="246.0" layoutY="342.0" mnemonicParsing="false" text="Delete User" />
+      <Button fx:id="toMain" layoutX="25.0" layoutY="24.0" mnemonicParsing="false" onAction="#toMain" text="Back" />
    </children>
 </AnchorPane>

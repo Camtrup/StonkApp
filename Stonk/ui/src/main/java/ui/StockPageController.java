@@ -16,7 +16,7 @@ public class StockPageController {
 
     DataHandler handler = new DataHandler();
     private User user; 
-    public static Stonk stock = new Stonk(); //Is static an public so the mainController can access it and send the stock-object forward
+    public static Stonk stock = new Stonk(); //Is static and public so the mainController can access it and send the stock-object forward
 
     
     @FXML
@@ -74,13 +74,34 @@ public class StockPageController {
 
     } 
 
+    private void checkIfNum(){
+        try {
+            Integer.parseInt(amountStock.getText());
+        }
+        catch(Exception e){
+            throw new IllegalArgumentException("Amount must be a number");
+        }
+    }
+
     public void buy(){
-        user.addToPortfoilio(stock.getTicker(), Integer.parseInt(amountStock.getText()));
-        backToMain();
+        try {
+            checkIfNum();
+            user.addToPortfoilio(stock.getTicker(), Integer.parseInt(amountStock.getText()));
+            backToMain();
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
     }
     public void sell(){
-        user.removeFromPortfolio(stock.getTicker(), Integer.parseInt(amountStock.getText()));
-        backToMain();
+        try {
+            checkIfNum();
+            user.removeFromPortfolio(stock.getTicker(), Integer.parseInt(amountStock.getText()));
+            backToMain();
+        }
+        catch (Exception e) {
+            System.out.println(e);
+        }
     }
     
 

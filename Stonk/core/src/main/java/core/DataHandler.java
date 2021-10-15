@@ -170,7 +170,7 @@ public class DataHandler {
         }
         if(containsStock){
             int newCount = Integer.parseInt(stock.get("count").toString()) - count;
-            if(newCount > 0){
+            if(newCount >= 0){
                 if(newCount == 0){
                     portfolio.remove(stock);
                 }
@@ -220,11 +220,13 @@ public class DataHandler {
                                 (JSONArray) user.get("portfolio"),
                                 false);
             }
+            else {
+                throw new IllegalArgumentException("Password is incorrect");
+            }
         }
         else {
             throw new IllegalArgumentException("Username not in databse");
         }
-        return null;
     }
 
     public void deleteUser(int userIndex){

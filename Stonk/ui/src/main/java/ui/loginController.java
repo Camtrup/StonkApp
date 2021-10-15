@@ -31,12 +31,7 @@ public class loginController {
         try {
             User temp = new User();
             StonkApp.user = temp.isLoginValid(username.getText().toString(), password.getText().toString());
-            if(StonkApp.user.equals(null)){
-                throw new IllegalArgumentException("Password is incorrect");
-            }
-            else{
-                login();
-            }
+            login();
         }
     
         catch(IllegalArgumentException | IOException e){
