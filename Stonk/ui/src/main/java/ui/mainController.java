@@ -110,6 +110,11 @@ public class mainController {
         }
     }
 
+    public void toProfile(){
+        StonkApp app = new StonkApp();
+        app.changeScene("profile.fxml");
+    }
+
     @FXML
     private void initialize(){
         this.user = StonkApp.user;

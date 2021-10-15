@@ -13,13 +13,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class StonkBuyTest extends ApplicationTest{
 
-    private loginController controller;
-
     @Override
     public void start(final Stage stage) throws Exception{
         final FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/login.fxml"));
         final Parent root = loader.load();
-        this.controller = loader.getController();
         stage.setScene(new Scene(root,800,600));
         stage.show();
         StonkApp.stg = stage;

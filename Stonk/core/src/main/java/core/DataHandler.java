@@ -229,6 +229,12 @@ public class DataHandler {
         }
     }
 
+    public void deleteUser(int userIndex){
+        JSONArray arr = getAllUsers();
+        arr.remove(userIndex);
+        writeToFile(arr);
+    }
+
     //Writes the array to the file
     public void writeToFile(JSONArray arr){
         JSONObject obj = new JSONObject();
@@ -243,6 +249,5 @@ public class DataHandler {
 
     public static void main(String[] args){
         DataHandler d = new DataHandler();
-        d.setCash(0, 10);
     }
 }
