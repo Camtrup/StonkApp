@@ -1,14 +1,14 @@
 package ui;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import org.junit.Test;
-import org.testfx.framework.junit5.ApplicationTest;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import java.io.IOException;
+import org.junit.jupiter.api.Test;
+import org.testfx.framework.junit5.ApplicationTest;
+import static org.junit.jupiter.api.Assertions.*;
+
 
 public class StonkRegisterTest extends ApplicationTest{
     private loginController controller;
@@ -23,7 +23,7 @@ public class StonkRegisterTest extends ApplicationTest{
         StonkApp.stg = stage;
     }
 
-    //@Test 
+    @Test 
     public void testRegisterFalse(){
         String[][] arr = new String[][]{{"#age","a","1","Age must be an integer"},
                                         {"#age","2","0","Cash must be a number"},
@@ -47,6 +47,20 @@ public class StonkRegisterTest extends ApplicationTest{
             clickOn(param[1]).eraseText(Integer.parseInt(param[2]));
         }
     }
+    
+    //@Test
+    public void registerAndDeleteProfile(){
+        String[][] arr = new String[][]{{"#firstname","test"},
+                                        {"#lastname","test"},
+                                        {"#age","20"},
+                                        {"#username","test2"},
+                                        {"#password","test"},
+                                        {"#cash","10000"}};
 
+        clickOn("#registerUserNew");
+        for(String[] param : arr) {
+            clickOn(param[0]).write(param[1]);
+        }
+    }
     
 }

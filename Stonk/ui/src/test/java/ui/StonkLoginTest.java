@@ -1,15 +1,15 @@
 package ui;
 
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import org.junit.Test;
-import org.testfx.framework.junit5.ApplicationTest;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import java.io.IOException;
+import org.junit.jupiter.api.Test;
+import org.testfx.framework.junit5.ApplicationTest;
+import static org.junit.jupiter.api.Assertions.*;
+
 
 public class StonkLoginTest extends ApplicationTest{
     private loginController controller;
@@ -24,13 +24,8 @@ public class StonkLoginTest extends ApplicationTest{
         StonkApp.stg = stage;
     }
 
+
     @Test
-    public void deez(){
-        System.out.println("asda");
-
-    }
-
-    //@Test
     public void testLoginFalse() {
         try {
             clickOn("#username").write("tes");
@@ -51,7 +46,7 @@ public class StonkLoginTest extends ApplicationTest{
         }
     }
 
-    //@Test
+    @Test
     public void testLoginTrue() {
         clickOn("#username").write("test");
         clickOn("#password").write("test");

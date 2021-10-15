@@ -51,6 +51,9 @@ public User(String firstName, String lastName, String username, String password,
     }
 
     public void removeFromPortfolio(String ticker, int count){
+        if(count <= 0){
+            throw new IllegalArgumentException("Amount of stocks cant be negative or 0");
+        }
         Stonk stock = new Stonk();
         stock.getStockInfo(ticker);
         stock.getPrice();

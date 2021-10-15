@@ -170,7 +170,7 @@ public class DataHandler {
         }
         if(containsStock){
             int newCount = Integer.parseInt(stock.get("count").toString()) - count;
-            if(newCount > 0){
+            if(newCount >= 0){
                 if(newCount == 0){
                     portfolio.remove(stock);
                 }
