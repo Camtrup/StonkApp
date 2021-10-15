@@ -35,7 +35,7 @@
                         <Font name="Plantagenet Cherokee" size="26.0" />
                      </font>
                   </Text>
-                  <Button id="profile" layoutX="351.0" layoutY="31.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="71.0" text="my profile" textOverrun="WORD_ELLIPSIS" />
+                  <Button onAction="#toProfile" fx:id="profile" layoutX="351.0" layoutY="31.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="71.0" text="my profile" textOverrun="WORD_ELLIPSIS" />
                   <Label fx:id="cashMoneyFlow" layoutX="249.0" layoutY="33.0" prefHeight="25.0" prefWidth="71.0" />
                </children>
             </Pane>
