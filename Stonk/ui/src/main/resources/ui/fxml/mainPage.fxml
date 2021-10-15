@@ -32,7 +32,7 @@
             </ImageView>
             <Text fx:id="balanceString" fill="#f0f0f0" layoutX="-21.0" layoutY="-11.0" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
-                  <Font size="17.0" />
+                  <Font name="Arial" size="17.0" />
                </font>
             </Text>
             <Label fx:id="cashMoneyFlow" layoutX="27.0" layoutY="97.0" prefHeight="25.0" prefWidth="71.0" text="0" textFill="WHITE">
@@ -48,7 +48,7 @@
             <TextField fx:id="searchBar" layoutX="63.0" layoutY="214.0" prefHeight="42.0" prefWidth="187.0" promptText="Search stocks" />
          <Button fx:id="searchButton" layoutX="121.0" layoutY="265.0" mnemonicParsing="false" onAction="#toStockPage" prefHeight="23.0" prefWidth="66.0" text="Search">
                <font>
-                  <Font name="Arial" size="9.0" />
+                  <Font name="Arial" size="10.0" />
                </font></Button>
             <Text layoutX="115.0" layoutY="384.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My stocks">
                <font>
