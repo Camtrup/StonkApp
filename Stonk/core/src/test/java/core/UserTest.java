@@ -19,7 +19,7 @@ public class UserTest {
 
 	@BeforeEach
     public void setup(){
-        user = new User("Tage", "Berg", "tagemb", "123", 10000, 23, null, false );
+        user = new User("Tage", "Berg", "tagemb", "123", 10000, 23, null, false);
         //handler.newUser(user);
     }
 
@@ -33,7 +33,7 @@ public class UserTest {
 
     @Test
     public void testCash(){
-        assertEquals(1000, user.getCash(), "Not correct cash");
+        assertEquals(10000, user.getCash(), "Not correct cash");
         user.setCash(20000);
         assertEquals(20000, user.getCash(), "setCash does not work");
 
