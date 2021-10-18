@@ -3,8 +3,8 @@ image:
 
 tasks:
   - init: sdk use java 16.0.1.hs-adpt
-    prebuild: cd todolist; mvn compile
-    command: cd todolist
+    prebuild: cd stonk; mvn compile
+    command: cd stonk
 
 ports:
   # used by virtual desktop and vnc, supports JavaFX
