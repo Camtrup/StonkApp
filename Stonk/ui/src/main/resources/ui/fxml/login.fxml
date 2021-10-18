@@ -28,8 +28,8 @@
             </ImageView>
             <TextField fx:id="username" layoutX="73.0" layoutY="470.0" promptText="Brukernavn" />
             <PasswordField fx:id="password" layoutX="73.0" layoutY="499.0" promptText="Passord" />
-            <Button fx:id="login" layoutX="73.0" layoutY="531.0" mnemonicParsing="false" onAction="#isLoginValid" text="Logg inn" />
-            <Button fx:id="registerUserNew" layoutX="167.0" layoutY="531.0" mnemonicParsing="false" onAction="#registerUserNew" text="Registrer" />
+            <Button fx:id="login" layoutX="73.0" layoutY="531.0" mnemonicParsing="false" onAction="#isLoginValid" text="Log in" />
+            <Button fx:id="registerUserNew" layoutX="167.0" layoutY="531.0" mnemonicParsing="false" onAction="#registerUserNew" text="Register" />
          </children>
       </AnchorPane>
    </children>

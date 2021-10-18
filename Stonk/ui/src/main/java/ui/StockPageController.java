@@ -36,6 +36,8 @@ public class StockPageController {
     private Label stockTicker; 
     @FXML 
     private Label owning;
+    @FXML
+    private Label totPrice1;
 
 
     //Is fired when user clicks "EXIT"
@@ -52,6 +54,7 @@ public class StockPageController {
         stockTicker.setText(stock.getName());
         priceTicker.setText(Float.toString(stock.getPrice()));
         moneyFlow.setText(Float.toString(user.getCash()) + " $");
+        totPrice1.setText(Float.toString(stock.getPrice()));
         
         char priceChangeFloat = stock.getPriceChange().charAt(0); //Checks if priceChange is negative
         priceChange.setText(stock.getPriceChange());
@@ -63,17 +66,18 @@ public class StockPageController {
             }
         }
 
-
+        // coloring for pricechange
         if (priceChangeFloat == '-'){
             priceChange.setStyle( "-fx-text-fill: Red;");
         }
         else {
-            priceChange.setStyle( "-fx-text-fill: #7ff00;");
+            priceChange.setStyle( "-fx-text-fill: #7fff00;");
         }
         priceChange.setText(stock.getPriceChange()); 
 
     } 
 
+<<<<<<< HEAD
     private void checkIfNum(){
         try {
             Integer.parseInt(amountStock.getText());
@@ -81,6 +85,12 @@ public class StockPageController {
         catch(Exception e){
             throw new IllegalArgumentException("Amount must be a number");
         }
+=======
+    public void updateTotalPrice() {
+        Float floatPrice = stock.getPrice()*Float.parseFloat(amountStock.getText());
+        System.out.println(floatPrice);
+        totPrice1.setText(String.format("%.2f", floatPrice));
+>>>>>>> more GUI changes and fixes. Better design.
     }
 
     public void buy(){

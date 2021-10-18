@@ -31,7 +31,7 @@
 =======
 <AnchorPane maxHeight="585.0" maxWidth="292.0" minHeight="585.0" minWidth="292.0" onMouseEntered="#updateStockPage" prefHeight="585.0" prefWidth="292.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.StockPageController">
    <children>
-      <ImageView fitHeight="585.0" fitWidth="292.0">
+      <ImageView fitHeight="585.0" fitWidth="292.0" onInputMethodTextChanged="#updateTotalPrice" onKeyTyped="#updateTotalPrice">
          <image>
             <Image url="@../images/stockPage.png" />
          </image>
@@ -46,14 +46,18 @@
          <font>
             <Font name="Arial" size="11.0" />
          </font></Text>
+<<<<<<< HEAD
       <TextField fx:id="amountStock" alignment="TOP_RIGHT" layoutX="165.0" layoutY="196.0" prefHeight="48.0" prefWidth="108.0" promptText="1" style="-fx-background-color: fffffff;">
 >>>>>>> fixed some coloring and sizing issues
+=======
+      <TextField fx:id="amountStock" alignment="TOP_RIGHT" layoutX="165.0" layoutY="196.0" onAction="#updateTotalPrice" onInputMethodTextChanged="#updateTotalPrice" onKeyTyped="#updateTotalPrice" opacity="0.29" prefHeight="48.0" prefWidth="108.0" promptText="1" style="-fx-background-color: fffffff;" text="1">
+>>>>>>> more GUI changes and fixes. Better design.
          <font>
             <Font name="Arial" size="26.0" />
          </font></TextField>
       <Text layoutX="100.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current holdings" />
       <Text layoutX="123.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Balance" />
-      <Label fx:id="priceTicker" layoutX="209.0" layoutY="261.0" text="price here" textFill="#b2b2b2">
+      <Label fx:id="priceTicker" alignment="CENTER_RIGHT" layoutX="189.0" layoutY="262.0" prefHeight="16.0" prefWidth="75.0" text="price here" textFill="#b2b2b2">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
@@ -69,11 +73,11 @@
          <font>
             <Font name="Arial" size="10.0" />
          </font></Label>
-      <Label fx:id="moneyFlow" layoutX="127.0" layoutY="99.0" opacity="0.51" text="money">
+      <Label fx:id="moneyFlow" alignment="CENTER" layoutX="101.0" layoutY="99.0" opacity="0.51" prefHeight="15.0" prefWidth="90.0" text="money" textAlignment="CENTER">
          <font>
             <Font name="Arial" size="12.0" />
          </font></Label>
-      <Label fx:id="owning" layoutX="141.0" layoutY="146.0" opacity="0.51" text="0">
+      <Label fx:id="owning" alignment="CENTER" layoutX="74.0" layoutY="146.0" opacity="0.51" prefHeight="15.0" prefWidth="142.0" text="0">
          <font>
             <Font name="Arial" size="12.0" />
          </font></Label>
@@ -81,7 +85,7 @@
       <Label fx:id="stockTicker" alignment="CENTER" layoutX="10.0" layoutY="18.0" prefHeight="29.0" prefWidth="273.0" text="Stock Placeholder" textAlignment="CENTER" textFill="WHITE">
 >>>>>>> fixed some coloring and sizing issues
          <font>
-            <Font size="24.0" />
+            <Font name="Arial" size="19.0" />
          </font>
       </Label>
       <Text fill="#b2b2b2" layoutX="24.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Price">
@@ -89,7 +93,7 @@
             <Font name="Arial" size="11.0" />
          </font>
       </Text>
-      <Label fx:id="priceTicker1" layoutX="205.0" layoutY="318.0" text="Tot Price" textFill="#4d4d4d">
+      <Label fx:id="totPrice1" alignment="CENTER_RIGHT" layoutX="190.0" layoutY="317.0" prefHeight="16.0" prefWidth="75.0" text="Tot Price" textFill="#4d4d4d">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
