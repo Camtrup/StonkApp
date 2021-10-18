@@ -93,14 +93,14 @@ public User(String firstName, String lastName, String username, String password,
         this.username = name;
     } 
 
-    public void setPassword(String password){
+    private void setPassword(String password){
         if(password.isBlank()){
             throw new IllegalArgumentException("Password cannot be blank");
         }
         this.password = password;
     } 
 
-    public void setCash(float cash){
+    private void setCash(float cash){
         if(cash < 0){
             throw new IllegalArgumentException("Cant set a negative balance");
         }

@@ -3,6 +3,7 @@ package data;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URL;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -12,8 +13,7 @@ import org.json.simple.parser.ParseException;
 public class DataHandler {
 
     //Since the app runs from the pom.xml in the module ui. It seems that this had to be the natural position to put the databse
-    private String filePath = "database.json";
-    private JSONArray jsonArray = null;
+    private String filePath = getClass().getResource("/database.json").toString();
     
     //Creates new user in the database
     public void newUser(String username, String password, String firstname, String lastname, int age, float cash, JSONArray portfolio) {
@@ -45,8 +45,8 @@ public class DataHandler {
         }
         
         catch(IOException | ParseException e){
-            System.out.println("det er min feil");
             System.out.println(e);
+            System.out.println(filePath);
         }
         return userArray;
     }
@@ -236,6 +236,6 @@ public class DataHandler {
 
     public static void main(String[] args){
         DataHandler d = new DataHandler();
-        System.out.println(d.getUserCount());
+        System.out.println(d.filePath);
     }
 }
