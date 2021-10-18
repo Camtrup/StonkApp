@@ -89,8 +89,17 @@ public class StockPageController {
     public void updateTotalPrice() {
         Float floatPrice = stock.getPrice()*Float.parseFloat(amountStock.getText());
         System.out.println(floatPrice);
+<<<<<<< HEAD
         totPrice1.setText(String.format("%.2f", floatPrice));
 >>>>>>> more GUI changes and fixes. Better design.
+=======
+        if (Float.parseFloat(amountStock.getText()) <= 0) {
+            totPrice1.setText("Invalid");
+        }
+        else {
+            totPrice1.setText(String.format("%.2f", floatPrice));   
+        }
+>>>>>>> checks if amount of stocks is invalid in purchase windows.
     }
 
     public void buy(){
