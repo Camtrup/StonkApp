@@ -1,15 +1,19 @@
 package data;
 
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URL;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.nio.charset.StandardCharsets;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import org.json.simple.parser.ParseException; 
 
 public class DataHandler {
 
@@ -40,7 +44,7 @@ public class DataHandler {
     public JSONArray getAllUsers(){
         JSONParser parser = new JSONParser();
         JSONArray userArray = new JSONArray();
-        try(FileReader reader = new FileReader(filePath)){
+        try(FileReader reader = new FileReader(filePath, StandardCharsets.UTF_8)){
             JSONObject obj = (JSONObject) parser.parse(reader);
             userArray = (JSONArray) obj.get("users");
         }
@@ -226,10 +230,17 @@ public class DataHandler {
     public void writeToFile(JSONArray arr){
         JSONObject obj = new JSONObject();
         obj.put("users", arr);
-        try(FileWriter file = new FileWriter(filePath, false)) {
-            file.write(obj.toJSONString());
-            file.close();
-        } catch (IOException e) {
+        try(FileOutputStream fileStream = new FileOutputStream(filePath, false)){
+            Writer writer = new OutputStreamWriter(fileStream, StandardCharsets.UTF_8);
+            writer.write(obj.toJSONString()); 
+            writer.close();
+        }
+        
+
+       // try(FileWriter file = new FileWriter(filePath, false)) {
+         //   file.write(obj.toJSONString());
+           // file.close();
+        catch (IOException e) {
             e.printStackTrace();
         }
     }

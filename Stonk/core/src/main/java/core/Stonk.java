@@ -16,10 +16,10 @@ public class Stonk {
     //Hvis "ticker" ikke er nøyaktig, får en en NullPointerException siden elementet i HTMLen = NULL
     //en blir en viderført til en liste med lignende aksjer, der velger en bare den første og satser på at det er riktig
     public void getStockInfo(String ticker) {
-        if(ticker.equals(null)){
+        if(ticker == null){
             throw new IllegalArgumentException("Could not find stock");
         }
-        if(ticker == ""){
+        if(ticker.equals("")){
             throw new IllegalArgumentException("Cannot be blank");
         }
         this.ticker = ticker;
