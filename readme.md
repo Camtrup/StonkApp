@@ -17,3 +17,16 @@ You can find more information about the code in the project file.
 ## FXML and json files
 
 [Stonk>src>main>resources>stonk...](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2135/gr2135/-/tree/master/Stonk/src/main/resources/stonk)
+
+
+
+## Project architecture
+
+Core: 
+<a href="https://ibb.co/m5qkn3G"><img src="https://i.ibb.co/qYsKHvd/core.png" alt="core" border="0"></a>
+
+Controllers:
+<a href="https://ibb.co/vVPt07B"><img src="https://i.ibb.co/mbqxfLB/controller.png" alt="controller" border="0"></a>
+
+Fxml files:
+<a href="https://ibb.co/QDkT74X"><img src="https://i.ibb.co/jJzQ9SH/fxml.png" alt="fxml" border="0"></a>
