@@ -21,12 +21,13 @@ You can find more information about the code in the project file.
 
 
 ## Project architecture
+### click on image for better quality
 
-Core: 
-<a href="https://ibb.co/m5qkn3G"><img src="https://i.ibb.co/qYsKHvd/core.png" width=650px height=150px alt="core" border="0"></a>
+Core:   
+<a href="https://ibb.co/m5qkn3G"><img src="https://i.ibb.co/qYsKHvd/core.png" width=700px height=150px alt="core" border="0"></a>
 
 Controllers:
-<a href="https://ibb.co/vVPt07B"><img src="https://i.ibb.co/mbqxfLB/controller.png" width=650px height=150px alt="controller" border="0"></a>
+<a href="https://ibb.co/vVPt07B"><img src="https://i.ibb.co/mbqxfLB/controller.png" width=700px height=150px alt="controller" border="0"></a>
 
 Fxml files:
-<a href="https://ibb.co/QDkT74X"><img src="https://i.ibb.co/jJzQ9SH/fxml.png" width=650px height=150px alt="fxml" border="0"></a>
+<a href="https://ibb.co/QDkT74X"><img src="https://i.ibb.co/jJzQ9SH/fxml.png" width=700px height=150px alt="fxml" border="0"></a>
