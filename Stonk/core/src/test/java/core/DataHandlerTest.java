@@ -27,7 +27,7 @@ public class DataHandlerTest {
         stonk.getStockInfo("BB");
         handler.setCash(0, 100);
         handler.addToPortfoilio(0, "BB", stonk.getPrice(), 20);
-    }
+    }  
 
 
     @Test
