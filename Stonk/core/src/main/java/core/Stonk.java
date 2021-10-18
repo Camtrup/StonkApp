@@ -55,14 +55,14 @@ public class Stonk {
         return ticker;
     }
 
-    
+    public String getPriceChange() {
+        return priceChange;
+    }
+
+    // test if Stonk.java works
 	@Override
 	public String toString() {
         return "your stock " + name + " has a price of " + price;
-    }
-
-    public String getPriceChange() {
-        return priceChange;
     }
 
 

@@ -13,7 +13,7 @@ public class DataHandler {
 
     //Since the app runs from the pom.xml in the module ui. It seems that this had to be the natural position to put the databse
     private String filePath = "src/main/resources/ui/database.json";
-    
+
     //Creates new user in the database
     public void newUser(String username, String password, String firstname, String lastname, int age, float cash, JSONArray portfolio) {
         JSONArray userArray = getAllUsers();
@@ -249,5 +249,8 @@ public class DataHandler {
 
     public static void main(String[] args){
         DataHandler d = new DataHandler();
+        d.setCash(0, 10);
+        
+        
     }
 }
