@@ -3,6 +3,8 @@ package core;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import data.DataHandler;
+
 public class User {
     private String firstName;
     private String lastName;
@@ -91,14 +93,14 @@ public User(String firstName, String lastName, String username, String password,
         this.username = name;
     } 
 
-    public void setPassword(String password){
+    private void setPassword(String password){
         if(password.isBlank()){
             throw new IllegalArgumentException("Password cannot be blank");
         }
         this.password = password;
     } 
 
-    public void setCash(float cash){
+    private void setCash(float cash){
         if(cash < 0){
             throw new IllegalArgumentException("Cant set a negative balance");
         }
@@ -119,7 +121,15 @@ public User(String firstName, String lastName, String username, String password,
         } 
 
     public User isLoginValid(String username, String password){
-        return handler.isLoginValid(username, password);
+        JSONObject temp = handler.isLoginValid(username, password);
+        return new User(temp.get("firstname").toString(),
+                        temp.get("lastname").toString(),
+                        temp.get("username").toString(),
+                        temp.get("password").toString(),
+                        Float.parseFloat(temp.get("cash").toString()),
+                        Integer.parseInt(temp.get("age").toString()),
+                        (JSONArray) temp.get("portfolio"),
+                        false);
     }
 
     public String getUserName(){
