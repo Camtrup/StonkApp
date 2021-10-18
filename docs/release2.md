@@ -1,5 +1,6 @@
 # SUBMISSION 2
 
+After some good feedback from release 1, we have improved out coding quality and changed  our working method, for a better work flow. Most importantly we use branches, when its needed. 
 ## FUNCTIONALITY:
 The application is now fully functional with a database that saves the stocks you buy. You can also sell these stocks for their real value. The only problems are minor and will be fixed in no time.
 
