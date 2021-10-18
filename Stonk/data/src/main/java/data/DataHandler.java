@@ -1,4 +1,4 @@
-package core;
+package data;
 
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -12,7 +12,8 @@ import org.json.simple.parser.ParseException;
 public class DataHandler {
 
     //Since the app runs from the pom.xml in the module ui. It seems that this had to be the natural position to put the databse
-    private String filePath = "src/main/resources/ui/database.json";
+    private String filePath = "database.json";
+    private JSONArray jsonArray = null;
     
     //Creates new user in the database
     public void newUser(String username, String password, String firstname, String lastname, int age, float cash, JSONArray portfolio) {
@@ -65,16 +66,9 @@ public class DataHandler {
         return -1;
     }
 
-    public User generateUser(String username){
+    public JSONObject generateUser(String username){
         JSONObject user = getUser(findUser(username));
-        return new User(user.get("firstname").toString(),
-                                user.get("lastname").toString(),
-                                user.get("username").toString(),
-                                user.get("password").toString(),
-                                Float.parseFloat(user.get("cash").toString()),
-                                Integer.parseInt(user.get("age").toString()),
-                                (JSONArray) user.get("portfolio"),
-                                false);
+        return user;
 
     }
 
@@ -206,19 +200,12 @@ public class DataHandler {
     //Throws Excpetion if username doesnt exists
     //Returns null if password is incorrect
     //Returns a new instance of a user if the login is valid
-    public User isLoginValid(String username, String password){
+    public JSONObject isLoginValid(String username, String password){
         int index = findUser(username);
         if(index >= 0){
             JSONObject user = getUser(index);
             if(user.get("password").toString().equals(password)){
-                return new User(user.get("firstname").toString(),
-                                user.get("lastname").toString(),
-                                user.get("username").toString(),
-                                user.get("password").toString(),
-                                Float.parseFloat(user.get("cash").toString()),
-                                Integer.parseInt(user.get("age").toString()),
-                                (JSONArray) user.get("portfolio"),
-                                false);
+                return generateUser(username);
             }
             else {
                 throw new IllegalArgumentException("Password is incorrect");
@@ -249,5 +236,6 @@ public class DataHandler {
 
     public static void main(String[] args){
         DataHandler d = new DataHandler();
+        System.out.println(d.getUserCount());
     }
 }

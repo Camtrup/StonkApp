@@ -2,7 +2,7 @@ package ui;
 
 import org.json.simple.JSONObject;
 
-import core.DataHandler;
+import data.DataHandler;
 import core.Stonk;
 import core.User;
 import javafx.fxml.FXML;

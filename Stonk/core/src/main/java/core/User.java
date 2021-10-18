@@ -3,6 +3,8 @@ package core;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import data.DataHandler;
+
 public class User {
     private String firstName;
     private String lastName;
@@ -119,7 +121,15 @@ public User(String firstName, String lastName, String username, String password,
         } 
 
     public User isLoginValid(String username, String password){
-        return handler.isLoginValid(username, password);
+        JSONObject temp = handler.isLoginValid(username, password);
+        return new User(temp.get("firstname").toString(),
+                        temp.get("lastname").toString(),
+                        temp.get("username").toString(),
+                        temp.get("password").toString(),
+                        Float.parseFloat(temp.get("cash").toString()),
+                        Integer.parseInt(temp.get("age").toString()),
+                        (JSONArray) temp.get("portfolio"),
+                        false);
     }
 
     public String getUserName(){

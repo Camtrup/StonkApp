@@ -1,8 +1,8 @@
 package ui;
 
-import core.DataHandler;
 import core.User;
 import javafx.fxml.FXML;
+import data.DataHandler;
 
 public class profileController {
     private User user; 
