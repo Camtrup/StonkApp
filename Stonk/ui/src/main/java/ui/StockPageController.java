@@ -80,7 +80,12 @@ public class StockPageController {
     public void updateTotalPrice() {
         Float floatPrice = stock.getPrice()*Float.parseFloat(amountStock.getText());
         System.out.println(floatPrice);
-        totPrice1.setText(String.format("%.2f", floatPrice));
+        if (Float.parseFloat(amountStock.getText()) <= 0) {
+            totPrice1.setText("Invalid");
+        }
+        else {
+            totPrice1.setText(String.format("%.2f", floatPrice));   
+        }
     }
 
     public void buy(){
