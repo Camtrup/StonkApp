@@ -12,7 +12,7 @@ public class User {
     private String password;
     private float cash;
     private int age;
-    private JSONArray portfolio;
+    //private JSONArray portfolio; for å få spotbugs til å funke trnger vi? 
     DataHandler handler = new DataHandler();
 
 
@@ -24,7 +24,7 @@ public User(String firstName, String lastName, String username, String password,
         setPassword(password);
         setCash(cash);
         setAge(age);
-        this.portfolio = portfolio;
+        //this.portfolio = getPortfolio(); bruker vi den? 
         handler.newUser(username, password, firstName, lastName, age, cash, new JSONArray());
     }
     else {
@@ -34,7 +34,7 @@ public User(String firstName, String lastName, String username, String password,
         this.password = password;
         this.cash = cash;
         this.age = age;
-        this.portfolio = portfolio;
+        //this.portfolio = getPortfolio(); bruker vi den? 
     }
 }
 
@@ -58,7 +58,7 @@ public User(String firstName, String lastName, String username, String password,
         }
         Stonk stock = new Stonk();
         stock.getStockInfo(ticker);
-        stock.getPrice();
+        //stock.getPrice(); trenger vi denne linjen??, bruker den to hakk ned 
         handler.removeFromPortfolio(handler.findUser(username), ticker, count);
         setCash(cash + (stock.getPrice() * count));
     }

@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import data.DataHandler;
+
 import static org.junit.Assert.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -75,7 +78,7 @@ public class UserTest {
     @Test
     public void testPassword(){
         assertTrue(user.getPassword() == "123", "getPassword not correct");
-        user.setPassword("XXX");
+        //user.setPassword("XXX"); denne er satt til private, får feilmelding 
         assertFalse(user.getPassword() == "YYYY", "setPassword not working");
     }
     @Test
