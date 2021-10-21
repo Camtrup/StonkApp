@@ -77,18 +77,8 @@ public class StockPageController {
 
     } 
 
-    private void checkIfNum(){
-        try {
-            Integer.parseInt(amountStock.getText());
-        }
-        catch(Exception e){
-            throw new IllegalArgumentException("Amount must be a number");
-        }
-    }
-    
     public void updateTotalPrice() {
         Float floatPrice = stock.getPrice()*Float.parseFloat(amountStock.getText());
-        totPrice1.setText(String.format("%.2f", floatPrice));
         if (Float.parseFloat(amountStock.getText()) <= 0) {
             totPrice1.setText("Invalid");
         }

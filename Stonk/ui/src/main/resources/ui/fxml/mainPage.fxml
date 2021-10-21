@@ -25,31 +25,12 @@
    <children>
       <AnchorPane prefHeight="476.0" prefWidth="436.0" GridPane.rowIndex="1">
          <children>
-<<<<<<< HEAD
-            <Pane layoutY="-12.0" prefHeight="85.0" prefWidth="436.0" style="-fx-background-color: black;">
-               <children>
-                  <Text fx:id="balanceString" fill="#f0f0f0" layoutX="175.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Balance: ">
-                     <font>
-                        <Font size="17.0" />
-                     </font></Text>
-                  <Text fill="#f3f0f0" layoutX="25.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="STONKS" wrappingWidth="123.384765625">
-                     <font>
-                        <Font name="Plantagenet Cherokee" size="26.0" />
-                     </font>
-                  </Text>
-                  <Button onAction="#toProfile" fx:id="myProfile" layoutX="351.0" layoutY="31.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="71.0" text="my profile" textOverrun="WORD_ELLIPSIS" />
-                  <Label fx:id="cashMoneyFlow" layoutX="249.0" layoutY="33.0" prefHeight="25.0" prefWidth="71.0" />
-               </children>
-            </Pane>
-            <Text layoutX="151.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hello">
-=======
             <ImageView fitHeight="606.0" fitWidth="299.0" layoutX="5.0" layoutY="-4.0">
                <image>
                   <Image url="@../images/main.png" />
                </image>
             </ImageView>
             <Text fx:id="balanceString" fill="#f0f0f0" layoutX="-21.0" layoutY="-11.0" strokeType="OUTSIDE" strokeWidth="0.0">
->>>>>>> big overhaul to main GUI. WIP.
                <font>
                   <Font name="Arial" size="17.0" />
                </font>
