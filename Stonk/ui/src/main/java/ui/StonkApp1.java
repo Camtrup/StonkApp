@@ -13,7 +13,7 @@ import core.User;
 /**
  * JavaFX App
  */
-public class StonkApp extends Application {
+public class StonkApp1 extends Application {
 
     public static Stage stg; 
     public static User user;
@@ -44,7 +44,7 @@ public class StonkApp extends Application {
     }
 
     public static void main(String[] args) {
-        launch(StonkApp.class, args);
+        launch(StonkApp1.class, args);
     }
 
 }

@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-public class LoginController {
+public class LoginController1 {
 
     @FXML
     private Button login; 
@@ -21,7 +21,7 @@ public class LoginController {
 
 
     public void login() throws IOException{
-        StonkApp app = new StonkApp();
+        StonkApp1 app = new StonkApp1();
         app.changeScene("mainPage.fxml");
 
     }
@@ -30,7 +30,7 @@ public class LoginController {
     public void isLoginValid() {
         try {
             User temp = new User();
-            StonkApp.user = temp.isLoginValid(username.getText().toString(), password.getText().toString());
+            StonkApp1.user = temp.isLoginValid(username.getText().toString(), password.getText().toString());
             login();
         }
     
@@ -40,7 +40,7 @@ public class LoginController {
     }
 
     public void registerUserNew() throws IOException{
-        StonkApp app = new StonkApp();
+        StonkApp1 app = new StonkApp1();
         app.changeScene("newUser.fxml");
     }
 
