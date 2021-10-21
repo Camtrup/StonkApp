@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane alignment="CENTER" hgap="10.0" maxHeight="585.0" maxWidth="292.0" minHeight="585.0" minWidth="292.0" prefHeight="585.0" prefWidth="292.0" vgap="10.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.registerController">
+<GridPane alignment="CENTER" hgap="10.0" maxHeight="585.0" maxWidth="292.0" minHeight="585.0" minWidth="292.0" prefHeight="585.0" prefWidth="292.0" vgap="10.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.RegisterController">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
