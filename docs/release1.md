@@ -1,25 +1,26 @@
-## INNLEVERING 1
+## SUBMISSION 1
 
-## FUNKSJONALITET:
-Vi har fått til å få funksjonaliteten for å søke opp en aksje fra marketwatch.com og få pris, navn og ticker for nå, i Stonk.java. 
-Planen er å senere kunne ta ut enda mer informasjon for hver aksje. 
-Dette ble gjort med market scraping ved hjelp av Jsoup som det står mer om i ReadME filen.
-Mye av tiden har gått på å få login og registrer bruker sidene til å funkere. 
-Vi har også hatt problemer med å overføre informasjon fra de forskjellige javafxml filene til en controller. 
-Derfor fant vi ut at det var bedre å lage en controller klas for hver fxml fil.
+## FUNCTIONALITY:
+We have got the functionality to search for a share from marketwatch.com and get the price, name and ticker for now, in Stonk.java.
+The plan is to later be able to extract even more information for each share.
+This was done with market scraping using Jsoup which is more about in the ReadME file.
+A lot of time has been spent logging in and registering user pages to work.
+We have also had problems transferring information from the various javafxml files to a controller.
+Therefore, we found that it was better to create a controller class for each fxml file.
 
-## FIL LAGRING: 
-Vi bruker databas.json filen for å lagre kontoen til brukere. Her mangler vi kun å få lagret aksjene en person har kjøpt og ønsker å kjøpe.
+## FILE STORAGE:
+We use the databas.json file to save the account to users. Here we only need to store the shares a person has bought and wants to buy.
 
 
 ## JAVA FXML:
-Til nå så har vi 3 ganske ferdige javafxml sider. Totalt vil det være 5 sider. 
-De 2 siste har vi ennå ikke fått laget. 
-ferdiges sider:
-- Login.fxml er for innloging siden. 
-- mainPage.fxml er for hovedsiden man kommer inn på
-- newUser.fxml er for å registrere nye brukere.
+So far we have 3 fairly finished javafxml pages. In total there will be 5 pages.
+The last 2 we have not yet made.
+finished pages:
+- Login.fxml is for login page.
+- mainPage.fxml is for the main page you enter
+- newUser.fxml is for registering new users.
 
-ikke ferdige sider:
-- stockPage.fxml: siden som vises for en stock når du prøver å kjøpe den.
-- myProfile.fxml: usikker på om vi trenger dette, så vi tar den senere
+unfinished pages:
+- stockPage.fxml: the page that appears for a stock when you try to buy it.
+- myProfile.fxml: not sure if we need this, so we'll take it later
+

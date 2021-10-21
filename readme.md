@@ -1,3 +1,5 @@
+[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2135/gr2135/-/blob/master/Stonk/ui/src/main/java/ui/StonkApp.java)
+
 ![](https://i.ibb.co/qxM02Nc/fb2bfc2bf0ed4c569cdf5b8168878d1b.png)
 
 # STONK APP
@@ -15,3 +17,17 @@ You can find more information about the code in the project file.
 ## FXML and json files
 
 [Stonk>src>main>resources>stonk...](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2135/gr2135/-/tree/master/Stonk/src/main/resources/stonk)
+
+
+
+## Project architecture
+### click on image for better quality
+
+Core:   
+<a href="https://ibb.co/m5qkn3G"><img src="https://i.ibb.co/qYsKHvd/core.png" width=700px height=150px alt="core" border="0"></a>
+
+Controllers:
+<a href="https://ibb.co/vVPt07B"><img src="https://i.ibb.co/mbqxfLB/controller.png" width=700px height=150px alt="controller" border="0"></a>
+
+Fxml files:
+<a href="https://ibb.co/QDkT74X"><img src="https://i.ibb.co/jJzQ9SH/fxml.png" width=700px height=150px alt="fxml" border="0"></a>

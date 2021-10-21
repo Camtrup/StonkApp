@@ -15,7 +15,7 @@ import core.User;
  */
 public class StonkApp extends Application {
 
-    private static Stage stg; 
+    public static Stage stg; 
     public static User user;
 
 

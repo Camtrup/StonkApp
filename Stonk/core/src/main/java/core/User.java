@@ -3,6 +3,8 @@ package core;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import data.DataHandler;
+
 public class User {
     private String firstName;
     private String lastName;
@@ -51,6 +53,9 @@ public User(String firstName, String lastName, String username, String password,
     }
 
     public void removeFromPortfolio(String ticker, int count){
+        if(count <= 0){
+            throw new IllegalArgumentException("Amount of stocks cant be negative or 0");
+        }
         Stonk stock = new Stonk();
         stock.getStockInfo(ticker);
         stock.getPrice();
@@ -80,7 +85,7 @@ public User(String firstName, String lastName, String username, String password,
 
     public void setUserName(String name){
         if(name.isBlank()){
-            throw new IllegalArgumentException("username cannot be blank");
+            throw new IllegalArgumentException("Username cannot be blank");
         }
         if(handler.findUser(name) != -1){
             throw new IllegalArgumentException("Username is already registered");
@@ -88,20 +93,21 @@ public User(String firstName, String lastName, String username, String password,
         this.username = name;
     } 
 
-    public void setPassword(String password){
+    private void setPassword(String password){
         if(password.isBlank()){
             throw new IllegalArgumentException("Password cannot be blank");
         }
         this.password = password;
     } 
 
-    public void setCash(float cash){
+    private void setCash(float cash){
         if(cash < 0){
             throw new IllegalArgumentException("Cant set a negative balance");
         }
         this.cash = cash;
-        handler.setCash(handler.findUser(username), cash);
-        
+        if (handler.findUser(username)!=-1){
+            handler.setCash(handler.findUser(username), cash);
+        }
         } 
 
     public void setAge(int age){
@@ -115,7 +121,15 @@ public User(String firstName, String lastName, String username, String password,
         } 
 
     public User isLoginValid(String username, String password){
-        return handler.isLoginValid(username, password);
+        JSONObject temp = handler.isLoginValid(username, password);
+        return new User(temp.get("firstname").toString(),
+                        temp.get("lastname").toString(),
+                        temp.get("username").toString(),
+                        temp.get("password").toString(),
+                        Float.parseFloat(temp.get("cash").toString()),
+                        Integer.parseInt(temp.get("age").toString()),
+                        (JSONArray) temp.get("portfolio"),
+                        false);
     }
 
     public String getUserName(){
@@ -149,5 +163,7 @@ public User(String firstName, String lastName, String username, String password,
     }
 
 public static void main(String[] args) {
+    
 }
+
 }

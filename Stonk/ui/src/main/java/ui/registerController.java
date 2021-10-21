@@ -34,18 +34,26 @@ public class registerController {
 
     @FXML
     public void registerUser() throws IOException{
-        if(username.getText().isBlank() || password.getText().isBlank() || firstname.getText().isBlank() || lastname.getText().isBlank() || age.getText().isBlank()|| cash.getText().isBlank()){
-            throw new IllegalArgumentException("You must fill out all inputfields");
+        int tempInt = -1;
+        float tempFloat = -1;
+        try {
+            tempInt = Integer.parseInt(age.getText());
+            tempFloat = Float.parseFloat(cash.getText());
+            StonkApp.user = new User(firstname.getText(), lastname.getText(), username.getText(), password.getText(), Float.parseFloat(cash.getText()), Integer.parseInt(age.getText()), new JSONArray(), true);
+            loginFromRegister(); 
         }
-        else {
-            try {
-                StonkApp.user = new User(firstname.getText(), lastname.getText(), username.getText(), password.getText(), Float.parseFloat(cash.getText()), Integer.parseInt(age.getText()), new JSONArray(), true);
-                loginFromRegister(); 
+        catch(Exception e) {
+            if(tempInt == -1){
+                System.out.println(new IllegalArgumentException("Age must be an integer"));
             }
-            catch(IllegalArgumentException e){
+            else if(tempFloat == -1) {
+                System.out.println(new IllegalArgumentException("Cash must be a number"));
+            }
+            else{
                 System.out.println(e);
             }
         }
     }
+    
     
 }

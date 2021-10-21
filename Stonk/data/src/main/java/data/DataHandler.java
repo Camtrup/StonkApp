@@ -1,18 +1,24 @@
-package core;
+package data;
 
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URL;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.nio.charset.StandardCharsets;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import org.json.simple.parser.ParseException; 
 
 public class DataHandler {
 
     //Since the app runs from the pom.xml in the module ui. It seems that this had to be the natural position to put the databse
-    private String filePath = "src/main/resources/ui/database.json";
+    private String filePath = "../data/src/main/resources/database.json";
     
     //Creates new user in the database
     public void newUser(String username, String password, String firstname, String lastname, int age, float cash, JSONArray portfolio) {
@@ -38,13 +44,12 @@ public class DataHandler {
     public JSONArray getAllUsers(){
         JSONParser parser = new JSONParser();
         JSONArray userArray = new JSONArray();
-        try(FileReader reader = new FileReader(filePath)){
+        try(FileReader reader = new FileReader(filePath, StandardCharsets.UTF_8)){
             JSONObject obj = (JSONObject) parser.parse(reader);
             userArray = (JSONArray) obj.get("users");
         }
         
         catch(IOException | ParseException e){
-            System.out.println("det er min feil");
             System.out.println(e);
         }
         return userArray;
@@ -65,16 +70,9 @@ public class DataHandler {
         return -1;
     }
 
-    public User generateUser(String username){
+    public JSONObject generateUser(String username){
         JSONObject user = getUser(findUser(username));
-        return new User(user.get("firstname").toString(),
-                                user.get("lastname").toString(),
-                                user.get("username").toString(),
-                                user.get("password").toString(),
-                                Float.parseFloat(user.get("cash").toString()),
-                                Integer.parseInt(user.get("age").toString()),
-                                (JSONArray) user.get("portfolio"),
-                                false);
+        return user;
 
     }
 
@@ -170,7 +168,7 @@ public class DataHandler {
         }
         if(containsStock){
             int newCount = Integer.parseInt(stock.get("count").toString()) - count;
-            if(newCount > 0){
+            if(newCount >= 0){
                 if(newCount == 0){
                     portfolio.remove(stock);
                 }
@@ -206,41 +204,49 @@ public class DataHandler {
     //Throws Excpetion if username doesnt exists
     //Returns null if password is incorrect
     //Returns a new instance of a user if the login is valid
-    public User isLoginValid(String username, String password){
+    public JSONObject isLoginValid(String username, String password){
         int index = findUser(username);
         if(index >= 0){
             JSONObject user = getUser(index);
             if(user.get("password").toString().equals(password)){
-                return new User(user.get("firstname").toString(),
-                                user.get("lastname").toString(),
-                                user.get("username").toString(),
-                                user.get("password").toString(),
-                                Float.parseFloat(user.get("cash").toString()),
-                                Integer.parseInt(user.get("age").toString()),
-                                (JSONArray) user.get("portfolio"),
-                                false);
+                return generateUser(username);
+            }
+            else {
+                throw new IllegalArgumentException("Password is incorrect");
             }
         }
         else {
             throw new IllegalArgumentException("Username not in databse");
         }
-        return null;
+    }
+
+    public void deleteUser(int userIndex){
+        JSONArray arr = getAllUsers();
+        arr.remove(userIndex);
+        writeToFile(arr);
     }
 
     //Writes the array to the file
     public void writeToFile(JSONArray arr){
         JSONObject obj = new JSONObject();
         obj.put("users", arr);
-        try(FileWriter file = new FileWriter(filePath, false)) {
-            file.write(obj.toJSONString());
-            file.close();
-        } catch (IOException e) {
+        try(FileOutputStream fileStream = new FileOutputStream(filePath, false)){
+            Writer writer = new OutputStreamWriter(fileStream, StandardCharsets.UTF_8);
+            writer.write(obj.toJSONString()); 
+            writer.close();
+        }
+        
+
+       // try(FileWriter file = new FileWriter(filePath, false)) {
+         //   file.write(obj.toJSONString());
+           // file.close();
+        catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public static void main(String[] args){
         DataHandler d = new DataHandler();
-        d.setCash(0, 10);
+        System.out.println(d.getAllUsers());
     }
 }

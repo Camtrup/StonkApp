@@ -2,7 +2,7 @@ package ui;
 
 import org.json.simple.JSONObject;
 
-import core.DataHandler;
+import data.DataHandler;
 import core.Stonk;
 import core.User;
 import javafx.fxml.FXML;
@@ -16,7 +16,7 @@ public class StockPageController {
 
     DataHandler handler = new DataHandler();
     private User user; 
-    public static Stonk stock = new Stonk(); //Is static an public so the mainController can access it and send the stock-object forward
+    public static Stonk stock = new Stonk(); //Is static and public so the mainController can access it and send the stock-object forward
 
     
     @FXML
@@ -73,28 +73,48 @@ public class StockPageController {
         else {
             priceChange.setStyle( "-fx-text-fill: #7fff00;");
         }
-        priceChange.setText(stock.getPriceChange());
+        priceChange.setText(stock.getPriceChange()); 
 
     } 
 
     public void updateTotalPrice() {
         Float floatPrice = stock.getPrice()*Float.parseFloat(amountStock.getText());
-        System.out.println(floatPrice);
         if (Float.parseFloat(amountStock.getText()) <= 0) {
             totPrice1.setText("Invalid");
         }
         else {
-            totPrice1.setText(String.format("%.2f", floatPrice));   
+            totPrice1.setText(String.format("%.2f", floatPrice));
+        }
+    }
+       
+    private void checkIfNum(){
+        try {
+            Integer.parseInt(amountStock.getText());
+        }
+        catch(Exception e){
+            throw new IllegalArgumentException("Amount must be a number");
         }
     }
 
     public void buy(){
-        user.addToPortfoilio(stock.getTicker(), Integer.parseInt(amountStock.getText()));
-        backToMain();
+        try {
+            checkIfNum();
+            user.addToPortfoilio(stock.getTicker(), Integer.parseInt(amountStock.getText()));
+            backToMain();
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
     }
     public void sell(){
-        user.removeFromPortfolio(stock.getTicker(), Integer.parseInt(amountStock.getText()));
-        backToMain();
+        try {
+            checkIfNum();
+            user.removeFromPortfolio(stock.getTicker(), Integer.parseInt(amountStock.getText()));
+            backToMain();
+        }
+        catch (Exception e) {
+            System.out.println(e);
+        }
     }
     
 

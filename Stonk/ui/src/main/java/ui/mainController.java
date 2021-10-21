@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import core.DataHandler;
 import core.Stonk;
 import core.User;
 import javafx.fxml.FXML;
@@ -108,6 +107,11 @@ public class mainController {
                 scrollPane.getChildren().addAll(h);
             }
         }
+    }
+
+    public void toProfile(){
+        StonkApp app = new StonkApp();
+        app.changeScene("profile.fxml");
     }
 
     @FXML

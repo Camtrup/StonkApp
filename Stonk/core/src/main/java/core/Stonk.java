@@ -16,8 +16,11 @@ public class Stonk {
     //Hvis "ticker" ikke er nøyaktig, får en en NullPointerException siden elementet i HTMLen = NULL
     //en blir en viderført til en liste med lignende aksjer, der velger en bare den første og satser på at det er riktig
     public void getStockInfo(String ticker) {
-        if(ticker.equals(null)){
-            throw new IllegalArgumentException("Ticker is null");
+        if(ticker == null){
+            throw new IllegalArgumentException("Could not find stock");
+        }
+        if(ticker.equals("")){
+            throw new IllegalArgumentException("Cannot be blank");
         }
         this.ticker = ticker;
         String link = "https://www.marketwatch.com/investing/stock/" + ticker;
@@ -36,6 +39,7 @@ public class Stonk {
             // this.graph = (doc.select("mikey-chart")); // highcharts-8
         }
         catch (NullPointerException e){
+            System.out.println(doc.select(".results table tbody tr td a").first().text());
             ticker = doc.select(".results table tbody tr td a").first().text();
             getStockInfo(ticker);
         }
@@ -51,20 +55,20 @@ public class Stonk {
         return ticker;
     }
 
-    
+    public String getPriceChange() {
+        return priceChange;
+    }
+
+    // test if Stonk.java works
 	@Override
 	public String toString() {
         return "your stock " + name + " has a price of " + price;
     }
 
-    public String getPriceChange() {
-        return priceChange;
-    }
-
 
     public static void main(String[] args) {
         Stonk s = new Stonk();
-        s.getStockInfo("amc");
+        s.getStockInfo("google");
         System.out.println(s);
         System.out.println(s.ticker);
         System.out.println(s.price);
