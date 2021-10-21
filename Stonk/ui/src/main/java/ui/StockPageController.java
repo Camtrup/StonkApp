@@ -16,7 +16,7 @@ public class StockPageController {
 
     DataHandler handler = new DataHandler();
     private User user; 
-    public static Stonk stock = new Stonk(); //Is static and public so the mainController can access it and send the stock-object forward
+    public final static Stonk stock = new Stonk(); //Is static and public so the mainController can access it and send the stock-object forward
 
     
     @FXML

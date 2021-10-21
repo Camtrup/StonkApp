@@ -8,16 +8,32 @@ Using this we are able to get information about every given stock in real-time.
 
 
 ## Files
+   
+CORE:
+     - Stonk.java: Pulls information about the stock using JSoup.
 
- - Datahandler.java: Saving data to the json file.
-   
-  - Stonk.java: Pulls information about the stock using JSoup.
-   
-  - StonkApp.java: Connects the app and the FXML.
-   
   - User.java: Creation and editing of user information.
    
+
+DATA:
    - database.json: Saves information like username, password and balance.
+
+    - Datahandler.java: Saving data to the json file.
+
+UI:
+- LoginController.json: Controller for login page
+- MainController.json: Controller for main page
+- ProfileController.json: Controller for profile page
+- RegisterController.json: Controller for register page
+- StockPageController.json: Controller for Stock page
+- StonkApp.java:  
+
+
+   
+
+
+- 
+
 
 ## User Story
 <sub>*Connected to issue [#9](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2135/gr2135/-/issues/9).*</sub>

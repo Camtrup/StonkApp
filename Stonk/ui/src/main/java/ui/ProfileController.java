@@ -4,7 +4,7 @@ import core.User;
 import javafx.fxml.FXML;
 import data.DataHandler;
 
-public class profileController {
+public class ProfileController {
     private User user; 
     StonkApp app = new StonkApp();
     
