@@ -77,7 +77,6 @@ public class StockPageController {
 
     } 
 
-<<<<<<< HEAD
     private void checkIfNum(){
         try {
             Integer.parseInt(amountStock.getText());
@@ -85,17 +84,11 @@ public class StockPageController {
         catch(Exception e){
             throw new IllegalArgumentException("Amount must be a number");
         }
-=======
+    }
+    
     public void updateTotalPrice() {
         Float floatPrice = stock.getPrice()*Float.parseFloat(amountStock.getText());
-<<<<<<< HEAD
-        System.out.println(floatPrice);
-<<<<<<< HEAD
         totPrice1.setText(String.format("%.2f", floatPrice));
->>>>>>> more GUI changes and fixes. Better design.
-=======
-=======
->>>>>>> merge conflicts fixed
         if (Float.parseFloat(amountStock.getText()) <= 0) {
             totPrice1.setText("Invalid");
         }
@@ -111,7 +104,6 @@ public class StockPageController {
         catch(Exception e){
             throw new IllegalArgumentException("Amount must be a number");
         }
->>>>>>> checks if amount of stocks is invalid in purchase windows.
     }
 
     public void buy(){
