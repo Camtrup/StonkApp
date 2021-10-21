@@ -21,7 +21,7 @@ public class StonkUserTest extends ApplicationTest{
         final Parent root = loader.load();
         stage.setScene(new Scene(root,800,600));
         stage.show();
-        StonkApp1.stg = stage;
+        StonkApp.stg = stage;
     }
 
     @Test
@@ -58,6 +58,6 @@ public class StonkUserTest extends ApplicationTest{
         for(String[] param : arr) {
             clickOn(param[0]).write(param[1]);
         }
-        assertEquals(StonkApp1.user, null);
+        assertEquals(StonkApp.user, null);
     }
 }

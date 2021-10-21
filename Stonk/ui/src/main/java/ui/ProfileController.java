@@ -4,12 +4,12 @@ import core.User;
 import javafx.fxml.FXML;
 import data.DataHandler;
 
-public class ProfileController1 {
+public class ProfileController {
     private User user; 
-    StonkApp1 app = new StonkApp1();
+    StonkApp app = new StonkApp();
     
     public void logOut(){
-        StonkApp1.user = null;
+        StonkApp.user = null;
         app.changeScene("login.fxml");
         
     }
@@ -24,6 +24,6 @@ public class ProfileController1 {
     }
     @FXML
     private void initialize(){
-        this.user = StonkApp1.user;
+        this.user = StonkApp.user;
     }
 }

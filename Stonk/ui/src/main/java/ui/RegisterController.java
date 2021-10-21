@@ -9,7 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-public class RegisterController1 {
+public class RegisterController {
     @FXML
     private TextField username;
     @FXML
@@ -28,7 +28,7 @@ public class RegisterController1 {
      
 
     public void loginFromRegister() throws IOException{
-        StonkApp1 app = new StonkApp1();
+        StonkApp app = new StonkApp();
         app.changeScene("mainPage.fxml");
     }
 
@@ -39,7 +39,7 @@ public class RegisterController1 {
         try {
             tempInt = Integer.parseInt(age.getText());
             tempFloat = Float.parseFloat(cash.getText());
-            StonkApp1.user = new User(firstname.getText(), lastname.getText(), username.getText(), password.getText(), Float.parseFloat(cash.getText()), Integer.parseInt(age.getText()), new JSONArray(), true);
+            StonkApp.user = new User(firstname.getText(), lastname.getText(), username.getText(), password.getText(), Float.parseFloat(cash.getText()), Integer.parseInt(age.getText()), new JSONArray(), true);
             loginFromRegister(); 
         }
         catch(Exception e) {

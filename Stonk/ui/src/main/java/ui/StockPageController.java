@@ -12,7 +12,7 @@ import javafx.scene.control.TextField;
 
 
 
-public class StockPageController1 {
+public class StockPageController {
 
     DataHandler handler = new DataHandler();
     private User user; 
@@ -40,8 +40,8 @@ public class StockPageController1 {
 
     //Is fired when user clicks "EXIT"
     public void backToMain(){
-        StonkApp1 app = new StonkApp1();
-        StonkApp1.user = user;
+        StonkApp app = new StonkApp();
+        StonkApp.user = user;
         app.changeScene("mainPage.fxml");
     }
 
@@ -107,7 +107,7 @@ public class StockPageController1 {
 
     @FXML
     public void initialize(){
-        this.user = StonkApp1.user;
+        this.user = StonkApp.user;
 
     }
 

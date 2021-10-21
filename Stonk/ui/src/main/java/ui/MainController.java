@@ -18,7 +18,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-public class MainController1 {
+public class MainController {
     private User user; 
     Stonk stock = new Stonk();
 
@@ -57,9 +57,9 @@ public class MainController1 {
     }
 
     public void toStockPage(){
-        StonkApp1 app = new StonkApp1();
+        StonkApp app = new StonkApp();
         try {
-            StockPageController1.stock.getStockInfo(searchBar.getText());
+            StockPageController.stock.getStockInfo(searchBar.getText());
             app.changeScene("stockPage.fxml");
         }
         catch(IllegalArgumentException e){
@@ -110,13 +110,13 @@ public class MainController1 {
     }
 
     public void toProfile(){
-        StonkApp1 app = new StonkApp1();
+        StonkApp app = new StonkApp();
         app.changeScene("profile.fxml");
     }
 
     @FXML
     private void initialize(){
-        this.user = StonkApp1.user;
+        this.user = StonkApp.user;
         displayOnMain();
     }
 

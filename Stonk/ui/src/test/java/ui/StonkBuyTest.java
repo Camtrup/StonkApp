@@ -19,7 +19,7 @@ public class StonkBuyTest extends ApplicationTest{
         final Parent root = loader.load();
         stage.setScene(new Scene(root,800,600));
         stage.show();
-        StonkApp1.stg = stage;
+        StonkApp.stg = stage;
     }
     //Tests all the vital functions around buying and selling stocks
     //Iterates through the array and sends the arguments into the clickOn- and write-functions
