@@ -43,7 +43,7 @@ public class StockPageController {
     //Is fired when user clicks "EXIT"
     public void backToMain(){
         StonkApp app = new StonkApp();
-        StonkApp.user = user;
+        StonkApp.setStaticUser(user);
         app.changeScene("mainPage.fxml");
     }
 
@@ -78,18 +78,24 @@ public class StockPageController {
     } 
 
     public void updateTotalPrice() {
-        Float floatPrice = stock.getPrice()*Float.parseFloat(amountStock.getText());
-        if (Float.parseFloat(amountStock.getText()) <= 0) {
-            totPrice1.setText("Invalid");
-        }
-        else {
-            totPrice1.setText(String.format("%.2f", floatPrice));
+        if(amountStock.getText() != ""){
+            Float floatPrice = stock.getPrice()*Float.parseFloat(amountStock.getText());
+            if (Float.parseFloat(amountStock.getText()) <= 0) {
+                totPrice1.setText("Invalid");
+            }
+            else {
+                totPrice1.setText(String.format("%.2f", floatPrice));
+            }
+
         }
     }
        
     private void checkIfNum(){
         try {
             Integer.parseInt(amountStock.getText());
+            if(amountStock.getText() == ""){
+                throw new IllegalArgumentException();
+            }
         }
         catch(Exception e){
             throw new IllegalArgumentException("Amount must be a number");
@@ -120,7 +126,7 @@ public class StockPageController {
 
     @FXML
     public void initialize(){
-        this.user = StonkApp.user;
+        this.user = StonkApp.getStaticUser();
 
     }
 

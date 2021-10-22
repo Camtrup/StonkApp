@@ -9,7 +9,7 @@ public class ProfileController {
     StonkApp app = new StonkApp();
     
     public void logOut(){
-        StonkApp.user = null;
+        StonkApp.setStaticUser(null);
         app.changeScene("login.fxml");
         
     }
@@ -24,6 +24,6 @@ public class ProfileController {
     }
     @FXML
     private void initialize(){
-        this.user = StonkApp.user;
+        this.user = StonkApp.getStaticUser();
     }
 }
