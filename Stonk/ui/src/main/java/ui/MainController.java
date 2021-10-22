@@ -116,7 +116,7 @@ public class MainController {
 
     @FXML
     private void initialize(){
-        this.user = StonkApp.user;
+        this.user = StonkApp.getStaticUser();
         displayOnMain();
     }
 

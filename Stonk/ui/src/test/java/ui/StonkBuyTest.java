@@ -13,13 +13,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class StonkBuyTest extends ApplicationTest{
 
+
     @Override
     public void start(final Stage stage) throws Exception{
         final FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/login.fxml"));
         final Parent root = loader.load();
         stage.setScene(new Scene(root,800,600));
         stage.show();
-        StonkApp.stg = stage;
+        StonkApp.setStage(stage);
     }
     //Tests all the vital functions around buying and selling stocks
     //Iterates through the array and sends the arguments into the clickOn- and write-functions

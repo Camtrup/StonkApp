@@ -15,8 +15,9 @@ import core.User;
  */
 public class StonkApp extends Application {
 
-    public static Stage stg; 
-    public static User user;
+    private static Stage stg; //Used staticly for tests
+    private static User user;
+    private Stage stage;
 
 
     @Override
@@ -43,6 +44,23 @@ public class StonkApp extends Application {
         }
         stg.getScene().setRoot(pane);
     }
+
+    
+    public static User getStaticUser(){
+        return user;
+    }
+
+    public static void setStaticUser(User s){
+        user = s;
+    }
+
+    public static Stage getStage(){
+        return stg;
+    }
+    public static void setStage(Stage stage){
+        stg = stage;
+    }
+
 
     public static void main(String[] args) {
         launch(StonkApp.class, args);

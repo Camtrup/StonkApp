@@ -30,7 +30,7 @@ public class LoginController {
     public void isLoginValid() {
         try {
             User temp = new User();
-            StonkApp.user = temp.isLoginValid(username.getText().toString(), password.getText().toString());
+            StonkApp.setStaticUser(temp.isLoginValid(username.getText().toString(), password.getText().toString()));
             login();
         }
     

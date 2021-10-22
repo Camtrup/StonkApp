@@ -39,7 +39,7 @@ public class RegisterController {
         try {
             tempInt = Integer.parseInt(age.getText());
             tempFloat = Float.parseFloat(cash.getText());
-            StonkApp.user = new User(firstname.getText(), lastname.getText(), username.getText(), password.getText(), Float.parseFloat(cash.getText()), Integer.parseInt(age.getText()), new JSONArray(), true);
+            StonkApp.setStaticUser(new User(firstname.getText(), lastname.getText(), username.getText(), password.getText(), Float.parseFloat(cash.getText()), Integer.parseInt(age.getText()), new JSONArray(), true));
             loginFromRegister(); 
         }
         catch(Exception e) {
