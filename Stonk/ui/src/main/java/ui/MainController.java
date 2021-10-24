@@ -1,6 +1,13 @@
 package ui;
 
+import java.awt.Desktop;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.nio.file.WatchService;
 import java.util.ArrayList;
 
 import org.json.simple.JSONArray;
@@ -13,6 +20,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.SplitPane.Divider;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -48,13 +56,42 @@ public class MainController {
     private GridPane gridpane;
     @FXML 
     private VBox scrollPane; 
+    @FXML 
+    private Label equity; 
+    @FXML 
+    private Label growth; 
+
+    @FXML 
+    private Label growthPercent; 
+
+    private String StockOnWeb;
+    private Float StockPriceChanged = 1.0f;
+    private Float ecuityChange = 0.0f;
 
     public void displayOnMain(){
+        displayPortfolio();
         cashMoneyFlow.setText(Float.toString(user.getCash()) + " $");
         cashMoneyFlow.setStyle("-fx-text-fill: white;");
         fullName.setText((user.getFirstName()) + " " + (user.getLastName()));
+        equity.setText((ecuityChange + user.getCash()) + " $");
+        
+        growth.setText(StockPriceChanged + " $");
+        growthPercent.setText(cashEarnedPercent() + " %");
         displayPortfolio();
     }
+
+    public float cashEarnedPercent(){
+        if (StockPriceChanged == 0){
+            growthPercent.setStyle("-fx-text-fill: black;");
+            return 0.0f;
+        }
+        else if (StockPriceChanged < 0){
+            growthPercent.setStyle("-fx-text-fill: #cc021d;");
+            return ecuityChange/StockPriceChanged;
+        }
+        return ecuityChange/StockPriceChanged;
+    }
+
 
     public void toStockPage(){
         StonkApp app = new StonkApp();
@@ -66,6 +103,19 @@ public class MainController {
 
         }
     }
+    public void openBrowser(){
+        Desktop d = Desktop.getDesktop();
+        try {
+            d.browse(new URI("https://www.marketwatch.com/investing/stock/" + StockOnWeb));
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (URISyntaxException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+    
 
     public void displayPortfolio(){
         ArrayList<ArrayList<String>> arr = new ArrayList<ArrayList<String>>();
@@ -88,25 +138,42 @@ public class MainController {
             for (ArrayList<String> row : arr){
                 Stonk s = new Stonk();
                 s.getStockInfo(row.get(0)); 
-
-
+                // to get how much you have eanred from Stpcks
+                ecuityChange += (s.getPrice())*Float.parseFloat(row.get(2));
+                System.out.println(ecuityChange);
+                StockPriceChanged += (s.getPrice())*Float.parseFloat(row.get(2))-Float.parseFloat(row.get(1))*Float.parseFloat(row.get(2));
                 //Adds info
-                Label l = new Label("-\n" + row.get(0).toUpperCase() + "\nAmount: " + row.get(2) + "\nAverage: " + row.get(1) + "\nCurrent: " + s.getPrice());
+                Label l = new Label("_____________________________\n" + row.get(0).toUpperCase() + "\nAmount: " + row.get(2) + "\nAverage: " + row.get(1) + "\nCurrent: " + s.getPrice());
+                
                 Button b = new Button("Sell");
-                VBox h = new VBox(l, b);
+                Button more = new Button("more info");
+                VBox h = new VBox(l, b, more);
                 
                 //Style of elements
+                l.setStyle(
+                    "-fx-background-color: #d4d9d7; -fx-font-size: 15;");
                 b.maxHeight(l.getHeight());
+                more.maxHeight(l.getHeight());
+                more.setStyle("float:right;");
+                b.setStyle("-fx-background-color: #090a0c, linear-gradient(#38424b 0%, #1f2429 20%, #191d22 100%); -fx-background-radius: 5,4,3,5; -fx-background-insets: 0,1,2,0; -fx-text-fill: white; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 ); -fx-text-fill: linear-gradient(white, #d0d0d0);");
                 h.setPadding(new Insets(10,10,10,10));
+                h.setStyle("-fx-background-color: #dbdbdb" );
 
                 b.setOnMouseClicked(Event -> {
                     searchBar.setText(row.get(0));
                     toStockPage();
                 });
+
                 
+                more.setOnMouseClicked(Event -> {
+                    StockOnWeb = row.get(0);
+                    openBrowser();
+                });
+
                 scrollPane.getChildren().addAll(h);
             }
         }
+        
     }
 
     public void toProfile(){
