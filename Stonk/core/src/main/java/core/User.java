@@ -15,7 +15,6 @@ public class User {
     //private JSONArray portfolio; for å få spotbugs til å funke trnger vi? 
     DataHandler handler = new DataHandler();
 
-
 public User(String firstName, String lastName, String username, String password, float cash, int age, JSONArray portfolio, boolean isNewUser){
     if(isNewUser){
         setFirstName(firstName);
@@ -106,6 +105,7 @@ public User(String firstName, String lastName, String username, String password,
         }
         this.cash = cash;
         if (handler.findUser(username)!=-1){
+            
             handler.setCash(handler.findUser(username), cash);
         }
         } 
