@@ -4,6 +4,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import data.DataHandler;
+//import ui.MainController;
 
 public class User {
     private String firstName;
@@ -14,7 +15,7 @@ public class User {
     private int age;
     //private JSONArray portfolio; for å få spotbugs til å funke trnger vi? 
     DataHandler handler = new DataHandler();
-
+    //MainController mainCont = new MainController();
 
 public User(String firstName, String lastName, String username, String password, float cash, int age, JSONArray portfolio, boolean isNewUser){
     if(isNewUser){

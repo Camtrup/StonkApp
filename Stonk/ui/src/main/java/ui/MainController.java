@@ -8,7 +8,11 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.file.WatchService;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+
+import javax.swing.BorderFactory;
+import javax.swing.JPanel;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -23,7 +27,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.SplitPane.Divider;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Box;
 import javafx.scene.text.Text;
 
 public class MainController {
@@ -65,31 +71,38 @@ public class MainController {
     private Label growthPercent; 
 
     private String StockOnWeb;
-    private Float StockPriceChanged = 1.0f;
-    private Float ecuityChange = 0.0f;
+    private Float StockPriceChanged = (float) 0.0;
+    private Float ecuityChange = (float) 0;
+
+
+    public String decimalform(Float number){
+    DecimalFormat df = new DecimalFormat();
+    df.setMaximumFractionDigits(1);
+    return df.format(number);
+}
 
     public void displayOnMain(){
         displayPortfolio();
         cashMoneyFlow.setText(Float.toString(user.getCash()) + " $");
         cashMoneyFlow.setStyle("-fx-text-fill: white;");
         fullName.setText((user.getFirstName()) + " " + (user.getLastName()));
-        equity.setText((ecuityChange + user.getCash()) + " $");
-        
-        growth.setText(StockPriceChanged + " $");
-        growthPercent.setText(cashEarnedPercent() + " %");
-        displayPortfolio();
+        equity.setText((decimalform(ecuityChange + user.getCash())) + " $");
+    
+        growth.setText(decimalform(StockPriceChanged) + " $");
+        growthPercent.setText("+"+ decimalform(cashEarnedPercent())+ "%");
     }
 
     public float cashEarnedPercent(){
+        Float totalEq = ecuityChange + user.getCash();
         if (StockPriceChanged == 0){
             growthPercent.setStyle("-fx-text-fill: black;");
             return 0.0f;
         }
         else if (StockPriceChanged < 0){
             growthPercent.setStyle("-fx-text-fill: #cc021d;");
-            return ecuityChange/StockPriceChanged;
+            return (StockPriceChanged/totalEq)*100;
         }
-        return ecuityChange/StockPriceChanged;
+        return ((StockPriceChanged/totalEq)*100);
     }
 
 
@@ -140,24 +153,31 @@ public class MainController {
                 s.getStockInfo(row.get(0)); 
                 // to get how much you have eanred from Stpcks
                 ecuityChange += (s.getPrice())*Float.parseFloat(row.get(2));
-                System.out.println(ecuityChange);
                 StockPriceChanged += (s.getPrice())*Float.parseFloat(row.get(2))-Float.parseFloat(row.get(1))*Float.parseFloat(row.get(2));
+
+
                 //Adds info
                 Label l = new Label("_____________________________\n" + row.get(0).toUpperCase() + "\nAmount: " + row.get(2) + "\nAverage: " + row.get(1) + "\nCurrent: " + s.getPrice());
-                
                 Button b = new Button("Sell");
                 Button more = new Button("more info");
-                VBox h = new VBox(l, b, more);
+
+                VBox h = new VBox(l);
+                HBox hbox = new HBox(b, more);
+                
+
                 
                 //Style of elements
                 l.setStyle(
-                    "-fx-background-color: #d4d9d7; -fx-font-size: 15;");
+                    "-fx-font-size: 15;");
                 b.maxHeight(l.getHeight());
                 more.maxHeight(l.getHeight());
-                more.setStyle("float:right;");
-                b.setStyle("-fx-background-color: #090a0c, linear-gradient(#38424b 0%, #1f2429 20%, #191d22 100%); -fx-background-radius: 5,4,3,5; -fx-background-insets: 0,1,2,0; -fx-text-fill: white; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 ); -fx-text-fill: linear-gradient(white, #d0d0d0);");
+                more.setStyle("-fx-background-color: #090a0c; -fx-text-fill: linear-gradient(white, #d0d0d0); -fx-padding:10px;");
+                b.setStyle("-fx-background-color: #090a0c; -fx-text-fill: linear-gradient(white, #d0d0d0);  -fx-padding:10px;");
                 h.setPadding(new Insets(10,10,10,10));
                 h.setStyle("-fx-background-color: #dbdbdb" );
+                hbox.setSpacing(15);
+                hbox.setMargin(b, new Insets(0, 0, 0, 70));
+                hbox.setStyle("-fx-background-color: #dbdbdb; -fx-margin: auto" );
 
                 b.setOnMouseClicked(Event -> {
                     searchBar.setText(row.get(0));
@@ -171,6 +191,7 @@ public class MainController {
                 });
 
                 scrollPane.getChildren().addAll(h);
+                scrollPane.getChildren().addAll(hbox);
             }
         }
         

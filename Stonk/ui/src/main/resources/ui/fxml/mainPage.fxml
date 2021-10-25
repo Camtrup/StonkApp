@@ -50,25 +50,25 @@
                <font>
                   <Font name="Arial" size="14.0" />
                </font></Button>
-            <Text layoutX="115.0" layoutY="384.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My stocks">
+            <Text layoutX="113.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My stocks">
                <font>
                   <Font name="Arial" size="19.0" />
                </font>
             </Text>
-            <ScrollPane layoutX="26.0" layoutY="396.0" prefHeight="181.0" prefWidth="265.0" style="-fx-background-radius: 3px; -fx-background-color: black;">
+            <ScrollPane layoutX="26.0" layoutY="362.0" prefHeight="215.0" prefWidth="265.0" style="-fx-background-radius: 3px;">
                <content>
-                  <VBox fx:id="scrollPane" style="-fx-background-radius: 20px; -fx-background-color: black;">
+                  <VBox fx:id="scrollPane" style="-fx-background-radius: 5px;">
 
                   </VBox>
                </content>
             </ScrollPane>
-            <Button fx:id="myProfile" layoutX="223.0" layoutY="7.0" mnemonicParsing="false" onAction="#toProfile" prefHeight="34.0" prefWidth="76.0" style="-fx-background-radius: 5,4,3,5; -fx-background-insets: 0,1,2,0; -fx-background-color: #090a0c#090a0c; -fx-font-family: &quot;Arial&quot;; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 ); -fx-text-fill: linear-gradient(white, #d0d0d0);;" text="My Profile" textFill="#fff9f9" />
+            <Button fx:id="myProfile" layoutX="215.0" layoutY="15.0" mnemonicParsing="false" onAction="#toProfile" prefHeight="34.0" prefWidth="76.0" style="-fx-background-radius: 5,4,3,5; -fx-background-insets: 0,1,2,0; -fx-background-color: #090a0c#090a0c; -fx-font-family: &quot;Arial&quot;; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 ); -fx-text-fill: linear-gradient(white, #d0d0d0);;" text="My Profile" textFill="#fff9f9" />
             <Text fx:id="balanceString1" fill="#f0f0f0" layoutX="-11.0" layoutY="-1.0" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
                   <Font name="Arial" size="17.0" />
                </font>
             </Text>
-            <Text fill="#ffebeb" layoutX="125.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="growth:">
+            <Text fill="#ffebeb" layoutX="122.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="growth:">
                <font>
                   <Font size="12.0" />
                </font>
@@ -78,17 +78,17 @@
                   <Font size="12.0" />
                </font>
             </Text>
-            <Label fx:id="equity" fx:id="fullName1" layoutX="26.0" layoutY="149.0" text="24000 $" textFill="WHITE">
+            <Label fx:id="equity" layoutX="26.0" layoutY="149.0" text="24000 $" textFill="WHITE">
                <font>
                   <Font name="Arial" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="growth" fx:id="fullName11" layoutX="126.0" layoutY="149.0" text="1000 $" textFill="WHITE">
+            <Label fx:id="growth" layoutX="122.0" layoutY="149.0" text="1000 $" textFill="WHITE">
                <font>
                   <Font name="Arial" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="growthPercent" fx:id="fullName111" layoutX="169.0" layoutY="149.0" prefHeight="15.0" prefWidth="57.0" style="-fx-text-fill: #05e675#05e675;" text="+5.2%" textFill="WHITE">
+            <Label fx:id="growthPercent" layoutX="175.0" layoutY="149.0" prefHeight="15.0" prefWidth="57.0" style="-fx-text-fill: #05e675#05e675;" text="+5.2%" textFill="WHITE">
                <font>
                   <Font name="Arial" size="12.0" />
                </font>
