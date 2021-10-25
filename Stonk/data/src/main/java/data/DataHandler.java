@@ -196,7 +196,7 @@ public class DataHandler {
 
     public void setCash(int userIndex, float cash){
         JSONArray arr = getAllUsers();
-        JSONObject user = (JSONObject) arr.get(0);
+        JSONObject user = (JSONObject) arr.get(userIndex);
         user.put("cash", cash);
         writeToFile(arr);
     }

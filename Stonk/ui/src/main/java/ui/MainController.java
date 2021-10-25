@@ -89,7 +89,15 @@ public class MainController {
         equity.setText((decimalform(ecuityChange + user.getCash())) + " $");
     
         growth.setText(decimalform(StockPriceChanged) + " $");
-        growthPercent.setText("+"+ decimalform(cashEarnedPercent())+ "%");
+        if (cashEarnedPercent()>0){
+            growthPercent.setText("+"+ decimalform(cashEarnedPercent())+ "%");
+        }
+        else{
+        growthPercent.setText(decimalform(cashEarnedPercent())+ "%");
+        }
+        if (StockPriceChanged>1000 || StockPriceChanged<-1000){
+            growthPercent.setLayoutX(190);
+        }
     }
 
     public float cashEarnedPercent(){
