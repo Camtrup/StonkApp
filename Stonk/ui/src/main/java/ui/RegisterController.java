@@ -22,16 +22,23 @@ public class RegisterController {
     private TextField age;
     @FXML
     private TextField cash;
-
     @FXML
     private Button registerUser;
-     
+    @FXML
+    private Button exitBtn;
+    
 
     public void loginFromRegister() throws IOException{
         StonkApp app = new StonkApp();
         app.changeScene("mainPage.fxml");
     }
 
+    public void backToLogin(){
+        StonkApp app = new StonkApp();
+        app.changeScene("login.fxml");
+    }
+
+    
     @FXML
     public void registerUser() throws IOException{
         int tempInt = -1;

@@ -7,11 +7,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane alignment="CENTER" hgap="10.0" maxHeight="585.0" maxWidth="292.0" minHeight="585.0" minWidth="292.0" prefHeight="585.0" prefWidth="292.0" vgap="10.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.RegisterController">
+<GridPane alignment="CENTER" hgap="10.0" maxHeight="585.0" maxWidth="292.0" minHeight="585.0" minWidth="292.0" prefHeight="585.0" prefWidth="292.0" vgap="10.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.RegisterController">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
@@ -46,6 +47,8 @@
                   <Font size="12.0" />
                </font></Text>
             <Text layoutX="247.0" layoutY="336.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$" />
+            <Button id="exitBtn" onAction="#backToLogin"  layoutX="20.0" layoutY="63.0" mnemonicParsing="false" style="-fx-background-color: #4849bf #4849bf;" text="Exit" textFill="#fffdfd" />
+            <Pane layoutX="-11.0" layoutY="519.0" prefHeight="78.0" prefWidth="324.0" style="-fx-background-color: #4849bf #4849bf;" />
          </children>
       </AnchorPane>
    </children>
