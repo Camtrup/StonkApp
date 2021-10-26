@@ -89,7 +89,7 @@ public class StockPageController {
 
         }
     }
-       
+    
     private void checkIfNum(){
         try {
             Integer.parseInt(amountStock.getText());
