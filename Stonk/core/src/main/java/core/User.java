@@ -12,7 +12,7 @@ public class User {
     private String password;
     private float cash;
     private int age;
-    //private JSONArray portfolio; for å få spotbugs til å funke trnger vi? 
+    // private JSONArray portfolio; Unused 
     DataHandler handler = new DataHandler();
 
 public User(String firstName, String lastName, String username, String password, float cash, int age, JSONArray portfolio, boolean isNewUser){
@@ -33,7 +33,6 @@ public User(String firstName, String lastName, String username, String password,
         this.password = password;
         this.cash = cash;
         this.age = age;
-        //this.portfolio = getPortfolio(); bruker vi den? 
     }
 }
 
