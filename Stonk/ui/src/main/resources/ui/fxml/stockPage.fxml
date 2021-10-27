@@ -13,7 +13,7 @@
    <children>
       <ImageView fitHeight="585.0" fitWidth="292.0" onInputMethodTextChanged="#updateTotalPrice" onKeyTyped="#updateTotalPrice">
          <image>
-            <Image url="@../images/stockPage.png" />
+            <Image url="@../images/stockPage.png" /> 
          </image>
       </ImageView>
       <Text fill="#b2b2b2" layoutX="24.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Market Price">
