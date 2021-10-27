@@ -76,7 +76,7 @@ public class StockPageController {
 
     } 
 
-    public void updateTotalPrice() {
+    public void updateTotalPrice() throws NumberFormatException{
         if(!amountStock.getText().equals("")){
             Float floatPrice = stock.getPrice()*Float.parseFloat(amountStock.getText());
             if (Float.parseFloat(amountStock.getText()) <= 0) {
