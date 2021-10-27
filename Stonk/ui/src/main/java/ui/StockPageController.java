@@ -90,10 +90,10 @@ public class StockPageController {
         }
     }
     
-    private void checkIfNum(){
+    public void checkIfNum(TextField number){
         try {
-            Integer.parseInt(amountStock.getText());
-            if(amountStock.getText() == ""){
+            Integer.parseInt(number.getText());
+            if(number.getText() == ""){
                 throw new IllegalArgumentException();
             }
         }
@@ -104,7 +104,7 @@ public class StockPageController {
 
     public void buy(){
         try {
-            checkIfNum();
+            checkIfNum(amountStock);
             user.addToPortfoilio(stock.getTicker(), Integer.parseInt(amountStock.getText()));
             backToMain();
         }
@@ -114,7 +114,7 @@ public class StockPageController {
     }
     public void sell(){
         try {
-            checkIfNum();
+            checkIfNum(amountStock);
             user.removeFromPortfolio(stock.getTicker(), Integer.parseInt(amountStock.getText()));
             backToMain();
         }

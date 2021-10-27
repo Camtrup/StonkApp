@@ -208,6 +208,7 @@ public class MainController {
     public void toProfile(){
         StonkApp app = new StonkApp();
         app.changeScene("profile.fxml");
+
     }
 
     @FXML
