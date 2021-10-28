@@ -34,7 +34,7 @@ import javafx.scene.text.Text;
 
 public class MainController {
     private User user; 
-    Stonk stock = new Stonk();
+    //Stonk stock = new Stonk(); Bruker ikke ifølge spotbugs 
 
     
     @FXML

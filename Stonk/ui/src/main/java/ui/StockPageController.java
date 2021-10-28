@@ -14,10 +14,9 @@ import javafx.scene.control.TextField;
 
 public class StockPageController {
 
-    DataHandler handler = new DataHandler();
+    // DataHandler handler = new DataHandler(); Bruker ikke ifølge spotbugs 
     private User user; 
     public final static Stonk stock = new Stonk(); //Is static and public so the mainController can access it and send the stock-object forward
-
     
     @FXML
     private Label moneyFlow; 
@@ -77,8 +76,8 @@ public class StockPageController {
 
     } 
 
-    public void updateTotalPrice() {
-        if(amountStock.getText() != ""){
+    public void updateTotalPrice() throws NumberFormatException{
+        if(!amountStock.getText().equals("")){
             Float floatPrice = stock.getPrice()*Float.parseFloat(amountStock.getText());
             if (Float.parseFloat(amountStock.getText()) <= 0) {
                 totPrice1.setText("Invalid");
@@ -93,11 +92,11 @@ public class StockPageController {
     private void checkIfNum(){
         try {
             Integer.parseInt(amountStock.getText());
-            if(amountStock.getText() == ""){
+            if(amountStock.getText().equals("")){
                 throw new IllegalArgumentException();
             }
         }
-        catch(Exception e){
+        catch(NumberFormatException e){
             throw new IllegalArgumentException("Amount must be a number");
         }
     }
