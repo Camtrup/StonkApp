@@ -16,14 +16,14 @@
       <Button fx:id="logOut" layoutX="22.0" layoutY="481.0" mnemonicParsing="false" onAction="#logOut" prefHeight="26.0" prefWidth="246.0" style="-fx-background-color: grey;" text="Log Out" textFill="#fffbfb" />
       <Button fx:id="deleteUser" layoutX="22.0" layoutY="523.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="26.0" prefWidth="246.0" style="-fx-background-color: grey;" text="Delete User" textFill="#fff8f8" />
       <Button fx:id="toMain" layoutX="22.0" layoutY="21.0" mnemonicParsing="false" onAction="#toMain" style="-fx-background-color: black;" text="Lukk" textFill="#fff8f8" />
-      <Label fx:id="name" layoutX="11.0" layoutY="137.0" prefHeight="23.0" prefWidth="268.0" style="-fx-text-alignment: center;" text="YOURNAME">
+      <Label fx:id="name" layoutX="11.0" layoutY="137.0" prefHeight="23.0" prefWidth="268.0" style="-fx-alignment: center;" text="YOURNAME">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Text layoutX="50.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="current Balance:" />
-      <Label fx:id="balance" layoutX="149.0" layoutY="202.0" text="Balance" />
-      <Button fx:id="moneyAddBtn" layoutX="97.0" layoutY="292.0" mnemonicParsing="false" onAction="#addMoney" style="-fx-background-color: black;" text="Add  Balance" textFill="#fffbfb" />
+      <Text layoutX="55.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="current Balance:" />
+      <Label fx:id="balance" layoutX="154.0" layoutY="202.0" text="Balance" />
+      <Button fx:id="moneyAddBtn" layoutX="97.0" layoutY="292.0" mnemonicParsing="false" onAction="#addMoney" style="-fx-background-color: black; -fx-alignment-fx-alignment: center;" text="Add  Balance" textFill="#fffbfb" />
       <TextField fx:id="moneyAdd" alignment="TOP_RIGHT" layoutX="110.0" layoutY="238.0" opacity="0.29" prefHeight="48.0" prefWidth="120.0" promptText="1" style="-fx-background-color: fffffff;">
          <font>
             <Font name="Arial" size="26.0" />

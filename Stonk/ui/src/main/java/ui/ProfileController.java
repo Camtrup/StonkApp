@@ -39,19 +39,15 @@ public class ProfileController {
     public void addMoney(){
         StockPageCon.checkIfNum(MoneyAdd);
         float cash = Float.parseFloat(MoneyAdd.getText());
-        user.setCash((user.getCash()) + cash);
+        //user.setCash((user.getCash()) + cash);
         balance.setText(Float.toString(user.getCash()) + " $");
         AddedPrompt.setText("Congrats, more funds have been added");
-
 }   
     public void logOut(){
         StonkApp.setStaticUser(null);
         app.changeScene("login.fxml");
         
     }
-
-
-
 
     public void deleteUser(){
         DataHandler handler = new DataHandler();
