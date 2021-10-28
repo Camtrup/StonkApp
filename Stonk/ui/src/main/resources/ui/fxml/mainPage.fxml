@@ -35,7 +35,7 @@
                   <Font name="Arial" size="17.0" />
                </font>
             </Text>
-            <Label fx:id="cashMoneyFlow" layoutX="27.0" layoutY="97.0" prefHeight="25.0" prefWidth="71.0" text="23000 $" textFill="WHITE">
+            <Label fx:id="cashMoneyFlow" layoutX="27.0" layoutY="97.0" prefHeight="25.0" prefWidth="71.0" text="23000 " textFill="WHITE">
                <font>
                   <Font name="Arial" size="12.0" />
                </font>
@@ -78,12 +78,12 @@
                   <Font size="12.0" />
                </font>
             </Text>
-            <Label fx:id="equity" layoutX="26.0" layoutY="149.0" text="24000 $" textFill="WHITE">
+            <Label fx:id="equity" layoutX="26.0" layoutY="149.0" text="24000 " textFill="WHITE">
                <font>
                   <Font name="Arial" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="growth" layoutX="122.0" layoutY="149.0" text="1000 $" textFill="WHITE">
+            <Label fx:id="growth" layoutX="122.0" layoutY="149.0" text="1000 " textFill="WHITE">
                <font>
                   <Font name="Arial" size="12.0" />
                </font>

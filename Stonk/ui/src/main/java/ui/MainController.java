@@ -83,12 +83,12 @@ public class MainController {
 
     public void displayOnMain(){
         displayPortfolio();
-        cashMoneyFlow.setText(Float.toString(user.getCash()) + " $");
+        cashMoneyFlow.setText(Float.toString(user.getCash()) );
         cashMoneyFlow.setStyle("-fx-text-fill: white;");
         fullName.setText((user.getFirstName()) + " " + (user.getLastName()));
-        equity.setText((decimalform(ecuityChange + user.getCash())) + " $");
+        equity.setText((decimalform(ecuityChange + user.getCash())) );
     
-        growth.setText(decimalform(StockPriceChanged) + " $");
+        growth.setText(decimalform(StockPriceChanged)  );
         if (cashEarnedPercent()>0){
             growthPercent.setText("+"+ decimalform(cashEarnedPercent())+ "%");
         }
@@ -208,6 +208,7 @@ public class MainController {
     public void toProfile(){
         StonkApp app = new StonkApp();
         app.changeScene("profile.fxml");
+
     }
 
     @FXML
