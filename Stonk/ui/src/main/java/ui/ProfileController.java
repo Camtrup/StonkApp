@@ -37,10 +37,10 @@ public class ProfileController {
     }
 
     public void addMoney(){
-        StockPageCon.checkIfNum(MoneyAdd);
-        float cash = Float.parseFloat(MoneyAdd.getText());
+        //StockPageCon.checkIfNum(MoneyAdd);
+        //float cash = Float.parseFloat(MoneyAdd.getText());
         //user.setCash((user.getCash()) + cash);
-        balance.setText(Float.toString(user.getCash()) + " $");
+        //balance.setText(Float.toString(user.getCash()) + " $");
         AddedPrompt.setText("Congrats, more funds have been added");
 }   
     public void logOut(){

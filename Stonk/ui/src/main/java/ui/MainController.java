@@ -83,13 +83,13 @@ public class MainController {
 
     public void displayOnMain(){
         displayPortfolio();
-        //cashMoneyFlow.setText(Float.toString(user.getCash()) );
-        //cashMoneyFlow.setStyle("-fx-text-fill: white;");
+        cashMoneyFlow.setText(Float.toString(user.getCash()) );
+        cashMoneyFlow.setStyle("-fx-text-fill: white;");
         fullName.setText((user.getFirstName()) + " " + (user.getLastName()));
-        //equity.setText((decimalform(ecuityChange + user.getCash())) );
+        equity.setText((decimalform(ecuityChange + user.getCash())) );
     
-        //growth.setText(decimalform(StockPriceChanged)  );
-        /* if (cashEarnedPercent()>0){
+        growth.setText(decimalform(StockPriceChanged)  );
+        if (cashEarnedPercent()>0){
             growthPercent.setText("+"+ decimalform(cashEarnedPercent())+ "%");
         }
         else{
@@ -97,7 +97,7 @@ public class MainController {
         }
         if (StockPriceChanged>1000 || StockPriceChanged<-1000){
             growthPercent.setLayoutX(190);
-        } */
+        }
     }
 
     public float cashEarnedPercent(){
@@ -160,8 +160,8 @@ public class MainController {
                 Stonk s = new Stonk();
                 s.getStockInfo(row.get(0)); 
                 // to get how much you have eanred from Stpcks
-                //ecuityChange += (s.getPrice())*Float.parseFloat(row.get(2));
-                //StockPriceChanged += (s.getPrice())*Float.parseFloat(row.get(2))-Float.parseFloat(row.get(1))*Float.parseFloat(row.get(2));
+                ecuityChange += (s.getPrice())*Float.parseFloat(row.get(2));
+                StockPriceChanged += (s.getPrice())*Float.parseFloat(row.get(2))-Float.parseFloat(row.get(1))*Float.parseFloat(row.get(2));
 
 
                 //Adds info
