@@ -36,10 +36,6 @@ public class DataHandler {
         writeToFile(userArray);
     }
 
-    public int getUserCount(){
-        return getAllUsers().size();
-    }
-
     //Array of all users
     public JSONArray getAllUsers(){
         JSONParser parser = new JSONParser();
@@ -55,61 +51,33 @@ public class DataHandler {
         return userArray;
     }
 
-    //Returns the index of a given username in the database
-    //If the username is not found, then return -1
-    public int findUser(String username) {
+    //Returns a given user in the database by checking for the unique username
+    //If the username is not found, then return null
+    public JSONObject findUser(String username) {
         JSONArray userArray = getAllUsers();
-        int count = 0;
         for(Object i : userArray){
             JSONObject user = (JSONObject) i;
             if(username.equals(user.get("username").toString())){
-                return count;
+                return user;
             }
-            count++;
         }
-        return -1;
-    }
-
-    public JSONObject generateUser(String username){
-        JSONObject user = getUser(findUser(username));
-        return user;
-
-    }
-
-    //Returns a given user by index in the database
-    public JSONObject getUser(int index){
-        JSONArray userArray = getAllUsers();
-        JSONObject user = (JSONObject) userArray.get(index);
-        return user;
+        return null;
     }
 
     //Returs a user portfolio
-    public JSONArray getPortfolio(int userIndex){
-        JSONObject user = (JSONObject) getAllUsers().get(userIndex);
+    public JSONArray getPortfolio(JSONObject user){
         JSONArray portfolio = (JSONArray) user.get("portfolio");
         return portfolio;
     }
 
-    //Returns the index of a stock in a users portfolio
-    public int getStockInPortfolio(String ticker, int userIndex){
-        JSONArray portfolio = getPortfolio(userIndex);
-        int count = 0;
-        for (Object i : portfolio){
-            JSONObject stock = (JSONObject) i;
-            if(stock.get("ticker").equals(ticker)){
-                return count;
-            }
-            count++;
-        }
-        return -1;
-    }
 
     //Checks if portfolio containsStock(user has bought this stock earlier)
     //If it has, the new price is the average, with a count += newCount
     //If not, it adds the new stock in the portfolio
-    public void addToPortfoilio(int userIndex, String ticker, float price, int count){
+    public void addToPortfoilio(String username, String ticker, float price, int count){
         JSONArray userArray = getAllUsers();
-        JSONArray portfolio = getPortfolio(userIndex);
+        JSONObject user = findUser(username);
+        JSONArray portfolio = getPortfolio(user);
         JSONObject stock = new JSONObject();
         
         boolean containsStock = false;
@@ -139,21 +107,16 @@ public class DataHandler {
             stock.put("count", count);
             portfolio.add(stock);
         }
-        for(int i = 0; i < getUserCount(); i ++){
-            JSONObject x = (JSONObject) userArray.get(i);
-            if(x.equals(getUser(userIndex))){
-                x.put("portfolio", portfolio);
-            }
-        }
+        user.put("portfolio", portfolio);
         writeToFile(userArray);
     }
 
     //Checks if the amount of stocks is valid, and then subtracts from the user
     //If one sells the full amount of stocks, the stock is removed from the portfolio
     //Adds the cash back in the account
-    public void removeFromPortfolio(int userIndex, String ticker, int count){
+    public void removeFromPortfolio(String username, String ticker, int count){
         JSONArray userArray = getAllUsers();
-        JSONObject user = (JSONObject) userArray.get(userIndex);
+        JSONObject user = findUser(username);
         JSONArray portfolio = (JSONArray) user.get("portfolio");
         JSONObject stock = new JSONObject();
 
@@ -194,9 +157,9 @@ public class DataHandler {
         return Float.parseFloat(user.get("cash").toString());
     }
 
-    public void setCash(int userIndex, float cash){
+    public void setCash(String username, float cash){
         JSONArray arr = getAllUsers();
-        JSONObject user = (JSONObject) arr.get(userIndex);
+        JSONObject user = (JSONObject) arr.get(arr.indexOf(findUser(username)));
         user.put("cash", cash);
         writeToFile(arr);
     }
@@ -205,11 +168,10 @@ public class DataHandler {
     //Returns null if password is incorrect
     //Returns a new instance of a user if the login is valid
     public JSONObject isLoginValid(String username, String password){
-        int index = findUser(username);
-        if(index >= 0){
-            JSONObject user = getUser(index);
+        JSONObject user = findUser(username);
+        if(!user.equals(null)){
             if(user.get("password").toString().equals(password)){
-                return generateUser(username);
+                return user;
             }
             else {
                 throw new IllegalArgumentException("Password is incorrect");
@@ -220,9 +182,10 @@ public class DataHandler {
         }
     }
 
-    public void deleteUser(int userIndex){
+    public void deleteUser(String username){
         JSONArray arr = getAllUsers();
-        arr.remove(userIndex);
+        JSONObject user = findUser(username);
+        arr.remove(user);
         writeToFile(arr);
     }
 
@@ -235,11 +198,6 @@ public class DataHandler {
             writer.write(obj.toJSONString()); 
             writer.close();
         }
-        
-
-       // try(FileWriter file = new FileWriter(filePath, false)) {
-         //   file.write(obj.toJSONString());
-           // file.close();
         catch (IOException e) {
             e.printStackTrace();
         }
