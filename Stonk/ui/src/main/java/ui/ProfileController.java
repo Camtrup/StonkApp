@@ -28,7 +28,6 @@ public class ProfileController {
     
 
     private User user; 
-    private StockPageController StockPageCon;
     StonkApp app = new StonkApp();
     
     public void displayOnProfile(){
@@ -51,7 +50,7 @@ public class ProfileController {
 
     public void deleteUser(){
         DataHandler handler = new DataHandler();
-        handler.deleteUser(handler.findUser(user.getUserName()));
+        handler.deleteUser(user.getUserName());
         logOut();
     }
     public void toMain(){

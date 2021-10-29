@@ -47,7 +47,7 @@ public User(String firstName, String lastName, String username, String password,
         Stonk stock = new Stonk();
         stock.getStockInfo(ticker);
         setCash(cash - (stock.getPrice() * count));
-        handler.addToPortfoilio(handler.findUser(username), ticker, stock.getPrice(), count);
+        handler.addToPortfoilio(username, ticker, stock.getPrice(), count);
     }
 
     public void removeFromPortfolio(String ticker, int count){
@@ -56,8 +56,7 @@ public User(String firstName, String lastName, String username, String password,
         }
         Stonk stock = new Stonk();
         stock.getStockInfo(ticker);
-        //stock.getPrice(); trenger vi denne linjen??, bruker den to hakk ned 
-        handler.removeFromPortfolio(handler.findUser(username), ticker, count);
+        handler.removeFromPortfolio(username, ticker, stock.getPrice(), count);
         setCash(cash + (stock.getPrice() * count));
     }
 
@@ -85,7 +84,7 @@ public User(String firstName, String lastName, String username, String password,
         if(name.isBlank()){
             throw new IllegalArgumentException("Username cannot be blank");
         }
-        if(handler.findUser(name) != -1){
+        if(handler.findUser(username) != null){
             throw new IllegalArgumentException("Username is already registered");
         }
         this.username = name;
@@ -103,11 +102,7 @@ public User(String firstName, String lastName, String username, String password,
             throw new IllegalArgumentException("Cant set a negative balance");
         }
         this.cash = cash;
-        if (handler.findUser(username)!=-1){
-            
-            handler.setCash(handler.findUser(username), cash);
-        }
-        } 
+    } 
 
     public void setAge(int age){
         if (age<18){
@@ -117,7 +112,7 @@ public User(String firstName, String lastName, String username, String password,
             throw new IllegalArgumentException("Age cannot be empty");
         }
         this.age = age;
-        } 
+    } 
 
     public User isLoginValid(String username, String password){
         JSONObject temp = handler.isLoginValid(username, password);
