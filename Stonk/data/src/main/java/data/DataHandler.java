@@ -1,5 +1,6 @@
 package data;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -17,8 +18,15 @@ import org.json.simple.parser.ParseException;
 
 public class DataHandler {
 
-    //Since the app runs from the pom.xml in the module ui. It seems that this had to be the natural position to put the databse
-    private String filePath = "../data/src/main/resources/database.json";
+    //The filepath now dynamiclly finds the working directory of the user, and the adds the path to the database
+    private String file = System.getProperty("user.dir") + "/Stonk/data/src/main/resources/database.json";
+
+    //When running with "javafx:run", the working directory will be "ui".
+    //This method removes the path into "ui", so the path finds the file in "data"
+    private void adaptFilePath(){
+        String s = file.replace("/Stonk/ui", "");
+        file = s;
+    }
     
     //Creates new user in the database
     public void newUser(String username, String password, String firstname, String lastname, int age, float cash, JSONArray portfolio) {
@@ -38,9 +46,10 @@ public class DataHandler {
 
     //Array of all users
     public JSONArray getAllUsers(){
+        adaptFilePath();
         JSONParser parser = new JSONParser();
         JSONArray userArray = new JSONArray();
-        try(FileReader reader = new FileReader(filePath, StandardCharsets.UTF_8)){
+        try(FileReader reader = new FileReader(file, StandardCharsets.UTF_8)){
             JSONObject obj = (JSONObject) parser.parse(reader);
             userArray = (JSONArray) obj.get("users");
         }
@@ -76,7 +85,7 @@ public class DataHandler {
     //If not, it adds the new stock in the portfolio
     public void addToPortfoilio(String username, String ticker, float price, int count){
         JSONArray userArray = getAllUsers();
-        JSONObject user = findUser(username);
+        JSONObject user = (JSONObject) userArray.get(userArray.indexOf(findUser(username)));
         JSONArray portfolio = getPortfolio(user);
         JSONObject stock = new JSONObject();
         
@@ -107,6 +116,10 @@ public class DataHandler {
             stock.put("count", count);
             portfolio.add(stock);
         }
+
+        float currentCash = Float.parseFloat(user.get("cash").toString());
+
+        user.put("cash", currentCash - price * count);
         user.put("portfolio", portfolio);
         writeToFile(userArray);
     }
@@ -114,9 +127,9 @@ public class DataHandler {
     //Checks if the amount of stocks is valid, and then subtracts from the user
     //If one sells the full amount of stocks, the stock is removed from the portfolio
     //Adds the cash back in the account
-    public void removeFromPortfolio(String username, String ticker, int count){
+    public void removeFromPortfolio(String username, String ticker,float price, int count){
         JSONArray userArray = getAllUsers();
-        JSONObject user = findUser(username);
+        JSONObject user = (JSONObject) userArray.get(userArray.indexOf(findUser(username)));
         JSONArray portfolio = (JSONArray) user.get("portfolio");
         JSONObject stock = new JSONObject();
 
@@ -142,6 +155,8 @@ public class DataHandler {
             else {
                 throw new IllegalArgumentException("Not enough stocks to sell");
             }
+            float currentCash = Float.parseFloat(user.get("cash").toString());
+            user.put("cash", currentCash + price * count);
             user.put("portfolio", portfolio);
             writeToFile(userArray);
         }
@@ -157,19 +172,12 @@ public class DataHandler {
         return Float.parseFloat(user.get("cash").toString());
     }
 
-    public void setCash(String username, float cash){
-        JSONArray arr = getAllUsers();
-        JSONObject user = (JSONObject) arr.get(arr.indexOf(findUser(username)));
-        user.put("cash", cash);
-        writeToFile(arr);
-    }
-
     //Throws Excpetion if username doesnt exists
     //Returns null if password is incorrect
     //Returns a new instance of a user if the login is valid
     public JSONObject isLoginValid(String username, String password){
         JSONObject user = findUser(username);
-        if(!user.equals(null)){
+        if(user != null){
             if(user.get("password").toString().equals(password)){
                 return user;
             }
@@ -191,9 +199,10 @@ public class DataHandler {
 
     //Writes the array to the file
     public void writeToFile(JSONArray arr){
+        adaptFilePath();
         JSONObject obj = new JSONObject();
         obj.put("users", arr);
-        try(FileOutputStream fileStream = new FileOutputStream(filePath, false)){
+        try(FileOutputStream fileStream = new FileOutputStream(file, false)){
             Writer writer = new OutputStreamWriter(fileStream, StandardCharsets.UTF_8);
             writer.write(obj.toJSONString()); 
             writer.close();
@@ -201,10 +210,5 @@ public class DataHandler {
         catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public static void main(String[] args){
-        DataHandler d = new DataHandler();
-        System.out.println(d.getAllUsers());
     }
 }

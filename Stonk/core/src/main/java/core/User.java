@@ -56,8 +56,7 @@ public User(String firstName, String lastName, String username, String password,
         }
         Stonk stock = new Stonk();
         stock.getStockInfo(ticker);
-        //stock.getPrice(); trenger vi denne linjen??, bruker den to hakk ned 
-        handler.removeFromPortfolio(username, ticker, count);
+        handler.removeFromPortfolio(username, ticker, stock.getPrice(), count);
         setCash(cash + (stock.getPrice() * count));
     }
 
@@ -85,7 +84,7 @@ public User(String firstName, String lastName, String username, String password,
         if(name.isBlank()){
             throw new IllegalArgumentException("Username cannot be blank");
         }
-        if(!handler.findUser(name).equals(null)){
+        if(handler.findUser(username) != null){
             throw new IllegalArgumentException("Username is already registered");
         }
         this.username = name;
@@ -103,10 +102,6 @@ public User(String firstName, String lastName, String username, String password,
             throw new IllegalArgumentException("Cant set a negative balance");
         }
         this.cash = cash;
-        if (!handler.findUser(username).equals(null)){
-            
-            handler.setCash(handler.findUser(username), cash);
-        }
     } 
 
     public void setAge(int age){

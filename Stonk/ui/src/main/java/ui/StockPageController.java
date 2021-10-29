@@ -92,7 +92,7 @@ public class StockPageController {
     public void checkIfNum(TextField number){
         try {
             Integer.parseInt(number.getText());
-            if(number.getText() == ""){
+            if(number.getText().equals("")){
                 throw new IllegalArgumentException();
             }
         }
