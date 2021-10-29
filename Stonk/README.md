@@ -10,7 +10,7 @@ Using this we are able to get information about every given stock in real-time.
 ## Files
    
 CORE:
-     - Stonk.java: Pulls information about the stock using JSoup.
+  - Stonk.java: Pulls information about the stock using JSoup.
 
   - User.java: Creation and editing of user information.
    
@@ -26,13 +26,9 @@ UI:
 - ProfileController.json: Controller for profile page
 - RegisterController.json: Controller for register page
 - StockPageController.json: Controller for Stock page
-- StonkApp.java:  
+- StonkApp.java: Connects the fxml files to the project.
 
 
-   
-
-
-- 
 
 
 ## User Story

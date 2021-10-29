@@ -7,17 +7,21 @@
 **Stonk** is a stock ["Paper Trading"](https://www.investopedia.com/terms/p/papertrade.asp) application, where the stock prices get updated in real time. Trading with virtual money is a great way for beginners to learn how to trade in the financial markets, but also to experienced traders that want to test their trading strategies without any risk.
 
 Our initial thought was to pull the stock prices using an API, but we decided against it as we needed a service that was free-of-charge. Therefore we get the stocks current price by web-scraping from marketwatch.com. We use .json files for saving information such as username, password and your balance. The reasoning behind this is that more advanced systems is not needed for a game like Stonk.
-  
+
+## how to use stonk app:
+If you want to see how an account with bought stocks looks like. You can log inn with username: casper and password: 12345
 
 ## Project file
-You can find more information about the code in the project file.
+You can find more information about the code in the project file. It is divided into three parts. core, data and ui.
 
 [Stonk>src>main>java>stonk...](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2135/gr2135/-/tree/master/Stonk/src/main/java/stonk)
+## FXML
+[Stonk/ui/src/main/resources/ui/fxml...](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2135/gr2135/-/tree/master/Stonk/ui/src/main/resources/ui/fxml)
+## Controllers
+[Stonk/ui/src/main/java/ui...](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2135/gr2135/-/tree/master/Stonk/ui/src/main/java/ui)
 
-## FXML and json files
-
-[Stonk>src>main>resources>stonk...](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2135/gr2135/-/tree/master/Stonk/src/main/resources/stonk)
-
+## Datahandler
+[Stonk/data/src/main/java/data...](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2135/gr2135/-/tree/master/Stonk/data/src/main/java/data)
 
 
 ## Project architecture
