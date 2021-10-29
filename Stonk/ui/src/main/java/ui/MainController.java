@@ -117,7 +117,7 @@ public class MainController {
     public void toStockPage(){
         StonkApp app = new StonkApp();
         try {
-            StockPageController.stock.getStockInfo(searchBar.getText());
+            StockPageController.stock.getStockInfo(searchBar.getText().toLowerCase());
             app.changeScene("stockPage.fxml");
         }
         catch(IllegalArgumentException e){
