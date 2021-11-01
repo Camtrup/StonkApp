@@ -10,17 +10,18 @@ import java.net.URL;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException; 
+import org.json.simple.parser.ParseException;
+
 
 public class DataHandler {
 
     //The filepath now dynamiclly finds the working directory of the user, and the adds the path to the database
     private String file = System.getProperty("user.dir") + "/Stonk/data/src/main/resources/database.json";
-
     //When running with "javafx:run", the working directory will be "ui".
     //This method removes the path into "ui", so the path finds the file in "data"
     private void adaptFilePath(){
@@ -123,6 +124,14 @@ public class DataHandler {
         user.put("portfolio", portfolio);
         writeToFile(userArray);
     }
+    public void addOrRemoveCash(String username, float money){
+        JSONArray userArray = getAllUsers();
+        JSONObject user = (JSONObject) userArray.get(userArray.indexOf(findUser(username)));
+        float currentCash = Float.parseFloat(user.get("cash").toString());
+        user.put("cash", currentCash + money);
+        writeToFile(userArray);
+    }
+
 
     //Checks if the amount of stocks is valid, and then subtracts from the user
     //If one sells the full amount of stocks, the stock is removed from the portfolio
@@ -172,6 +181,12 @@ public class DataHandler {
         return Float.parseFloat(user.get("cash").toString());
     }
 
+/*     public void addCash(User user, float cash){
+        JSONObject user = (JSONObject) userArray.get(userIndex);
+        Float a = (cash + user.getCash());
+    } */
+
+
     //Throws Excpetion if username doesnt exists
     //Returns null if password is incorrect
     //Returns a new instance of a user if the login is valid
@@ -211,4 +226,5 @@ public class DataHandler {
             e.printStackTrace();
         }
     }
+
 }
