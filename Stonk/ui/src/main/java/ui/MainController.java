@@ -74,7 +74,6 @@ public class MainController {
     private Float ecuityChange = (float) 0;
     public Float difference = (float) 0;
 
-
     public String decimalform(Float number){
     DecimalFormat df = new DecimalFormat();
     df.setMaximumFractionDigits(2);
@@ -82,13 +81,22 @@ public class MainController {
 }
 
     public void displayOnMain(){
+        removeValue();
         displayPortfolio();
-        Float difference = (ecuityChange - user.getCash());
-        cashMoneyFlow.setText(Float.toString(user.getCash()+difference) + "$" );
+        //Float difference = (ecuityChange - user.getCash());
+        cashMoneyFlow.setText(Float.toString(user.getCash()) + "$" );
         cashMoneyFlow.setStyle("-fx-text-fill: white;");
         fullName.setText((user.getFirstName()) + " " + (user.getLastName()));
-        equity.setText((decimalform(ecuityChange-difference + StockPriceChanged)) + "$" );
-    
+        equity.setText((decimalform(user.getCash() + StockPriceChanged + ecuityChange)) + "$" );
+        System.out.println(StockPriceChanged);
+        growthPercent();
+    }
+
+    public void removeValue(){
+        user.removeMoney(ecuityChange);
+    } 
+
+    public void growthPercent(){
         growth.setText(decimalform(StockPriceChanged) + "$"  );
         if (cashEarnedPercent()>0){
             growthPercent.setText("+"+ decimalform(cashEarnedPercent())+ "%");

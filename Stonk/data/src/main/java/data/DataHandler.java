@@ -124,13 +124,14 @@ public class DataHandler {
         user.put("portfolio", portfolio);
         writeToFile(userArray);
     }
-    public void addCash(String username, float money){
+    public void addOrRemoveCash(String username, float money){
         JSONArray userArray = getAllUsers();
         JSONObject user = (JSONObject) userArray.get(userArray.indexOf(findUser(username)));
         float currentCash = Float.parseFloat(user.get("cash").toString());
         user.put("cash", currentCash + money);
-
+        writeToFile(userArray);
     }
+
 
     //Checks if the amount of stocks is valid, and then subtracts from the user
     //If one sells the full amount of stocks, the stock is removed from the portfolio

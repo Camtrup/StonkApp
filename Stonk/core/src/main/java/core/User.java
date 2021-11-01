@@ -104,6 +104,20 @@ public User(String firstName, String lastName, String username, String password,
         this.cash = cash;
     }
 
+    public void addMoney(float cash){
+        if(cash < 0){
+            throw new IllegalArgumentException("Cant set a negative balance");
+        }
+        this.cash += cash;
+        handler.addOrRemoveCash(getUserName(), cash);
+    }
+    public void removeMoney(float cash){
+        if(cash < 0){
+            throw new IllegalArgumentException("Cant set a positive number");
+        }
+        this.cash -= cash;
+        handler.addOrRemoveCash(getUserName(), cash);
+    }
     
     public void setAge(int age){
         if (age<18){
