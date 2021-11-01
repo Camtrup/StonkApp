@@ -37,8 +37,7 @@ public class MainController {
     //Stonk stock = new Stonk(); Bruker ikke ifølge spotbugs 
 
     
-    @FXML
-    private Label cashMoneyFlow; 
+    @FXML Label cashMoneyFlow; 
     
     @FXML
     private Label fullName; 
@@ -73,22 +72,24 @@ public class MainController {
     private String StockOnWeb;
     private Float StockPriceChanged = (float) 0.0;
     private Float ecuityChange = (float) 0;
+    public Float difference = (float) 0;
 
 
     public String decimalform(Float number){
     DecimalFormat df = new DecimalFormat();
-    df.setMaximumFractionDigits(1);
+    df.setMaximumFractionDigits(2);
     return df.format(number);
 }
 
     public void displayOnMain(){
         displayPortfolio();
-        cashMoneyFlow.setText(Float.toString(user.getCash()) );
+        Float difference = (ecuityChange - user.getCash());
+        cashMoneyFlow.setText(Float.toString(user.getCash()+difference) + "$" );
         cashMoneyFlow.setStyle("-fx-text-fill: white;");
         fullName.setText((user.getFirstName()) + " " + (user.getLastName()));
-        equity.setText((decimalform(ecuityChange + user.getCash())) );
+        equity.setText((decimalform(ecuityChange-difference + StockPriceChanged)) + "$" );
     
-        growth.setText(decimalform(StockPriceChanged)  );
+        growth.setText(decimalform(StockPriceChanged) + "$"  );
         if (cashEarnedPercent()>0){
             growthPercent.setText("+"+ decimalform(cashEarnedPercent())+ "%");
         }
@@ -141,6 +142,7 @@ public class MainController {
     public void displayPortfolio(){
         ArrayList<ArrayList<String>> arr = new ArrayList<ArrayList<String>>();
         JSONArray json = user.getPortfolio();
+        System.out.println(json);
 
         for (Object i : json){
             JSONObject tempObj = (JSONObject) i;
@@ -151,6 +153,7 @@ public class MainController {
             //LEGG TIL CURRENTS PRICE OG NÅVERENDE VERDI
             arr.add(tempArr);
         }
+        System.out.println(arr);
 
         if (arr.size() == 0){
             //"NO STOCKS IN PORTFOLIO"
@@ -159,6 +162,7 @@ public class MainController {
             for (ArrayList<String> row : arr){
                 Stonk s = new Stonk();
                 s.getStockInfo(row.get(0)); 
+                System.out.println((row.get(0)));
                 // to get how much you have eanred from Stpcks
                 ecuityChange += (s.getPrice())*Float.parseFloat(row.get(2));
                 StockPriceChanged += (s.getPrice())*Float.parseFloat(row.get(2))-Float.parseFloat(row.get(1))*Float.parseFloat(row.get(2));

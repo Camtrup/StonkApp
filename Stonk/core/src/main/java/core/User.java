@@ -10,10 +10,10 @@ public class User {
     private String lastName;
     private String username;
     private String password;
-    private float cash;
+    public float cash;
     private int age;
     // private JSONArray portfolio; Unused 
-    DataHandler handler = new DataHandler();
+    public DataHandler handler = new DataHandler();
 
 public User(String firstName, String lastName, String username, String password, float cash, int age, JSONArray portfolio, boolean isNewUser){
     if(isNewUser){
@@ -102,8 +102,9 @@ public User(String firstName, String lastName, String username, String password,
             throw new IllegalArgumentException("Cant set a negative balance");
         }
         this.cash = cash;
-    } 
+    }
 
+    
     public void setAge(int age){
         if (age<18){
             throw new IllegalArgumentException("You need to be over 18 years");
@@ -157,7 +158,10 @@ public User(String firstName, String lastName, String username, String password,
     }
 
 public static void main(String[] args) {
-    
+    User u = new User();
+    u.setCash(2000);
+    //u.handler.addCash(u, 500);
+    System.out.println(u.getCash());
 }
 
 }

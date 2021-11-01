@@ -51,9 +51,9 @@ public class StockPageController {
     @FXML
     public void updateStockPage(){
         stockTicker.setText(stock.getName());
-        priceTicker.setText(Float.toString(stock.getPrice()));
+        priceTicker.setText(Float.toString(stock.getPrice()) + " $");
         moneyFlow.setText(Float.toString(user.getCash()) + " $");
-        totPrice1.setText(Float.toString(stock.getPrice()));
+        totPrice1.setText(Float.toString(stock.getPrice())+ " $");
         
         char priceChangeFloat = stock.getPriceChange().charAt(0); //Checks if priceChange is negative
         priceChange.setText(stock.getPriceChange());
@@ -78,12 +78,16 @@ public class StockPageController {
 
     public void updateTotalPrice() throws NumberFormatException{
         if(!amountStock.getText().equals("")){
+            amountStock.setStyle( "-fx-text-fill: black; -fx-color: black;");
+            amountStock.setStyle( "-fx-text-fill: black;");
             Float floatPrice = stock.getPrice()*Float.parseFloat(amountStock.getText());
+
             if (Float.parseFloat(amountStock.getText()) <= 0) {
                 totPrice1.setText("Invalid");
             }
-            else {
-                totPrice1.setText(String.format("%.2f", floatPrice));
+            else {                
+                totPrice1.setText(String.format("%.2f", floatPrice) + " $");
+
             }
 
         }
