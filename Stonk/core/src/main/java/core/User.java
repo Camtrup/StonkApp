@@ -84,7 +84,7 @@ public User(String firstName, String lastName, String username, String password,
         if(name.isBlank()){
             throw new IllegalArgumentException("Username cannot be blank");
         }
-        if(handler.findUser(username) != null){
+        if(handler.findUser(name) != null){
             throw new IllegalArgumentException("Username is already registered");
         }
         this.username = name;
