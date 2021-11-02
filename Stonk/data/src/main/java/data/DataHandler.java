@@ -23,8 +23,7 @@ public class DataHandler {
 
   // The filepath now dynamiclly finds the working directory of the user, and the
   // adds the path to the database
-  private String file = System.getProperty("user.dir") + "/Stonk/data/src/"
-      + "main/resources/database.json";
+  private String file = System.getProperty("user.dir") + "/Stonk/data/src/main/resources/database.json";
 
   // When running with "javafx:run", the working directory will be "ui".
   // This method removes the path into "ui", so the path finds the file in "data"
