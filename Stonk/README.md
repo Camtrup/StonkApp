@@ -6,19 +6,35 @@ In this section we will write about how the code is built, everything from which
 **Stonk** is built with the library [JSoup](https://jsoup.org). Jsoup allows us to scrape and parse data from a website using DOM traversal and CSS selectors. 
 Using this we are able to get information about every given stock in real-time.
 
+## SpotBugs and CheckStyle
+- Spotbugs has helped with finding unused codes and errors or bugs we were not able to find ourselves. 
+
+- Checkstyle made the code quality much better by helping us keep up with coding standards.
+
+## How we have Coded
+
+## Meetings
+The miniumum requirments we set for ourselves was to meet once a week, but we found it better to meet around 3 times a week to more easily pair code(parr-programmere) and communicate better.
+
+### Pair coding
+Pair programming has helped us to higher the quality of the code by prrogramming out loud with a driver and navigator working together. We started meeting more often to pair program as much as possible.
+
+### SCRUM
+SCRUM has been central for our coding. we have participated and aware of all sorts of agile ceremonies (user story grooming, sprint planning, sprint retrospective). This helped to impact the end product, by having fixed deliveries in short iterations with a fixed length in close, ongoing collaboration between customer and supplier. Apart from the Sprints, the QA (who does it, when it gets done) helped alot. Being able to asign and set a deadline og gitlabs really helped having controll. 
+
+SCRUM was a powerful tool that empowered us to fix our mistakes quickly and made the whole team feel acountabel for the delivery
+
 
 ## Files
-   
+  
 CORE:
   - Stonk.java: Pulls information about the stock using JSoup.
-
   - User.java: Creation and editing of user information.
-   
+  
 
 DATA:
    - database.json: Saves information like username, password and balance.
-
-    - Datahandler.java: Saving data to the json file.
+   - Datahandler.java: Saving data to the json file.
 
 UI:
 - LoginController.json: Controller for login page
@@ -27,8 +43,6 @@ UI:
 - RegisterController.json: Controller for register page
 - StockPageController.json: Controller for Stock page
 - StonkApp.java: Connects the fxml files to the project.
-
-
 
 
 ## User Story
