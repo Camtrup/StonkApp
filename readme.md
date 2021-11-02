@@ -9,7 +9,7 @@
 Our initial thought was to pull the stock prices using an API, but we decided against it as we needed a service that was free-of-charge. Therefore we get the stocks current price by web-scraping from marketwatch.com. We use .json files for saving information such as username, password and your balance. The reasoning behind this is that more advanced systems is not needed for a game like Stonk.
 
 ## how to use stonk app:
-YOu can choose between registering a new accout or use on of ours.
+You can choose between registering a new accout or use on of ours.
 If you want to see how an account with bought stocks looks like. You can log inn with:
 - username: casper
 - password: 12345
@@ -26,7 +26,7 @@ Core is where we have our two main java classes Stonk.java and User.java.
 
 
 ## Data
-Data is the package for storing data and handling it
+Data is the package for storing data and handling it. It gets handled with the datahandler and stored in Database.json
 - You can fint it here:
 [Stonk/data/src/main/java/data...](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2135/gr2135/-/tree/master/Stonk/data/src/main/java/data)
 
@@ -45,4 +45,4 @@ Tree Structure of the app:
 <a href="https://ibb.co/ChM8gLZ"><img src="https://i.ibb.co/gzP9NYp/tree-arc-all-IT-project.png" alt="tree-arc-all-IT-project" border="0"></a>
 
 UI:
-<a href="https://ibb.co/fxy20kd"><img src="https://i.ibb.co/qrcd1NY/tre-arkitektur.png" alt="tre-arkitektur" border="0"></a>
+<a href="https://ibb.co/fxy20kd"><img src="https://i.ibb.co/qrcd1NY/tre-arkitektur.png" alt="tre-arkitektur" height="150px" width="100%" border="0"></a>
