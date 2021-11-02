@@ -1,47 +1,59 @@
 package ui;
 
-import java.io.IOException;
-
 import core.User;
+import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
+/**
+ * Controller for loginpage.
+ */
 public class LoginController {
 
-    @FXML
-    private Button login; 
-    @FXML
-    private Button register; 
-    @FXML
-    private TextField username;
-    @FXML
-    private TextField password;
-    
+  @FXML
+  private Button login;
+  @FXML
+  private Button register;
+  @FXML
+  private TextField password;
+  @FXML
+  private TextField username;
 
+  /**
+   * Logs the user in.
+   *
+   * @throws IOException if not possible.
+   */
+  public void login() throws IOException {
+    StonkApp app = new StonkApp();
+    app.changeScene("mainPage.fxml");
 
-    public void login() throws IOException{
-        StonkApp app = new StonkApp();
-        app.changeScene("mainPage.fxml");
+  }
 
+  /**
+   * Checks if login is valid.
+   */
+  @FXML
+  public void isLoginValid() {
+    try {
+      User temp = new User();
+      StonkApp.setStaticUser(temp.isLoginValid(username.getText().toString(),
+          password.getText().toString()));
+      login();
+    }  catch (IllegalArgumentException | IOException e) {
+      System.out.println(e);
     }
+  }
 
-    @FXML
-    public void isLoginValid() {
-        try {
-            User temp = new User();
-            StonkApp.setStaticUser(temp.isLoginValid(username.getText().toString(), password.getText().toString()));
-            login();
-        }
-    
-        catch(IllegalArgumentException | IOException e){
-            System.out.println(e);
-        } 
-    }
-
-    public void registerUserNew() throws IOException{
-        StonkApp app = new StonkApp();
-        app.changeScene("newUser.fxml");
-    }
+  /**
+   * Register new user. 
+   *
+   * @throws IOException if something is wrong.
+   */
+  public void registerUserNew() throws IOException {
+    StonkApp app = new StonkApp();
+    app.changeScene("newUser.fxml");
+  }
 
 }
