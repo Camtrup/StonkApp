@@ -138,6 +138,6 @@
         <module>data</module>
         <module>core</module>
         <module>ui</module>
-        <module>restapi</module>
+        <module>rest</module>
     </modules>
 </project>
