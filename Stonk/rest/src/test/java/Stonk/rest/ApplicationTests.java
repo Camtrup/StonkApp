@@ -1,10 +1,10 @@
-package GR2135.rest;
+package Stonk.rest;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class RestApplicationTests {
+class ApplicationTests {
 
 	@Test
 	void contextLoads() {
