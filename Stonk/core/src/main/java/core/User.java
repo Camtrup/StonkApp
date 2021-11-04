@@ -4,6 +4,10 @@ import data.DataHandler;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+//encryption imports
+import java.security.NoSuchAlgorithmException;  
+import java.security.MessageDigest;  
+
 /**
  * Class user.
  */
@@ -209,6 +213,27 @@ public class User {
         temp.get("lastname").toString(), temp.get("username").toString(),
         temp.get("password").toString(), Float.parseFloat(temp.get("cash").toString()),
         Integer.parseInt(temp.get("age").toString()), (JSONArray) temp.get("portfolio"), false);
+  }
+
+  public String encryptPassword(String password) {
+    String tempPassword = password;
+    String encryptedPassword = null;
+    try{
+      MessageDigest m = MessageDigest.getInstance("MD5");
+      m.update(tempPassword.getBytes());
+      byte[] bytes = m.digest(); 
+      StringBuilder s = new StringBuilder();  
+      for(int i=0; i< bytes.length ;i++)  {  
+            s.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));  
+        }
+      encryptedPassword = s.toString(); 
+    }
+    catch (NoSuchAlgorithmException e){
+      e.printStackTrace();
+    }
+    System.out.println("Plain-text password: " + tempPassword);  
+    System.out.println("Encrypted password using MD5: " + encryptedPassword);  
+    return encryptedPassword;
   }
 
   public String getUserName() {
