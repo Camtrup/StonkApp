@@ -5,7 +5,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 //encryption imports
-import java.security.NoSuchAlgorithmException;  
+import java.security.NoSuchAlgorithmException;
+import java.nio.charset.Charset;
 import java.security.MessageDigest;  
 
 /**
@@ -41,11 +42,11 @@ public class User {
       setFirstName(firstName);
       setLastName(lastName);
       setUserName(username);
-      setPassword(password);
+      setPassword(encryptPassword(password));
       setCash(cash);
       setAge(age);
       // this.portfolio = getPortfolio(); bruker vi den?
-      handler.newUser(username, password, firstName, lastName, age, cash, new JSONArray());
+      handler.newUser(username, encryptPassword(password), firstName, lastName, age, cash, new JSONArray());
     } else {
       this.firstName = firstName;
       this.lastName = lastName;
@@ -144,7 +145,8 @@ public class User {
     if (password.isBlank()) {
       throw new IllegalArgumentException("Password cannot be blank");
     }
-    this.password = password;
+    this.password = encryptPassword(password);
+    System.out.println("encrypted password:" + this.password);
   }
 
   /**
@@ -205,10 +207,12 @@ public class User {
    *
    * @param username string.
    * @param password string.
-   * @return the gives user if velud.
+   * @return the gives user if valid.
    */
   public User isLoginValid(String username, String password) {
-    JSONObject temp = handler.isLoginValid(username, password);
+    String hashedPassword = encryptPassword(password);
+    JSONObject temp = handler.isLoginValid(username, hashedPassword);
+    System.out.println("This is the password: " + hashedPassword);
     return new User(temp.get("firstname").toString(),
         temp.get("lastname").toString(), temp.get("username").toString(),
         temp.get("password").toString(), Float.parseFloat(temp.get("cash").toString()),
@@ -220,7 +224,7 @@ public class User {
     String encryptedPassword = null;
     try{
       MessageDigest m = MessageDigest.getInstance("MD5");
-      m.update(tempPassword.getBytes());
+      m.update(tempPassword.getBytes(Charset.forName("UTF-8")));
       byte[] bytes = m.digest(); 
       StringBuilder s = new StringBuilder();  
       for(int i=0; i< bytes.length ;i++)  {  
@@ -275,6 +279,7 @@ public class User {
     u.setCash(2000);
     // u.handler.addCash(u, 500);
     System.out.println(u.getCash());
+    u.encryptPassword("12345");
   }
 
 }
