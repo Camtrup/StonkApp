@@ -14,6 +14,35 @@ If you want to see how an account with bought stocks looks like. You can log inn
 - username: casper
 - password: 12345
 
+### run app localy:
+```
+1. git clone (https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2135/gr2135/-/tree/master)
+2. Open the forlder in a IDE as a Maven project.
+3. Run (mvn install) inside the project folder.
+4. To start the app get inside the ui package (Stonk/ui) and run: >"mvn javafx:run"
+5. If you want to run the tests you can run mvn verify in (Stonk/)
+```
+
+### run app in Gitpod:
+```
+The repository also includes Gitpod configuration files. Follow theese steps to run the app.
+
+1. Either click on the run gitpod button in gitlab or click on the gitpod button in this README file.
+2. When the build of the app is done, write in (Stonk/ui): >"mvn javafx:run"
+3. If you want to run the tests you can run mvn verify in (Stonk/)
+```
+## functionalities: 
+- Log in
+- Register
+- Search up stocks
+- Buy stocks
+- sell stocks
+- add stock to wishlist
+- add more money
+- log out
+- delete user
+
+
 ## Project file
 You can find more information about the code in the project file. It is divided into three parts. core, data and ui.
 
@@ -24,7 +53,6 @@ Core is where we have our two main java classes Stonk.java and User.java.
 - This is where you can find theese files.
 [Stonk>src>main>java>stonk...](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2135/gr2135/-/tree/master/Stonk/src/main/java/stonk)
 
-
 ## Data
 Data is the package for storing data and handling it. It gets handled with the datahandler and stored in Database.json
 - You can fint it here:
@@ -32,17 +60,18 @@ Data is the package for storing data and handling it. It gets handled with the d
 
 ### UI
 UI is the package for where the user interface is made. Here the two main components are the fxml and Controller classes. The FXML files are where the actual user interface is made with scene buidler. THe controller classes it where the connection between the frontend and backend is. Here for instance the buttons from the fxml get their functions that tell them what to do.
-- YOu can find the fxml files here:
+- You can find the fxml files here:
 [Stonk/ui/src/main/resources/ui/fxml...](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2135/gr2135/-/tree/master/Stonk/ui/src/main/resources/ui/fxml)
 - You can find the Controller classes here:
 [Stonk/ui/src/main/java/ui...](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2135/gr2135/-/tree/master/Stonk/ui/src/main/java/ui)
 
 
 ## Project architecture
-#### click on image for better quality
-
-Tree Structure of the app:
+The structure in UI was too complex and large to put in with the rest of the structure of the map. 
+(click on the image for better quality)
+### Tree Structure of the app:
 <a href="https://ibb.co/ChM8gLZ"><img src="https://i.ibb.co/gzP9NYp/tree-arc-all-IT-project.png" alt="tree-arc-all-IT-project" border="0"></a>
 
-UI:
+(click on the image for better quality)
+### Tree Structure of UI:
 <a href="https://ibb.co/fxy20kd"><img src="https://i.ibb.co/qrcd1NY/tre-arkitektur.png" alt="tre-arkitektur" height="150px" width="100%" border="0"></a>

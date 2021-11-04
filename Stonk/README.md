@@ -1,4 +1,4 @@
-# Stonk code!
+# Stonk code Strucutre!
 
 In this section we will write about how the code is built, everything from which libraries we are using to illustrations and the functioning of the different files.
 
@@ -6,15 +6,21 @@ In this section we will write about how the code is built, everything from which
 **Stonk** is built with the library [JSoup](https://jsoup.org). Jsoup allows us to scrape and parse data from a website using DOM traversal and CSS selectors. 
 Using this we are able to get information about every given stock in real-time.
 
-## SpotBugs and CheckStyle
+## Maven build
+Maven is a software project management and comprehension tool. Based on the concept of a project object model (POM), Maven can manage a project's build, reporting and documentation from a central piece of information. The Maven-build for our app needs at least Java version 14, and JavaFX version 11.
+
+
+
+
+## SpotBugs, CheckStyle and JaCoCo
 - Spotbugs has helped with finding unused codes and errors or bugs we were not able to find ourselves. 
 
 - Checkstyle made the code quality much better by helping us keep up with coding standards.
 
+- We use jacoco whis is a Code Coverage Library, to check how much coerage our tests have. Our goal is to have at least 70% test coverage.
 ## How we have Coded
-
-## Meetings
-The miniumum requirments we set for ourselves was to meet once a week, but we found it better to meet around 3 times a week to more easily pair code(parr-programmere) and communicate better.
+### Meetings
+The miniumum requirments we set for ourselves was to meet once a week, but we found it better to meet around 3 times a week to more easily pair code(parr-programmering) and communicate better. We also focused on following the coding commit rules given from [conventionalCommits](https://www.conventionalcommits.org/en/v1.0.0/)
 
 ### Pair coding
 Pair programming has helped us to higher the quality of the code by prrogramming out loud with a driver and navigator working together. We started meeting more often to pair program as much as possible.
