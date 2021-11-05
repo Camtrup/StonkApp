@@ -27,7 +27,7 @@
 
 		<dependency>
             <groupId>GR2135</groupId>
-            <artifactId>core</artifactId>
+            <artifactId>data</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 		

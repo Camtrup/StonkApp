@@ -1,13 +1,13 @@
 package Stonk.rest;
 
-import core.User;
-import data.DataHandler;
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.http.StreamingHttpOutputMessage.Body;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,18 +20,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class StonkRestController {
-    @GetMapping(path="/user")
-    public String userArray(){
-        DataHandler handler = new DataHandler();
-        return handler.getAllUsers().toJSONString();
+
+    StonkRestHandler handler = new StonkRestHandler();
+    JSONArray users = null;
+
+    @GetMapping(path="/users")
+    public ArrayList<String> userArray(){
+        this.users = users;
+        ArrayList<String> s = new ArrayList<String>();
+        s.add("asdasd");
+        s.add("asdasd");
+        return s;
     }
     @GetMapping(path = "/user/{username}/{password}")
-	public String user(@PathVariable String username, @PathVariable String password, @RequestBody String json) { 
+	public JSONObject user(@PathVariable String username, @PathVariable String password) { 
         // Request format: url + ?username=X&password=X
-        String tempJson = json;
-        User user = new User();
-        User temp = user.isLoginValid(username, password);
-		return temp.getFirstName();
+		return handler.isLoginValid(username, password, users);
 	}
     @PostMapping("/user")
     public String postUser(){

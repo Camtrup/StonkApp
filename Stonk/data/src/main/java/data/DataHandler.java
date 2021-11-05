@@ -29,6 +29,7 @@ public class DataHandler {
   // This method removes the path into "ui", so the path finds the file in "data"
   private void adaptFilePath() {
     String s = file.replace("/Stonk/ui", "");
+    s = s.replaceAll("/Stonk/rest", "");
     file = s;
   }
 
