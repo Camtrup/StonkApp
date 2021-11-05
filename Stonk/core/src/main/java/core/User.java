@@ -146,7 +146,6 @@ public class User {
       throw new IllegalArgumentException("Password cannot be blank");
     }
     this.password = encryptPassword(password);
-    System.out.println("encrypted password:" + this.password);
   }
 
   /**
@@ -212,7 +211,6 @@ public class User {
   public User isLoginValid(String username, String password) {
     String hashedPassword = encryptPassword(password);
     JSONObject temp = handler.isLoginValid(username, hashedPassword);
-    System.out.println("This is the password: " + hashedPassword);
     return new User(temp.get("firstname").toString(),
         temp.get("lastname").toString(), temp.get("username").toString(),
         temp.get("password").toString(), Float.parseFloat(temp.get("cash").toString()),
@@ -235,8 +233,6 @@ public class User {
     catch (NoSuchAlgorithmException e){
       e.printStackTrace();
     }
-    System.out.println("Plain-text password: " + tempPassword);  
-    System.out.println("Encrypted password using MD5: " + encryptedPassword);  
     return encryptedPassword;
   }
 
@@ -279,7 +275,6 @@ public class User {
     u.setCash(2000);
     // u.handler.addCash(u, 500);
     System.out.println(u.getCash());
-    u.encryptPassword("12345");
   }
 
 }
