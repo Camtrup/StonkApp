@@ -4,6 +4,11 @@ import data.DataHandler;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+//encryption imports
+import java.security.NoSuchAlgorithmException;
+import java.nio.charset.Charset;
+import java.security.MessageDigest;  
+
 /**
  * Class user.
  */
@@ -37,11 +42,11 @@ public class User {
       setFirstName(firstName);
       setLastName(lastName);
       setUserName(username);
-      setPassword(password);
+      setPassword(encryptPassword(password));
       setCash(cash);
       setAge(age);
       // this.portfolio = getPortfolio(); bruker vi den?
-      handler.newUser(username, password, firstName, lastName, age, cash, new JSONArray());
+      handler.newUser(username, encryptPassword(password), firstName, lastName, age, cash, new JSONArray());
     } else {
       this.firstName = firstName;
       this.lastName = lastName;
@@ -140,7 +145,7 @@ public class User {
     if (password.isBlank()) {
       throw new IllegalArgumentException("Password cannot be blank");
     }
-    this.password = password;
+    this.password = encryptPassword(password);
   }
 
   /**
@@ -201,14 +206,34 @@ public class User {
    *
    * @param username string.
    * @param password string.
-   * @return the gives user if velud.
+   * @return the gives user if valid.
    */
   public User isLoginValid(String username, String password) {
-    JSONObject temp = handler.isLoginValid(username, password);
+    String hashedPassword = encryptPassword(password);
+    JSONObject temp = handler.isLoginValid(username, hashedPassword);
     return new User(temp.get("firstname").toString(),
         temp.get("lastname").toString(), temp.get("username").toString(),
         temp.get("password").toString(), Float.parseFloat(temp.get("cash").toString()),
         Integer.parseInt(temp.get("age").toString()), (JSONArray) temp.get("portfolio"), false);
+  }
+
+  public String encryptPassword(String password) {
+    String tempPassword = password;
+    String encryptedPassword = null;
+    try{
+      MessageDigest m = MessageDigest.getInstance("MD5");
+      m.update(tempPassword.getBytes(Charset.forName("UTF-8")));
+      byte[] bytes = m.digest(); 
+      StringBuilder s = new StringBuilder();  
+      for(int i=0; i< bytes.length ;i++)  {  
+            s.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));  
+        }
+      encryptedPassword = s.toString(); 
+    }
+    catch (NoSuchAlgorithmException e){
+      e.printStackTrace();
+    }
+    return encryptedPassword;
   }
 
   public String getUserName() {
