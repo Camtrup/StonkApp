@@ -4,27 +4,22 @@ import core.Stonk;
 import core.User;
 import java.awt.Desktop;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.nio.file.WatchService;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Box;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javax.swing.BorderFactory;
-import javax.swing.JPanel;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -70,12 +65,12 @@ public class MainController {
 
   private Float ecuityChange = (float) 0;
   private Float stockPriceChanged = (float) 0.0;
+  private Float growthPerStock = (float) 0.0;
   private String stockOnWeb;
   // public Float difference = (float) 0; - spotbugs - unused
 
   /**
    * Gets decimalform.
-   *
    * @param number of the given number.
    * @return in decimal format.
    */
@@ -86,10 +81,10 @@ public class MainController {
   }
 
   /**
-   * Displays on main im fxml.
+   * Displays your potifolio on main im fxml.
    */
   public void displayOnMain() {
-    removeValue();
+    user.removeMoney(ecuityChange); // to show correct current balance
     displayPortfolio();
     // Float difference = (ecuityChange - user.getCash());
     cashMoneyFlow.setText(Float.toString(user.getCash()) + "$");
@@ -99,12 +94,6 @@ public class MainController {
     System.out.println(stockPriceChanged);
     growthPercent();
   }
-
-  public void removeValue() {
-    user.removeMoney(ecuityChange);
-  }
-
-
 
   /**
    * Growth-precent to show.
@@ -147,12 +136,12 @@ public class MainController {
       StockPageController.stock.getStockInfo(searchBar.getText().toLowerCase());
       app.changeScene("stockPage.fxml");
     } catch (IllegalArgumentException e) {
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException("Cannot find stock.");
     }
   }
 
   /**
-   * Opens browser.
+   * Opens the marketwatch.com website with more information about the stock clicked on.
    */
   public void openBrowser() {
     Desktop d = Desktop.getDesktop();
@@ -168,7 +157,7 @@ public class MainController {
   }
 
   /**
-   * Displays on portfoilo.
+   * Displays portfoilo on the main page.
    */
   public void displayPortfolio() {
     scrollPane.getChildren().clear();
@@ -197,20 +186,24 @@ public class MainController {
         Stonk s = new Stonk();
         s.getStockInfo(row.get(0));
         System.out.println((row.get(0)));
-        // to get how much you have eanred from Stpcks
+        // to get how much you have eanred from Stocks
         ecuityChange += (s.getPrice()) * Float.parseFloat(row.get(2));
-        stockPriceChanged += (s.getPrice()) * Float.parseFloat(row.get(2))
-            - Float.parseFloat(row.get(1)) * Float.parseFloat(row.get(2));
+
+        growthPerStock = ((s.getPrice()) * Float.parseFloat(row.get(2))
+        - Float.parseFloat(row.get(1)) * Float.parseFloat(row.get(2)));
+        stockPriceChanged += growthPerStock;
 
         // Adds info
         Label l = new Label("____________________________\n" 
             + row.get(0).toUpperCase() + "\nAmount: " + row.get(2)
-            + "\nAverage: " + row.get(1) + "\nCurrent: " + s.getPrice());
+            + "\nAverage: " + String.format("%.2f", Float.parseFloat(row.get(1)))+ " $" + "\nCurrent: " + s.getPrice() +" $" + "\nPriceChange: " + growthPerStock + " $");
         Button b = new Button("Sell");
         Button more = new Button("more info");
 
         
         // Style of elements
+
+
         l.setStyle("-fx-font-size: 15;");
         b.maxHeight(l.getHeight());
         more.maxHeight(l.getHeight());
@@ -242,10 +235,12 @@ public class MainController {
     }
   }
   
-  // show watchList
+  /**
+   * Displays watchList on the main page when clickking on the star.
+   */
   public void showWatchList(){
-    scrollPane.getChildren().clear();
-    watchList.setStyle("-fx-graphic: url('https://img.icons8.com/fluency/25/000000/star.png')");
+    scrollPane.getChildren().clear(); // remove the portifolio.
+    watchList.setStyle("-fx-graphic: url('https://img.icons8.com/fluency/25/000000/star.png')"); // change star color in the button
       ArrayList<ArrayList<String>> arrWatch = new ArrayList<ArrayList<String>>();
       JSONArray json = user.getWatchList();
       for (Object i : json) {
@@ -263,17 +258,19 @@ public class MainController {
       } else {
         for (ArrayList<String> rowWatch : arrWatch) {
           Stonk s = new Stonk();
-          s.getStockInfo(rowWatch.get(0));  
-          // Adds info
+          s.getStockInfo(rowWatch.get(0));
+          float percentChange =100 -(Float.parseFloat(rowWatch.get(1))/((s.getPrice())))*100;   // show difference in stock price from now and when it was added to watchList.
+          
+// Adds info
         Label l = new Label("____________________________\n" 
-        + rowWatch.get(0).toUpperCase() + "\nPrice now: " + s.getPrice());
+        + rowWatch.get(0).toUpperCase()+ "\nPrice when added: " + rowWatch.get(1)+ "\nPrice now: " + s.getPrice() +"\nPriceChange: " + String.format("%.2f", percentChange) + " %");
         Button b = new Button("Buy");
         Button more = new Button("more info");
     
     // Style of elements
     l.setStyle("-fx-font-size: 15;");
     b.maxHeight(l.getHeight());
-    more.maxHeight(l.getHeight());
+    more.maxHeight(l.getHeight());  // styling for buy and more info buttons
     more.setStyle("-fx-background-color: #090a0c;" 
         + "-fx-text-fill: linear-gradient(white, #d0d0d0); -fx-padding:10px;");
     b.setStyle("-fx-background-color: #090a0c;"
@@ -298,7 +295,6 @@ public class MainController {
 
     scrollPane.getChildren().addAll(h);
     scrollPane.getChildren().addAll(hbox);
-
       }
 
     }

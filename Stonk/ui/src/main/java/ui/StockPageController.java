@@ -15,7 +15,7 @@ public class StockPageController {
 
   // DataHandler handler = new DataHandler(); Bruker ikke ifølge spotbugs
   private User user;
-  public static final Stonk stock = new Stonk(); // Is static and public so the mainController 
+  public static final Stonk stock = new Stonk(); // Is static and public so the mainController
   //can access it and send the stock-object forward
 
   @FXML
@@ -76,26 +76,29 @@ public class StockPageController {
   }
 
   /**
-   * Updates the total price. 
+   * Updates the total price.
    *
-   * @throws NumberFormatException if it doesnt work. 
+   * @throws NumberFormatException if it doesnt work.
    */
   public void updateTotalPrice() throws NumberFormatException {
     if (!amountStock.getText().equals("")) {
       amountStock.setStyle("-fx-text-fill: black; -fx-color: black;");
       amountStock.setStyle("-fx-text-fill: black;");
       Float floatPrice = stock.getPrice() * Float.parseFloat(amountStock.getText());
-
       if (Float.parseFloat(amountStock.getText()) <= 0) {
         totPrice1.setText("Invalid");
-      } else {
+      }
+      else if (floatPrice>10000){
+        totPrice1.setText(String.format("%.0f", floatPrice) + " $");
+      }
+      else {
         totPrice1.setText(String.format("%.2f", floatPrice) + " $");
       }
     }
   }
 
   /**
-   * Checks is number for validation. 
+   * Checks is number for validation.
    *
    * @param number getting from textfield.
    */
@@ -111,14 +114,14 @@ public class StockPageController {
   }
 
   // Add Stock to WatchList
- public void watchStock() {
-   try {
-     user.addToWatchList(stock.getTicker(), 1);
-     backToMain();
-   } catch (Exception e) {
-     System.out.println(e);
-   }
- }
+  public void watchStock() {
+    try {
+      user.addToWatchList(stock.getTicker(), 1);
+      backToMain();
+    } catch (Exception e) {
+      System.out.println(e);
+    }
+  }
 
   /**
    * Buys stock if amount is valid.
