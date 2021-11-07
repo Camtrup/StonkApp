@@ -42,10 +42,11 @@ public class DataHandler {
    * @param age int
    * @param cash float
    * @param portfolio JSONArray
+   * @param watchList JSONArray
    */
   public void newUser(String username,
       String password, String firstname, String lastname, int age, float cash,
-      JSONArray portfolio) {
+      JSONArray portfolio, JSONArray watchList ) {
     JSONObject user = new JSONObject();
     user.put("username", username);
     user.put("password", password);
@@ -54,6 +55,7 @@ public class DataHandler {
     user.put("age", age);
     user.put("cash", cash);
     user.put("portfolio", portfolio);
+    user.put("watchList", watchList);
     JSONArray userArray = getAllUsers();
     userArray.add(user);
     writeToFile(userArray);
@@ -104,6 +106,10 @@ public class DataHandler {
     JSONArray portfolio = (JSONArray) user.get("portfolio");
     return portfolio;
   }
+  public JSONArray getWatchList(JSONObject user) {
+    JSONArray watchList = (JSONArray) user.get("watchList");
+    return watchList;
+  }
 
   /**
    * adds stock to portfolio.
@@ -151,7 +157,38 @@ public class DataHandler {
     user.put("cash", currentCash - price * count);
     user.put("portfolio", portfolio);
     writeToFile(userArray);
+  
   }
+
+  public void addToWatchList(String username, String ticker, float price, int count) {
+    JSONArray userArray = getAllUsers();
+    JSONObject user = (JSONObject) userArray.get(userArray.indexOf(findUser(username)));
+    System.out.println(user);
+    JSONArray watchList = getWatchList(user);
+    JSONObject stock = new JSONObject();
+
+    boolean containsStock = false;
+
+    for (Object i : watchList) {
+      JSONObject checkStock = (JSONObject) i;
+      if (checkStock.get("ticker").equals(ticker)) {
+        stock = checkStock;
+        containsStock = true;
+        break;
+      }
+    }
+      stock.put("ticker", ticker);
+      stock.put("price", price);
+      stock.put("count", count);
+      watchList.add(stock);
+    
+
+    //user.put("cash", currentCash - price * count);
+    user.put("watchList", watchList);
+    writeToFile(userArray);
+  }
+
+
 
   /**
    * Adds or removes cash.
@@ -240,6 +277,7 @@ public class DataHandler {
    */
   public JSONObject isLoginValid(String username, String password) {
     JSONObject user = findUser(username);
+    System.out.println(getWatchList(user));
     if (user != null) {
       if (user.get("password").toString().equals(password)) {
         return user;

@@ -32,7 +32,7 @@ public class User {
    * @param isNewUser boolean
    */
   public User(String firstName, String lastName, String username, String password,
-      float cash, int age, JSONArray portfolio, boolean isNewUser) {
+      float cash, int age, JSONArray portfolio, JSONArray watchList, boolean isNewUser) {
     if (isNewUser) {
       setFirstName(firstName);
       setLastName(lastName);
@@ -41,7 +41,7 @@ public class User {
       setCash(cash);
       setAge(age);
       // this.portfolio = getPortfolio(); bruker vi den?
-      handler.newUser(username, password, firstName, lastName, age, cash, new JSONArray());
+      handler.newUser(username, password, firstName, lastName, age, cash, new JSONArray(), new JSONArray());
     } else {
       this.firstName = firstName;
       this.lastName = lastName;
@@ -71,6 +71,12 @@ public class User {
     setCash(cash - (stock.getPrice() * count));
     handler.addToPortfoilio(username, ticker, stock.getPrice(), count);
   }
+  
+  public void addToWatchList(String ticker, int count) {
+    Stonk stock = new Stonk();
+    stock.getStockInfo(ticker);
+    handler.addToWatchList(username, ticker, stock.getPrice(), 1);
+  }
 
   /**
    * Removes from portfolio.
@@ -90,6 +96,9 @@ public class User {
 
   public JSONArray getPortfolio() {
     return handler.getPortfolio(handler.findUser(username));
+  }
+  public JSONArray getWatchList() {
+    return handler.getWatchList(handler.findUser(username));
   }
 
   /**
@@ -208,7 +217,7 @@ public class User {
     return new User(temp.get("firstname").toString(),
         temp.get("lastname").toString(), temp.get("username").toString(),
         temp.get("password").toString(), Float.parseFloat(temp.get("cash").toString()),
-        Integer.parseInt(temp.get("age").toString()), (JSONArray) temp.get("portfolio"), false);
+        Integer.parseInt(temp.get("age").toString()), (JSONArray) temp.get("portfolio"), (JSONArray) temp.get("watchList"), false);
   }
 
   public String getUserName() {
@@ -235,21 +244,13 @@ public class User {
     return age;
   }
 
-  @Override
-  public String toString() {
-    return "Hello " + username + " you have " + cash + " dollars in your account. Happy trading!!";
-  }
+
 
   /**
    * Main.
    *
    * @param args .
    */
-  public static void main(String[] args) {
-    User u = new User();
-    u.setCash(2000);
-    // u.handler.addCash(u, 500);
-    System.out.println(u.getCash());
-  }
+
 
 }

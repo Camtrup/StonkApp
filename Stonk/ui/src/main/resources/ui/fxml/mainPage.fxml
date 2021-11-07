@@ -50,12 +50,7 @@
                <font>
                   <Font name="Arial" size="14.0" />
                </font></Button>
-            <Text layoutX="113.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My stocks">
-               <font>
-                  <Font name="Arial" size="19.0" />
-               </font>
-            </Text>
-            <ScrollPane layoutX="26.0" layoutY="362.0" prefHeight="215.0" prefWidth="265.0" style="-fx-background-radius: 3px;">
+            <ScrollPane layoutX="27.0" layoutY="362.0" prefHeight="215.0" prefWidth="264.0" style="-fx-background-radius: 3px;">
                <content>
                   <VBox fx:id="scrollPane" style="-fx-background-radius: 5px;">
 
@@ -93,6 +88,11 @@
                   <Font name="Arial" size="12.0" />
                </font>
             </Label>
+            <Button fx:id="myStocks" layoutX="28.0" layoutY="324.0" mnemonicParsing="false" onAction="#displayPortfolio" prefHeight="34.0" prefWidth="195.0" style="-fx-background-color: black;" text="My stocks" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font></Button>
+            <Button fx:id="watchList" layoutX="230.0" layoutY="324.0" mnemonicParsing="false" onAction="#showWatchList" prefHeight="34.0" prefWidth="44.0" style="-fx-graphic: url('https://img.icons8.com/ios/30/000000/star--v2.png')" />
          </children>
       </AnchorPane>
    </children>

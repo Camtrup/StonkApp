@@ -110,6 +110,16 @@ public class StockPageController {
     }
   }
 
+  // Add Stock to WatchList
+ public void watchStock() {
+   try {
+     user.addToWatchList(stock.getTicker(), 1);
+     backToMain();
+   } catch (Exception e) {
+     System.out.println(e);
+   }
+ }
+
   /**
    * Buys stock if amount is valid.
    */

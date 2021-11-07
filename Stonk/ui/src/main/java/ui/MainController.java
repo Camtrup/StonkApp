@@ -65,6 +65,8 @@ public class MainController {
   private TextField username;
   @FXML
   private VBox scrollPane;
+  @FXML
+  private Button watchList;
 
   private Float ecuityChange = (float) 0;
   private Float stockPriceChanged = (float) 0.0;
@@ -101,6 +103,8 @@ public class MainController {
   public void removeValue() {
     user.removeMoney(ecuityChange);
   }
+
+
 
   /**
    * Growth-precent to show.
@@ -167,6 +171,9 @@ public class MainController {
    * Displays on portfoilo.
    */
   public void displayPortfolio() {
+    scrollPane.getChildren().clear();
+    watchList.setStyle("-fx-graphic: url('https://img.icons8.com/ios/25/000000/star--v2.png')");
+
     ArrayList<ArrayList<String>> arr = new ArrayList<ArrayList<String>>();
     JSONArray json = user.getPortfolio();
     System.out.println(json);
@@ -186,6 +193,7 @@ public class MainController {
       // "NO STOCKS IN PORTFOLIO"
     } else {
       for (ArrayList<String> row : arr) {
+
         Stonk s = new Stonk();
         s.getStockInfo(row.get(0));
         System.out.println((row.get(0)));
@@ -195,7 +203,7 @@ public class MainController {
             - Float.parseFloat(row.get(1)) * Float.parseFloat(row.get(2));
 
         // Adds info
-        Label l = new Label("_____________________________\n" 
+        Label l = new Label("____________________________\n" 
             + row.get(0).toUpperCase() + "\nAmount: " + row.get(2)
             + "\nAverage: " + row.get(1) + "\nCurrent: " + s.getPrice());
         Button b = new Button("Sell");
@@ -231,6 +239,68 @@ public class MainController {
         scrollPane.getChildren().addAll(h);
         scrollPane.getChildren().addAll(hbox);
       }
+    }
+  }
+  
+  // show watchList
+  public void showWatchList(){
+    scrollPane.getChildren().clear();
+    watchList.setStyle("-fx-graphic: url('https://img.icons8.com/fluency/25/000000/star.png')");
+      ArrayList<ArrayList<String>> arrWatch = new ArrayList<ArrayList<String>>();
+      JSONArray json = user.getWatchList();
+      for (Object i : json) {
+        JSONObject tempObj = (JSONObject) i;
+        ArrayList<String> tempArrWatch = new ArrayList<>();
+        tempArrWatch.add(String.valueOf(tempObj.get("ticker")));
+        tempArrWatch.add(String.valueOf(tempObj.get("price")));
+        tempArrWatch.add(String.valueOf(tempObj.get("count")));
+        // LEGG TIL CURRENTS PRICE OG NÅVERENDE VERDI
+        arrWatch.add(tempArrWatch);
+      }
+  
+      if (arrWatch.size() == 0) {
+        // "NO STOCKS IN watchlist"
+      } else {
+        for (ArrayList<String> rowWatch : arrWatch) {
+          Stonk s = new Stonk();
+          s.getStockInfo(rowWatch.get(0));  
+          // Adds info
+        Label l = new Label("____________________________\n" 
+        + rowWatch.get(0).toUpperCase() + "\nPrice now: " + s.getPrice());
+        Button b = new Button("Buy");
+        Button more = new Button("more info");
+    
+    // Style of elements
+    l.setStyle("-fx-font-size: 15;");
+    b.maxHeight(l.getHeight());
+    more.maxHeight(l.getHeight());
+    more.setStyle("-fx-background-color: #090a0c;" 
+        + "-fx-text-fill: linear-gradient(white, #d0d0d0); -fx-padding:10px;");
+    b.setStyle("-fx-background-color: #090a0c;"
+        + " -fx-text-fill: linear-gradient(white, #d0d0d0);  -fx-padding:10px;");
+    VBox h = new VBox(l);
+    h.setPadding(new Insets(10, 10, 10, 10));
+    h.setStyle("-fx-background-color: #dbdbdb");
+    HBox hbox = new HBox(b, more);
+    hbox.setSpacing(15);
+    hbox.setMargin(b, new Insets(0, 0, 0, 70));
+    hbox.setStyle("-fx-background-color: #dbdbdb; -fx-margin: auto");
+
+    b.setOnMouseClicked(event -> {
+      searchBar.setText(rowWatch.get(0));
+      toStockPage();
+    });
+
+    more.setOnMouseClicked(event -> {
+      stockOnWeb = rowWatch.get(0);
+      openBrowser();
+    });
+
+    scrollPane.getChildren().addAll(h);
+    scrollPane.getChildren().addAll(hbox);
+
+      }
+
     }
   }
 
