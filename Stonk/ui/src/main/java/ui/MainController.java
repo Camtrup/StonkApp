@@ -196,7 +196,7 @@ public class MainController {
         // Adds info
         Label l = new Label("____________________________\n" 
             + row.get(0).toUpperCase() + "\nAmount: " + row.get(2)
-            + "\nAverage: " + String.format("%.2f", Float.parseFloat(row.get(1)))+ " $" + "\nCurrent: " + s.getPrice() +" $" + "\nPriceChange: " + growthPerStock + " $");
+            + "\nAverage: " + String.format("%.2f", Float.parseFloat(row.get(1)))+ " $" + "\nCurrent: " + s.getPrice() +" $" + "\nGrowth: " + String.format("%.2f", growthPerStock) + " $");
         Button b = new Button("Sell");
         Button more = new Button("more info");
 
