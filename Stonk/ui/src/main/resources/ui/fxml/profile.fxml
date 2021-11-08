@@ -15,7 +15,7 @@
       <Pane layoutY="462.0" prefHeight="123.0" prefWidth="292.0" style="-fx-background-color: #4849bf #4849bf #4849bf #4849bf;" />
       <Button fx:id="logOut" layoutX="22.0" layoutY="481.0" mnemonicParsing="false" onAction="#logOut" prefHeight="26.0" prefWidth="246.0" style="-fx-background-color: grey;" text="Log Out" textFill="#fffbfb" />
       <Button fx:id="deleteUser" layoutX="22.0" layoutY="523.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="26.0" prefWidth="246.0" style="-fx-background-color: grey;" text="Delete User" textFill="#fff8f8" />
-      <Button fx:id="toMain" layoutX="22.0" layoutY="21.0" mnemonicParsing="false" onAction="#toMain" style="-fx-background-color: black;" text="Lukk" textFill="#fff8f8" />
+      <Button fx:id="toMain" layoutX="22.0" layoutY="21.0" mnemonicParsing="false" onAction="#toMain" style="-fx-background-color: black;" text="Back" textFill="#fff8f8" />
       <Label fx:id="name" layoutX="11.0" layoutY="137.0" prefHeight="23.0" prefWidth="268.0" style="-fx-alignment: center;" text="YOURNAME">
          <font>
             <Font size="18.0" />

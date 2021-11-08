@@ -2,7 +2,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>GR2135</groupId>
-    <artifactId>modules</artifactId>
+    <artifactId>Stonk</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
@@ -169,5 +169,6 @@
         <module>data</module>
         <module>core</module>
         <module>ui</module>
+        <module>rest</module>
     </modules>
 </project>
