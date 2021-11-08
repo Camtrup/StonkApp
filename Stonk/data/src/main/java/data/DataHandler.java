@@ -285,7 +285,7 @@ public class DataHandler {
         throw new IllegalArgumentException("Password is incorrect");
       }
     } else {
-      throw new IllegalArgumentException("Username not in databse");
+      throw new IllegalArgumentException("Username not in database");
     }
   }
 
