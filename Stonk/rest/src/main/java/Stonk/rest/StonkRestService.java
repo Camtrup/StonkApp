@@ -52,7 +52,8 @@ public class StonkRestService {
                         user.get("password").toString(), 
                         Float.parseFloat(user.get("cash").toString()), 
                         Integer.parseInt(user.get("age").toString()), 
-                        JSONtoPortfolio((JSONArray) user.get("portfolio")), 
+                        JSONtoPortfolio((JSONArray) user.get("portfolio")),
+                        JSONtoPortfolio((JSONArray) user.get("watchList")),
                         false);
     }
 
@@ -86,7 +87,7 @@ public class StonkRestService {
     public String newUser(String firstname, String lastname, String username, String password, Float cash, int age){
         User temp = null;
         try {
-            temp = new User(firstname, lastname, username, password, cash, age, new ArrayList<Stonk>(), true);
+            temp = new User(firstname, lastname, username, password, cash, age, new ArrayList<Stonk>(), new ArrayList<Stonk>(),  true);
             for (User i : users){
                 if (i.getUserName().equals(temp.getUserName())){
                     throw new IllegalArgumentException("Username already registered.");
@@ -140,6 +141,32 @@ public class StonkRestService {
             return "400" + e.getMessage();
         } catch (IOException e) {
             return "400" + e.getMessage();
+        }
+        return "200";
+    }
+
+    public String addStonksToWatchList(String username, String password, String ticker) {
+        try {
+            User temp = isLoginValid(username, password);
+            int index = getUserIndex(username);
+            temp.addToWatchList(ticker, 1);
+            users.set(index,temp);
+        }
+        catch(IllegalArgumentException e){
+            return "400: " + e.getMessage();
+        }
+        return "200";
+    }
+
+    public String removeStonksFromWatchList(String username, String password, String ticker) {
+        try {
+            User temp = isLoginValid(username, password);
+            int index = getUserIndex(username);
+            temp.removeFromWatchList(ticker, 1);
+            users.set(index,temp);
+        }
+        catch(IllegalArgumentException e){
+            return "400: " + e.getMessage();
         }
         return "200";
     }

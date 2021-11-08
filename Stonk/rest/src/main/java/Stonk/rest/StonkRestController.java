@@ -3,12 +3,8 @@ package Stonk.rest;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import core.User;
@@ -37,6 +33,14 @@ public class StonkRestController {
     @RequestMapping(value = "/sell/{username}/{password}/{ticker}/{count}")
     public String sellStonks(@PathVariable String username, @PathVariable String password, @PathVariable String ticker, @PathVariable int count){
         return stonkRestService.sellStonks(username, password, ticker, count);
+    }
+    @RequestMapping(value = "/add/{username}/{password}/{ticker}")
+    public String addStonksToWatchList(@PathVariable String username, @PathVariable String password, @PathVariable String ticker){
+        return stonkRestService.addStonksToWatchList(username, password, ticker);
+    }
+    @RequestMapping(value = "/remove/{username}/{password}/{ticker}")
+    public String removeStonksToWatchList(@PathVariable String username, @PathVariable String password, @PathVariable String ticker){
+        return stonkRestService.removeStonksFromWatchList(username, password, ticker);
     }
     @RequestMapping(value = "/new/{firstname}/{lastname}/{username}/{password}/{cash}/{age}")
     public String newUser(@PathVariable String firstname, @PathVariable String lastname, @PathVariable String username, @PathVariable String password, @PathVariable Float cash, @PathVariable int age){

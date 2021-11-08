@@ -2,11 +2,9 @@ package ui;
 
 import core.Stonk;
 import core.User;
-import data.DataHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import org.json.simple.JSONObject;
 
 /**
  * Controller for stockpage.
@@ -15,7 +13,7 @@ public class StockPageController {
 
   // DataHandler handler = new DataHandler(); Bruker ikke ifølge spotbugs
   private User user;
-  public static final Stonk stock = new Stonk(); // Is static and public so the mainController
+  private Stonk stock = null; // Is static and public so the mainController
   //can access it and send the stock-object forward
 
   @FXML

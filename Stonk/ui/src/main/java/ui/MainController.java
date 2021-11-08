@@ -11,19 +11,13 @@ import core.Stonk;
 import core.User;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 
 /**
  * Controller for main.
@@ -238,13 +232,12 @@ public class MainController {
     scrollPane.getChildren().clear(); // remove the portifolio.
     watchList.setStyle("-fx-graphic: url('https://img.icons8.com/fluency/25/000000/star.png')"); // change star color in the button
       ArrayList<ArrayList<String>> arrWatch = new ArrayList<ArrayList<String>>();
-      JSONArray json = user.getWatchList();
-      for (Object i : json) {
-        JSONObject tempObj = (JSONObject) i;
+      ArrayList<Stonk> json = user.getWatchList();
+      for (Stonk i : json) {
         ArrayList<String> tempArrWatch = new ArrayList<>();
-        tempArrWatch.add(String.valueOf(tempObj.get("ticker")));
-        tempArrWatch.add(String.valueOf(tempObj.get("price")));
-        tempArrWatch.add(String.valueOf(tempObj.get("count")));
+        tempArrWatch.add(i.getTicker());
+        tempArrWatch.add(String.valueOf(i.getPrice()));
+        tempArrWatch.add(String.valueOf(i.getCount()));
         // LEGG TIL CURRENTS PRICE OG NÅVERENDE VERDI
         arrWatch.add(tempArrWatch);
       }
@@ -253,8 +246,7 @@ public class MainController {
         // "NO STOCKS IN watchlist"
       } else {
         for (ArrayList<String> rowWatch : arrWatch) {
-          Stonk s = new Stonk();
-          s.getStockInfo(rowWatch.get(0));
+          Stonk s = new Stonk(rowWatch.get(0), 0);
           float percentChange =100 -(Float.parseFloat(rowWatch.get(1))/((s.getPrice())))*100;   // show difference in stock price from now and when it was added to watchList.
           
 // Adds info

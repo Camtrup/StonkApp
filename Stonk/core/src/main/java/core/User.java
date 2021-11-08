@@ -17,7 +17,8 @@ public class User {
   private String lastName;
   private String password;
   private String username;
-  private ArrayList<Stonk> portfolio = new ArrayList<Stonk>(); 
+  private ArrayList<Stonk> portfolio = new ArrayList<Stonk>();
+  private ArrayList<Stonk> watchList = new ArrayList<Stonk>();
 
   /**
    * Constructor.
@@ -28,11 +29,12 @@ public class User {
    * @param password string
    * @param cash float
    * @param age int
-   * @param portfolio JSONArray
+   * @param portfolio ArrayList of type Stonk
+   * @param watchList Arraylist of type Stonk
    * @param isNewUser boolean
    */
   public User(String firstName, String lastName, String username, String password,
-      float cash, int age, ArrayList<Stonk> portfolio, boolean isNewUser) {
+      float cash, int age, ArrayList<Stonk> portfolio, ArrayList<Stonk> watchList, boolean isNewUser) {
     if (isNewUser) {
       setFirstName(firstName);
       setLastName(lastName);
@@ -41,6 +43,7 @@ public class User {
       setCash(cash);
       setAge(age);
       setPortfolio(portfolio);
+      setWatchList(watchList);
     } else {
       this.firstName = firstName;
       this.lastName = lastName;
@@ -49,7 +52,12 @@ public class User {
       this.cash = cash;
       this.age = age;
       setPortfolio(portfolio);
+      setWatchList(watchList);
     }
+  }
+
+  private void setWatchList(ArrayList<Stonk> watchList2) {
+    this.watchList = new ArrayList<Stonk>(watchList2);
   }
 
   /**
@@ -77,9 +85,29 @@ public class User {
   }
   
   public void addToWatchList(String ticker, int count) {
-    Stonk stock = new Stonk();
-    stock.getStockInfo(ticker);
-    handler.addToWatchList(username, ticker, stock.getPrice(), 1);
+    Stonk stock = new Stonk(ticker, count);
+    for (Stonk i : watchList){
+      if (i.getTicker().equals(ticker)){
+        throw new IllegalArgumentException("Stock is already in watchlist");
+      }
+    }
+    watchList.add(stock);
+  }
+  
+  public void removeFromWatchList(String ticker, int count){
+    boolean isInList = false;
+    if(watchList.size() == 0){
+      throw new IllegalArgumentException("List is empty");
+    }
+    for (Stonk i : getWatchList()){
+      if (i.getTicker().equals(ticker)){
+        watchList.remove(i);
+        isInList = true;
+      }
+    }
+    if(!isInList){
+      throw new IllegalArgumentException("Stock not in watchlist");
+    }
   }
 
   /**
@@ -121,8 +149,8 @@ public class User {
   private void setPortfolio(ArrayList<Stonk> portfolio){
     this.portfolio = new ArrayList<Stonk>(portfolio);
   }
-  public JSONArray getWatchList() {
-    return handler.getWatchList(handler.findUser(username));
+  public ArrayList<Stonk> getWatchList() {
+    return new ArrayList<>(watchList);
   }
 
   /**
@@ -266,13 +294,4 @@ public class User {
   public int getAge() {
     return age;
   }
-
-  /**
-   * Main.
-   *
-   * @param args .
-   */
-  public static void main(String[] args) {
-  }
-
 }
