@@ -15,7 +15,7 @@ public class StockPageController {
 
   // DataHandler handler = new DataHandler(); Bruker ikke ifølge spotbugs
   private User user;
-  public static final Stonk stock = new Stonk(); // Is static and public so the mainController 
+  private Stonk stock = null; // Is static and public so the mainController 
   //can access it and send the stock-object forward
 
   @FXML
@@ -58,10 +58,9 @@ public class StockPageController {
     char priceChangeFloat = stock.getPriceChange().charAt(0); // Checks if priceChange is negative
     priceChange.setText(stock.getPriceChange());
 
-    for (Object i : user.getPortfolio()) {
-      JSONObject temp = (JSONObject) i;
-      if (temp.get("ticker").equals(stock.getTicker())) {
-        owning.setText(String.valueOf(temp.get("count")));
+    for (Stonk i : user.getPortfolio()) {
+      if (i.getTicker().equals(stock.getTicker())) {
+        owning.setText(String.valueOf(i.getCount()));
       }
     }
 
@@ -139,7 +138,11 @@ public class StockPageController {
   @FXML
   public void initialize() {
     this.user = StonkApp.getStaticUser();
-
+    for(Stonk i : user.getPortfolio()){
+      if (i.getCount() == 0){
+        this.stock = i;
+      }
+    }
   }
 
 }

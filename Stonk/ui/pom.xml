@@ -20,7 +20,7 @@
 
         <dependency>
             <groupId>GR2135</groupId>
-            <artifactId>core</artifactId>
+            <artifactId>rest</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 

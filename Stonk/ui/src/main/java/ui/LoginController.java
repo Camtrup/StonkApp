@@ -37,9 +37,8 @@ public class LoginController {
   @FXML
   public void isLoginValid() {
     try {
-      User temp = new User();
-      StonkApp.setStaticUser(temp.isLoginValid(username.getText().toString(),
-          password.getText().toString()));
+      User temp = null; //SEND REQUEST TIL SERVER OM GYLDIG LOGIN
+      StonkApp.setStaticUser(temp);
       login();
     }  catch (IllegalArgumentException | IOException e) {
       System.out.println(e);

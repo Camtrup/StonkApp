@@ -1,17 +1,14 @@
 package ui;
 
-import core.Stonk;
-import core.User;
 import java.awt.Desktop;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.nio.file.WatchService;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+
+import core.Stonk;
+import core.User;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -19,14 +16,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Box;
 import javafx.scene.text.Text;
-import javax.swing.BorderFactory;
-import javax.swing.JPanel;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 
 /**
  * Controller for main.
@@ -140,7 +131,8 @@ public class MainController {
   public void toStockPage() {
     StonkApp app = new StonkApp();
     try {
-      StockPageController.stock.getStockInfo(searchBar.getText().toLowerCase());
+      user.addToPortfoilio(searchBar.getText().toLowerCase(), 0);
+      StonkApp.setStaticUser(user);
       app.changeScene("stockPage.fxml");
     } catch (IllegalArgumentException e) {
       throw new IllegalArgumentException();
@@ -155,10 +147,8 @@ public class MainController {
     try {
       d.browse(new URI("https://www.marketwatch.com/investing/stock/" + stockOnWeb));
     } catch (IOException e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
     } catch (URISyntaxException e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
     }
   }
@@ -168,26 +158,22 @@ public class MainController {
    */
   public void displayPortfolio() {
     ArrayList<ArrayList<String>> arr = new ArrayList<ArrayList<String>>();
-    JSONArray json = user.getPortfolio();
-    System.out.println(json);
+    ArrayList<Stonk> portfolio = user.getPortfolio();
 
-    for (Object i : json) {
-      JSONObject tempObj = (JSONObject) i;
+    for (Stonk i : portfolio) {
       ArrayList<String> tempArr = new ArrayList<>();
-      tempArr.add(String.valueOf(tempObj.get("ticker")));
-      tempArr.add(String.valueOf(tempObj.get("price")));
-      tempArr.add(String.valueOf(tempObj.get("count")));
+      tempArr.add(String.valueOf(i.getTicker()));
+      tempArr.add(String.valueOf(i.getPrice()));
+      tempArr.add(String.valueOf(i.getCount()));
       // LEGG TIL CURRENTS PRICE OG NÅVERENDE VERDI
       arr.add(tempArr);
     }
-    System.out.println(arr);
 
     if (arr.size() == 0) {
       // "NO STOCKS IN PORTFOLIO"
     } else {
       for (ArrayList<String> row : arr) {
-        Stonk s = new Stonk();
-        s.getStockInfo(row.get(0));
+        Stonk s = new Stonk(row.get(0), Integer.parseInt(row.get(2)));
         System.out.println((row.get(0)));
         // to get how much you have eanred from Stpcks
         ecuityChange += (s.getPrice()) * Float.parseFloat(row.get(2));

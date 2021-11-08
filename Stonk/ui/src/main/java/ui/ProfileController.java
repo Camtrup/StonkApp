@@ -1,14 +1,11 @@
 package ui;
 
 import core.User;
-import data.DataHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 
 /**
  * Controller fro profile.
@@ -29,7 +26,6 @@ public class ProfileController {
   private TextField moneyAdd;
 
   private User user;
-  DataHandler handler = new DataHandler();
   StonkApp app = new StonkApp();
   // private Object putCash; checkstyle - unused field
 
@@ -63,7 +59,7 @@ public class ProfileController {
   }
 
   public void deleteUser() {
-    handler.deleteUser(user.getUserName());
+    //handler.deleteUser(user.getUserName());
     logOut();
   }
 
