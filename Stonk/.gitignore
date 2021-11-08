@@ -1,6 +1,9 @@
 # ignore maven build folder
 target/
 
+#remove DS_Store
+.DS_Store
+
 # pom-derived eclipse jdt files
 .project
 .classpath

@@ -16,7 +16,7 @@ public class UserTest {
 	@BeforeEach
     public void setup(){
         //user = handler.generateUser("casper");
-        user = new User("Tage", "Berg", "tagemb", "123", 10000, 23, null, false);
+        user = new User("Tage", "Berg", "tagemb", "123", 10000, 23, null,null,false);
         
         
     }

@@ -75,6 +75,12 @@ public class User {
     }
     setCash(cash - (stock.getPrice() * count));
   }
+  
+  public void addToWatchList(String ticker, int count) {
+    Stonk stock = new Stonk();
+    stock.getStockInfo(ticker);
+    handler.addToWatchList(username, ticker, stock.getPrice(), 1);
+  }
 
   /**
    * Removes from portfolio.
@@ -114,6 +120,9 @@ public class User {
 
   private void setPortfolio(ArrayList<Stonk> portfolio){
     this.portfolio = new ArrayList<Stonk>(portfolio);
+  }
+  public JSONArray getWatchList() {
+    return handler.getWatchList(handler.findUser(username));
   }
 
   /**

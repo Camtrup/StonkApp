@@ -60,7 +60,7 @@ public class StonkApp extends Application {
     }
     return new User(user.getFirstName(), user.getLastName(), 
         user.getUserName(), user.getPassword(), user.getCash(),
-        user.getAge(), user.getPortfolio(), false);
+        user.getAge(), user.getPortfolio(), user.getWatchList(), false);
   }
 
   /**
@@ -76,7 +76,7 @@ public class StonkApp extends Application {
     }
     user = new User(s.getFirstName(), s.getLastName(), s.getUserName(),
         s.getPassword(), s.getCash(), s.getAge(),
-        s.getPortfolio(), false);
+        s.getPortfolio(),s.getWatchList(), false);
   }
 
   // public static Stage getStage(){ Finner ikke hvor vi bruker den
