@@ -1,13 +1,10 @@
 package core;
 
-import data.DataHandler;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-
+import java.nio.charset.Charset;
+import java.security.MessageDigest;
 //encryption imports
 import java.security.NoSuchAlgorithmException;
-import java.nio.charset.Charset;
-import java.security.MessageDigest;  
+import java.util.ArrayList;  
 
 /**
  * Class user.
@@ -20,9 +17,7 @@ public class User {
   private String lastName;
   private String password;
   private String username;
-  // private JSONArray portfolio; Unused
-
-  public DataHandler handler = new DataHandler();
+  private ArrayList<Stonk> portfolio = new ArrayList<Stonk>(); 
 
   /**
    * Constructor.
@@ -37,7 +32,7 @@ public class User {
    * @param isNewUser boolean
    */
   public User(String firstName, String lastName, String username, String password,
-      float cash, int age, JSONArray portfolio, boolean isNewUser) {
+      float cash, int age, ArrayList<Stonk> portfolio, boolean isNewUser) {
     if (isNewUser) {
       setFirstName(firstName);
       setLastName(lastName);
@@ -45,8 +40,7 @@ public class User {
       setPassword(encryptPassword(password));
       setCash(cash);
       setAge(age);
-      // this.portfolio = getPortfolio(); bruker vi den?
-      handler.newUser(username, encryptPassword(password), firstName, lastName, age, cash, new JSONArray());
+      setPortfolio(portfolio);
     } else {
       this.firstName = firstName;
       this.lastName = lastName;
@@ -54,11 +48,8 @@ public class User {
       this.password = password;
       this.cash = cash;
       this.age = age;
+      setPortfolio(portfolio);
     }
-  }
-
-  public User() {
-    firstName = "This is a dummy, used as temp";
   }
 
   /**
@@ -71,10 +62,18 @@ public class User {
     if (count <= 0) {
       throw new IllegalArgumentException("Amount of stocks cant be negative or 0");
     }
-    Stonk stock = new Stonk();
-    stock.getStockInfo(ticker);
+    Stonk stock = new Stonk(ticker, count);
+    boolean isOwned = false;
+    for(Stonk i : portfolio){
+      if (i.getTicker().equals("ticker")){
+        i.setNewAverage(stock);
+        isOwned = true;
+      }
+    }
+    if(!isOwned){
+      portfolio.add(stock);
+    }
     setCash(cash - (stock.getPrice() * count));
-    handler.addToPortfoilio(username, ticker, stock.getPrice(), count);
   }
 
   /**
@@ -87,14 +86,34 @@ public class User {
     if (count <= 0) {
       throw new IllegalArgumentException("Amount of stocks cant be negative or 0");
     }
-    Stonk stock = new Stonk();
-    stock.getStockInfo(ticker);
-    handler.removeFromPortfolio(username, ticker, stock.getPrice(), count);
+    Stonk stock = new Stonk(ticker, count);
+    boolean isOwned = false;
+    for(Stonk i : getPortfolio()){
+      if(i.getTicker().equals(ticker)){
+        isOwned = true;
+        if(count > i.getCount()){
+          throw new IllegalArgumentException("Not enough stocks to sell");
+        }
+        else if (count == i.getCount()){
+          portfolio.remove(i);
+        }
+        else {
+          i.setNewCount(stock);
+        }
+      }
+    }
+    if (!isOwned){
+      throw new IllegalArgumentException("Stock is not in portfolio");
+    }
     setCash(cash + (stock.getPrice() * count));
   }
 
-  public JSONArray getPortfolio() {
-    return handler.getPortfolio(handler.findUser(username));
+  public ArrayList<Stonk> getPortfolio() {
+    return new ArrayList<Stonk>(portfolio);
+  }
+
+  private void setPortfolio(ArrayList<Stonk> portfolio){
+    this.portfolio = new ArrayList<Stonk>(portfolio);
   }
 
   /**
@@ -129,9 +148,6 @@ public class User {
   public void setUserName(String name) {
     if (name.isBlank()) {
       throw new IllegalArgumentException("Username cannot be blank");
-    }
-    if (handler.findUser(name) != null) {
-      throw new IllegalArgumentException("Username is already registered");
     }
     this.username = name;
   }
@@ -170,7 +186,6 @@ public class User {
       throw new IllegalArgumentException("Cant set a negative balance");
     }
     this.cash += cash;
-    handler.addOrRemoveCash(getUserName(), cash);
   }
 
   /**
@@ -183,7 +198,6 @@ public class User {
       throw new IllegalArgumentException("Cant set a positive number");
     }
     this.cash -= cash;
-    handler.addOrRemoveCash(getUserName(), cash);
   }
 
   /**
@@ -199,22 +213,6 @@ public class User {
       throw new IllegalArgumentException("Age cannot be empty");
     }
     this.age = age;
-  }
-
-  /**
-   * Checks if login is valid.
-   *
-   * @param username string.
-   * @param password string.
-   * @return the gives user if valid.
-   */
-  public User isLoginValid(String username, String password) {
-    String hashedPassword = encryptPassword(password);
-    JSONObject temp = handler.isLoginValid(username, hashedPassword);
-    return new User(temp.get("firstname").toString(),
-        temp.get("lastname").toString(), temp.get("username").toString(),
-        temp.get("password").toString(), Float.parseFloat(temp.get("cash").toString()),
-        Integer.parseInt(temp.get("age").toString()), (JSONArray) temp.get("portfolio"), false);
   }
 
   public String encryptPassword(String password) {
@@ -260,21 +258,12 @@ public class User {
     return age;
   }
 
-  @Override
-  public String toString() {
-    return "Hello " + username + " you have " + cash + " dollars in your account. Happy trading!!";
-  }
-
   /**
    * Main.
    *
    * @param args .
    */
   public static void main(String[] args) {
-    User u = new User();
-    u.setCash(2000);
-    // u.handler.addCash(u, 500);
-    System.out.println(u.getCash());
   }
 
 }
