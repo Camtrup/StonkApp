@@ -63,7 +63,7 @@ public class StonkRestService {
 
     public User isLoginValid(String username, String password){
         for (User i : users){
-            if (i.getUserName().equals(username)){
+            if (i.getUsername().equals(username)){
                 if(i.getPassword().equals(password)){
                     return i;
                 }
@@ -76,7 +76,7 @@ public class StonkRestService {
     private int getUserIndex(String username){
         int index = 0;
         for(User i : users){
-            if(i.getUserName().equals(username)){
+            if(i.getUsername().equals(username)){
                 return index;
             }
             index++;
@@ -89,7 +89,7 @@ public class StonkRestService {
         try {
             temp = new User(firstname, lastname, username, password, cash, age, new ArrayList<Stonk>(), new ArrayList<Stonk>(),  true);
             for (User i : users){
-                if (i.getUserName().equals(temp.getUserName())){
+                if (i.getUsername().equals(temp.getUsername())){
                     throw new IllegalArgumentException("Username already registered.");
                 }
             }

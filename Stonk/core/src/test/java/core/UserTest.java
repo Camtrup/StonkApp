@@ -47,9 +47,9 @@ public class UserTest {
         assertThrows(IllegalArgumentException.class,() -> {
             user.setUserName("");
         });
-        assertTrue(user.getUserName() == "tagemb", "getUsername not correct");
+        assertTrue(user.getUsername() == "tagemb", "getUsername not correct");
         user.setUserName("XYX");
-        assertFalse(user.getUserName() == "T", "setUserName not working");
+        assertFalse(user.getUsername() == "T", "setUserName not working");
         /* assertThrows(IllegalArgumentException.class,() -> {
             handler.findUser("tagemb");
         }); */

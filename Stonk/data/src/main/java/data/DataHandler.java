@@ -60,8 +60,4 @@ public class DataHandler {
     writer.write(arr);
     writer.close();
   }
-public static void main(String[] args) throws IOException {
-  DataHandler d = new DataHandler();
-  System.out.println(d.getAllUsers());
-}
 }

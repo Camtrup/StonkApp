@@ -59,7 +59,7 @@ public class StonkApp extends Application {
       return null;
     }
     return new User(user.getFirstName(), user.getLastName(), 
-        user.getUserName(), user.getPassword(), user.getCash(),
+        user.getUsername(), user.getPassword(), user.getCash(),
         user.getAge(), user.getPortfolio(), user.getWatchList(), false);
   }
 
@@ -74,7 +74,7 @@ public class StonkApp extends Application {
       user = null;
       return;
     }
-    user = new User(s.getFirstName(), s.getLastName(), s.getUserName(),
+    user = new User(s.getFirstName(), s.getLastName(), s.getUsername(),
         s.getPassword(), s.getCash(), s.getAge(),
         s.getPortfolio(),s.getWatchList(), false);
   }

@@ -39,7 +39,7 @@ public class User {
       setFirstName(firstName);
       setLastName(lastName);
       setUserName(username);
-      setPassword(encryptPassword(password));
+      setPassword(password);
       setCash(cash);
       setAge(age);
       setPortfolio(portfolio);
@@ -54,6 +54,12 @@ public class User {
       setPortfolio(portfolio);
       setWatchList(watchList);
     }
+  }
+  
+  //Used for login
+  public User(String username, String password){
+      this.username = username;
+      setPassword(password);
   }
 
   private void setWatchList(ArrayList<Stonk> watchList2) {
@@ -271,7 +277,7 @@ public class User {
     return encryptedPassword;
   }
 
-  public String getUserName() {
+  public String getUsername() {
     return username;
   }
 

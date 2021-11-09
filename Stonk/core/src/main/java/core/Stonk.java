@@ -23,13 +23,16 @@ public class Stonk {
       throw new IllegalArgumentException("Cannot be blank");
     }
     this.ticker = ticker;
+    
     String link = "https://www.marketwatch.com/investing/stock/" + ticker;
     Document doc = null;
+    
     try {
       doc = Jsoup.connect(link).cookie("AMCVS_CB68E4BA55144CAA0A4C98A5%40AdobeOrg", "1").get();
     } catch (IOException e1) {
       throw new IllegalArgumentException("Could not find page");
     }
+    
     try {
       this.name = (doc.select("h1.company__name").first().text());
       this.price = Float.parseFloat(doc.select("bg-quote.value").first().text());
@@ -41,6 +44,8 @@ public class Stonk {
     }
     this.count = count;
   }
+
+  
 
 
   //Used for generating bought stocks from the database;
@@ -95,15 +100,5 @@ public class Stonk {
 
   public String getPriceChange() {
     return priceChange;
-  }
-
-  /**
-   * Main method.
-   *
-   * @param args .
-   */
-  public static void main(String[] args) {
-    Stonk s = new Stonk("gme", 100);
-    System.out.println(s.getCount());
   }
 }
