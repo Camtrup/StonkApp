@@ -1,5 +1,6 @@
 package ui;
 
+import Stonk.rest.HttpHandler;
 import core.Stonk;
 import core.User;
 import javafx.fxml.FXML;
@@ -13,8 +14,15 @@ public class StockPageController {
 
   // DataHandler handler = new DataHandler(); Bruker ikke ifølge spotbugs
   private User user;
-  private Stonk stock = null; // Is static and public so the mainController
+  private static Stonk stock = null; // Is static and public so the mainController
   //can access it and send the stock-object forward
+
+  HttpHandler handler = new HttpHandler();
+
+  public static void setStaticStock(Stonk s){
+    stock = new Stonk(s.getTicker(), s.getCount());
+  }
+
 
   @FXML
   private Label moneyFlow;
@@ -38,7 +46,7 @@ public class StockPageController {
    */
   public void backToMain() {
     StonkApp app = new StonkApp();
-    StonkApp.setStaticUser(user);
+    StonkApp.setStaticUser(handler.getUser(user.getUsername(), user.getPassword()));
     app.changeScene("mainPage.fxml");
   }
 
@@ -112,13 +120,16 @@ public class StockPageController {
 
   // Add Stock to WatchList
   public void watchStock() {
-    try {
-      user.addToWatchList(stock.getTicker(), 1);
-      backToMain();
-    } catch (Exception e) {
-      System.out.println(e);
-    }
+    handler.addOrRemoveStonk(false, user.getUsername(), user.getPassword(), stock.getTicker(), Integer.parseInt(amountStock.getText()));
+    backToMain();
   }
+
+  // Add Stock to WatchList
+  public void removeWatchStock() {
+    handler.addOrRemoveStonk(true, user.getUsername(), user.getPassword(), stock.getTicker(), Integer.parseInt(amountStock.getText()));
+    backToMain();
+  }
+
 
   /**
    * Buys stock if amount is valid.
@@ -126,9 +137,9 @@ public class StockPageController {
   public void buy() {
     try {
       checkIfNum(amountStock);
-      user.addToPortfoilio(stock.getTicker(), Integer.parseInt(amountStock.getText()));
+      handler.buyOrSellStonk(false, user.getUsername(), user.getPassword(), stock.getTicker(), Integer.parseInt(amountStock.getText()));
       backToMain();
-    } catch (Exception e) {
+    } catch (IllegalArgumentException e) {
       System.out.println(e);
     }
   }
@@ -139,7 +150,7 @@ public class StockPageController {
   public void sell() {
     try {
       checkIfNum(amountStock);
-      user.removeFromPortfolio(stock.getTicker(), Integer.parseInt(amountStock.getText()));
+      handler.buyOrSellStonk(true, user.getUsername(), user.getPassword(), stock.getTicker(), Integer.parseInt(amountStock.getText()));
       backToMain();
     } catch (Exception e) {
       System.out.println(e);
@@ -149,11 +160,6 @@ public class StockPageController {
   @FXML
   public void initialize() {
     this.user = StonkApp.getStaticUser();
-    for(Stonk i : user.getPortfolio()){
-      if (i.getCount() == 0){
-        this.stock = i;
-      }
-    }
   }
 
 }

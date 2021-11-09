@@ -129,11 +129,10 @@ public class MainController {
   public void toStockPage() {
     StonkApp app = new StonkApp();
     try {
-      user.addToPortfoilio(searchBar.getText().toLowerCase(), 0);
-      StonkApp.setStaticUser(user);
+      StockPageController.setStaticStock(new Stonk(searchBar.getText(), 0));
       app.changeScene("stockPage.fxml");
     } catch (IllegalArgumentException e) {
-      throw new IllegalArgumentException("Cannot find stock.");
+      System.out.println(e);
     }
   }
 
