@@ -87,8 +87,7 @@ public class User {
     if(!isOwned){
       portfolio.add(stock);
     }
-    addCash(stock.getPrice()*stock.getCount());
-  
+    removeCash(stock.getPrice()*stock.getCount());
   }
   
   public void addToWatchList(String ticker, int count) {
@@ -146,7 +145,7 @@ public class User {
     if (!isOwned){
       throw new IllegalArgumentException("Stock is not in portfolio");
     }
-    removeCash(stock.getPrice()*stock.getCount());
+    addCash(stock.getPrice()*stock.getCount());
   }
 
   public ArrayList<Stonk> getPortfolio() {
