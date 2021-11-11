@@ -87,8 +87,7 @@ public class User {
     if(!isOwned){
       portfolio.add(stock);
     }
-    addCash(stock.getPrice()*stock.getCount());
-  
+    removeCash(stock.getPrice()*stock.getCount());
   }
   
   public void addToWatchList(String ticker, int count) {
@@ -146,7 +145,7 @@ public class User {
     if (!isOwned){
       throw new IllegalArgumentException("Stock is not in portfolio");
     }
-    removeCash(stock.getPrice()*stock.getCount());
+    addCash(stock.getPrice()*stock.getCount());
   }
 
   public ArrayList<Stonk> getPortfolio() {
@@ -201,7 +200,7 @@ public class User {
    *
    * @param password new password.
    */
-  private void setPassword(String password) {
+  protected void setPassword(String password) {
     if (password.isBlank()) {
       throw new IllegalArgumentException("Password cannot be blank");
     }
@@ -217,6 +216,9 @@ public class User {
     if (cash < 0) {
       throw new IllegalArgumentException("Cant add a negative amount");
     }
+    if (cash == 0) {
+      throw new IllegalArgumentException("Cant add nothing");
+    }
     this.cash += cash;
   }
 
@@ -225,7 +227,7 @@ public class User {
    *
    * @param cash how much.
    */
-  private void removeCash(float cash) {
+  protected void removeCash(float cash) {
     if (cash < 0) {
       throw new IllegalArgumentException("Cannot remove a negative amount");
     }
