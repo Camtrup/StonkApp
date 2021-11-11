@@ -2,6 +2,7 @@ package core;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -28,16 +29,27 @@ public class StonkTest {
         assertTrue(stonk.getPrice()>0);
     }
 
+
     @Test
     public void testTicker(){
         assertTrue(stonk.getTicker().getClass().equals(String.class));
     }
+  
 
     @Test
     public void testPriceChange(){
         assertTrue(stonk.getPriceChange().getClass().equals(String.class));
     }
 
+    @Test
+    public void testContructor(){
+        assertThrows(IllegalArgumentException.class, () -> {
+            stonk = new Stonk(null, 1);
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            stonk = new Stonk("", 1);
+        });
+    }
 //getPriceChange() {
 
 

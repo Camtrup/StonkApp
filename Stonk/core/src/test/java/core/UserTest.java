@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +18,7 @@ public class UserTest {
 	@BeforeEach
     public void setup(){
         //user = handler.generateUser("casper");
-        user = new User("Tage", "Berg", "tagemb", "123", 10000, 23, null,null,false);
+        user = new User("Tage", "Berg", "tagemb", "123", 10000, 23, new ArrayList<Stonk>(),new ArrayList<Stonk>(),false);
         
         
     }
@@ -27,12 +29,31 @@ public class UserTest {
         assertThrows(IllegalArgumentException.class,() -> {
             user.setAge(17);
         });
+        assertThrows(IllegalArgumentException.class,() -> {
+            user.setAge(0);
+        });
+
     }
 
     @Test
     public void testCash(){
         assertEquals(10000, user.getCash(), "Not correct cash");
+        assertThrows(IllegalArgumentException.class, () -> {
+            user.addCash(-2);
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            user.addCash(0);
+        });
+        user.addCash(100);
+        assertThrows(IllegalArgumentException.class, () -> {
+            user.removeCash(-2);
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            user.removeCash(200000);
+        });
+        user.removeCash(100);
 
+        
         
         //user.setCash(20000);
         //assertEquals(20000, user.getCash(), "setCash does not work");
@@ -54,13 +75,19 @@ public class UserTest {
             handler.findUser("tagemb");
         }); */
     }
-
+    
     @Test
     public void testName(){
+        assertThrows(IllegalArgumentException.class, () -> {
+            user.setFirstName("");
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            user.setLastName("");
+        });
         assertTrue(user.getFirstName() == "Tage", "getfirstName not correct");
         user.setFirstName("X");
         assertFalse(user.getFirstName() == "Tage", "setFirstName not working");
-
+        
         assertTrue(user.getLastName() == "Berg", "getfirstName not correct");
         user.setLastName("Y");
         assertFalse(user.getLastName() == "XXXX", "setFirstName not working");
@@ -69,9 +96,12 @@ public class UserTest {
     public void testPassword(){
         assertTrue(user.getPassword() == "123", "getPassword not correct");
         assertFalse(user.getPassword() == "YYYY", "setPassword not working");
+        assertThrows(IllegalArgumentException.class, () -> {
+            user.setPassword("");
+        });
     }
-    @Test
-    public void testPortfolio(){
+    //@Test
+    //public void testPortfolio(){
         //JSONArray p = handler.getPortfolio(handler.findUser("tagemb"));
         //assertEquals(user.getPortfolio(), p, "getPortfolio should be false");
         /* 
@@ -87,8 +117,45 @@ public class UserTest {
         user.removeFromPortfolio("GME", 20);
         assertEquals(user.getPortfolio().size(), 1, "The length og the portfolio should be 1");
  */
+    //}
+    @Test
+    public void testEncrypted(){
+        assertEquals(user.encryptPassword("123"),"202cb962ac59075b964b07152d234b70");
     }
+    
+    @Test
+    public void testPortfolio(){
+        assertThrows(IllegalArgumentException.class, () -> {
+            user.addToPortfoilio("apple", -1);
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            user.removeFromPortfolio("apple", -1);
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            user.removeFromPortfolio("apple", 10);
+        });
+        
+    }
+    
+    @Test
+    public void testWatchlist(){
 
-
-
+        user.addToWatchList("apple", 1);
+        assertThrows(IllegalArgumentException.class, () -> {
+            user.addToWatchList("apple", 1);
+        });
+        
+        assertThrows(IllegalArgumentException.class, () -> {
+            user.removeFromWatchList("dnb", 1);
+        });
+        user.removeFromWatchList("apple", 1);
+        
+    }
+    @Test
+    public void testUser(){
+        User user2 = new User("test3", "test3", "test3", "123", 10000, 22, new ArrayList<Stonk>(),new ArrayList<Stonk>(),true);
+        assertEquals(10000,user2.getCash());  
+        assertEquals("test3",user2.getFirstName()); 
+        assertEquals("test3",user2.getLastName()); 
+    }
 }
