@@ -22,7 +22,7 @@ public class Stonk {
     if (ticker.equals("")) {
       throw new IllegalArgumentException("Cannot be blank");
     }
-    this.ticker = ticker;
+    this.ticker = ticker.toLowerCase();
     
     String link = "https://www.marketwatch.com/investing/stock/" + ticker;
     Document doc = null;

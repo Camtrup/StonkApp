@@ -79,7 +79,7 @@ public class User {
     Stonk stock = new Stonk(ticker, count);
     boolean isOwned = false;
     for(Stonk i : portfolio){
-      if (i.getTicker().equals("ticker")){
+      if (i.getTicker().equals(ticker.toLowerCase())){
         i.setNewAverage(stock);
         isOwned = true;
       }
@@ -94,7 +94,7 @@ public class User {
   public void addToWatchList(String ticker, int count) {
     Stonk stock = new Stonk(ticker, count);
     for (Stonk i : watchList){
-      if (i.getTicker().equals(ticker)){
+      if (i.getTicker().equals(ticker.toLowerCase())){
         throw new IllegalArgumentException("Stock is already in watchlist");
       }
     }
@@ -107,7 +107,7 @@ public class User {
       throw new IllegalArgumentException("List is empty");
     }
     for (Stonk i : getWatchList()){
-      if (i.getTicker().equals(ticker)){
+      if (i.getTicker().equals(ticker.toLowerCase())){
         watchList.remove(i);
         isInList = true;
       }
@@ -130,7 +130,7 @@ public class User {
     Stonk stock = new Stonk(ticker, count);
     boolean isOwned = false;
     for(Stonk i : getPortfolio()){
-      if(i.getTicker().equals(ticker)){
+      if(i.getTicker().equals(ticker.toLowerCase())){
         isOwned = true;
         if(count > i.getCount()){
           throw new IllegalArgumentException("Not enough stocks to sell");
