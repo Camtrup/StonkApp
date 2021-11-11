@@ -1,7 +1,8 @@
 package ui;
 
-import core.User;
 import java.io.IOException;
+
+import core.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -20,15 +21,16 @@ public class LoginController {
   @FXML
   private TextField username;
 
+  private HttpHandler handler = new HttpHandler();
+
   /**
    * Logs the user in.
    *
    * @throws IOException if not possible.
    */
-  public void login() throws IOException {
+  public void login() {
     StonkApp app = new StonkApp();
     app.changeScene("mainPage.fxml");
-
   }
 
   /**
@@ -36,13 +38,15 @@ public class LoginController {
    */
   @FXML
   public void isLoginValid() {
-    try {
-      User temp = new User();
-      StonkApp.setStaticUser(temp.isLoginValid(username.getText().toString(),
-          password.getText().toString()));
+    User temp = new User(username.getText(), password.getText());
+    String resp = handler.isLoginValid(temp.getUsername(), temp.getPassword());
+    if(resp.contains("200")){
+      StonkApp.setStaticUser(handler.getUser(temp.getUsername(), temp.getPassword()));
       login();
-    }  catch (IllegalArgumentException | IOException e) {
-      System.out.println(e);
+    }
+    else{
+      //feedback
+      System.out.println(resp);
     }
   }
 

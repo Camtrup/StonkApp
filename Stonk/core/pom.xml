@@ -9,16 +9,10 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
+    
+
 
     <dependencies>
-
-        <dependency>
-            <groupId>GR2135</groupId>
-            <artifactId>data</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
-        
          <!-- javafx -->
          <dependency>
             <groupId>org.openjfx</groupId>

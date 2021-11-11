@@ -6,13 +6,10 @@ import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 
 public class DataHandlerTest {
-    private DataHandler dataHandler;
-
-
 
     @BeforeEach
     public void setup(){
-        dataHandler = new DataHandler(); 
+        
     }
 
     @Test 

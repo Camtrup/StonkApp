@@ -1,11 +1,11 @@
 package ui;
 
-import core.User;
 import java.io.IOException;
+
+import core.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import org.json.simple.JSONArray;
 
 /**
  * Controller for register page.
@@ -28,6 +28,8 @@ public class RegisterController {
   private Button registerUser;
   @FXML
   private TextField username;
+
+  HttpHandler handler = new HttpHandler();
 
   /**
    * Login from the register page. 
@@ -59,18 +61,24 @@ public class RegisterController {
     try {
       tempInt = Integer.parseInt(age.getText());
       tempFloat = Float.parseFloat(cash.getText());
-      StonkApp.setStaticUser(new User(firstname.getText(), lastname.getText(),
-          username.getText(), password.getText(), Float.parseFloat(cash.getText()),
-          Integer.parseInt(age.getText()), new JSONArray(),new JSONArray(), true));
-      loginFromRegister();
-    } catch (Exception e) {
+    } 
+    catch (IllegalArgumentException e) {
       if (tempInt == -1) {
         System.out.println(new IllegalArgumentException("Age must be an integer"));
-      } else if (tempFloat == -1) {
+      } 
+      else if (tempFloat == -1) {
         System.out.println(new IllegalArgumentException("Cash must be a number"));
-      } else {
-        System.out.println(e);
-      }
+      } 
+    }
+    User temp = new User(username.getText(), password.getText());
+    String resp = handler.newUser(firstname.getText(), lastname.getText(), username.getText(), password.getText(), tempFloat, tempInt);
+    if(resp.contains("200")){
+      StonkApp.setStaticUser(handler.getUser(temp.getUsername(), temp.getPassword()));
+      loginFromRegister();
+    }
+    else {
+      //Feedback
+      System.out.println(resp);
     }
   }
 

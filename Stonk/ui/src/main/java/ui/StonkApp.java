@@ -1,14 +1,13 @@
 package ui;
 
-import core.User;
-import data.DataHandler;
 import java.io.IOException;
+
+import core.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.json.simple.JSONObject;
 
 /**
  * JavaFX App.
@@ -60,7 +59,7 @@ public class StonkApp extends Application {
       return null;
     }
     return new User(user.getFirstName(), user.getLastName(), 
-        user.getUserName(), user.getPassword(), user.getCash(),
+        user.getUsername(), user.getPassword(), user.getCash(),
         user.getAge(), user.getPortfolio(), user.getWatchList(), false);
   }
 
@@ -75,7 +74,7 @@ public class StonkApp extends Application {
       user = null;
       return;
     }
-    user = new User(s.getFirstName(), s.getLastName(), s.getUserName(),
+    user = new User(s.getFirstName(), s.getLastName(), s.getUsername(),
         s.getPassword(), s.getCash(), s.getAge(),
         s.getPortfolio(),s.getWatchList(), false);
   }
@@ -87,8 +86,8 @@ public class StonkApp extends Application {
     stg = stage;
   }
 
-  public static void main(String[] args) {
-    launch(StonkApp.class, args);
-  }
+  // public static void main(String[] args) {
+  //   launch(StonkApp.class, args);
+  // }
 
 }

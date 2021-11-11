@@ -2,11 +2,9 @@ package ui;
 
 import core.Stonk;
 import core.User;
-import data.DataHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import org.json.simple.JSONObject;
 
 /**
  * Controller for stockpage.
@@ -15,8 +13,15 @@ public class StockPageController {
 
   // DataHandler handler = new DataHandler(); Bruker ikke ifølge spotbugs
   private User user;
-  public static final Stonk stock = new Stonk(); // Is static and public so the mainController
+  private static Stonk stock = null; // Is static and public so the mainController
   //can access it and send the stock-object forward
+
+  HttpHandler handler = new HttpHandler();
+
+  public static void setStaticStock(Stonk s){
+    stock = new Stonk(s.getTicker(), s.getCount());
+  }
+
 
   @FXML
   private Label moneyFlow;
@@ -40,7 +45,7 @@ public class StockPageController {
    */
   public void backToMain() {
     StonkApp app = new StonkApp();
-    StonkApp.setStaticUser(user);
+    StonkApp.setStaticUser(handler.getUser(user.getUsername(), user.getPassword()));
     app.changeScene("mainPage.fxml");
   }
 
@@ -58,10 +63,9 @@ public class StockPageController {
     char priceChangeFloat = stock.getPriceChange().charAt(0); // Checks if priceChange is negative
     priceChange.setText(stock.getPriceChange());
 
-    for (Object i : user.getPortfolio()) {
-      JSONObject temp = (JSONObject) i;
-      if (temp.get("ticker").equals(stock.getTicker())) {
-        owning.setText(String.valueOf(temp.get("count")));
+    for (Stonk i : user.getPortfolio()) {
+      if (i.getTicker().equals(stock.getTicker())) {
+        owning.setText(String.valueOf(i.getCount()));
       }
     }
 
@@ -106,7 +110,7 @@ public class StockPageController {
     try {
       Integer.parseInt(number.getText());
       if (number.getText().equals("")) {
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException("Cannot be blank");
       }
     } catch (NumberFormatException e) {
       throw new IllegalArgumentException("Amount must be a number");
@@ -115,44 +119,74 @@ public class StockPageController {
 
   // Add Stock to WatchList
   public void watchStock() {
-    try {
-      user.addToWatchList(stock.getTicker(), 1);
+    String resp = handler.addOrRemoveStonk(false, user.getUsername(), user.getPassword(), stock.getTicker(), 1);
+    if(resp.contains("200")){
       backToMain();
-    } catch (Exception e) {
-      System.out.println(e);
+    }
+    else{
+      //Feedback
+      System.out.println(resp);
     }
   }
+
+  // Add Stock to WatchList
+  public void removeWatchStock() {
+    String resp = handler.addOrRemoveStonk(true, user.getUsername(), user.getPassword(), stock.getTicker(), 1);
+    if(resp.contains("200")){
+      backToMain();
+    }
+    else{
+      //Feedback
+      System.out.println(resp);
+    }
+  }
+
 
   /**
    * Buys stock if amount is valid.
    */
   public void buy() {
-    try {
-      checkIfNum(amountStock);
-      user.addToPortfoilio(stock.getTicker(), Integer.parseInt(amountStock.getText()));
-      backToMain();
-    } catch (Exception e) {
-      System.out.println(e);
-    }
+      try {
+        checkIfNum(amountStock);
+        String resp = handler.buyOrSellStonk(false, user.getUsername(), user.getPassword(), stock.getTicker(), Integer.parseInt(amountStock.getText()));
+          if (resp.contains("200")){
+            backToMain();
+          }
+          else {
+            //Feedback
+            System.out.println(resp);
+          }
+      }
+      catch(IllegalArgumentException e){
+        //Feedback
+        System.out.println(e);
+      }
   }
 
   /**
    * Sells stocks if amount is valid.
    */
   public void sell() {
-    try {
-      checkIfNum(amountStock);
-      user.removeFromPortfolio(stock.getTicker(), Integer.parseInt(amountStock.getText()));
-      backToMain();
-    } catch (Exception e) {
-      System.out.println(e);
-    }
+      try {
+        checkIfNum(amountStock);
+        String resp = handler.buyOrSellStonk(true, user.getUsername(), user.getPassword(), stock.getTicker(), Integer.parseInt(amountStock.getText()));
+        if (resp.contains("200")){
+          backToMain();
+        }
+        else {
+          //Feedback
+          System.out.println(resp);
+        }
+      }
+      catch(IllegalArgumentException e){
+        //Feedback
+        System.out.println(e);
+      }
   }
 
   @FXML
   public void initialize() {
     this.user = StonkApp.getStaticUser();
-
   }
 
 }

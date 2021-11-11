@@ -1,27 +1,24 @@
 package ui;
 
-import core.Stonk;
-import core.User;
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Objects;
+
+import core.Stonk;
+import core.User;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 
 /**
  * Controller for main.
@@ -67,6 +64,7 @@ public class MainController {
   private Float stockPriceChanged = (float) 0.0;
   private Float growthPerStock = (float) 0.0;
   private String stockOnWeb;
+  HttpHandler handler = new HttpHandler();
   // public Float difference = (float) 0; - spotbugs - unused
 
   /**
@@ -84,7 +82,6 @@ public class MainController {
    * Displays your potifolio on main im fxml.
    */
   public void displayOnMain() {
-    user.removeMoney(ecuityChange); // to show correct current balance
     displayPortfolio();
     // Float difference = (ecuityChange - user.getCash());
     cashMoneyFlow.setText(Float.toString(user.getCash()) + "$");
@@ -133,10 +130,14 @@ public class MainController {
   public void toStockPage() {
     StonkApp app = new StonkApp();
     try {
-      StockPageController.stock.getStockInfo(searchBar.getText().toLowerCase());
+      Stonk temp = new Stonk(searchBar.getText(), 0);
+      if(Objects.isNull(temp)){
+        throw new IllegalArgumentException("Could not find stock");
+      }
+      StockPageController.setStaticStock(temp);
       app.changeScene("stockPage.fxml");
-    } catch (IllegalArgumentException e) {
-      throw new IllegalArgumentException("Cannot find stock.");
+    } catch (IllegalArgumentException | NullPointerException e) {
+      System.out.println(e);
     }
   }
 
@@ -148,10 +149,8 @@ public class MainController {
     try {
       d.browse(new URI("https://www.marketwatch.com/investing/stock/" + stockOnWeb));
     } catch (IOException e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
     } catch (URISyntaxException e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
     }
   }
@@ -164,27 +163,22 @@ public class MainController {
     watchList.setStyle("-fx-graphic: url('https://img.icons8.com/ios/25/000000/star--v2.png')");
 
     ArrayList<ArrayList<String>> arr = new ArrayList<ArrayList<String>>();
-    JSONArray json = user.getPortfolio();
-    System.out.println(json);
+    ArrayList<Stonk> portfolio = user.getPortfolio();
 
-    for (Object i : json) {
-      JSONObject tempObj = (JSONObject) i;
+    for (Stonk i : portfolio) {
       ArrayList<String> tempArr = new ArrayList<>();
-      tempArr.add(String.valueOf(tempObj.get("ticker")));
-      tempArr.add(String.valueOf(tempObj.get("price")));
-      tempArr.add(String.valueOf(tempObj.get("count")));
+      tempArr.add(String.valueOf(i.getTicker()));
+      tempArr.add(String.valueOf(i.getPrice()));
+      tempArr.add(String.valueOf(i.getCount()));
       // LEGG TIL CURRENTS PRICE OG NÅVERENDE VERDI
       arr.add(tempArr);
     }
-    System.out.println(arr);
 
     if (arr.size() == 0) {
       // "NO STOCKS IN PORTFOLIO"
     } else {
       for (ArrayList<String> row : arr) {
-
-        Stonk s = new Stonk();
-        s.getStockInfo(row.get(0));
+        Stonk s = new Stonk(row.get(0), Integer.parseInt(row.get(2)));
         System.out.println((row.get(0)));
         // to get how much you have eanred from Stocks
         ecuityChange += (s.getPrice()) * Float.parseFloat(row.get(2));
@@ -242,13 +236,12 @@ public class MainController {
     scrollPane.getChildren().clear(); // remove the portifolio.
     watchList.setStyle("-fx-graphic: url('https://img.icons8.com/fluency/25/000000/star.png')"); // change star color in the button
       ArrayList<ArrayList<String>> arrWatch = new ArrayList<ArrayList<String>>();
-      JSONArray json = user.getWatchList();
-      for (Object i : json) {
-        JSONObject tempObj = (JSONObject) i;
+      ArrayList<Stonk> json = user.getWatchList();
+      for (Stonk i : json) {
         ArrayList<String> tempArrWatch = new ArrayList<>();
-        tempArrWatch.add(String.valueOf(tempObj.get("ticker")));
-        tempArrWatch.add(String.valueOf(tempObj.get("price")));
-        tempArrWatch.add(String.valueOf(tempObj.get("count")));
+        tempArrWatch.add(i.getTicker());
+        tempArrWatch.add(String.valueOf(i.getPrice()));
+        tempArrWatch.add(String.valueOf(i.getCount()));
         // LEGG TIL CURRENTS PRICE OG NÅVERENDE VERDI
         arrWatch.add(tempArrWatch);
       }
@@ -257,8 +250,7 @@ public class MainController {
         // "NO STOCKS IN watchlist"
       } else {
         for (ArrayList<String> rowWatch : arrWatch) {
-          Stonk s = new Stonk();
-          s.getStockInfo(rowWatch.get(0));
+          Stonk s = new Stonk(rowWatch.get(0), 0);
           float percentChange =100 -(Float.parseFloat(rowWatch.get(1))/((s.getPrice())))*100;   // show difference in stock price from now and when it was added to watchList.
           
 // Adds info
@@ -315,6 +307,10 @@ public class MainController {
   @FXML
   private void initialize() {
     this.user = StonkApp.getStaticUser();
+    String resp = handler.save();
+    if (resp.contains("400")){
+      System.out.println(resp);
+    }
     displayOnMain();
   }
 

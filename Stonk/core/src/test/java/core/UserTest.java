@@ -1,26 +1,16 @@
 package core;
 
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import data.DataHandler;
-
-import static org.junit.Assert.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import org.json.simple.JSONArray;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-
 public class UserTest {
 	private User user;
-    DataHandler handler = new DataHandler();
     String username = "tagemb";
 
 	@BeforeEach
@@ -57,9 +47,9 @@ public class UserTest {
         assertThrows(IllegalArgumentException.class,() -> {
             user.setUserName("");
         });
-        assertTrue(user.getUserName() == "tagemb", "getUsername not correct");
+        assertTrue(user.getUsername() == "tagemb", "getUsername not correct");
         user.setUserName("XYX");
-        assertFalse(user.getUserName() == "T", "setUserName not working");
+        assertFalse(user.getUsername() == "T", "setUserName not working");
         /* assertThrows(IllegalArgumentException.class,() -> {
             handler.findUser("tagemb");
         }); */
@@ -78,7 +68,6 @@ public class UserTest {
     @Test
     public void testPassword(){
         assertTrue(user.getPassword() == "123", "getPassword not correct");
-        //user.setPassword("XXX"); denne er satt til private, får feilmelding 
         assertFalse(user.getPassword() == "YYYY", "setPassword not working");
     }
     @Test

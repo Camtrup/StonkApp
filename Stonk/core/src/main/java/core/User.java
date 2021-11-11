@@ -1,13 +1,10 @@
 package core;
 
-import data.DataHandler;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-
+import java.nio.charset.Charset;
+import java.security.MessageDigest;
 //encryption imports
 import java.security.NoSuchAlgorithmException;
-import java.nio.charset.Charset;
-import java.security.MessageDigest;  
+import java.util.ArrayList;  
 
 /**
  * Class user.
@@ -20,9 +17,8 @@ public class User {
   private String lastName;
   private String password;
   private String username;
-  // private JSONArray portfolio; Unused
-
-  public DataHandler handler = new DataHandler();
+  private ArrayList<Stonk> portfolio = new ArrayList<Stonk>();
+  private ArrayList<Stonk> watchList = new ArrayList<Stonk>();
 
   /**
    * Constructor.
@@ -33,20 +29,21 @@ public class User {
    * @param password string
    * @param cash float
    * @param age int
-   * @param portfolio JSONArray
+   * @param portfolio ArrayList of type Stonk
+   * @param watchList Arraylist of type Stonk
    * @param isNewUser boolean
    */
   public User(String firstName, String lastName, String username, String password,
-      float cash, int age, JSONArray portfolio, JSONArray watchList, boolean isNewUser) {
+      float cash, int age, ArrayList<Stonk> portfolio, ArrayList<Stonk> watchList, boolean isNewUser) {
     if (isNewUser) {
       setFirstName(firstName);
       setLastName(lastName);
       setUserName(username);
-      setPassword(encryptPassword(password));
-      setCash(cash);
+      setPassword(password);
+      addCash(cash);
       setAge(age);
-      // this.portfolio = getPortfolio(); bruker vi den?
-      handler.newUser(username, password, firstName, lastName, age, cash, new JSONArray(), new JSONArray());
+      setPortfolio(portfolio);
+      setWatchList(watchList);
     } else {
       this.firstName = firstName;
       this.lastName = lastName;
@@ -54,11 +51,19 @@ public class User {
       this.password = password;
       this.cash = cash;
       this.age = age;
+      setPortfolio(portfolio);
+      setWatchList(watchList);
     }
   }
+  
+  //Used for login
+  public User(String username, String password){
+      this.username = username;
+      setPassword(password);
+  }
 
-  public User() {
-    firstName = "This is a dummy, used as temp";
+  private void setWatchList(ArrayList<Stonk> watchList2) {
+    this.watchList = new ArrayList<Stonk>(watchList2);
   }
 
   /**
@@ -71,16 +76,45 @@ public class User {
     if (count <= 0) {
       throw new IllegalArgumentException("Amount of stocks cant be negative or 0");
     }
-    Stonk stock = new Stonk();
-    stock.getStockInfo(ticker);
-    setCash(cash - (stock.getPrice() * count));
-    handler.addToPortfoilio(username, ticker, stock.getPrice(), count);
+    Stonk stock = new Stonk(ticker, count);
+    boolean isOwned = false;
+    for(Stonk i : portfolio){
+      if (i.getTicker().equals("ticker")){
+        i.setNewAverage(stock);
+        isOwned = true;
+      }
+    }
+    if(!isOwned){
+      portfolio.add(stock);
+    }
+    addCash(stock.getPrice()*stock.getCount());
+  
   }
   
   public void addToWatchList(String ticker, int count) {
-    Stonk stock = new Stonk();
-    stock.getStockInfo(ticker);
-    handler.addToWatchList(username, ticker, stock.getPrice(), 1);
+    Stonk stock = new Stonk(ticker, count);
+    for (Stonk i : watchList){
+      if (i.getTicker().equals(ticker)){
+        throw new IllegalArgumentException("Stock is already in watchlist");
+      }
+    }
+    watchList.add(stock);
+  }
+  
+  public void removeFromWatchList(String ticker, int count){
+    boolean isInList = false;
+    if(watchList.size() == 0){
+      throw new IllegalArgumentException("List is empty");
+    }
+    for (Stonk i : getWatchList()){
+      if (i.getTicker().equals(ticker)){
+        watchList.remove(i);
+        isInList = true;
+      }
+    }
+    if(!isInList){
+      throw new IllegalArgumentException("Stock not in watchlist");
+    }
   }
 
   /**
@@ -93,17 +127,37 @@ public class User {
     if (count <= 0) {
       throw new IllegalArgumentException("Amount of stocks cant be negative or 0");
     }
-    Stonk stock = new Stonk();
-    stock.getStockInfo(ticker);
-    handler.removeFromPortfolio(username, ticker, stock.getPrice(), count);
-    setCash(cash + (stock.getPrice() * count));
+    Stonk stock = new Stonk(ticker, count);
+    boolean isOwned = false;
+    for(Stonk i : getPortfolio()){
+      if(i.getTicker().equals(ticker)){
+        isOwned = true;
+        if(count > i.getCount()){
+          throw new IllegalArgumentException("Not enough stocks to sell");
+        }
+        else if (count == i.getCount()){
+          portfolio.remove(i);
+        }
+        else {
+          i.setNewCount(stock);
+        }
+      }
+    }
+    if (!isOwned){
+      throw new IllegalArgumentException("Stock is not in portfolio");
+    }
+    removeCash(stock.getPrice()*stock.getCount());
   }
 
-  public JSONArray getPortfolio() {
-    return handler.getPortfolio(handler.findUser(username));
+  public ArrayList<Stonk> getPortfolio() {
+    return new ArrayList<Stonk>(portfolio);
   }
-  public JSONArray getWatchList() {
-    return handler.getWatchList(handler.findUser(username));
+
+  private void setPortfolio(ArrayList<Stonk> portfolio){
+    this.portfolio = new ArrayList<Stonk>(portfolio);
+  }
+  public ArrayList<Stonk> getWatchList() {
+    return new ArrayList<>(watchList);
   }
 
   /**
@@ -139,9 +193,6 @@ public class User {
     if (name.isBlank()) {
       throw new IllegalArgumentException("Username cannot be blank");
     }
-    if (handler.findUser(name) != null) {
-      throw new IllegalArgumentException("Username is already registered");
-    }
     this.username = name;
   }
 
@@ -158,28 +209,15 @@ public class User {
   }
 
   /**
-   * Sets the cash.
-   *
-   * @param cash how much.
-   */
-  private void setCash(float cash) {
-    if (cash < 0) {
-      throw new IllegalArgumentException("Cant set a negative balance");
-    }
-    this.cash = cash;
-  }
-
-  /**
    * Adds money.
    *
    * @param cash how much.
    */
-  public void addMoney(float cash) {
+  public void addCash(float cash) {
     if (cash < 0) {
-      throw new IllegalArgumentException("Cant set a negative balance");
+      throw new IllegalArgumentException("Cant add a negative amount");
     }
     this.cash += cash;
-    handler.addOrRemoveCash(getUserName(), cash);
   }
 
   /**
@@ -187,12 +225,14 @@ public class User {
    *
    * @param cash how much.
    */
-  public void removeMoney(float cash) {
+  private void removeCash(float cash) {
     if (cash < 0) {
-      throw new IllegalArgumentException("Cant set a positive number");
+      throw new IllegalArgumentException("Cannot remove a negative amount");
+    }
+    if (cash > this.cash){
+      throw new IllegalArgumentException("Not enough cash");
     }
     this.cash -= cash;
-    handler.addOrRemoveCash(getUserName(), cash);
   }
 
   /**
@@ -208,22 +248,6 @@ public class User {
       throw new IllegalArgumentException("Age cannot be empty");
     }
     this.age = age;
-  }
-
-  /**
-   * Checks if login is valid.
-   *
-   * @param username string.
-   * @param password string.
-   * @return the gives user if valid.
-   */
-  public User isLoginValid(String username, String password) {
-    String hashedPassword = encryptPassword(password);
-    JSONObject temp = handler.isLoginValid(username, hashedPassword);
-    return new User(temp.get("firstname").toString(),
-        temp.get("lastname").toString(), temp.get("username").toString(),
-        temp.get("password").toString(), Float.parseFloat(temp.get("cash").toString()),
-        Integer.parseInt(temp.get("age").toString()), (JSONArray) temp.get("portfolio"), (JSONArray) temp.get("watchList"), false);
   }
 
   public String encryptPassword(String password) {
@@ -245,7 +269,7 @@ public class User {
     return encryptedPassword;
   }
 
-  public String getUserName() {
+  public String getUsername() {
     return username;
   }
 
@@ -268,14 +292,4 @@ public class User {
   public int getAge() {
     return age;
   }
-
-
-
-  /**
-   * Main.
-   *
-   * @param args .
-   */
-
-
 }
