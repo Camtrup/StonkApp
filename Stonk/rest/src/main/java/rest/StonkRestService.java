@@ -1,4 +1,4 @@
-package Stonk.rest;
+package rest;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -61,16 +61,23 @@ public class StonkRestService {
         return users;
     }
 
-    public User isLoginValid(String username, String password){
+    public User getUser(String username, String password){
+        if (isLoginValid(username, password).contains("200")){
+            return users.get(getUserIndex(username));
+        }
+        return null;
+    }
+
+    public String isLoginValid(String username, String password){
         for (User i : users){
             if (i.getUsername().equals(username)){
                 if(i.getPassword().equals(password)){
-                    return i;
+                    return "200";
                 }
-                throw new IllegalArgumentException("Password is incorrect");
+                return "400: Password is incorrect";
             }
         }
-        throw new IllegalArgumentException("Username not found");
+        return "400: Username not found";
     }
 
     private int getUserIndex(String username){
@@ -96,16 +103,18 @@ public class StonkRestService {
             users.add(temp);
         }
         catch(IllegalArgumentException e){
-            System.out.println(e);
             return "400: " + e.getMessage();
         }
         return "200";
     }
 
     public String buyStonks(String username, String password, String ticker, int count) {
+        if (isLoginValid(username, password).contains("400")){
+            return "400: User not found";
+        }
         try{
-            User temp = isLoginValid(username, password);
             int index = getUserIndex(username);
+            User temp = users.get(index);
             temp.addToPortfoilio(ticker, count);
             users.set(index, temp);
         }
@@ -116,9 +125,12 @@ public class StonkRestService {
     }
     
     public String sellStonks(String username, String password, String ticker, int count) {
+        if (isLoginValid(username, password).contains("400")){
+            return "400: User not found";
+        }
         try{
-            User temp = isLoginValid(username, password);
             int index = getUserIndex(username);
+            User temp = users.get(index);
             temp.removeFromPortfolio(ticker, count);
             users.set(index, temp);
         }
@@ -133,7 +145,6 @@ public class StonkRestService {
     public String saveJSON(){
         Gson gson =  new GsonBuilder().create();
         JsonArray arr = gson.toJsonTree(users).getAsJsonArray();
-        System.out.println(arr.toString());
         try {
             handler.writeToFile(arr.toString());
         }
@@ -146,9 +157,12 @@ public class StonkRestService {
     }
 
     public String addStonksToWatchList(String username, String password, String ticker) {
+        if (isLoginValid(username, password).contains("400")){
+            return "400: User not found";
+        }
         try {
-            User temp = isLoginValid(username, password);
             int index = getUserIndex(username);
+            User temp = users.get(index);
             temp.addToWatchList(ticker, 1);
             users.set(index,temp);
         }
@@ -159,15 +173,27 @@ public class StonkRestService {
     }
 
     public String removeStonksFromWatchList(String username, String password, String ticker) {
+        if (isLoginValid(username, password).contains("400")){
+            return "400: User not found";
+        }
         try {
-            User temp = isLoginValid(username, password);
             int index = getUserIndex(username);
+            User temp = users.get(index);
             temp.removeFromWatchList(ticker, 1);
             users.set(index,temp);
         }
         catch(IllegalArgumentException e){
             return "400: " + e.getMessage();
         }
+        return "200";
+    }
+
+    public String removeUser(String username, String password) {
+        if (isLoginValid(username, password).contains("400")){
+            return "400: User not found";
+        }
+        int index = getUserIndex(username);
+        users.remove(index);
         return "200";
     }
 }
