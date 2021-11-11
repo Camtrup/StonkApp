@@ -86,8 +86,8 @@ public class StonkApp extends Application {
     stg = stage;
   }
 
-  public static void main(String[] args) {
-    launch(StonkApp.class, args);
-  }
+  // public static void main(String[] args) {
+  //   launch(StonkApp.class, args);
+  // }
 
 }

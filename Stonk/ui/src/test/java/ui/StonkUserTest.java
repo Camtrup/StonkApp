@@ -6,7 +6,6 @@ import org.json.simple.JSONArray;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
 
-import data.DataHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -24,27 +23,25 @@ public class StonkUserTest extends ApplicationTest{
         StonkApp.setStage(stage);
     }
 
-    @Test
-    public void testRegisterAndDeleteProfile(){
-        DataHandler handler = new DataHandler();
-        JSONArray users = handler.getAllUsers();
-        String[][] arr = new String[][]{{"#firstname","test"},
-                                        {"#lastname","test"},
-                                        {"#age","20"},
-                                        {"#username","test2"},
-                                        {"#password","test"},
-                                        {"#cash","10000"},
-                                        {"#registerUser",""},
-                                        {"#myProfile",""},
-                                        {"#deleteUser",""}
-                                    };
+    // @Test
+    // public void testRegisterAndDeleteProfile(){
+    //     String[][] arr = new String[][]{{"#firstname","test"},
+    //                                     {"#lastname","test"},
+    //                                     {"#age","20"},
+    //                                     {"#username","test2"},
+    //                                     {"#password","test"},
+    //                                     {"#cash","10000"},
+    //                                     {"#registerUser",""},
+    //                                     {"#myProfile",""},
+    //                                     {"#deleteUser",""}
+    //                                 };
 
-        clickOn("#registerUserNew");
-        for(String[] param : arr) {
-            clickOn(param[0]).write(param[1]);
-        }
-        assertEquals(handler.getAllUsers(), users);
-    }
+    //     clickOn("#registerUserNew");
+    //     for(String[] param : arr) {
+    //         clickOn(param[0]).write(param[1]);
+    //     }
+    //     assertEquals(handler.getAllUsers(), users);
+    // }
     
     @Test
     public void testLoginBackLogout(){

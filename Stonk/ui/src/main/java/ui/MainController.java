@@ -6,6 +6,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import core.Stonk;
 import core.User;
@@ -63,6 +64,7 @@ public class MainController {
   private Float stockPriceChanged = (float) 0.0;
   private Float growthPerStock = (float) 0.0;
   private String stockOnWeb;
+  HttpHandler handler = new HttpHandler();
   // public Float difference = (float) 0; - spotbugs - unused
 
   /**
@@ -80,7 +82,6 @@ public class MainController {
    * Displays your potifolio on main im fxml.
    */
   public void displayOnMain() {
-    user.removeMoney(ecuityChange); // to show correct current balance
     displayPortfolio();
     // Float difference = (ecuityChange - user.getCash());
     cashMoneyFlow.setText(Float.toString(user.getCash()) + "$");
@@ -129,9 +130,13 @@ public class MainController {
   public void toStockPage() {
     StonkApp app = new StonkApp();
     try {
-      StockPageController.setStaticStock(new Stonk(searchBar.getText(), 0));
+      Stonk temp = new Stonk(searchBar.getText(), 0);
+      if(Objects.isNull(temp)){
+        throw new IllegalArgumentException("Could not find stock");
+      }
+      StockPageController.setStaticStock(temp);
       app.changeScene("stockPage.fxml");
-    } catch (IllegalArgumentException e) {
+    } catch (IllegalArgumentException | NullPointerException e) {
       System.out.println(e);
     }
   }
@@ -302,6 +307,10 @@ public class MainController {
   @FXML
   private void initialize() {
     this.user = StonkApp.getStaticUser();
+    String resp = handler.save();
+    if (resp.contains("400")){
+      System.out.println(resp);
+    }
     displayOnMain();
   }
 

@@ -27,6 +27,7 @@ public class ProfileController {
 
   private User user;
   StonkApp app = new StonkApp();
+  HttpHandler handler = new HttpHandler();
   // private Object putCash; checkstyle - unused field
 
   // Float differ = MainController.difference;
@@ -44,7 +45,7 @@ public class ProfileController {
    */
   public void addValue() {
     float cash = Float.parseFloat(moneyAdd.getText());
-    user.addMoney(cash);
+    user.addCash(cash);
     balance.setText(Float.toString(user.getCash()) + " $");
     addedPrompt.setText("Congrats, funds have been added");
   }
@@ -59,8 +60,14 @@ public class ProfileController {
   }
 
   public void deleteUser() {
-    //handler.deleteUser(user.getUserName());
-    logOut();
+    String resp = handler.removeUser(user.getUsername(), user.getPassword());
+    if(resp.contains("200")){
+      logOut();
+    }
+    else {
+      //Feedback
+      System.out.println(resp);
+    }
   }
 
   public void toMain() {

@@ -1,6 +1,5 @@
 package ui;
 
-import Stonk.rest.HttpHandler;
 import core.Stonk;
 import core.User;
 import javafx.fxml.FXML;
@@ -111,7 +110,7 @@ public class StockPageController {
     try {
       Integer.parseInt(number.getText());
       if (number.getText().equals("")) {
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException("Cannot be blank");
       }
     } catch (NumberFormatException e) {
       throw new IllegalArgumentException("Amount must be a number");
@@ -120,14 +119,26 @@ public class StockPageController {
 
   // Add Stock to WatchList
   public void watchStock() {
-    handler.addOrRemoveStonk(false, user.getUsername(), user.getPassword(), stock.getTicker(), Integer.parseInt(amountStock.getText()));
-    backToMain();
+    String resp = handler.addOrRemoveStonk(false, user.getUsername(), user.getPassword(), stock.getTicker(), 1);
+    if(resp.contains("200")){
+      backToMain();
+    }
+    else{
+      //Feedback
+      System.out.println(resp);
+    }
   }
 
   // Add Stock to WatchList
   public void removeWatchStock() {
-    handler.addOrRemoveStonk(true, user.getUsername(), user.getPassword(), stock.getTicker(), Integer.parseInt(amountStock.getText()));
-    backToMain();
+    String resp = handler.addOrRemoveStonk(true, user.getUsername(), user.getPassword(), stock.getTicker(), 1);
+    if(resp.contains("200")){
+      backToMain();
+    }
+    else{
+      //Feedback
+      System.out.println(resp);
+    }
   }
 
 
@@ -135,26 +146,42 @@ public class StockPageController {
    * Buys stock if amount is valid.
    */
   public void buy() {
-    try {
-      checkIfNum(amountStock);
-      handler.buyOrSellStonk(false, user.getUsername(), user.getPassword(), stock.getTicker(), Integer.parseInt(amountStock.getText()));
-      backToMain();
-    } catch (IllegalArgumentException e) {
-      System.out.println(e);
-    }
+      try {
+        checkIfNum(amountStock);
+        String resp = handler.buyOrSellStonk(false, user.getUsername(), user.getPassword(), stock.getTicker(), Integer.parseInt(amountStock.getText()));
+          if (resp.contains("200")){
+            backToMain();
+          }
+          else {
+            //Feedback
+            System.out.println(resp);
+          }
+      }
+      catch(IllegalArgumentException e){
+        //Feedback
+        System.out.println(e);
+      }
   }
 
   /**
    * Sells stocks if amount is valid.
    */
   public void sell() {
-    try {
-      checkIfNum(amountStock);
-      handler.buyOrSellStonk(true, user.getUsername(), user.getPassword(), stock.getTicker(), Integer.parseInt(amountStock.getText()));
-      backToMain();
-    } catch (Exception e) {
-      System.out.println(e);
-    }
+      try {
+        checkIfNum(amountStock);
+        String resp = handler.buyOrSellStonk(true, user.getUsername(), user.getPassword(), stock.getTicker(), Integer.parseInt(amountStock.getText()));
+        if (resp.contains("200")){
+          backToMain();
+        }
+        else {
+          //Feedback
+          System.out.println(resp);
+        }
+      }
+      catch(IllegalArgumentException e){
+        //Feedback
+        System.out.println(e);
+      }
   }
 
   @FXML
