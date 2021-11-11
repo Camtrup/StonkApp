@@ -103,7 +103,7 @@ public class StonkRestService {
             users.add(temp);
         }
         catch(IllegalArgumentException e){
-            return "400: " + e.getMessage();
+            return "401: " + e.getMessage();
         }
         return "200";
     }
@@ -119,7 +119,7 @@ public class StonkRestService {
             users.set(index, temp);
         }
         catch(IllegalArgumentException e){
-            return "400: " + e.getMessage();
+            return "406: " + e.getMessage();
         }
         return "200";
     }
@@ -135,7 +135,7 @@ public class StonkRestService {
             users.set(index, temp);
         }
         catch(IllegalArgumentException e){
-            return "400: " + e.getMessage();
+            return "405: " + e.getMessage();
         }
         return "200";
     }
@@ -149,9 +149,9 @@ public class StonkRestService {
             handler.writeToFile(arr.toString());
         }
         catch(FileNotFoundException e){
-            return "400" + e.getMessage();
+            return "408" + e.getMessage();
         } catch (IOException e) {
-            return "400" + e.getMessage();
+            return "409" + e.getMessage();
         }
         return "200";
     }
@@ -167,7 +167,7 @@ public class StonkRestService {
             users.set(index,temp);
         }
         catch(IllegalArgumentException e){
-            return "400: " + e.getMessage();
+            return "404: " + e.getMessage();
         }
         return "200";
     }
@@ -183,7 +183,7 @@ public class StonkRestService {
             users.set(index,temp);
         }
         catch(IllegalArgumentException e){
-            return "400: " + e.getMessage();
+            return "403: " + e.getMessage();
         }
         return "200";
     }
