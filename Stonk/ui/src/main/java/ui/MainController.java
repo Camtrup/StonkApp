@@ -88,7 +88,6 @@ public class MainController {
     cashMoneyFlow.setStyle("-fx-text-fill: white;");
     fullName.setText((user.getFirstName()) + " " + (user.getLastName()));
     equity.setText((decimalform(user.getCash() + stockPriceChanged + ecuityChange)) + "$");
-    System.out.println(stockPriceChanged);
     growthPercent();
   }
 
