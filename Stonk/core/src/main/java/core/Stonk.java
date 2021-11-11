@@ -35,8 +35,8 @@ public class Stonk {
     
     try {
       this.name = (doc.select("h1.company__name").first().text());
-      this.price = Float.parseFloat(doc.select("bg-quote.value").first().text());
-      this.priceChange = doc.select("span.change--percent--q").first().child(0).text();
+      this.price = Float.parseFloat(doc.select("h2.intraday__price:contains(.)").first().text().replaceAll("[^\\.0123456789]",""));
+      this.priceChange = doc.select("span.change--percent--q").first().text();
       // this.graph = (doc.select("mikey-chart")); // highcharts-8
     } catch (NullPointerException e) {
       ticker = doc.select(".results table tbody tr td a").first().text();
