@@ -40,7 +40,7 @@ public class User {
       setLastName(lastName);
       setUserName(username);
       setPassword(password);
-      setCash(cash);
+      addCash(cash);
       setAge(age);
       setPortfolio(portfolio);
       setWatchList(watchList);
@@ -87,7 +87,8 @@ public class User {
     if(!isOwned){
       portfolio.add(stock);
     }
-    setCash(cash - (stock.getPrice() * count));
+    addCash(stock.getPrice()*stock.getCount());
+  
   }
   
   public void addToWatchList(String ticker, int count) {
@@ -145,7 +146,7 @@ public class User {
     if (!isOwned){
       throw new IllegalArgumentException("Stock is not in portfolio");
     }
-    setCash(cash + (stock.getPrice() * count));
+    removeCash(stock.getPrice()*stock.getCount());
   }
 
   public ArrayList<Stonk> getPortfolio() {
@@ -208,25 +209,13 @@ public class User {
   }
 
   /**
-   * Sets the cash.
-   *
-   * @param cash how much.
-   */
-  private void setCash(float cash) {
-    if (cash < 0) {
-      throw new IllegalArgumentException("Cant set a negative balance");
-    }
-    this.cash = cash;
-  }
-
-  /**
    * Adds money.
    *
    * @param cash how much.
    */
-  public void addMoney(float cash) {
+  public void addCash(float cash) {
     if (cash < 0) {
-      throw new IllegalArgumentException("Cant set a negative balance");
+      throw new IllegalArgumentException("Cant add a negative amount");
     }
     this.cash += cash;
   }
@@ -236,9 +225,12 @@ public class User {
    *
    * @param cash how much.
    */
-  public void removeMoney(float cash) {
+  private void removeCash(float cash) {
     if (cash < 0) {
-      throw new IllegalArgumentException("Cant set a positive number");
+      throw new IllegalArgumentException("Cannot remove a negative amount");
+    }
+    if (cash > this.cash){
+      throw new IllegalArgumentException("Not enough cash");
     }
     this.cash -= cash;
   }

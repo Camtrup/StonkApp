@@ -30,7 +30,7 @@ public class Stonk {
     try {
       doc = Jsoup.connect(link).cookie("AMCVS_CB68E4BA55144CAA0A4C98A5%40AdobeOrg", "1").get();
     } catch (IOException e1) {
-      throw new IllegalArgumentException("Could not find page");
+      throw new IllegalArgumentException("Could not find stock");
     }
     
     try {
