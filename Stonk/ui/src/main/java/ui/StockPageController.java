@@ -39,6 +39,8 @@ public class StockPageController {
   private TextField amountStock;
   @FXML
   private TextField username;
+  @FXML
+  private Label illegalArgument;
 
   /**
    * Is fired when the user clicks "EXIT".
@@ -110,9 +112,11 @@ public class StockPageController {
     try {
       Integer.parseInt(number.getText());
       if (number.getText().equals("")) {
+        illegalArgument.setText("Cannot be blank");
         throw new IllegalArgumentException("Cannot be blank");
       }
     } catch (NumberFormatException e) {
+      illegalArgument.setText("Amount must be a number");
       throw new IllegalArgumentException("Amount must be a number");
     }
   }
@@ -125,6 +129,7 @@ public class StockPageController {
     }
     else{
       //Feedback
+      illegalArgument.setText(resp);
       System.out.println(resp);
     }
   }
@@ -137,6 +142,7 @@ public class StockPageController {
     }
     else{
       //Feedback
+      illegalArgument.setText(resp);
       System.out.println(resp);
     }
   }
@@ -154,11 +160,13 @@ public class StockPageController {
           }
           else {
             //Feedback
+            illegalArgument.setText(resp);
             System.out.println(resp);
           }
       }
       catch(IllegalArgumentException e){
         //Feedback
+
         System.out.println(e);
       }
   }
@@ -175,6 +183,7 @@ public class StockPageController {
         }
         else {
           //Feedback
+          illegalArgument.setText(resp);
           System.out.println(resp);
         }
       }

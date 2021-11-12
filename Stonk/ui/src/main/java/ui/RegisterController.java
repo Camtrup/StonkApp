@@ -6,6 +6,7 @@ import core.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
 
 /**
  * Controller for register page.
@@ -28,6 +29,8 @@ public class RegisterController {
   private Button registerUser;
   @FXML
   private TextField username;
+  @FXML
+  private Label error;
 
   HttpHandler handler = new HttpHandler();
 
@@ -64,9 +67,11 @@ public class RegisterController {
     } 
     catch (IllegalArgumentException e) {
       if (tempInt == -1) {
+        error.setText("Age must be an integer");
         System.out.println(new IllegalArgumentException("Age must be an integer"));
       } 
       else if (tempFloat == -1) {
+        error.setText("Cash must be a number");
         System.out.println(new IllegalArgumentException("Cash must be a number"));
       } 
     }
@@ -78,6 +83,9 @@ public class RegisterController {
     }
     else {
       //Feedback
+      error.setStyle("-fx-text-fill: red; -fx-text-alignment: center;");
+      error.setText(resp);
+      error.setStyle("-fx-text-alignment: center;");
       System.out.println(resp);
     }
   }
