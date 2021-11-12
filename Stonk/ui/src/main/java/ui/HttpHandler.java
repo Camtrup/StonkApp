@@ -51,7 +51,7 @@ public class HttpHandler {
         return resp;
     }
 
-    public String addOrRemoveStonk(boolean remove, String username, String password, String ticker, int count) {
+    public String addOrRemoveStonk( boolean remove, String username, String password, String ticker, int count) {
         String resp = "";
         String method = "add";
         if (remove){
@@ -116,6 +116,43 @@ public class HttpHandler {
         }   
         return resp;
     }
+
+    public String addMoreValue(String username, String password, Float cash){
+        String resp = "";
+        try{
+            HttpRequest request = HttpRequest.newBuilder()
+            .uri(new URI("http://localhost:8080/value/" + username + "/" + password + "/" + cash))
+            .GET()
+                                    .build();
+            final HttpResponse<String> response = HttpClient.newBuilder().build().send(request, HttpResponse.BodyHandlers.ofString());
+            resp = response.body();
+        }
+        catch(InterruptedException | IOException | URISyntaxException e){
+            System.out.println(e);
+        }   
+        return resp;
+    }
+    public String addOrRemoveWatchList(boolean remove, String username, String password, String ticker){
+        String resp = "";
+        String method = "add";
+        if (remove){
+            method = "remove";
+        }
+        try{
+            HttpRequest request = HttpRequest.newBuilder()
+            .uri(new URI("http://localhost:8080/" +method + "/" + username + "/" + password + "/" + ticker))
+            .GET()
+                                    .build();
+            final HttpResponse<String> response = HttpClient.newBuilder().build().send(request, HttpResponse.BodyHandlers.ofString());
+            resp = response.body();
+        }
+        catch(InterruptedException | IOException | URISyntaxException e){
+            System.out.println(e);
+        }   
+        return resp;
+    }
+
+
 
     public String save(){
         String resp = "";
