@@ -31,19 +31,20 @@ public class Stonk {
     
     String link = "https://www.marketwatch.com/investing/stock/" + ticker;
     Document doc = null;
-    
     try {
       doc = Jsoup.connect(link).cookie("AMCVS_CB68E4BA55144CAA0A4C98A5%40AdobeOrg", "1").get();
+    } catch (IOException e1) {
+      e1.printStackTrace();
+    }
+    
+    try {
       this.name = (doc.select("h1.company__name").first().text());
       this.price = Float.parseFloat(doc.select("h2.intraday__price:contains(.)").first().text().replaceAll("[^\\.0123456789]",""));
       this.priceChange = doc.select("span.change--percent--q").first().text();
       this.count = count;
     } catch (NullPointerException e) {
-      ticker = doc.select(".results table tbody tr td a").first().text();
-      this.scrapeStockInfo(ticker, count);
-    } catch (IOException e) {
-      
-      e.printStackTrace();
+      String tick = doc.select(".results table tbody tr td a").first().text();
+      this.scrapeStockInfo(tick, count);
     }
   }
 
@@ -102,11 +103,5 @@ public class Stonk {
 
   public String getPriceChange() {
     return priceChange;
-  }
-
-  public static void main(String[] args) {
-    Stonk stonk = new Stonk("ASdasd", 10);
-    System.out.println(stonk.getTicker());
-    System.out.println(stonk.getName());
   }
 }

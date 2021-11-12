@@ -78,16 +78,7 @@ public class StonkApp extends Application {
         s.getPassword(), s.getCash(), s.getAge(),
         s.getPortfolio(),s.getWatchList(), false);
   }
-
-  // public static Stage getStage(){ Finner ikke hvor vi bruker den
-  // return stg;
-  // }
   protected static void setStage(Stage stage) {
     stg = stage;
   }
-
-  // public static void main(String[] args) {
-  //   launch(StonkApp.class, args);
-  // }
-
 }

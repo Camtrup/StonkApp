@@ -178,7 +178,6 @@ public class MainController {
     } else {
       for (ArrayList<String> row : arr) {
         Stonk s = new Stonk(row.get(0), Integer.parseInt(row.get(2)));
-        System.out.println((row.get(0)));
         // to get how much you have eanred from Stocks
         ecuityChange += (s.getPrice()) * Float.parseFloat(row.get(2));
 
