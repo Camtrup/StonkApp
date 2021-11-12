@@ -123,7 +123,7 @@ public class StockPageController {
 
   // Add Stock to WatchList
   public void watchStock() {
-    String resp = handler.addOrRemoveStonk(false, user.getUsername(), user.getPassword(), stock.getTicker(), 1);
+    String resp = handler.addOrRemoveWatchList(false, user.getUsername(), user.getPassword(), stock.getTicker());
     if(resp.contains("200")){
       backToMain();
     }

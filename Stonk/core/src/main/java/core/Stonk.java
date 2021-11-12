@@ -16,6 +16,11 @@ public class Stonk {
   private int count;
 
   public Stonk(String ticker, int count){
+    scrapeStockInfo(ticker, count);
+  }
+
+  
+  private void scrapeStockInfo(String ticker, int count){
     if (ticker == null) {
       throw new IllegalArgumentException("Could not find stock");
     }
@@ -26,23 +31,21 @@ public class Stonk {
     
     String link = "https://www.marketwatch.com/investing/stock/" + ticker;
     Document doc = null;
-    
     try {
       doc = Jsoup.connect(link).cookie("AMCVS_CB68E4BA55144CAA0A4C98A5%40AdobeOrg", "1").get();
     } catch (IOException e1) {
-      throw new IllegalArgumentException("Could not find stock");
+      e1.printStackTrace();
     }
     
     try {
       this.name = (doc.select("h1.company__name").first().text());
       this.price = Float.parseFloat(doc.select("h2.intraday__price:contains(.)").first().text().replaceAll("[^\\.0123456789]",""));
       this.priceChange = doc.select("span.change--percent--q").first().text();
-      // this.graph = (doc.select("mikey-chart")); // highcharts-8
+      this.count = count;
     } catch (NullPointerException e) {
-      ticker = doc.select(".results table tbody tr td a").first().text();
-      new Stonk(ticker, count);
+      String tick = doc.select(".results table tbody tr td a").first().text();
+      this.scrapeStockInfo(tick, count);
     }
-    this.count = count;
   }
 
   

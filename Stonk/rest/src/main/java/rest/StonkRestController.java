@@ -37,6 +37,7 @@ public class StonkRestController {
     public String sellStonks(@PathVariable String username, @PathVariable String password, @PathVariable String ticker, @PathVariable int count){
         return stonkRestService.sellStonks(username, password, ticker, count);
     }
+
     @RequestMapping(value = "/add/{username}/{password}/{ticker}")
     public String addStonksToWatchList(@PathVariable String username, @PathVariable String password, @PathVariable String ticker){
         return stonkRestService.addStonksToWatchList(username, password, ticker);
@@ -52,6 +53,10 @@ public class StonkRestController {
     @RequestMapping(value = "/delete/{username}/{password}")
     public String removeUser(@PathVariable String username, @PathVariable String password){
         return stonkRestService.removeUser(username, password);
+    }
+    @RequestMapping(value = "/value/{username}/{password}/{cash}")
+    public String addMoreValue(@PathVariable String username, @PathVariable String password,  @PathVariable Float cash){
+        return stonkRestService.addMoreCash(username, password, cash);
     }
     
     @RequestMapping("/save")
