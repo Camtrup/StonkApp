@@ -12,9 +12,9 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
+import data.DataHandler;
 import core.Stonk;
 import core.User;
-import data.DataHandler;
 
 @Service
 public class StonkRestService {
@@ -123,6 +123,18 @@ public class StonkRestService {
         }
         return "200";
     }
+    public String addMoreCash(String username, String password, Float cash) {
+       if (isLoginValid(username, password).contains("400")){
+            return "400: User not found";
+        }
+        int index = getUserIndex(username);
+        User temp = users.get(index);
+        temp.addCash(cash);
+        users.set(index, temp);
+        return "200";
+    }
+
+
     
     public String sellStonks(String username, String password, String ticker, int count) {
         if (isLoginValid(username, password).contains("400")){

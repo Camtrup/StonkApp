@@ -1,5 +1,6 @@
 package ui;
 
+import core.Stonk;
 import core.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -44,10 +45,26 @@ public class ProfileController {
    * Add value.
    */
   public void addValue() {
+    System.out.println(user.getCash());
+    try {
     float cash = Float.parseFloat(moneyAdd.getText());
-    user.addCash(cash);
-    balance.setText(Float.toString(user.getCash()) + " $");
-    addedPrompt.setText("Congrats, funds have been added");
+    String resp = handler.addMoreValue(user.getUsername(), user.getPassword(), cash);
+    if (resp.contains("200")){
+      //user.addCash(cash);
+      balance.setText(Float.toString(user.getCash()) + " $");
+      addedPrompt.setText("Congrats, funds have been added");
+    }
+    else {
+      //Feedback
+      System.out.println(resp);
+    }
+  }
+    catch(IllegalArgumentException e){
+      //Feedback
+      System.out.println(e);
+    }
+    System.out.println(user.getCash());
+
   }
 
   /**
