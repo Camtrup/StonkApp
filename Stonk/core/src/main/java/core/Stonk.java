@@ -77,7 +77,7 @@ public class Stonk {
         throw new IllegalArgumentException("Stocks are not alike, cant set average");
       }
       int newCount = this.getCount() + s.getCount();
-      float newPrice = ((this.getCount() * this.getPrice()) + (s.getCount() * s.getPrice()))/2;
+      float newPrice = ((this.getCount() * this.getPrice()) + (s.getCount() * s.getPrice()))/newCount;
       this.setCount(newCount);
       this.setPrice(newPrice);
   }
