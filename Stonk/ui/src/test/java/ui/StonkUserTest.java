@@ -2,7 +2,6 @@ package ui;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.json.simple.JSONArray;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
 
