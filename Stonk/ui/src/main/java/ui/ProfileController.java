@@ -16,6 +16,12 @@ public class ProfileController {
   @FXML
   private Button moneyAddBtn;
   @FXML
+  private Button logOut;
+  @FXML
+  private Button deleteUser;
+  @FXML
+  private Button toMain;
+  @FXML
   private Label addedPrompt;
   @FXML
   private Label balance;
@@ -25,6 +31,8 @@ public class ProfileController {
   private Text startedWith;
   @FXML
   private TextField moneyAdd;
+  @FXML
+  private Label illegalArgument;
 
   private User user;
   StonkApp app = new StonkApp();
@@ -56,6 +64,7 @@ public class ProfileController {
     }
     else {
       //Feedback
+      illegalArgument.setText(resp);
       System.out.println(resp);
     }
   }
@@ -83,6 +92,7 @@ public class ProfileController {
     }
     else {
       //Feedback
+      illegalArgument.setText(resp);
       System.out.println(resp);
     }
   }
@@ -95,4 +105,32 @@ public class ProfileController {
   private void initialize() {
     this.user = StonkApp.getStaticUser();
   }
+
+
+  // Functions for changing the colour of the buttons when hovering.
+  public void btnHoverAddMoney(){
+    moneyAddBtn.setStyle("-fx-background-color: #3f4652;");
+  }
+  public void btnNormalAddMoney(){
+    moneyAddBtn.setStyle("-fx-background-color: #090a0c;");
+  }
+  public void btnHoverLogOut(){
+    logOut.setStyle("-fx-background-color: black;");
+  }
+  public void btnNormalLogOut(){
+    logOut.setStyle("-fx-background-color: grey;");
+  }
+  public void btnHoverDelete(){
+    deleteUser.setStyle("-fx-background-color: black;");
+  }  
+  public void btnNormalDelete(){
+    deleteUser.setStyle("-fx-background-color: grey;");
+  }
+  public void btnHoverBack(){
+    toMain.setStyle("-fx-background-color: #3f4652;");
+  }  
+  public void btnNormalBack(){
+    toMain.setStyle("-fx-background-color: #090a0c;");
+  }
+
 }

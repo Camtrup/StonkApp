@@ -8,6 +8,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Objects;
 
+
 import core.Stonk;
 import core.User;
 import javafx.fxml.FXML;
@@ -59,6 +60,14 @@ public class MainController {
   private VBox scrollPane;
   @FXML
   private Button watchList;
+  @FXML
+  private Button myStocks;
+  @FXML
+  private Button myProfile;
+  @FXML
+  private Button searchButton;
+  @FXML
+  private Label llegalArgument;
 
   private Float ecuityChange = (float) 0;
   private Float stockPriceChanged = (float) 0.0;
@@ -154,61 +163,88 @@ public class MainController {
     }
   }
 
-  /**
-   * Displays portfoilo on the main page.
-   */
-  public void displayPortfolio() {
+  public void portfolioAndWatchList(Boolean portOrWatch, String sellOrBuy, String AverageOrWhenAdded, String watchListStar){
     scrollPane.getChildren().clear();
-    watchList.setStyle("-fx-graphic: url('https://img.icons8.com/ios/25/000000/star--v2.png')");
+    watchList.setStyle(watchListStar);
+    ArrayList<Stonk> getStock = null;
+    if (portOrWatch == false){
+      getStock = user.getWatchList();
+    }else{
+    getStock =user.getPortfolio();
+    }
+
+    //scrollPane.getChildren().clear();
+    //watchList.setStyle("-fx-graphic: url('https://img.icons8.com/ios/25/000000/star--v2.png')");
 
     ArrayList<ArrayList<String>> arr = new ArrayList<ArrayList<String>>();
-    ArrayList<Stonk> portfolio = user.getPortfolio();
 
-    for (Stonk i : portfolio) {
+    for (Stonk i : getStock) {
       ArrayList<String> tempArr = new ArrayList<>();
       tempArr.add(String.valueOf(i.getTicker()));
       tempArr.add(String.valueOf(i.getPrice()));
       tempArr.add(String.valueOf(i.getCount()));
+      tempArr.add(String.valueOf(i.getName()));
       // LEGG TIL CURRENTS PRICE OG NÅVERENDE VERDI
       arr.add(tempArr);
     }
 
     if (arr.size() == 0) {
-      // "NO STOCKS IN PORTFOLIO"
+      // "NO STOCKS IN PORTFOLIO/WATCHLIST"
     } else {
       for (ArrayList<String> row : arr) {
         Stonk s = new Stonk(row.get(0), Integer.parseInt(row.get(2)));
         // to get how much you have eanred from Stocks
         ecuityChange += (s.getPrice()) * Float.parseFloat(row.get(2));
-
         growthPerStock = ((s.getPrice()) * Float.parseFloat(row.get(2))
         - Float.parseFloat(row.get(1)) * Float.parseFloat(row.get(2)));
         stockPriceChanged += growthPerStock;
-
         // Adds info
-        Label l = new Label("____________________________\n" 
-            + row.get(0).toUpperCase() + "\nAmount: " + row.get(2)
-            + "\nAverage: " + String.format("%.2f", Float.parseFloat(row.get(1)))+ " $" + "\nCurrent: " + s.getPrice() +" $" + "\nGrowth: " + String.format("%.2f", growthPerStock) + " $");
-        Button b = new Button("Sell");
+        Label l = new Label("____________________\n" 
+            + row.get(0).toUpperCase());
+        Label fullName = new Label(" " + row.get(3) + " ");
+        Label numbers = new Label("Amount: " + row.get(2)+
+            "\n"+ AverageOrWhenAdded+ " " + String.format("%.2f", Float.parseFloat(row.get(1)))+ " $" + "\n\nCurrent: " + s.getPrice() +" $");
+        Label valueNow = new Label("Value now: " +  String.format("%.2f",(s.getPrice()*(Float.parseFloat(row.get(2))))) + " $");
+        Label growth = new Label("Growth: " + String.format("%.2f", growthPerStock) + " $ \n");
+            
+        Button b = new Button(sellOrBuy);
         Button more = new Button("more info");
 
         
         // Style of elements
+        fullName.setStyle("-fx-font-size: 12;");
+        l.setStyle("-fx-font-size: 21; -fx-text-alignment: center; -fx-alignment:center; -fx-margin:auto;");
+        numbers.setStyle("-fx-font-size: 15;");
+        growth.setStyle("-fx-font-size: 15;");
+        valueNow.setStyle("-fx-font-size: 15;");
 
-
-        l.setStyle("-fx-font-size: 15;");
-        b.maxHeight(l.getHeight());
-        more.maxHeight(l.getHeight());
+        if (growthPerStock>0){
+          growth.setStyle("-fx-font-size: 16; -fx-text-alignment: center; -fx-alignment:center; -fx-text-fill:green;");
+        }else if ((growthPerStock<0)){
+          growth.setStyle("-fx-font-size: 16; -fx-text-alignment: center; -fx-alignment:center; -fx-text-fill:red;");
+        }
+        //b.maxHeight(l.getHeight());
+        //more.maxHeight(l.getHeight());
         more.setStyle("-fx-background-color: #090a0c;" 
             + "-fx-text-fill: linear-gradient(white, #d0d0d0); -fx-padding:10px;");
         b.setStyle("-fx-background-color: #090a0c;"
-            + " -fx-text-fill: linear-gradient(white, #d0d0d0);  -fx-padding:10px;");
-        VBox h = new VBox(l);
-        h.setPadding(new Insets(10, 10, 10, 10));
+            + " -fx-text-fill: linear-gradient(white, #d0d0d0);  -fx-padding:10px 23px;");
+
+        VBox h = new VBox();
+        if (portOrWatch == true){
+        h = new VBox(l,fullName,numbers, valueNow, growth);
+
+        }else{
+        h = new VBox(l,fullName,numbers, growth);
+        } 
+
+        //VBox h = new VBox(l,fullName,numbers, valueNow, growth);
+
+        h.setPadding(new Insets(0, 10, 10, 10));
         h.setStyle("-fx-background-color: #dbdbdb");
-        HBox hbox = new HBox(b, more);
+        HBox hbox= new HBox(b, more);
         hbox.setSpacing(15);
-        hbox.setMargin(b, new Insets(0, 0, 0, 70));
+        hbox.setMargin(b, new Insets(0, 0, 0, 55));
         hbox.setStyle("-fx-background-color: #dbdbdb; -fx-margin: auto");
 
         b.setOnMouseClicked(event -> {
@@ -225,69 +261,20 @@ public class MainController {
         scrollPane.getChildren().addAll(hbox);
       }
     }
+}
+
+  /**
+   * Displays portfoilo on the main page.
+   */
+  public void displayPortfolio() {
+    portfolioAndWatchList(true, "sell", "average:", "-fx-graphic: url('https://img.icons8.com/ios/25/000000/star--v2.png')");
   }
   
   /**
    * Displays watchList on the main page when clickking on the star.
    */
   public void showWatchList(){
-    scrollPane.getChildren().clear(); // remove the portifolio.
-    watchList.setStyle("-fx-graphic: url('https://img.icons8.com/fluency/25/000000/star.png')"); // change star color in the button
-      ArrayList<ArrayList<String>> arrWatch = new ArrayList<ArrayList<String>>();
-      ArrayList<Stonk> json = user.getWatchList();
-      for (Stonk i : json) {
-        ArrayList<String> tempArrWatch = new ArrayList<>();
-        tempArrWatch.add(i.getTicker());
-        tempArrWatch.add(String.valueOf(i.getPrice()));
-        tempArrWatch.add(String.valueOf(i.getCount()));
-        // LEGG TIL CURRENTS PRICE OG NÅVERENDE VERDI
-        arrWatch.add(tempArrWatch);
-      }
-  
-      if (arrWatch.size() == 0) {
-        // "NO STOCKS IN watchlist"
-      } else {
-        for (ArrayList<String> rowWatch : arrWatch) {
-          Stonk s = new Stonk(rowWatch.get(0), 0);
-          float percentChange =100 -(Float.parseFloat(rowWatch.get(1))/((s.getPrice())))*100;   // show difference in stock price from now and when it was added to watchList.
-          
-// Adds info
-        Label l = new Label("____________________________\n" 
-        + rowWatch.get(0).toUpperCase()+ "\nPrice when added: " + rowWatch.get(1)+ "\nPrice now: " + s.getPrice() +"\nPriceChange: " + String.format("%.2f", percentChange) + " %");
-        Button b = new Button("Buy");
-        Button more = new Button("more info");
-    
-    // Style of elements
-    l.setStyle("-fx-font-size: 15;");
-    b.maxHeight(l.getHeight());
-    more.maxHeight(l.getHeight());  // styling for buy and more info buttons
-    more.setStyle("-fx-background-color: #090a0c;" 
-        + "-fx-text-fill: linear-gradient(white, #d0d0d0); -fx-padding:10px;");
-    b.setStyle("-fx-background-color: #090a0c;"
-        + " -fx-text-fill: linear-gradient(white, #d0d0d0);  -fx-padding:10px;");
-    VBox h = new VBox(l);
-    h.setPadding(new Insets(10, 10, 10, 10));
-    h.setStyle("-fx-background-color: #dbdbdb");
-    HBox hbox = new HBox(b, more);
-    hbox.setSpacing(15);
-    hbox.setMargin(b, new Insets(0, 0, 0, 70));
-    hbox.setStyle("-fx-background-color: #dbdbdb; -fx-margin: auto");
-
-    b.setOnMouseClicked(event -> {
-      searchBar.setText(rowWatch.get(0));
-      toStockPage();
-    });
-
-    more.setOnMouseClicked(event -> {
-      stockOnWeb = rowWatch.get(0);
-      openBrowser();
-    });
-
-    scrollPane.getChildren().addAll(h);
-    scrollPane.getChildren().addAll(hbox);
-      }
-
-    }
+    portfolioAndWatchList(false, "Buy", "when added:", "-fx-graphic: url('https://img.icons8.com/fluency/25/000000/star.png')" );
   }
 
   /**
@@ -298,7 +285,6 @@ public class MainController {
     app.changeScene("profile.fxml");
 
   }
-
   /**
    * Initializes on start.
    */
@@ -307,9 +293,48 @@ public class MainController {
     this.user = StonkApp.getStaticUser();
     String resp = handler.save();
     if (resp.contains("400")){
+      llegalArgument.setText(resp);
       System.out.println(resp);
     }
     displayOnMain();
+  }
+
+
+  // tried fixing the button hover problem in a easier way, maybe still working
+/*  public void buttonHover(Button button){
+  myStocks.setStyle("-fx-background-color: #3f4652;");
+}
+public void buttonNormal(Button button){
+  button.setStyle("-fx-background-color: #090a0c;");
+}
+
+@FXML
+private void ColorHoverButton() {
+  Button[] buttons = {myStocks, myProfile, searchButton};
+    for (Button button : buttons) {
+      button.setStyle("-fx-background-color: #red; ");
+  }
+}  */
+
+
+// Functions for changing the colour of the buttons when hovering.
+  public void btnHoverMyStocks(){
+    myStocks.setStyle("-fx-background-color: #3f4652;");
+  }
+  public void btnNormalMyStocks(){
+    myStocks.setStyle("-fx-background-color: #090a0c;");
+  }
+  public void btnHoverSearch(){
+    searchButton.setStyle("-fx-background-color: #3f4652;");
+  }
+  public void btnNormalSearch(){
+    searchButton.setStyle("-fx-background-color: #090a0c;");
+  }
+  public void btnHoverProfile(){
+    myProfile.setStyle("-fx-background-color: #3f4652; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 )");
+  }  
+  public void btnNormalProfile(){
+    myProfile.setStyle("-fx-background-color: #090a0c; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 )");
   }
 
 }

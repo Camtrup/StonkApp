@@ -46,7 +46,7 @@
                </font>
             </Label>
             <TextField fx:id="searchBar" layoutX="63.0" layoutY="214.0" prefHeight="42.0" prefWidth="187.0" promptText="Search stocks" />
-         <Button fx:id="searchButton" layoutX="114.0" layoutY="264.0" mnemonicParsing="false" onAction="#toStockPage" prefHeight="27.0" prefWidth="77.0" style="-fx-background-color: #090a0c #090a0c#090a0c;" text="Search" textFill="WHITE">
+         <Button fx:id="searchButton" layoutX="114.0" layoutY="264.0" mnemonicParsing="false" onAction="#toStockPage" onMouseEntered="#btnHoverSearch" onMouseExited="#btnNormalSearch" prefHeight="27.0" prefWidth="77.0" style="-fx-background-color: #090a0c;" text="Search" textFill="WHITE">
                <font>
                   <Font name="Arial" size="14.0" />
                </font></Button>
@@ -57,7 +57,7 @@
                   </VBox>
                </content>
             </ScrollPane>
-            <Button fx:id="myProfile" layoutX="215.0" layoutY="15.0" mnemonicParsing="false" onAction="#toProfile" prefHeight="34.0" prefWidth="76.0" style="-fx-background-radius: 5,4,3,5; -fx-background-insets: 0,1,2,0; -fx-background-color: #090a0c#090a0c; -fx-font-family: &quot;Arial&quot;; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 ); -fx-text-fill: linear-gradient(white, #d0d0d0);;" text="My Profile" textFill="#fff9f9" />
+            <Button fx:id="myProfile" layoutX="215.0" layoutY="15.0" mnemonicParsing="false" onAction="#toProfile" onMouseEntered="#btnHoverProfile"  onMouseExited="#btnNormalProfile" prefHeight="34.0" prefWidth="76.0" style=" -fx-background-color: #090a0c;  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 ); -fx-text-fill: white;" text="My Profile" textFill="#fff9f9" />
             <Text fx:id="balanceString1" fill="#f0f0f0" layoutX="-11.0" layoutY="-1.0" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
                   <Font name="Arial" size="17.0" />
@@ -88,11 +88,12 @@
                   <Font name="Arial" size="12.0" />
                </font>
             </Label>
-            <Button fx:id="myStocks" layoutX="28.0" layoutY="324.0" mnemonicParsing="false" onAction="#displayPortfolio" prefHeight="34.0" prefWidth="195.0" style="-fx-background-color: black;" text="My stocks" textFill="WHITE">
+            <Button fx:id="myStocks" layoutX="28.0" layoutY="324.0" mnemonicParsing="false" onAction="#displayPortfolio" onMouseEntered="#btnHoverMyStocks" onMouseExited="#btnNormalMyStocks" prefHeight="34.0" prefWidth="195.0" style="-fx-background-color: black;" text="My stocks" textFill="WHITE">
                <font>
                   <Font size="17.0" />
                </font></Button>
             <Button fx:id="watchList" layoutX="230.0" layoutY="324.0" mnemonicParsing="false" onAction="#showWatchList" prefHeight="34.0" prefWidth="44.0" style="-fx-graphic: url('https://img.icons8.com/ios/30/000000/star--v2.png')" />
+            <Label fx:id="llegalArgument" layoutX="29.0" layoutY="301.0" prefHeight="17.0" prefWidth="264.0" style="-fx-alignment: center; -fx-text-alignment: center; -fx-text-fill: red;" text="    " />
          </children>
       </AnchorPane>
    </children>

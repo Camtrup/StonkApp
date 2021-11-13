@@ -13,9 +13,9 @@
    <children>
       <Pane layoutX="-4.0" layoutY="-13.0" prefHeight="95.0" prefWidth="298.0" style="-fx-background-color: #4849bf #4849bf #4849bf #4849bf; -fx-background-radius: 20px;" />
       <Pane layoutY="462.0" prefHeight="123.0" prefWidth="292.0" style="-fx-background-color: #4849bf #4849bf #4849bf #4849bf;" />
-      <Button fx:id="logOut" layoutX="22.0" layoutY="481.0" mnemonicParsing="false" onAction="#logOut" prefHeight="26.0" prefWidth="246.0" style="-fx-background-color: grey;" text="Log Out" textFill="#fffbfb" />
-      <Button fx:id="deleteUser" layoutX="22.0" layoutY="523.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="26.0" prefWidth="246.0" style="-fx-background-color: grey;" text="Delete User" textFill="#fff8f8" />
-      <Button fx:id="toMain" layoutX="22.0" layoutY="21.0" mnemonicParsing="false" onAction="#toMain" style="-fx-background-color: black;" text="Back" textFill="#fff8f8" />
+      <Button fx:id="logOut" onMouseEntered="#btnHoverLogOut" onMouseExited="#btnNormalLogOut" layoutX="22.0" layoutY="481.0" mnemonicParsing="false" onAction="#logOut" prefHeight="26.0" prefWidth="246.0" style="-fx-background-color: grey;" text="Log Out" textFill="#fffbfb" />
+      <Button fx:id="deleteUser" onMouseEntered="#btnHoverDelete" onMouseExited="#btnNormalDelete" layoutX="22.0" layoutY="523.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="26.0" prefWidth="246.0" style="-fx-background-color: grey;" text="Delete User" textFill="#fff8f8" />
+      <Button fx:id="toMain" onMouseEntered="#btnHoverBack" onMouseExited="#btnNormalBack" layoutX="22.0" layoutY="21.0" mnemonicParsing="false" onAction="#toMain" style="-fx-background-color: black;" text="Back" textFill="#fff8f8" />
       <Label fx:id="name" layoutX="11.0" layoutY="137.0" prefHeight="23.0" prefWidth="268.0" style="-fx-alignment: center;" text="YOURNAME">
          <font>
             <Font size="18.0" />
@@ -23,7 +23,7 @@
       </Label>
       <Text fx:id="startedWith" layoutX="80.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Balance:" />
       <Label fx:id="balance" layoutX="151.0" layoutY="202.0" text="Balance" />
-      <Button fx:id="moneyAddBtn" layoutX="97.0" layoutY="292.0" mnemonicParsing="false" onAction="#addValue" style="-fx-background-color: black; -fx-alignment-fx-alignment: center;" text="Add  Balance" textFill="#fffbfb" />
+      <Button fx:id="moneyAddBtn" onMouseEntered="#btnHoverAddMoney" onMouseExited="#btnNormalAddMoney" layoutX="97.0" layoutY="292.0" mnemonicParsing="false" onAction="#addValue" style="-fx-background-color: black; -fx-alignment-fx-alignment: center;" text="Add  Balance" textFill="#fffbfb" />
       <TextField fx:id="moneyAdd" alignment="TOP_RIGHT" layoutX="110.0" layoutY="238.0" opacity="0.29" prefHeight="48.0" prefWidth="120.0" promptText="1" style="-fx-background-color: fffffff;">
          <font>
             <Font name="Arial" size="26.0" />
@@ -37,5 +37,6 @@
       </Text>
       <Line endX="110.5" layoutX="137.0" layoutY="280.0" startX="-100.0" />
       <Label fx:id="addedPrompt" layoutX="16.0" layoutY="348.0" prefHeight="17.0" prefWidth="262.0" style="-fx-alignment: center;" textFill="#35f31c" />
+      <Label fx:id="illegalArgument" layoutX="29.0" layoutY="373.0" prefHeight="17.0" prefWidth="212.0" style="-fx-alignment: center; -fx-text-alignment: center; -fx-text-fill: red;" text="         " />
    </children>
 </AnchorPane>

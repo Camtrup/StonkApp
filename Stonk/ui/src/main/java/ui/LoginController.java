@@ -16,7 +16,7 @@ public class LoginController {
   @FXML
   private Button login;
   @FXML
-  private Button register;
+  private Button registerUserNew;
   @FXML
   private TextField password;
   @FXML
@@ -54,6 +54,23 @@ public class LoginController {
       System.out.println(resp);
     }
   }
+
+public void btnHoverLogin(){
+  login.setStyle("-fx-background-color: #3f4652;");
+
+}
+public void btnNormalLogin(){
+  login.setStyle("-fx-background-color: #090a0c;");
+
+}
+public void btnHoverRegister(){
+  registerUserNew.setStyle("-fx-background-color: #3f4652;");
+
+}
+public void btnNormalRegister(){
+  registerUserNew.setStyle("-fx-background-color: #090a0c;");
+
+}
 
   /**
    * Register new user. 

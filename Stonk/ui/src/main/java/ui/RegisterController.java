@@ -83,11 +83,23 @@ public class RegisterController {
     }
     else {
       //Feedback
-      error.setStyle("-fx-text-fill: red; -fx-text-alignment: center;");
       error.setText(resp);
-      error.setStyle("-fx-text-alignment: center;");
       System.out.println(resp);
     }
+  }
+  public void btnHoverExit(){
+    exitBtn.setStyle("-fx-background-color: #0b4199;");
+  }
+
+  public void btnNormalExit(){
+    exitBtn.setStyle("-fx-background-color: #4849bf;");
+  }
+  public void btnHoverRegister(){
+    registerUser.setStyle("-fx-background-color: #0b4199;");
+  }
+
+  public void btnNormalRegister(){
+    registerUser.setStyle("-fx-background-color:  #4849bf;");
   }
 
 }
