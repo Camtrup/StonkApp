@@ -3,6 +3,7 @@ package ui;
 import core.Stonk;
 import core.User;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
@@ -39,6 +40,16 @@ public class StockPageController {
   private TextField amountStock;
   @FXML
   private TextField username;
+  @FXML
+  private Label illegalArgument;
+  @FXML
+  private Button buyBtn;
+  @FXML
+  private Button sellBtn;
+  @FXML
+  private Button backToMain;
+  @FXML
+  private Button addWatchList;
 
   /**
    * Is fired when the user clicks "EXIT".
@@ -110,9 +121,11 @@ public class StockPageController {
     try {
       Integer.parseInt(number.getText());
       if (number.getText().equals("")) {
+        illegalArgument.setText("Cannot be blank");
         throw new IllegalArgumentException("Cannot be blank");
       }
     } catch (NumberFormatException e) {
+      illegalArgument.setText("Amount must be a number");
       throw new IllegalArgumentException("Amount must be a number");
     }
   }
@@ -125,6 +138,7 @@ public class StockPageController {
     }
     else{
       //Feedback
+      illegalArgument.setText(resp);
       System.out.println(resp);
     }
   }
@@ -137,6 +151,7 @@ public class StockPageController {
     }
     else{
       //Feedback
+      illegalArgument.setText(resp);
       System.out.println(resp);
     }
   }
@@ -154,11 +169,13 @@ public class StockPageController {
           }
           else {
             //Feedback
+            illegalArgument.setText(resp);
             System.out.println(resp);
           }
       }
       catch(IllegalArgumentException e){
         //Feedback
+
         System.out.println(e);
       }
   }
@@ -175,6 +192,7 @@ public class StockPageController {
         }
         else {
           //Feedback
+          illegalArgument.setText(resp);
           System.out.println(resp);
         }
       }
@@ -188,5 +206,32 @@ public class StockPageController {
   public void initialize() {
     this.user = StonkApp.getStaticUser();
   }
+
+// Functions for changing the colour of the buttons when hovering.
+public void btnHoverBuy(){
+  buyBtn.setStyle("-fx-background-color: #03942a;");
+}
+public void btnNormalBuy(){
+  buyBtn.setStyle("-fx-background-color:lightgreen;");
+}
+public void btnHoverSell(){
+  sellBtn.setStyle("-fx-background-color: #9e0b13;");
+}
+public void btnNormalSell(){
+  sellBtn.setStyle("-fx-background-color:#f21d28;");
+}
+public void btnHoverBack(){
+  backToMain.setStyle("-fx-background-color: #3f4652;");
+}
+public void btnNormalBack(){
+  backToMain.setStyle("-fx-background-color: #090a0c;");
+}
+public void btnHoverWatchList(){
+  addWatchList.setStyle("-fx-background-color: #3f4652;");
+}
+public void btnNormalWatchList(){
+  addWatchList.setStyle("-fx-background-color: #090a0c;");
+}
+
 
 }

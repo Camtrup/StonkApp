@@ -5,6 +5,7 @@ import java.io.IOException;
 import core.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 /**
@@ -15,11 +16,13 @@ public class LoginController {
   @FXML
   private Button login;
   @FXML
-  private Button register;
+  private Button registerUserNew;
   @FXML
   private TextField password;
   @FXML
   private TextField username;
+  @FXML
+  private Label error;
 
   private HttpHandler handler = new HttpHandler();
 
@@ -46,9 +49,28 @@ public class LoginController {
     }
     else{
       //feedback
+      error.setStyle("-fx-text-fill: red; -fx-text-alignment: center;");
+      error.setText(resp);
       System.out.println(resp);
     }
   }
+
+public void btnHoverLogin(){
+  login.setStyle("-fx-background-color: #3f4652;");
+
+}
+public void btnNormalLogin(){
+  login.setStyle("-fx-background-color: #090a0c;");
+
+}
+public void btnHoverRegister(){
+  registerUserNew.setStyle("-fx-background-color: #3f4652;");
+
+}
+public void btnNormalRegister(){
+  registerUserNew.setStyle("-fx-background-color: #090a0c;");
+
+}
 
   /**
    * Register new user. 
