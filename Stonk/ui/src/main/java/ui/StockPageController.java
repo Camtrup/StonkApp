@@ -15,14 +15,13 @@ public class StockPageController {
   // DataHandler handler = new DataHandler(); Bruker ikke ifølge spotbugs
   private User user;
   private static Stonk stock = null; // Is static and public so the mainController
-  //can access it and send the stock-object forward
+  // can access it and send the stock-object forward
 
   HttpHandler handler = new HttpHandler();
 
-  public static void setStaticStock(Stonk s){
+  public static void setStaticStock(Stonk s) {
     stock = new Stonk(s.getTicker(), s.getCount());
   }
-
 
   @FXML
   private Label moneyFlow;
@@ -61,8 +60,7 @@ public class StockPageController {
   }
 
   /**
-   * Is firen on initialize of fxml.
-   * Updates all the fields relevant to the stock.
+   * Is firen on initialize of fxml. Updates all the fields relevant to the stock.
    */
   @FXML
   public void updateStockPage() {
@@ -102,11 +100,9 @@ public class StockPageController {
       Float floatPrice = stock.getPrice() * Float.parseFloat(amountStock.getText());
       if (Float.parseFloat(amountStock.getText()) <= 0) {
         totPrice1.setText("Invalid");
-      }
-      else if (floatPrice>10000){
+      } else if (floatPrice > 10000) {
         totPrice1.setText(String.format("%.0f", floatPrice) + " $");
-      }
-      else {
+      } else {
         totPrice1.setText(String.format("%.2f", floatPrice) + " $");
       }
     }
@@ -130,76 +126,77 @@ public class StockPageController {
     }
   }
 
-  // Add Stock to WatchList
+  /**
+   * Adds Stock to WatchList.
+   */
   public void watchStock() {
-    String resp = handler.addOrRemoveWatchList(false, user.getUsername(), user.getPassword(), stock.getTicker());
-    if(resp.contains("200")){
+    String resp = handler.addOrRemoveWatchList(false, user.getUsername(), user.getPassword(),
+        stock.getTicker());
+    if (resp.contains("200")) {
       backToMain();
-    }
-    else{
-      //Feedback
+    } else {
+      // Feedback
       illegalArgument.setText(resp);
       System.out.println(resp);
     }
   }
 
-  // Add Stock to WatchList
+  /**
+   * Removes Stock from WatchList.
+   */
   public void removeWatchStock() {
-    String resp = handler.addOrRemoveStonk(true, user.getUsername(), user.getPassword(), stock.getTicker(), 1);
-    if(resp.contains("200")){
+    String resp = handler.addOrRemoveStonk(true, user.getUsername(),
+        user.getPassword(), stock.getTicker(), 1);
+    if (resp.contains("200")) {
       backToMain();
-    }
-    else{
-      //Feedback
+    } else {
+      // Feedback
       illegalArgument.setText(resp);
       System.out.println(resp);
     }
   }
-
 
   /**
    * Buys stock if amount is valid.
    */
   public void buy() {
-      try {
-        checkIfNum(amountStock);
-        String resp = handler.buyOrSellStonk(false, user.getUsername(), user.getPassword(), stock.getTicker(), Integer.parseInt(amountStock.getText()));
-          if (resp.contains("200")){
-            backToMain();
-          }
-          else {
-            //Feedback
-            illegalArgument.setText(resp);
-            System.out.println(resp);
-          }
+    try {
+      checkIfNum(amountStock);
+      String resp = handler.buyOrSellStonk(false, user.getUsername(),
+          user.getPassword(), stock.getTicker(), Integer.parseInt(amountStock.getText()));
+      if (resp.contains("200")) {
+        backToMain();
+      } else {
+        // Feedback
+        illegalArgument.setText(resp);
+        System.out.println(resp);
       }
-      catch(IllegalArgumentException e){
-        //Feedback
+    } catch (IllegalArgumentException e) {
+      // Feedback
 
-        System.out.println(e);
-      }
+      System.out.println(e);
+    }
   }
 
   /**
    * Sells stocks if amount is valid.
    */
   public void sell() {
-      try {
-        checkIfNum(amountStock);
-        String resp = handler.buyOrSellStonk(true, user.getUsername(), user.getPassword(), stock.getTicker(), Integer.parseInt(amountStock.getText()));
-        if (resp.contains("200")){
-          backToMain();
-        }
-        else {
-          //Feedback
-          illegalArgument.setText(resp);
-          System.out.println(resp);
-        }
+    try {
+      checkIfNum(amountStock);
+      String resp = handler.buyOrSellStonk(true, user.getUsername(),
+          user.getPassword(), stock.getTicker(), Integer.parseInt(amountStock.getText()));
+      if (resp.contains("200")) {
+        backToMain();
+      } else {
+        // Feedback
+        illegalArgument.setText(resp);
+        System.out.println(resp);
       }
-      catch(IllegalArgumentException e){
-        //Feedback
-        System.out.println(e);
-      }
+    } catch (IllegalArgumentException e) {
+      // Feedback
+      System.out.println(e);
+    }
   }
 
   @FXML
@@ -207,31 +204,36 @@ public class StockPageController {
     this.user = StonkApp.getStaticUser();
   }
 
-// Functions for changing the colour of the buttons when hovering.
-public void btnHoverBuy(){
-  buyBtn.setStyle("-fx-background-color: #03942a;");
-}
-public void btnNormalBuy(){
-  buyBtn.setStyle("-fx-background-color:lightgreen;");
-}
-public void btnHoverSell(){
-  sellBtn.setStyle("-fx-background-color: #9e0b13;");
-}
-public void btnNormalSell(){
-  sellBtn.setStyle("-fx-background-color:#f21d28;");
-}
-public void btnHoverBack(){
-  backToMain.setStyle("-fx-background-color: #3f4652;");
-}
-public void btnNormalBack(){
-  backToMain.setStyle("-fx-background-color: #090a0c;");
-}
-public void btnHoverWatchList(){
-  addWatchList.setStyle("-fx-background-color: #3f4652;");
-}
-public void btnNormalWatchList(){
-  addWatchList.setStyle("-fx-background-color: #090a0c;");
-}
+  // Functions for changing the colour of the buttons when hovering.
+  public void btnHoverBuy() {
+    buyBtn.setStyle("-fx-background-color: #03942a;");
+  }
 
+  public void btnNormalBuy() {
+    buyBtn.setStyle("-fx-background-color:lightgreen;");
+  }
 
+  public void btnHoverSell() {
+    sellBtn.setStyle("-fx-background-color: #9e0b13;");
+  }
+
+  public void btnNormalSell() {
+    sellBtn.setStyle("-fx-background-color:#f21d28;");
+  }
+
+  public void btnHoverBack() {
+    backToMain.setStyle("-fx-background-color: #3f4652;");
+  }
+
+  public void btnNormalBack() {
+    backToMain.setStyle("-fx-background-color: #090a0c;");
+  }
+
+  public void btnHoverWatchList() {
+    addWatchList.setStyle("-fx-background-color: #3f4652;");
+  }
+
+  public void btnNormalWatchList() {
+    addWatchList.setStyle("-fx-background-color: #090a0c;");
+  }
 }

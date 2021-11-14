@@ -55,21 +55,19 @@ public class ProfileController {
   public void addValue() {
     System.out.println(user.getCash());
     try {
-    float cash = Float.parseFloat(moneyAdd.getText());
-    String resp = handler.addMoreValue(user.getUsername(), user.getPassword(), cash);
-    if (resp.contains("200")){
-      //user.addCash(cash);
-      balance.setText(Float.toString(user.getCash()) + " $");
-      addedPrompt.setText("Congrats, funds have been added");
-    }
-    else {
-      //Feedback
-      illegalArgument.setText(resp);
-      System.out.println(resp);
-    }
-  }
-    catch(IllegalArgumentException e){
-      //Feedback
+      float cash = Float.parseFloat(moneyAdd.getText());
+      String resp = handler.addMoreValue(user.getUsername(), user.getPassword(), cash);
+      if (resp.contains("200")) {
+        // user.addCash(cash);
+        balance.setText(Float.toString(user.getCash()) + " $");
+        addedPrompt.setText("Congrats, funds have been added");
+      } else {
+        // Feedback
+        illegalArgument.setText(resp);
+        System.out.println(resp);
+      }
+    } catch (IllegalArgumentException e) {
+      // Feedback
       System.out.println(e);
     }
     System.out.println(user.getCash());
@@ -85,13 +83,15 @@ public class ProfileController {
 
   }
 
+  /**
+   * Deletes the user.
+   */
   public void deleteUser() {
     String resp = handler.removeUser(user.getUsername(), user.getPassword());
-    if(resp.contains("200")){
+    if (resp.contains("200")) {
       logOut();
-    }
-    else {
-      //Feedback
+    } else {
+      // Feedback
       illegalArgument.setText(resp);
       System.out.println(resp);
     }
@@ -106,30 +106,36 @@ public class ProfileController {
     this.user = StonkApp.getStaticUser();
   }
 
-
   // Functions for changing the colour of the buttons when hovering.
-  public void btnHoverAddMoney(){
+  public void btnHoverAddMoney() {
     moneyAddBtn.setStyle("-fx-background-color: #3f4652;");
   }
-  public void btnNormalAddMoney(){
+
+  public void btnNormalAddMoney() {
     moneyAddBtn.setStyle("-fx-background-color: #090a0c;");
   }
-  public void btnHoverLogOut(){
+
+  public void btnHoverLogOut() {
     logOut.setStyle("-fx-background-color: black;");
   }
-  public void btnNormalLogOut(){
+
+  public void btnNormalLogOut() {
     logOut.setStyle("-fx-background-color: grey;");
   }
-  public void btnHoverDelete(){
+
+  public void btnHoverDelete() {
     deleteUser.setStyle("-fx-background-color: black;");
-  }  
-  public void btnNormalDelete(){
+  }
+
+  public void btnNormalDelete() {
     deleteUser.setStyle("-fx-background-color: grey;");
   }
-  public void btnHoverBack(){
+
+  public void btnHoverBack() {
     toMain.setStyle("-fx-background-color: #3f4652;");
-  }  
-  public void btnNormalBack(){
+  }
+
+  public void btnNormalBack() {
     toMain.setStyle("-fx-background-color: #090a0c;");
   }
 

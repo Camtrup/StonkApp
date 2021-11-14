@@ -1,8 +1,7 @@
 package ui;
 
-import java.io.IOException;
-
 import core.User;
+import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -43,37 +42,39 @@ public class LoginController {
   public void isLoginValid() {
     User temp = new User(username.getText(), password.getText());
     String resp = handler.isLoginValid(temp.getUsername(), temp.getPassword());
-    if(resp.contains("200")){
+    if (resp.contains("200")) {
       StonkApp.setStaticUser(handler.getUser(temp.getUsername(), temp.getPassword()));
       login();
-    }
-    else{
-      //feedback
+    } else {
+      // feedback
       error.setStyle("-fx-text-fill: red; -fx-text-alignment: center;");
       error.setText(resp);
       System.out.println(resp);
     }
   }
 
-public void btnHoverLogin(){
-  login.setStyle("-fx-background-color: #3f4652;");
+  public void btnHoverLogin() {
+    login.setStyle("-fx-background-color: #3f4652;");
 
-}
-public void btnNormalLogin(){
-  login.setStyle("-fx-background-color: #090a0c;");
+  }
 
-}
-public void btnHoverRegister(){
-  registerUserNew.setStyle("-fx-background-color: #3f4652;");
+  public void btnNormalLogin() {
+    login.setStyle("-fx-background-color: #090a0c;");
 
-}
-public void btnNormalRegister(){
-  registerUserNew.setStyle("-fx-background-color: #090a0c;");
+  }
 
-}
+  public void btnHoverRegister() {
+    registerUserNew.setStyle("-fx-background-color: #3f4652;");
+
+  }
+
+  public void btnNormalRegister() {
+    registerUserNew.setStyle("-fx-background-color: #090a0c;");
+
+  }
 
   /**
-   * Register new user. 
+   * Register new user.
    *
    * @throws IOException if something is wrong.
    */
