@@ -1,8 +1,7 @@
 package ui;
 
-import java.io.IOException;
-
 import core.User;
+import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -76,8 +75,9 @@ public class StonkApp extends Application {
     }
     user = new User(s.getFirstName(), s.getLastName(), s.getUsername(),
         s.getPassword(), s.getCash(), s.getAge(),
-        s.getPortfolio(),s.getWatchList(), false);
+        s.getPortfolio(), s.getWatchList(), false);
   }
+
   protected static void setStage(Stage stage) {
     stg = stage;
   }

@@ -1,5 +1,7 @@
 package ui;
 
+import core.Stonk;
+import core.User;
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
@@ -7,10 +9,6 @@ import java.net.URISyntaxException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Objects;
-
-
-import core.Stonk;
-import core.User;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -73,11 +71,14 @@ public class MainController {
   private Float stockPriceChanged = (float) 0.0;
   private Float growthPerStock = (float) 0.0;
   private String stockOnWeb;
+  private VBox h1; 
+
   HttpHandler handler = new HttpHandler();
   // public Float difference = (float) 0; - spotbugs - unused
 
   /**
    * Gets decimalform.
+   *
    * @param number of the given number.
    * @return in decimal format.
    */
@@ -139,7 +140,7 @@ public class MainController {
     StonkApp app = new StonkApp();
     try {
       Stonk temp = new Stonk(searchBar.getText(), 0);
-      if(Objects.isNull(temp)){
+      if (Objects.isNull(temp)) {
         throw new IllegalArgumentException("Could not find stock");
       }
       StockPageController.setStaticStock(temp);
@@ -163,14 +164,23 @@ public class MainController {
     }
   }
 
-  public void portfolioAndWatchList(Boolean portOrWatch, String sellOrBuy, String AverageOrWhenAdded, String watchListStar){
+  /**
+   * PortFolio and WatchList.
+   *
+   * @param portOrWatch Boolean.
+   * @param sellOrBuy String.
+   * @param averageOrWhenAdded String.
+   * @param watchListStar String.
+   */
+  public void portfolioAndWatchList(Boolean portOrWatch, String sellOrBuy,
+      String averageOrWhenAdded, String watchListStar) {
     scrollPane.getChildren().clear();
     watchList.setStyle(watchListStar);
     ArrayList<Stonk> getStock = null;
-    if (portOrWatch == false){
+    if (portOrWatch == false) {
       getStock = user.getWatchList();
-    }else{
-    getStock =user.getPortfolio();
+    } else {
+      getStock = user.getPortfolio();
     }
 
     //scrollPane.getChildren().clear();
@@ -196,53 +206,57 @@ public class MainController {
         // to get how much you have eanred from Stocks
         ecuityChange += (s.getPrice()) * Float.parseFloat(row.get(2));
         growthPerStock = ((s.getPrice()) * Float.parseFloat(row.get(2))
-        - Float.parseFloat(row.get(1)) * Float.parseFloat(row.get(2)));
+            - Float.parseFloat(row.get(1)) * Float.parseFloat(row.get(2)));
         stockPriceChanged += growthPerStock;
         // Adds info
         Label l = new Label("____________________\n" 
             + row.get(0).toUpperCase());
-        Label fullName = new Label(" " + row.get(3) + " ");
-        Label numbers = new Label("Amount: " + row.get(2)+
-            "\n"+ AverageOrWhenAdded+ " " + String.format("%.2f", Float.parseFloat(row.get(1)))+ " $" + "\n\nCurrent: " + s.getPrice() +" $");
-        Label valueNow = new Label("Value now: " +  String.format("%.2f",(s.getPrice()*(Float.parseFloat(row.get(2))))) + " $");
-        Label growth = new Label("Growth: " + String.format("%.2f", growthPerStock) + " $ \n");
             
-        Button b = new Button(sellOrBuy);
-        Button more = new Button("more info");
-
-        
-        // Style of elements
-        fullName.setStyle("-fx-font-size: 12;");
-        l.setStyle("-fx-font-size: 21; -fx-text-alignment: center; -fx-alignment:center; -fx-margin:auto;");
-        numbers.setStyle("-fx-font-size: 15;");
+            
+        Label growth = new Label("Growth: " + String.format("%.2f", growthPerStock) + " $ \n");
         growth.setStyle("-fx-font-size: 15;");
-        valueNow.setStyle("-fx-font-size: 15;");
+            
+        Label fullName = new Label(" " + row.get(3) + " ");
+        fullName.setStyle("-fx-font-size: 12;");
+        l.setStyle("-fx-font-size: 21; -fx-text-alignment: center;"
+            + " -fx-alignment:center; -fx-margin:auto;");
+            
+        Label numbers = new Label("Amount: " + row.get(2)
+            + "\n" + averageOrWhenAdded + " " + String.format("%.2f", Float.parseFloat(row.get(1)))
+            + " $" + "\n\nCurrent: " + s.getPrice() + " $");
+        numbers.setStyle("-fx-font-size: 15;");
 
-        if (growthPerStock>0){
-          growth.setStyle("-fx-font-size: 16; -fx-text-alignment: center; -fx-alignment:center; -fx-text-fill:green;");
-        }else if ((growthPerStock<0)){
-          growth.setStyle("-fx-font-size: 16; -fx-text-alignment: center; -fx-alignment:center; -fx-text-fill:red;");
+        Label valueNow = new Label("Value now: "
+            + String.format("%.2f", (s.getPrice() * (Float.parseFloat(row.get(2))))) + " $");
+        valueNow.setStyle("-fx-font-size: 15;");
+        
+        if (growthPerStock > 0) {
+          growth.setStyle("-fx-font-size: 16; -fx-text-alignment: center;"
+               + " -fx-alignment:center; -fx-text-fill:green;");
+        } else if (growthPerStock < 0) {
+          growth.setStyle("-fx-font-size: 16; -fx-text-alignment: center;"
+              + " -fx-alignment:center; -fx-text-fill:red;");
         }
         //b.maxHeight(l.getHeight());
         //more.maxHeight(l.getHeight());
+        Button more = new Button("more info");
+        Button b = new Button(sellOrBuy);
         more.setStyle("-fx-background-color: #090a0c;" 
-            + "-fx-text-fill: linear-gradient(white, #d0d0d0); -fx-padding:10px;");
+            + " -fx-text-fill: linear-gradient(white, #d0d0d0); -fx-padding:10px;");
         b.setStyle("-fx-background-color: #090a0c;"
             + " -fx-text-fill: linear-gradient(white, #d0d0d0);  -fx-padding:10px 23px;");
 
-        VBox h = new VBox();
-        if (portOrWatch == true){
-        h = new VBox(l,fullName,numbers, valueNow, growth);
-
-        }else{
-        h = new VBox(l,fullName,numbers, growth);
+        //VBox h = new VBox(); sjekk om dette funker 
+        if (portOrWatch == true) {
+          h1 = new VBox(l, fullName, numbers, valueNow, growth);
+        } else {
+          h1 = new VBox(l, fullName, numbers, growth);
         } 
 
         //VBox h = new VBox(l,fullName,numbers, valueNow, growth);
-
-        h.setPadding(new Insets(0, 10, 10, 10));
-        h.setStyle("-fx-background-color: #dbdbdb");
-        HBox hbox= new HBox(b, more);
+        h1.setPadding(new Insets(0, 10, 10, 10));
+        h1.setStyle("-fx-background-color: #dbdbdb");
+        HBox hbox = new HBox(b, more);
         hbox.setSpacing(15);
         hbox.setMargin(b, new Insets(0, 0, 0, 55));
         hbox.setStyle("-fx-background-color: #dbdbdb; -fx-margin: auto");
@@ -251,17 +265,15 @@ public class MainController {
           searchBar.setText(row.get(0));
           toStockPage();
         });
-
         more.setOnMouseClicked(event -> {
           stockOnWeb = row.get(0);
           openBrowser();
         });
-
-        scrollPane.getChildren().addAll(h);
+        scrollPane.getChildren().addAll(h1);
         scrollPane.getChildren().addAll(hbox);
       }
     }
-}
+  }
 
   /**
    * Displays portfoilo on the main page.
@@ -273,8 +285,8 @@ public class MainController {
   /**
    * Displays watchList on the main page when clickking on the star.
    */
-  public void showWatchList(){
-    portfolioAndWatchList(false, "Buy", "when added:", "-fx-graphic: url('https://img.icons8.com/fluency/25/000000/star.png')" );
+  public void showWatchList() {
+    portfolioAndWatchList(false, "Buy", "when added:", "-fx-graphic: url('https://img.icons8.com/fluency/25/000000/star.png')");
   }
 
   /**
@@ -285,6 +297,7 @@ public class MainController {
     app.changeScene("profile.fxml");
 
   }
+
   /**
    * Initializes on start.
    */
@@ -292,49 +305,54 @@ public class MainController {
   private void initialize() {
     this.user = StonkApp.getStaticUser();
     String resp = handler.save();
-    if (resp.contains("400")){
+    if (resp.contains("400")) {
       llegalArgument.setText(resp);
       System.out.println(resp);
     }
     displayOnMain();
   }
 
-
   // tried fixing the button hover problem in a easier way, maybe still working
-/*  public void buttonHover(Button button){
+  /*  public void buttonHover(Button button){
   myStocks.setStyle("-fx-background-color: #3f4652;");
-}
-public void buttonNormal(Button button){
-  button.setStyle("-fx-background-color: #090a0c;");
-}
-
-@FXML
-private void ColorHoverButton() {
-  Button[] buttons = {myStocks, myProfile, searchButton};
-    for (Button button : buttons) {
-      button.setStyle("-fx-background-color: #red; ");
   }
-}  */
+  public void buttonNormal(Button button){
+    button.setStyle("-fx-background-color: #090a0c;");
+  }
 
+  @FXML
+  private void ColorHoverButton() {
+    Button[] buttons = {myStocks, myProfile, searchButton};
+      for (Button button : buttons) {
+        button.setStyle("-fx-background-color: #red; ");
+    }
+  }  */
 
-// Functions for changing the colour of the buttons when hovering.
-  public void btnHoverMyStocks(){
+  // Functions for changing the colour of the buttons when hovering.
+  public void btnHoverMyStocks() {
     myStocks.setStyle("-fx-background-color: #3f4652;");
   }
-  public void btnNormalMyStocks(){
+
+  public void btnNormalMyStocks() {
     myStocks.setStyle("-fx-background-color: #090a0c;");
   }
-  public void btnHoverSearch(){
+
+  public void btnHoverSearch() {
     searchButton.setStyle("-fx-background-color: #3f4652;");
   }
-  public void btnNormalSearch(){
+
+  public void btnNormalSearch() {
     searchButton.setStyle("-fx-background-color: #090a0c;");
   }
-  public void btnHoverProfile(){
-    myProfile.setStyle("-fx-background-color: #3f4652; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 )");
-  }  
-  public void btnNormalProfile(){
-    myProfile.setStyle("-fx-background-color: #090a0c; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 )");
+
+  public void btnHoverProfile() {
+    myProfile.setStyle("-fx-background-color: #3f4652;"
+        + "-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 )");
+  }
+
+  public void btnNormalProfile() {
+    myProfile.setStyle("-fx-background-color: #090a0c;" 
+        + "-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 )");
   }
 
 }
