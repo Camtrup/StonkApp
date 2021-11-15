@@ -4,7 +4,7 @@ import java.nio.charset.Charset;
 import java.security.MessageDigest;
 //encryption imports
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;  
+import java.util.ArrayList;
 
 /**
  * Class user.
@@ -24,17 +24,17 @@ public class User {
    * Constructor.
    *
    * @param firstName string
-   * @param lastName string
-   * @param username string
-   * @param password string
-   * @param cash float
-   * @param age int
+   * @param lastName  string
+   * @param username  string
+   * @param password  string
+   * @param cash      float
+   * @param age       int
    * @param portfolio ArrayList of type Stonk
    * @param watchList Arraylist of type Stonk
    * @param isNewUser boolean
    */
-  public User(String firstName, String lastName, String username, String password,
-      float cash, int age, ArrayList<Stonk> portfolio, ArrayList<Stonk> watchList, boolean isNewUser) {
+  public User(String firstName, String lastName, String username, String password, float cash,
+      int age, ArrayList<Stonk> portfolio, ArrayList<Stonk> watchList, boolean isNewUser) {
     if (isNewUser) {
       setFirstName(firstName);
       setLastName(lastName);
@@ -55,11 +55,11 @@ public class User {
       setWatchList(watchList);
     }
   }
-  
-  //Used for login
-  public User(String username, String password){
-      this.username = username;
-      setPassword(password);
+
+  // Used for login
+  public User(String username, String password) {
+    this.username = username;
+    setPassword(password);
   }
 
   private void setWatchList(ArrayList<Stonk> watchList2) {
@@ -70,7 +70,7 @@ public class User {
    * Adds stock to portfolio.
    *
    * @param ticker for finding stock.
-   * @param count how many.
+   * @param count  how many.
    */
   public void addToPortfoilio(String ticker, int count) {
     if (count <= 0) {
@@ -79,41 +79,53 @@ public class User {
     System.out.println("addTo Portifolio in USER");
     Stonk stock = new Stonk(ticker, count);
     boolean isOwned = false;
-    for(Stonk i : portfolio){
-      if (i.getTicker().equals(ticker.toLowerCase())){
+    for (Stonk i : portfolio) {
+      if (i.getTicker().equals(ticker.toLowerCase())) {
         i.setNewAverage(stock);
         isOwned = true;
       }
     }
-    if(!isOwned){
+    if (!isOwned) {
       portfolio.add(stock);
     }
-    removeCash(stock.getPrice()*stock.getCount());
+    removeCash(stock.getPrice() * stock.getCount());
   }
-  
+
+  /**
+   * Adds a Stock to watchlist.
+   *
+   * @param ticker for finding stock.
+   * @param count how many.
+   */
   public void addToWatchList(String ticker, int count) {
     Stonk stock = new Stonk(ticker, count);
     System.out.println("addToWatchlist in USER");
-    for (Stonk i : watchList){
-      if (i.getTicker().equals(ticker.toLowerCase())){
+    for (Stonk i : watchList) {
+      if (i.getTicker().equals(ticker.toLowerCase())) {
         throw new IllegalArgumentException("Stock is already in watchlist");
       }
     }
     watchList.add(stock);
   }
-  
-  public void removeFromWatchList(String ticker, int count){
+
+  /**
+   * Function for removing a Stock from watchlist.
+   *
+   * @param ticker for finding stock.
+   * @param count how many.
+   */
+  public void removeFromWatchList(String ticker, int count) {
     boolean isInList = false;
-    if(watchList.size() == 0){
+    if (watchList.size() == 0) {
       throw new IllegalArgumentException("List is empty");
     }
-    for (Stonk i : getWatchList()){
-      if (i.getTicker().equals(ticker.toLowerCase())){
+    for (Stonk i : getWatchList()) {
+      if (i.getTicker().equals(ticker.toLowerCase())) {
         watchList.remove(i);
         isInList = true;
       }
     }
-    if(!isInList){
+    if (!isInList) {
       throw new IllegalArgumentException("Stock not in watchlist");
     }
   }
@@ -122,7 +134,7 @@ public class User {
    * Removes from portfolio.
    *
    * @param ticker for finding stock.
-   * @param count how many.
+   * @param count  how many.
    */
   public void removeFromPortfolio(String ticker, int count) {
     if (count <= 0) {
@@ -130,33 +142,32 @@ public class User {
     }
     Stonk stock = new Stonk(ticker, count);
     boolean isOwned = false;
-    for(Stonk i : getPortfolio()){
-      if(i.getTicker().equals(ticker.toLowerCase())){
+    for (Stonk i : getPortfolio()) {
+      if (i.getTicker().equals(ticker.toLowerCase())) {
         isOwned = true;
-        if(count > i.getCount()){
+        if (count > i.getCount()) {
           throw new IllegalArgumentException("Not enough stocks to sell");
-        }
-        else if (count == i.getCount()){
+        } else if (count == i.getCount()) {
           portfolio.remove(i);
-        }
-        else {
+        } else {
           i.setNewCount(stock);
         }
       }
     }
-    if (!isOwned){
+    if (!isOwned) {
       throw new IllegalArgumentException("Stock is not in portfolio");
     }
-    addCash(stock.getPrice()*stock.getCount());
+    addCash(stock.getPrice() * stock.getCount());
   }
 
   public ArrayList<Stonk> getPortfolio() {
     return new ArrayList<Stonk>(portfolio);
   }
 
-  private void setPortfolio(ArrayList<Stonk> portfolio){
+  private void setPortfolio(ArrayList<Stonk> portfolio) {
     this.portfolio = new ArrayList<Stonk>(portfolio);
   }
+
   public ArrayList<Stonk> getWatchList() {
     return new ArrayList<>(watchList);
   }
@@ -233,14 +244,14 @@ public class User {
     if (cash < 0) {
       throw new IllegalArgumentException("Cannot remove a negative amount");
     }
-    if (cash > this.cash){
+    if (cash > this.cash) {
       throw new IllegalArgumentException("Not enough cash");
     }
     this.cash -= cash;
   }
 
   /**
-   * Sets age. 
+   * Sets age.
    *
    * @param age int.
    */
@@ -254,20 +265,25 @@ public class User {
     this.age = age;
   }
 
+  /**
+   * Function for enctypring a password.
+   *
+   * @param password String.
+   * @return the encrypted password as string.
+   */
   public String encryptPassword(String password) {
     String tempPassword = password;
     String encryptedPassword = null;
-    try{
+    try {
       MessageDigest m = MessageDigest.getInstance("MD5");
       m.update(tempPassword.getBytes(Charset.forName("UTF-8")));
-      byte[] bytes = m.digest(); 
-      StringBuilder s = new StringBuilder();  
-      for(int i=0; i< bytes.length ;i++)  {  
-            s.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));  
-        }
-      encryptedPassword = s.toString(); 
-    }
-    catch (NoSuchAlgorithmException e){
+      byte[] bytes = m.digest();
+      StringBuilder s = new StringBuilder();
+      for (int i = 0; i < bytes.length; i++) {
+        s.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+      }
+      encryptedPassword = s.toString();
+    } catch (NoSuchAlgorithmException e) {
       e.printStackTrace();
     }
     return encryptedPassword;

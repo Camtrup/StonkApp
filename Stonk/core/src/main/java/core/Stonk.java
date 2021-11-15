@@ -15,12 +15,11 @@ public class Stonk {
   private String priceChange;
   private int count;
 
-  public Stonk(String ticker, int count){
+  public Stonk(String ticker, int count) {
     scrapeStockInfo(ticker, count);
   }
 
-  
-  private void scrapeStockInfo(String ticker, int count){
+  private void scrapeStockInfo(String ticker, int count) {
     if (ticker == null) {
       throw new IllegalArgumentException("Could not find stock");
     }
@@ -28,7 +27,7 @@ public class Stonk {
       throw new IllegalArgumentException("Cannot be blank");
     }
     this.ticker = ticker.toLowerCase();
-    
+
     String link = "https://www.marketwatch.com/investing/stock/" + ticker;
     Document doc = null;
     try {
@@ -36,10 +35,12 @@ public class Stonk {
     } catch (IOException e1) {
       e1.printStackTrace();
     }
-    
+
     try {
       this.name = (doc.select("h1.company__name").first().text());
-      this.price = Float.parseFloat(doc.select("h2.intraday__price:contains(.)").first().text().replaceAll("[^\\.0123456789]",""));
+      this.price = Float
+          .parseFloat(doc.select("h2.intraday__price:contains(.)").first().text()
+          .replaceAll("[^\\.0123456789]", ""));
       this.priceChange = doc.select("span.change--percent--q").first().text();
       this.count = count;
     } catch (NullPointerException e) {
@@ -48,11 +49,16 @@ public class Stonk {
     }
   }
 
-  
-
-
-  //Used for generating bought stocks from the database;
-  public Stonk(String ticker, float price, int count, String name, String priceChange){
+  /**
+   * Used for generating bought stocks from database.
+   *
+   * @param ticker string.
+   * @param price float.
+   * @param count int.
+   * @param name string.
+   * @param priceChange change of price.
+   */
+  public Stonk(String ticker, float price, int count, String name, String priceChange) {
     this.price = price;
     this.ticker = ticker;
     this.count = count;
@@ -60,32 +66,44 @@ public class Stonk {
     this.priceChange = priceChange;
   }
 
-  public int getCount(){
+  public int getCount() {
     return count;
   }
-  private void setCount(int count){
+
+  private void setCount(int count) {
     this.count = count;
   }
 
-  public void setNewCount(Stonk s){
-    if(!s.getTicker().equals(this.getTicker())){
+  /**
+   * sets new count for a stock.
+   *
+   * @param s the stock.
+   */
+  public void setNewCount(Stonk s) {
+    if (!s.getTicker().equals(this.getTicker())) {
       throw new IllegalArgumentException("Stocks are not alike, cant set new count");
     }
     int newCount = this.getCount() - s.getCount();
     this.setCount(newCount);
   }
 
-  public void setNewAverage(Stonk s){
-      if(!s.getTicker().equals(this.getTicker())){
-        throw new IllegalArgumentException("Stocks are not alike, cant set average");
-      }
-      int newCount = this.getCount() + s.getCount();
-      float newPrice = ((this.getCount() * this.getPrice()) + (s.getCount() * s.getPrice()))/newCount;
-      this.setCount(newCount);
-      this.setPrice(newPrice);
+  /**
+   * Sets new average for stock.
+   *
+   * @param s which stock.
+   */
+  public void setNewAverage(Stonk s) {
+    if (!s.getTicker().equals(this.getTicker())) {
+      throw new IllegalArgumentException("Stocks are not alike, cant set average");
+    }
+    int newCount = this.getCount() + s.getCount();
+    float newPrice = ((this.getCount() * this.getPrice())
+        + (s.getCount() * s.getPrice())) / newCount;
+    this.setCount(newCount);
+    this.setPrice(newPrice);
   }
 
-  private void setPrice(float price){
+  private void setPrice(float price) {
     this.price = price;
   }
 
