@@ -13,11 +13,15 @@ import javafx.scene.control.TextField;
 public class StockPageController {
 
   // DataHandler handler = new DataHandler(); Bruker ikke ifølge spotbugs
-  private User user;
+  private User user = null;
   private static Stonk stock = null; // Is static and public so the mainController
   // can access it and send the stock-object forward
 
   HttpHandler handler = new HttpHandler();
+
+  public StockPageController(User user) {
+    this.user = handler.getUser(user.getUsername(), user.getPassword());
+  }
 
   public static void setStaticStock(Stonk s) {
     stock = new Stonk(s.getTicker(), s.getCount());
@@ -55,8 +59,7 @@ public class StockPageController {
    */
   public void backToMain() {
     StonkApp app = new StonkApp();
-    StonkApp.setStaticUser(handler.getUser(user.getUsername(), user.getPassword()));
-    app.changeScene("mainPage.fxml");
+    app.changeScene("mainPage.fxml", user);
   }
 
   /**
@@ -197,11 +200,6 @@ public class StockPageController {
       // Feedback
       System.out.println(e);
     }
-  }
-
-  @FXML
-  public void initialize() {
-    this.user = StonkApp.getStaticUser();
   }
 
   // Functions for changing the colour of the buttons when hovering.

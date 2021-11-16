@@ -34,10 +34,14 @@ public class ProfileController {
   @FXML
   private Label illegalArgument;
 
-  private User user;
+  private User user = null;
   StonkApp app = new StonkApp();
   HttpHandler handler = new HttpHandler();
   // private Object putCash; checkstyle - unused field
+
+  public ProfileController(User user) {
+    this.user = handler.getUser(user.getUsername(), user.getPassword());
+  }
 
   // Float differ = MainController.difference;
   /**
@@ -53,7 +57,6 @@ public class ProfileController {
    * Add value.
    */
   public void addValue() {
-    System.out.println(user.getCash());
     try {
       float cash = Float.parseFloat(moneyAdd.getText());
       String resp = handler.addMoreValue(user.getUsername(), user.getPassword(), cash);
@@ -70,16 +73,13 @@ public class ProfileController {
       // Feedback
       System.out.println(e);
     }
-    System.out.println(user.getCash());
-
   }
 
   /**
    * Logs the user out.
    */
   public void logOut() {
-    StonkApp.setStaticUser(null);
-    app.changeScene("login.fxml");
+    app.changeScene("login.fxml", null);
 
   }
 
@@ -93,17 +93,11 @@ public class ProfileController {
     } else {
       // Feedback
       illegalArgument.setText(resp);
-      System.out.println(resp);
     }
   }
 
   public void toMain() {
-    app.changeScene("mainPage.fxml");
-  }
-
-  @FXML
-  private void initialize() {
-    this.user = StonkApp.getStaticUser();
+    app.changeScene("mainPage.fxml", user);
   }
 
   // Functions for changing the colour of the buttons when hovering.
