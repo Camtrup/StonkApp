@@ -23,6 +23,8 @@ public class LoginController {
   @FXML
   private Label error;
 
+  private User user;
+
   private HttpHandler handler = new HttpHandler();
 
   /**
@@ -32,7 +34,7 @@ public class LoginController {
    */
   public void login() {
     StonkApp app = new StonkApp();
-    app.changeScene("mainPage.fxml");
+    app.changeScene("mainPage.fxml", user);
   }
 
   /**
@@ -43,7 +45,7 @@ public class LoginController {
     User temp = new User(username.getText(), password.getText());
     String resp = handler.isLoginValid(temp.getUsername(), temp.getPassword());
     if (resp.contains("200")) {
-      StonkApp.setStaticUser(handler.getUser(temp.getUsername(), temp.getPassword()));
+      user =  handler.getUser(temp.getUsername(), temp.getPassword());
       login();
     } else {
       // feedback
@@ -80,7 +82,7 @@ public class LoginController {
    */
   public void registerUserNew() throws IOException {
     StonkApp app = new StonkApp();
-    app.changeScene("newUser.fxml");
+    app.changeScene("newUser.fxml", null);
   }
 
 }

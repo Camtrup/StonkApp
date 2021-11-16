@@ -2,6 +2,8 @@ package ui;
 
 import core.User;
 import java.io.IOException;
+import java.lang.reflect.Constructor;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,8 +16,6 @@ import javafx.stage.Stage;
 public class StonkApp extends Application {
 
   private static Stage stg; // Used staticly for tests
-  private static User user;
-  // private Stage stage; Unused
 
   /**
    * Starts the app.
@@ -35,10 +35,20 @@ public class StonkApp extends Application {
   /**
    * Change scene. 
    */
-  public void changeScene(String fxml) {
+  public void changeScene(String fxml, User user) {
     Parent pane = null;
     try {
-      pane = FXMLLoader.load(getClass().getResource("fxml/" + fxml));
+      FXMLLoader load = new FXMLLoader(getClass().getResource("fxml/" + fxml));
+      if(fxml.contains("main")){
+        load.setController(new MainController(user));
+      }
+      else if(fxml.contains("profile")){
+        load.setController(new ProfileController(user));
+      }
+      else if(fxml.contains("stock")){
+        load.setController(new StockPageController(user));
+      }
+      pane = load.load();
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -48,35 +58,6 @@ public class StonkApp extends Application {
     stg.getScene().setRoot(pane);
   }
 
-  /**
-   * Getter for the static user.
-   *
-   * @return the static user.
-   */
-  public static User getStaticUser() { // Using users constructor to bypass spotbugs
-    if (user == null) {
-      return null;
-    }
-    return new User(user.getFirstName(), user.getLastName(), 
-        user.getUsername(), user.getPassword(), user.getCash(),
-        user.getAge(), user.getPortfolio(), user.getWatchList(), false);
-  }
-
-  /**
-   * Sets the static user.
-   *
-   * @param s this is user. 
-   * @throws NullPointerException if its null, this throws. 
-   */
-  public static void setStaticUser(User s) throws NullPointerException { //Using users constructor
-    if (s == null) {
-      user = null;
-      return;
-    }
-    user = new User(s.getFirstName(), s.getLastName(), s.getUsername(),
-        s.getPassword(), s.getCash(), s.getAge(),
-        s.getPortfolio(), s.getWatchList(), false);
-  }
 
   protected static void setStage(Stage stage) {
     stg = stage;

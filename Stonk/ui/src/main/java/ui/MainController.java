@@ -23,7 +23,7 @@ import javafx.scene.text.Text;
  * Controller for main.
  */
 public class MainController {
-  private User user;
+  private User user = null;
   // Stonk stock = new Stonk(); Bruker ikke ifølge spotbugs
   
   @FXML
@@ -75,6 +75,10 @@ public class MainController {
 
   HttpHandler handler = new HttpHandler();
   // public Float difference = (float) 0; - spotbugs - unused
+
+  public MainController(User user) {
+    this.user = handler.getUser(user.getUsername(), user.getPassword());
+  }
 
   /**
    * Gets decimalform.
@@ -144,7 +148,7 @@ public class MainController {
         throw new IllegalArgumentException("Could not find stock");
       }
       StockPageController.setStaticStock(temp);
-      app.changeScene("stockPage.fxml");
+      app.changeScene("stockPage.fxml", user);
     } catch (IllegalArgumentException | NullPointerException e) {
       System.out.println(e);
     }
@@ -294,7 +298,7 @@ public class MainController {
    */
   public void toProfile() {
     StonkApp app = new StonkApp();
-    app.changeScene("profile.fxml");
+    app.changeScene("profile.fxml", user);
 
   }
 
@@ -303,7 +307,6 @@ public class MainController {
    */
   @FXML
   private void initialize() {
-    this.user = StonkApp.getStaticUser();
     String resp = handler.save();
     if (resp.contains("400")) {
       llegalArgument.setText(resp);
