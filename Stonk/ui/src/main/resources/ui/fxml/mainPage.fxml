@@ -57,7 +57,7 @@
                   </VBox>
                </content>
             </ScrollPane>
-            <Button fx:id="myProfile" layoutX="215.0" layoutY="15.0" mnemonicParsing="false" onAction="#toProfile" onMouseEntered="#btnHoverProfile"  onMouseExited="#btnNormalProfile" prefHeight="34.0" prefWidth="76.0" style=" -fx-background-color: #090a0c;  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 ); -fx-text-fill: white;" text="My Profile" textFill="#fff9f9" />
+            <Button fx:id="myProfile" layoutX="215.0" layoutY="15.0" mnemonicParsing="false" onAction="#toProfile" onMouseEntered="#btnHoverProfile"  onMouseExited="#btnNormalProfile" prefHeight="34.0" prefWidth="76.0" style=" -fx-background-color: #090a0c;  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 ); -fx-text-fill: white;" text="Profile" textFill="#fff9f9" />
             <Text fx:id="balanceString1" fill="#f0f0f0" layoutX="-11.0" layoutY="-1.0" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
                   <Font name="Arial" size="17.0" />
