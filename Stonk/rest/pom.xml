@@ -42,7 +42,7 @@
             <artifactId>core</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-		
+
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
@@ -86,19 +86,12 @@
                 <version>3.0.0-M3</version>
                 <configuration>
                     <includes>
-                        <include>**/*Test.java</include>
+                        <include>**/*Test*.java</include>
                     </includes>
                     <argLine>
                         @{jaCoCoArgLine} --add-opens Stonk.rest/stonk.rest=ALL-UNNAMED --add-exports javafx.graphics/com.sun.javafx.application=ALL-UNNAMED
                     </argLine>
                 </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.apache.maven.surefire</groupId>
-                        <artifactId>surefire-junit47</artifactId>
-                        <version>3.0.0-M3</version>
-                    </dependency>
-                </dependencies>
             </plugin>
 
 			<plugin>
