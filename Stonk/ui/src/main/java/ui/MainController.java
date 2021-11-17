@@ -213,7 +213,7 @@ public class MainController {
             - Float.parseFloat(row.get(1)) * Float.parseFloat(row.get(2)));
         stockPriceChanged += growthPerStock;
         // Adds info
-        Label l = new Label("____________________\n" 
+        Label l = new Label("_____________________\n" 
             + row.get(0).toUpperCase());
             
             
