@@ -71,11 +71,99 @@ INSERT TEXT HERE
 
 
 ## Project architecture
-The structure in UI was too complex and large to put in with the rest of the structure of the map. 
-(click on the image for better quality)
-### Tree Structure of the app:
+The structure in UI was too complex and large to put in with the rest of the structure of the app in the image. 
+
+### Structure of the app:
+```
+ .
+└── gr2135/
+    ├── .idea/
+    │   ├── gr2135.iml
+    │   ├── misc.xml
+    │   ├── modules.xml
+    │   ├── runConfigurations.xml
+    │   └── vcs.xml
+    ├── .vscode/
+    │   └── settings.json
+    └── Stonk/
+        ├── core/
+        │   ├── src/
+        │   │   ├── main/java/core/
+        │   │   │   ├── Stonk.java
+        │   │   │   └── User.java
+        │   │   └── test/java/core/
+        │   │       ├── StonkTest.java
+        │   │       └── UserTest.java
+        │   └── pom.xml
+        ├── data/
+        │   ├── src/
+        │   │   ├── main/java/data/
+        │   │   │   └── DataHandler.java
+        │   │   └── test/java/data/
+        │   │       └── DataHandlerTest.java
+        │   └── pom.xml
+        ├── rest/
+        │   ├── .mvn/wrapper/
+        │   │   ├── MavenWrapperDownloader.java
+        │   │   ├── maven-wrapper.jar
+        │   │   └── maven-wrapper.properties
+        │   ├── src/
+        │   │   ├── main/
+        │   │   │   ├── java/rest/
+        │   │   │   │   ├── StonkRestApplication.java
+        │   │   │   │   ├── StonkRestcontroller.java
+        │   │   │   │   └── StonkRestService.java
+        │   │   │   └── resources/
+        │   │   │       └── application.properties
+        │   │   └── test/java/Stonk/rest/
+        │   │       └── ApplicationTest.java
+        │   ├── mvnw
+        │   ├── mvnw.cmd
+        │   └── pom.xml
+        ├── ui/
+        │   ├── src/
+        │   │   ├── main/
+        │   │   │   ├── java/ui/
+        │   │   │   │   ├── HttpHandler.java
+        │   │   │   │   ├── LoginController.java
+        │   │   │   │   ├── MainController.java
+        │   │   │   │   ├── ProfileController.java
+        │   │   │   │   ├── RegisterController.java
+        │   │   │   │   ├── StartApp.java
+        │   │   │   │   ├── StockPageController.java
+        │   │   │   │   └── StonkApp.java
+        │   │   │   └── resources/ui/
+        │   │   │       ├── fxml/
+        │   │   │       │   ├── login.fxml
+        │   │   │       │   ├── mainPage.fxml
+        │   │   │       │   ├── newUser.fxml
+        │   │   │       │   ├── profile.fxml
+        │   │   │       │   └── stockPage.fxml
+        │   │   │       └── images/
+        │   │   │           ├── main.png
+        │   │   │           ├── registerPage.png
+        │   │   │           ├── signup.png
+        │   │   │           ├── star-icon.png
+        │   │   │           ├── stockPage.png
+        │   │   │           └── stonkpicture.png
+        │   │   └── test/java/ui/
+        │   │       ├── README.md
+        │   │       ├── StonkAppTest.java
+        │   │       ├── StonkBuyTest.java
+        │   │       ├── StonkLoginTest.java
+        │   │       ├── StonkRegisterTest.java
+        │   │       └── StonkUserTest.java
+        │   └── pom.xml
+        ├── README.md
+        └── pom.xml
+```
+
+### Tree Structure visualized:
 <a href="https://ibb.co/ChM8gLZ"><img src="https://i.ibb.co/gzP9NYp/tree-arc-all-IT-project.png" alt="tree-arc-all-IT-project" border="0"></a>
 
 (click on the image for better quality)
+
 ### Tree Structure of UI:
 <a href="https://ibb.co/fxy20kd"><img src="https://i.ibb.co/qrcd1NY/tre-arkitektur.png" alt="tre-arkitektur" height="150px" width="100%" border="0"></a>
+
+(click on the image for better quality)
