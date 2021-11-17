@@ -10,22 +10,22 @@
 
 Our initial thought was to pull the stock prices using an API, but we decided against it as we needed a service that was free-of-charge. Therefore we get the stocks current price by web-scraping from marketwatch.com. We use .json files for saving information such as username, password and your balance. The reasoning behind this is that more advanced systems is not needed for a game like Stonk.
 
-## how to use stonk app:
-You can choose between registering a new accout or use on of ours.
-If you want to see how an account with bought stocks looks like. You can log inn with:
+## How to use Stonk:
+You can choose between registering a new account or use one of ours.
+If you want to see how an account with bought stocks looks like. You can log in with:
 - username: casper
 - password: 12345
 
-### run app localy:
+### Run Stonk locally:
 ```
-1. git clone (https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2135/gr2135/-/tree/master)
-2. Open the forlder in a IDE as a Maven project.
+1. Clone (https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2135/gr2135/-/tree/master)
+2. Open the folder in a IDE as a Maven project.
 3. Run (mvn install) inside the project folder.
-4. To start the app get inside the ui package (Stonk/ui) and run: >"mvn javafx:run"
-5. If you want to run the tests you can run mvn verify in (Stonk/)
+4. To start the app get inside the ui package (Stonk/ui) and run: <code>mvn javafx:run</code>.
+5. If you want to run the tests you can run <code>mvn verify</code> in (Stonk/).
 ```
 
-### run app in Gitpod:
+### Run Stonk in Gitpod:
 ```
 The repository also includes Gitpod configuration files. Follow theese steps to run the app.
 
@@ -33,7 +33,7 @@ The repository also includes Gitpod configuration files. Follow theese steps to 
 2. When the build of the app is done, write in (Stonk/ui): >"mvn javafx:run"
 3. If you want to run the tests you can run mvn verify in (Stonk/)
 ```
-## functionalities: 
+## Functionalities: 
 - Log in
 - Register
 - Search up stocks
