@@ -75,7 +75,7 @@ public class Stonk {
   }
 
   /**
-   * sets new count for a stock.
+   * Only fired when one removes a stock, hence (-). 
    *
    * @param s the stock.
    */
