@@ -15,7 +15,8 @@ Maven is a software project management and comprehension tool. Based on the conc
 
 - Checkstyle made the code quality much better by helping us keep up with coding standards.
 
-- We use jacoco which is a Code Coverage Library, to check how much coverage our tests have. Our goal is to have at least 70% test coverage at each of our modules.
+- We use jacoco which is a Code Coverage Library, to check how much coverage our tests have. Our goal is to have at least 80% test coverage at each of our modules.
+
 ## How we have Coded
 ### Meetings
 The miniumum requirments we set for ourselves was to meet once a week, but we found it better to meet around 3 times a week to more easily pair code(parr-programmering) and communicate better. We also focused on following the coding commit rules given from [conventionalCommits](https://www.conventionalcommits.org/en/v1.0.0/)
@@ -47,11 +48,12 @@ UI:
 - RegisterController.json: Controller for register page
 - StockPageController.json: Controller for Stock page
 - StonkApp.java: Connects the fxml files to the project.
-- HTTPHandler.java: A handler for our rest-api, which usually gives a response to tell our controllers if it is possible to do something, eg buy a Stock as seen in the buy() function in StockPageController.
-- StartApp: Launches the app.
+- HTTPHandler.java: Sends requests up to our server. 
 
 REST:
-- StonkRestApplication.java: Launches our rest-api
+- StonkRestApplication.java: Launches our rest-api.
+- StonkRestController.java: The controller for our api with the different paths on the application.
+- StonkRestService.java: The "backend" for our server which can execute most of the functionality in our app.
 
 # User Story 1
 <sub>*Connected to issue [#9](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2135/gr2135/-/issues/9).*</sub>
