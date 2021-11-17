@@ -21,8 +21,8 @@ If you want to see how an account with bought stocks looks like. You can log in 
 1. Clone (https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2135/gr2135/-/tree/master)
 2. Open the folder in a IDE as a Maven project.
 3. Run (mvn install) inside the project folder.
-4. To start the app get inside the ui package (Stonk/ui) and run: <code>mvn javafx:run</code>.
-5. If you want to run the tests you can run <code>mvn verify</code> in (Stonk/).
+4. To start the app get inside the ui package (Stonk/ui) and run: `mvn javafx:run`.
+5. If you want to run the tests you can run `mvn verify` in (Stonk/).
 ```
 
 ### Run Stonk in Gitpod:
