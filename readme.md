@@ -32,6 +32,16 @@ The repository also includes Gitpod configuration files. Follow theese steps to 
 2. When the build of the app is done, write in (Stonk/ui): `mvn javafx:run`
 3. If you want to run the tests you can run mvn verify in (Stonk/)
 ```
+
+### Run Stonk-Server:
+```
+Steps to run server:
+
+1. Make sure the project is clean, you can make sure of that by using the "mvn clean install" command in the command-line in the "Stonk" directory
+2. Navigate yourself into the "rest" directory with the "cd" command. Example: "cd Stonk/rest"
+3. Type "mvn spring-boot:run" into the commandline and your server will be generated. The backend of the app is now functional!
+```
+
 ## Functionalities: 
 - Log in
 - Register
@@ -48,14 +58,14 @@ The repository also includes Gitpod configuration files. Follow theese steps to 
 You can find more information about the code in the project file. It is divided into four parts. Core, data, UI and rest.
 
 ### CORE:
-Core is where we have our two main java classes Stonk.java and User.java. 
+Core contains the central logic of the app and is where we have our two main java classes Stonk.java and User.java. 
 - User.java is where the user credentials are made.
 - Stonk.java is the class that gets the information about the stock you want to look for by web scraping the web page matketwatch.
 - This is where you can find theese files.
-[Core](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2135/gr2135/-/tree/master/Stonk/src/main/java/stonk)
+[Core](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2135/gr2135/-/tree/master/Stonk/core/src/main/java/core)
 
 ## Data
-Data is the package for storing data and handling it. It gets handled with the datahandler and stored in Database.json
+Data is the package for storing and handling data. Datahandler.java both reads and writes to the local file "Database.json"
 - You can find it here:
 [Data](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2135/gr2135/-/tree/master/Stonk/data/src/main/java/data)
 
@@ -67,7 +77,12 @@ UI is the package for where the user interface is made. Here the two main compon
 [UI Controller](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2135/gr2135/-/tree/master/Stonk/ui/src/main/java/ui)
 
 ### REST
-INSERT TEXT HERE
+The Stonk-server is generated with the Spring-Boot framerwork and stored as a JSON-format on your local network. This is where the state of your user is saved 
+continuously thorughout the use of the application. The server is made up of three java-classes:
+- StonkRestApplication.java - The class which "fires up" the server.
+- StonkRestController.java - Receives all the requests that server receives, and returns information to the sender via "StonkRestService"
+- StonkRestService.java - Is the logic, or the "backend" of the server. It receives parameters from the controller and then validates and executes the given command. And then returns feedback to the user
+
 
 
 ## Project architecture
