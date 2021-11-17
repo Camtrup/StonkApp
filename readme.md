@@ -37,7 +37,7 @@ The repository also includes Gitpod configuration files. Follow theese steps to 
 ```
 Steps to run server:
 
-1. Make sure the project is clean, you can make sure of that by using the "mvn clean install" command in the command-line in the "Stonk" directory
+1. Make sure the project is clean, you can make sure of that by using the "mvn clean install" command in the command-line from the "Stonk" directory
 2. Navigate yourself into the "rest" directory with the "cd" command. Example: "cd Stonk/rest"
 3. Type "mvn spring-boot:run" into the commandline and your server will be generated. The backend of the app is now functional!
 ```
@@ -83,6 +83,8 @@ continuously thorughout the use of the application. The server is made up of thr
 - StonkRestController.java - Receives all the requests that server receives, and returns information to the sender via "StonkRestService"
 - StonkRestService.java - Is the logic, or the "backend" of the server. It receives parameters from the controller and then validates and executes the given command. And then returns feedback to the user
 
+- The rest-classes can be located here: 
+[Rest](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2135/gr2135/-/tree/master/Stonk/rest/src/main/java/rest)
 
 
 ## Project architecture
