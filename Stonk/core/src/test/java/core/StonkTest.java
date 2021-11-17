@@ -16,7 +16,7 @@ public class StonkTest {
 
 	@BeforeEach
     public void setup(){
-        stonk = new Stonk("BB", 0);
+        stonk = new Stonk("BB", 3);
     }
 
     @Test
@@ -50,7 +50,22 @@ public class StonkTest {
             stonk = new Stonk("", 1);
         });
     }
-//getPriceChange() {
+    @Test
+    public void testAverage(){
+        stonk.setNewCount(new Stonk("BB", 3));
+        assertEquals(0,stonk.getCount());
 
+        assertThrows(IllegalArgumentException.class , () -> {
+            stonk.setNewCount(new Stonk("gme", 2));
+        }); 
+
+    }
+
+    @Test 
+    public void testCount(){
+        assertThrows(IllegalArgumentException.class , () -> {
+            stonk.setNewAverage(new Stonk("gme", 2));
+        }); 
+    }
 
 }
