@@ -99,38 +99,4 @@ public class ProfileController extends SuperController{
     //app.changeScene("mainPage.fxml", user);
     super.changeScene("mainPage.fxml", user);
   }
-
-  // Functions for changing the colour of the buttons when hovering.
-  public void btnHoverAddMoney() {
-    moneyAddBtn.setStyle("-fx-background-color: #3f4652;");
-  }
-
-  public void btnNormalAddMoney() {
-    moneyAddBtn.setStyle("-fx-background-color: #090a0c;");
-  }
-
-  public void btnHoverLogOut() {
-    logOut.setStyle("-fx-background-color: black;");
-  }
-
-  public void btnNormalLogOut() {
-    logOut.setStyle("-fx-background-color: grey;");
-  }
-
-  public void btnHoverDelete() {
-    deleteUser.setStyle("-fx-background-color: black;");
-  }
-
-  public void btnNormalDelete() {
-    deleteUser.setStyle("-fx-background-color: grey;");
-  }
-
-  public void btnHoverBack() {
-    toMain.setStyle("-fx-background-color: #3f4652;");
-  }
-
-  public void btnNormalBack() {
-    toMain.setStyle("-fx-background-color: #090a0c;");
-  }
-
 }

@@ -95,21 +95,4 @@ public class RegisterController extends SuperController{
       }
     }
   }
-
-  public void btnHoverExit() {
-    exitBtn.setStyle("-fx-background-color: #0b4199;");
-  }
-
-  public void btnNormalExit() {
-    exitBtn.setStyle("-fx-background-color: #4849bf;");
-  }
-
-  public void btnHoverRegister() {
-    registerUser.setStyle("-fx-background-color: #0b4199;");
-  }
-
-  public void btnNormalRegister() {
-    registerUser.setStyle("-fx-background-color:  #4849bf;");
-  }
-
 }

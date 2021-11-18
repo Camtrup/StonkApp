@@ -309,31 +309,4 @@ public class MainController extends SuperController{
     displayOnMain();
   }
 
-  // Functions for changing the colour of the buttons when hovering.
-  public void btnHoverMyStocks() {
-    myStocks.setStyle("-fx-background-color: #3f4652;");
-  }
-
-  public void btnNormalMyStocks() {
-    myStocks.setStyle("-fx-background-color: #090a0c;");
-  }
-
-  public void btnHoverSearch() {
-    searchButton.setStyle("-fx-background-color: #3f4652;");
-  }
-
-  public void btnNormalSearch() {
-    searchButton.setStyle("-fx-background-color: #090a0c;");
-  }
-
-  public void btnHoverProfile() {
-    myProfile.setStyle("-fx-background-color: #3f4652;"
-        + "-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 )");
-  }
-
-  public void btnNormalProfile() {
-    myProfile.setStyle("-fx-background-color: #090a0c;" 
-        + "-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 )");
-  }
-
 }

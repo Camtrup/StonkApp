@@ -1,0 +1,49 @@
+.regularButton{
+    -fx-background-color: #4849bf #4849bf;
+    background-color: #4849bf #4849bf;
+    -fx-text-fill: white;
+}
+.regularButton:hover{
+    -fx-background-color:#3c7fb1;
+    background-color: #3c7fb1;
+}
+.buyBtn {
+    -fx-background-color:#42ac2d;
+    background-color: #42ac2d;
+}
+.buyBtn:hover {
+    -fx-background-color:#476640;
+    background-color: #476640;
+}
+.sellBtn {
+    -fx-background-color:#da2d2d;
+    background-color: #da2d2d;
+}
+.sellBtn:hover {
+    -fx-background-color:#a13232;
+    background-color: #a13232;
+}
+#watchList{
+    -fx-graphic: url('https://img.icons8.com/ios/30/000000/star--v2.png');
+}
+
+.feedBack{
+    -fx-alignment: center; 
+    -fx-text-alignment: center; 
+    -fx-text-fill: red;
+}
+
+.ScrollPane {
+    -fx-background-radius: 3px;
+}
+
+.VBox {
+    -fx-background-radius: 5px;
+}
+
+#watchList {
+    -fx-graphic: url('https://img.icons8.com/ios/30/000000/star--v2.png');
+}
+.growthPercent {
+    -fx-text-fill: #05e675#05e675;
+}

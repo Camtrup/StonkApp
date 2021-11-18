@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="585.0" maxWidth="292.0" minHeight="585.0" minWidth="292.0" prefHeight="585.0" prefWidth="292.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane stylesheets="@./css/main.css" maxHeight="585.0" maxWidth="292.0" minHeight="585.0" minWidth="292.0" prefHeight="585.0" prefWidth="292.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="585.0" fitWidth="292.0" onInputMethodTextChanged="#updateTotalPrice" onKeyTyped="#updateTotalPrice">
          <image>
@@ -21,11 +21,11 @@
          <font>
             <Font name="Arial" size="11.0" />
          </font></Text>
-      <Button fx:id="buyBtn" layoutX="157.0" layoutY="424.0" mnemonicParsing="false" onAction="#buy" onMouseEntered="#btnHoverBuy" onMouseExited="#btnNormalBuy" prefHeight="48.0" prefWidth="109.0" style="-fx-background-color: lightgreen;" text="BUY">
+      <Button styleClass="buyBtn" fx:id="buyBtn" layoutX="157.0" layoutY="424.0" mnemonicParsing="false" onAction="#buy" prefHeight="48.0" prefWidth="109.0" text="BUY">
          <font>
             <Font size="16.0" />
          </font></Button>
-      <Button fx:id="sellBtn" layoutX="24.0" layoutY="424.0" mnemonicParsing="false" onAction="#sell" onMouseEntered="#btnHoverSell" onMouseExited="#btnNormalSell" prefHeight="48.0" prefWidth="109.0" style="-fx-background-color: red;" text="SELL">
+      <Button styleClass="sellBtn" fx:id="sellBtn" layoutX="24.0" layoutY="424.0" mnemonicParsing="false" onAction="#sell" prefHeight="48.0" prefWidth="109.0" text="SELL">
          <font>
             <Font name="System Font" size="16.0" />
          </font></Button>
@@ -66,15 +66,15 @@
             <Font name="Arial" size="11.0" />
          </font>
       </Text>
-      <Button fx:id="backToMain" layoutX="4.0" layoutY="4.0" mnemonicParsing="false" onAction="#backToMain" onMouseEntered="#btnHoverBack" onMouseExited="#btnNormalBack" style="-fx-background-color: black;" text="Back" textFill="#fff6f6" />
+      <Button styleClass="regularButton" fx:id="backToMain" layoutX="4.0" layoutY="4.0" mnemonicParsing="false" onAction="#backToMain" text="Back"/>
       <Label fx:id="totPrice1" alignment="CENTER_RIGHT" layoutX="189.0" layoutY="317.0" prefHeight="16.0" prefWidth="75.0" text="Loading ..." textFill="#4d4d4d">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <Button fx:id="addWatchList" layoutX="24.0" layoutY="365.0" mnemonicParsing="false" onAction="#watchStock" onMouseEntered="#btnHoverWatchList" onMouseExited="#btnNormalWatchList" prefHeight="36.0" prefWidth="245.0" style="-fx-background-color: black;" text="ADD TO WATCHLIST" textFill="#fff8f8" />
+      <Button styleClass="regularButton" fx:id="addWatchList" layoutX="24.0" layoutY="365.0" mnemonicParsing="false" onAction="#watchStock" prefHeight="36.0" prefWidth="245.0" text="ADD TO WATCHLIST"/>
       <Pane layoutX="-6.0" layoutY="518.0" prefHeight="78.0" prefWidth="305.0" style="-fx-background-color: #5c26bf#5c26bf;" />
       <Text fill="WHITE" layoutX="62.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="price change today:" />
-      <Label fx:id="illegalArgument" layoutX="25.0" layoutY="487.0" prefHeight="17.0" prefWidth="243.0" style="-fx-text-alignment: center; -fx-alignment: center; -fx-text-fill: red;" text=" " />
+      <Label styleClass="feedBack" fx:id="illegalArgument" layoutX="25.0" layoutY="487.0" prefHeight="17.0" prefWidth="243.0" text=" " />
    </children>
 </AnchorPane>

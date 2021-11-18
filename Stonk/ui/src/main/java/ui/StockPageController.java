@@ -136,27 +136,16 @@ public class StockPageController extends SuperController {
    * Adds Stock to WatchList.
    */
   public void watchStock() {
-    String resp = handler.addOrRemoveWatchList(false, user.getUsername(), user.getPassword(),
+    boolean isInWatchlist = checkForWatchList();
+    String resp = handler.addOrRemoveWatchList(isInWatchlist, user.getUsername(), user.getPassword(),
         stock.getTicker());
-    if (resp.contains("200")) {
-      backToMain();
-    } else {
+    if (resp.contains("400")) {
       userFeedback(resp);
-    }
+    } 
+    user = handler.getUser(user.getUsername(), user.getPassword());
+    checkForWatchList();
   }
 
-  /**
-   * Removes Stock from WatchList.
-   */
-  public void removeWatchStock() {
-    String resp = handler.addOrRemoveStonk(true, user.getUsername(),
-        user.getPassword(), stock.getTicker(), 1);
-    if (resp.contains("200")) {
-      backToMain();
-    } else {
-      userFeedback(resp);
-    }
-  }
 
   /**
    * Buys stock if amount is valid.
@@ -166,12 +155,9 @@ public class StockPageController extends SuperController {
       checkIfNum(amountStock);
       String resp = handler.buyOrSellStonk(false, user.getUsername(),
           user.getPassword(), stock.getTicker(), Integer.parseInt(amountStock.getText()));
-      if (resp.contains("200")) {
-        backToMain();
-      } else {
-
+      if (resp.contains("4")) {
         userFeedback(resp);
-      }
+      } 
     } catch (IllegalArgumentException e) {
       userFeedback(e.getMessage());
     }
@@ -195,41 +181,21 @@ public class StockPageController extends SuperController {
     }
   }
 
-  // Functions for changing the colour of the buttons when hovering.
-  public void btnHoverBuy() {
-    buyBtn.setStyle("-fx-background-color: #03942a;");
-  }
-
-  public void btnNormalBuy() {
-    buyBtn.setStyle("-fx-background-color:lightgreen;");
-  }
-
-  public void btnHoverSell() {
-    sellBtn.setStyle("-fx-background-color: #9e0b13;");
-  }
-
-  public void btnNormalSell() {
-    sellBtn.setStyle("-fx-background-color:#f21d28;");
-  }
-
-  public void btnHoverBack() {
-    backToMain.setStyle("-fx-background-color: #3f4652;");
-  }
-
-  public void btnNormalBack() {
-    backToMain.setStyle("-fx-background-color: #090a0c;");
-  }
-
-  public void btnHoverWatchList() {
-    addWatchList.setStyle("-fx-background-color: #3f4652;");
-  }
-
-  public void btnNormalWatchList() {
-    addWatchList.setStyle("-fx-background-color: #090a0c;");
+  @FXML
+  private boolean checkForWatchList(){
+    for(Stonk i : user.getWatchList()){
+      if(i.getTicker().equals(stock.getTicker())){
+        addWatchList.setText("REMOVE FROM WATCHLIST");
+        return true;
+      }
+    }
+    addWatchList.setText("ADD TO WATCHLIST");
+    return false;
   }
 
   @FXML
   private void initialize(){
     updateStockPage();
+    checkForWatchList();
   }
 }
