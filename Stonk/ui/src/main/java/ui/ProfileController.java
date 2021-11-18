@@ -11,7 +11,7 @@ import javafx.scene.text.Text;
 /**
  * Controller fro profile.
  */
-public class ProfileController {
+public class ProfileController extends SuperController{
 
   @FXML
   private Button moneyAddBtn;
@@ -79,8 +79,8 @@ public class ProfileController {
    * Logs the user out.
    */
   public void logOut() {
-    app.changeScene("login.fxml", null);
-
+    //app.changeScene("login.fxml", null);
+    super.changeScene("login.fxml",null);
   }
 
   /**
@@ -97,7 +97,8 @@ public class ProfileController {
   }
 
   public void toMain() {
-    app.changeScene("mainPage.fxml", user);
+    //app.changeScene("mainPage.fxml", user);
+    super.changeScene("mainPage.fxml", user);
   }
 
   // Functions for changing the colour of the buttons when hovering.

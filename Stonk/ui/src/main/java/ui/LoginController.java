@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
 /**
  * Controller for loginpage.
  */
-public class LoginController {
+public class LoginController extends SuperController {
 
   @FXML
   private Button login;
@@ -33,8 +33,7 @@ public class LoginController {
    * @throws IOException if not possible.
    */
   public void login() {
-    StonkApp app = new StonkApp();
-    app.changeScene("mainPage.fxml", user);
+    super.changeScene("mainPage.fxml", user);
   }
 
   /**
@@ -81,8 +80,8 @@ public class LoginController {
    * @throws IOException if something is wrong.
    */
   public void registerUserNew() throws IOException {
-    StonkApp app = new StonkApp();
-    app.changeScene("newUser.fxml", null);
+    super.changeScene("newUser.fxml", null);
+    
   }
 
 }
