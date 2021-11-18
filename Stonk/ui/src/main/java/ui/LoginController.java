@@ -21,7 +21,7 @@ public class LoginController extends SuperController {
   @FXML
   private TextField username;
   @FXML
-  private Label error;
+  private Label feedBack;
 
   private User user;
 
@@ -48,31 +48,12 @@ public class LoginController extends SuperController {
       login();
     } else {
       // feedback
-      error.setStyle("-fx-text-fill: red; -fx-text-alignment: center;");
-      error.setText(resp);
+      feedBack.setStyle("-fx-text-fill: red; -fx-text-alignment: center;");
+      feedBack.setText(resp);
       System.out.println(resp);
     }
   }
 
-  public void btnHoverLogin() {
-    login.setStyle("-fx-background-color: #3f4652;");
-
-  }
-
-  public void btnNormalLogin() {
-    login.setStyle("-fx-background-color: #090a0c;");
-
-  }
-
-  public void btnHoverRegister() {
-    registerUserNew.setStyle("-fx-background-color: #3f4652;");
-
-  }
-
-  public void btnNormalRegister() {
-    registerUserNew.setStyle("-fx-background-color: #090a0c;");
-
-  }
 
   /**
    * Register new user.

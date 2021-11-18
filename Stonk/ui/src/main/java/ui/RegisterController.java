@@ -29,7 +29,7 @@ public class RegisterController extends SuperController{
   @FXML
   private TextField username;
   @FXML
-  private Label error;
+  private Label feedBack;
 
   private User user = null;
 
@@ -80,18 +80,18 @@ public class RegisterController extends SuperController{
         loginFromRegister();
       } else {
         //Feedback
-        error.setText(resp);
+        feedBack.setText(resp);
         System.out.println(resp);
       }
 
     } catch (IllegalArgumentException e) {
       if (tempInt == -1) {
-        error.setText("Age must be an integer");
+        feedBack.setText("Age must be an integer");
       } else if (tempFloat == -1) {
-        error.setText("Cash must be a number");
+        feedBack.setText("Cash must be a number");
       } 
       else {
-        error.setText(e.getMessage());
+        feedBack.setText(e.getMessage());
       }
     }
   }

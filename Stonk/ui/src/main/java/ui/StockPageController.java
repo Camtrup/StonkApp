@@ -21,12 +21,8 @@ public class StockPageController extends SuperController {
 
   public StockPageController(User user, Stonk stock) {
     this.user = handler.getUser(user.getUsername(), user.getPassword());
-    this.stock = stock;
+    this.stock = new Stonk(stock.getTicker(), stock.getPrice(), stock.getCount(), stock.getName(), stock.getPriceChange());
   }
-
-  //public static void setStaticStock(Stonk s) {
-    //stock = new Stonk(s.getTicker(), s.getCount());
-  //}
 
   @FXML
   private Label moneyFlow;
@@ -45,7 +41,7 @@ public class StockPageController extends SuperController {
   @FXML
   private TextField username;
   @FXML
-  private Label illegalArgument;
+  private Label feedBack;
   @FXML
   private Button buyBtn;
   @FXML
@@ -59,8 +55,6 @@ public class StockPageController extends SuperController {
    * Is fired when the user clicks "EXIT".
    */
   public void backToMain() {
-    //StonkApp app = new StonkApp();
-    //app.changeScene("mainPage.fxml", user);
     super.changeScene("mainPage.fxml", user);
   }
 
@@ -98,7 +92,7 @@ public class StockPageController extends SuperController {
     if (resp.contains("4")){
       resp = resp.substring(4);
     }
-    illegalArgument.setText(resp);
+    feedBack.setText(resp);
     System.out.println(resp);
   }
 

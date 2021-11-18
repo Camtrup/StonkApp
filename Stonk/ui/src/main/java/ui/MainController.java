@@ -65,7 +65,7 @@ public class MainController extends SuperController{
   @FXML
   private Button searchButton;
   @FXML
-  private Label llegalArgument;
+  private Label feedBack;
 
   private Float ecuityChange = (float) 0;
   private Float stockPriceChanged = (float) 0.0;
@@ -141,17 +141,15 @@ public class MainController extends SuperController{
    * Navigates to stockpage.
    */
   public void toStockPage() {
-    //StonkApp app = new StonkApp();
     try {
       Stonk temp = new Stonk(searchBar.getText(), 0);
       if (Objects.isNull(temp)) {
         throw new IllegalArgumentException("Could not find stock");
       }
-      //StockPageController.setStaticStock(temp);
-      //app.changeScene("stockPage.fxml", user);
       super.changeScene("stockPage.fxml", user, temp);
     } catch (IllegalArgumentException | NullPointerException e) {
-      System.out.println(e);
+      //Give feedback
+      feedBack.setText(e.getMessage());
     }
   }
 
@@ -242,8 +240,7 @@ public class MainController extends SuperController{
           growth.setStyle("-fx-font-size: 16; -fx-text-alignment: center;"
               + " -fx-alignment:center; -fx-text-fill:red;");
         }
-        //b.maxHeight(l.getHeight());
-        //more.maxHeight(l.getHeight());
+
         Button more = new Button("more info");
         Button b = new Button(sellOrBuy);
         more.setStyle("-fx-background-color: #090a0c;" 
@@ -251,14 +248,12 @@ public class MainController extends SuperController{
         b.setStyle("-fx-background-color: #090a0c;"
             + " -fx-text-fill: linear-gradient(white, #d0d0d0);  -fx-padding:10px 23px;");
 
-        //VBox h = new VBox(); sjekk om dette funker 
         if (portOrWatch == true) {
           h1 = new VBox(l, fullName, numbers, valueNow, growth);
         } else {
           h1 = new VBox(l, fullName, numbers, growth);
         } 
 
-        //VBox h = new VBox(l,fullName,numbers, valueNow, growth);
         h1.setPadding(new Insets(0, 10, 10, 10));
         h1.setStyle("-fx-background-color: #dbdbdb");
         HBox hbox = new HBox(b, more);
@@ -298,10 +293,7 @@ public class MainController extends SuperController{
    * Navigates to profile.
    */
   public void toProfile() {
-    //StonkApp app = new StonkApp();
-    //app.changeScene("profile.fxml", user);
     super.changeScene("profile.fxml", user);
-
   }
 
   /**
@@ -311,27 +303,11 @@ public class MainController extends SuperController{
   private void initialize() {
     String resp = handler.save();
     if (resp.contains("400")) {
-      llegalArgument.setText(resp);
+      feedBack.setText(resp);
       System.out.println(resp);
     }
     displayOnMain();
   }
-
-  // tried fixing the button hover problem in a easier way, maybe still working
-  /*  public void buttonHover(Button button){
-  myStocks.setStyle("-fx-background-color: #3f4652;");
-  }
-  public void buttonNormal(Button button){
-    button.setStyle("-fx-background-color: #090a0c;");
-  }
-
-  @FXML
-  private void ColorHoverButton() {
-    Button[] buttons = {myStocks, myProfile, searchButton};
-      for (Button button : buttons) {
-        button.setStyle("-fx-background-color: #red; ");
-    }
-  }  */
 
   // Functions for changing the colour of the buttons when hovering.
   public void btnHoverMyStocks() {

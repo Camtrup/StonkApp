@@ -32,10 +32,9 @@ public class ProfileController extends SuperController{
   @FXML
   private TextField moneyAdd;
   @FXML
-  private Label illegalArgument;
+  private Label feedBack;
 
   private User user = null;
-  StonkApp app = new StonkApp();
   HttpHandler handler = new HttpHandler();
   // private Object putCash; checkstyle - unused field
 
@@ -66,7 +65,7 @@ public class ProfileController extends SuperController{
         addedPrompt.setText("Congrats, funds have been added");
       } else {
         // Feedback
-        illegalArgument.setText(resp);
+        feedBack.setText(resp);
         System.out.println(resp);
       }
     } catch (IllegalArgumentException e) {
@@ -92,7 +91,7 @@ public class ProfileController extends SuperController{
       logOut();
     } else {
       // Feedback
-      illegalArgument.setText(resp);
+      feedBack.setText(resp);
     }
   }
 
