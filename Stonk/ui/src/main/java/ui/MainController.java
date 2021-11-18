@@ -147,9 +147,9 @@ public class MainController extends SuperController{
       if (Objects.isNull(temp)) {
         throw new IllegalArgumentException("Could not find stock");
       }
-      StockPageController.setStaticStock(temp);
+      //StockPageController.setStaticStock(temp);
       //app.changeScene("stockPage.fxml", user);
-      super.changeScene("stockPage.fxml", user);
+      super.changeScene("stockPage.fxml", user, temp);
     } catch (IllegalArgumentException | NullPointerException e) {
       System.out.println(e);
     }
