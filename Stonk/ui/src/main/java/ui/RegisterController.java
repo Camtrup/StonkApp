@@ -41,8 +41,6 @@ public class RegisterController extends SuperController{
    * @throws IOException if not possible.
    */
   public void loginFromRegister() throws IOException {
-    //StonkApp app = new StonkApp();
-    //app.changeScene("mainPage.fxml", user);
     super.changeScene("mainpage.fxml", user);
   }
 
@@ -50,8 +48,6 @@ public class RegisterController extends SuperController{
    * Back to login.
    */
   public void backToLogin() {
-    //StonkApp app = new StonkApp();
-    //app.changeScene("login.fxml", user);
     super.changeScene("login.fxml", user);
   }
 
@@ -79,7 +75,6 @@ public class RegisterController extends SuperController{
         user = handler.getUser(temp.getUsername(), temp.getPassword());
         loginFromRegister();
       } else {
-        //Feedback
         feedBack.setText(resp);
         System.out.println(resp);
       }

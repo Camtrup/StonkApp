@@ -36,13 +36,11 @@ public class ProfileController extends SuperController{
 
   private User user = null;
   HttpHandler handler = new HttpHandler();
-  // private Object putCash; checkstyle - unused field
-
+  
   public ProfileController(User user) {
     this.user = handler.getUser(user.getUsername(), user.getPassword());
   }
 
-  // Float differ = MainController.difference;
   /**
    * Display on portfolio.
    */
@@ -66,12 +64,10 @@ public class ProfileController extends SuperController{
         addedPrompt.setText("Congrats, funds have been added");
         displayOnProfile();
       } else {
-        // Feedback
         feedBack.setText(resp);
         System.out.println(resp);
       }
     } catch (IllegalArgumentException e) {
-      // Feedback
       feedBack.setText(e.getMessage());
       System.out.println(e.getMessage());
     }
@@ -81,7 +77,6 @@ public class ProfileController extends SuperController{
    * Logs the user out.
    */
   public void logOut() {
-    //app.changeScene("login.fxml", null);
     super.changeScene("login.fxml",null);
   }
 
@@ -93,13 +88,11 @@ public class ProfileController extends SuperController{
     if (resp.contains("200")) {
       logOut();
     } else {
-      // Feedback
       feedBack.setText(resp);
     }
   }
 
   public void toMain() {
-    //app.changeScene("mainPage.fxml", user);
     super.changeScene("mainPage.fxml", user);
   }
 }
