@@ -148,6 +148,7 @@ public class StonkRestService {
       }
       users.add(temp);
     } catch (IllegalArgumentException e) {
+      e.printStackTrace();
       return "401: " + e.getMessage();
     }
     return "200";
@@ -175,6 +176,7 @@ public class StonkRestService {
         throw new IllegalArgumentException("Enter a positive number");
       }
     } catch (IllegalArgumentException e) {
+      e.printStackTrace();
       return "406: " + e.getMessage();
     }
     return "200";
@@ -218,6 +220,7 @@ public class StonkRestService {
       temp.removeFromPortfolio(ticker, count);
       users.set(index, temp);
     } catch (IllegalArgumentException e) {
+      e.printStackTrace();
       return "405: " + e.getMessage();
     }
     return "200";
@@ -234,8 +237,10 @@ public class StonkRestService {
     try {
       handler.writeToFile(arr.toString());
     } catch (FileNotFoundException e) {
+      e.printStackTrace();
       return "408" + e.getMessage();
     } catch (IOException e) {
+      e.printStackTrace();
       return "409" + e.getMessage();
     }
     return "200";
@@ -258,6 +263,7 @@ public class StonkRestService {
       temp.addToWatchList(ticker, 1);
       users.set(index, temp);
     } catch (IllegalArgumentException e) {
+      e.printStackTrace();
       return "404: " + e.getMessage();
     }
     return "200";
@@ -281,6 +287,7 @@ public class StonkRestService {
       temp.removeFromWatchList(ticker, 1);
       users.set(index, temp);
     } catch (IllegalArgumentException e) {
+      e.printStackTrace();
       return "403: " + e.getMessage();
     }
     return "200";

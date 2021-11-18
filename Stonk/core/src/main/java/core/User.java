@@ -59,7 +59,7 @@ public class User {
   // Used for login
   public User(String username, String password) {
     this.username = username;
-    setPassword(password);
+    this.password = encryptPassword(password);
   }
 
   private void setWatchList(ArrayList<Stonk> watchList2) {
@@ -76,7 +76,6 @@ public class User {
     if (count <= 0) {
       throw new IllegalArgumentException("Amount of stocks cant be negative or 0");
     }
-    System.out.println("addTo Portifolio in USER");
     Stonk stock = new Stonk(ticker, count);
     boolean isOwned = false;
     for (Stonk i : portfolio) {
@@ -99,7 +98,6 @@ public class User {
    */
   public void addToWatchList(String ticker, int count) {
     Stonk stock = new Stonk(ticker, count);
-    System.out.println("addToWatchlist in USER");
     for (Stonk i : watchList) {
       if (i.getTicker().equals(ticker.toLowerCase())) {
         throw new IllegalArgumentException("Stock is already in watchlist");

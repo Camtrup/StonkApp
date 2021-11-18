@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
 /**
  * Controller for register page.
  */
-public class RegisterController {
+public class RegisterController extends SuperController{
   
   @FXML
   private TextField age;
@@ -29,7 +29,7 @@ public class RegisterController {
   @FXML
   private TextField username;
   @FXML
-  private Label error;
+  private Label feedBack;
 
   private User user = null;
 
@@ -41,16 +41,18 @@ public class RegisterController {
    * @throws IOException if not possible.
    */
   public void loginFromRegister() throws IOException {
-    StonkApp app = new StonkApp();
-    app.changeScene("mainPage.fxml", user);
+    //StonkApp app = new StonkApp();
+    //app.changeScene("mainPage.fxml", user);
+    super.changeScene("mainpage.fxml", user);
   }
 
   /**
    * Back to login.
    */
   public void backToLogin() {
-    StonkApp app = new StonkApp();
-    app.changeScene("login.fxml", user);
+    //StonkApp app = new StonkApp();
+    //app.changeScene("login.fxml", user);
+    super.changeScene("login.fxml", user);
   }
 
   /**
@@ -65,23 +67,32 @@ public class RegisterController {
     try {
       tempInt = Integer.parseInt(age.getText());
       tempFloat = Float.parseFloat(cash.getText());
+
+      if(firstname.getText().isBlank() || lastname.getText().isBlank() || username.getText().isBlank() || password.getText().isBlank()){
+        throw new IllegalArgumentException("All fields must be filled out");
+      }
+
+      User temp = new User(username.getText(), password.getText());
+      String resp = handler.newUser(firstname.getText(), lastname.getText(), username.getText(),
+          password.getText(), tempFloat, tempInt);
+      if (resp.contains("200")) {
+        user = handler.getUser(temp.getUsername(), temp.getPassword());
+        loginFromRegister();
+      } else {
+        //Feedback
+        feedBack.setText(resp);
+        System.out.println(resp);
+      }
+
     } catch (IllegalArgumentException e) {
       if (tempInt == -1) {
         throw new IllegalArgumentException("Age must be an integer");
       } else if (tempFloat == -1) {
         throw new IllegalArgumentException("Cash must be a number");
       } 
-    }
-    User temp = new User(username.getText(), password.getText());
-    String resp = handler.newUser(firstname.getText(), lastname.getText(), username.getText(),
-        password.getText(), tempFloat, tempInt);
-    if (resp.contains("200")) {
-      user = handler.getUser(temp.getUsername(), temp.getPassword());
-      loginFromRegister();
-    } else {
-      //Feedback
-      error.setText(resp);
-      System.out.println(resp);
+      else {
+        feedBack.setText(e.getMessage());
+      }
     }
   }
 

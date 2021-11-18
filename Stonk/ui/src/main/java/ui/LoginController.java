@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
 /**
  * Controller for loginpage.
  */
-public class LoginController {
+public class LoginController extends SuperController {
 
   @FXML
   private Button login;
@@ -21,7 +21,7 @@ public class LoginController {
   @FXML
   private TextField username;
   @FXML
-  private Label error;
+  private Label feedBack;
 
   private User user;
 
@@ -33,8 +33,7 @@ public class LoginController {
    * @throws IOException if not possible.
    */
   public void login() {
-    StonkApp app = new StonkApp();
-    app.changeScene("mainPage.fxml", user);
+    super.changeScene("mainPage.fxml", user);
   }
 
   /**
@@ -49,31 +48,12 @@ public class LoginController {
       login();
     } else {
       // feedback
-      error.setStyle("-fx-text-fill: red; -fx-text-alignment: center;");
-      error.setText(resp);
+      feedBack.setStyle("-fx-text-fill: red; -fx-text-alignment: center;");
+      feedBack.setText(resp);
       System.out.println(resp);
     }
   }
 
-  public void btnHoverLogin() {
-    login.setStyle("-fx-background-color: #3f4652;");
-
-  }
-
-  public void btnNormalLogin() {
-    login.setStyle("-fx-background-color: #090a0c;");
-
-  }
-
-  public void btnHoverRegister() {
-    registerUserNew.setStyle("-fx-background-color: #3f4652;");
-
-  }
-
-  public void btnNormalRegister() {
-    registerUserNew.setStyle("-fx-background-color: #090a0c;");
-
-  }
 
   /**
    * Register new user.
@@ -81,8 +61,8 @@ public class LoginController {
    * @throws IOException if something is wrong.
    */
   public void registerUserNew() throws IOException {
-    StonkApp app = new StonkApp();
-    app.changeScene("newUser.fxml", null);
+    super.changeScene("newUser.fxml", null);
+    
   }
 
 }

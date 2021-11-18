@@ -11,7 +11,7 @@ import javafx.scene.text.Text;
 /**
  * Controller fro profile.
  */
-public class ProfileController {
+public class ProfileController extends SuperController{
 
   @FXML
   private Button moneyAddBtn;
@@ -32,10 +32,9 @@ public class ProfileController {
   @FXML
   private TextField moneyAdd;
   @FXML
-  private Label illegalArgument;
+  private Label feedBack;
 
   private User user = null;
-  StonkApp app = new StonkApp();
   HttpHandler handler = new HttpHandler();
   // private Object putCash; checkstyle - unused field
 
@@ -68,7 +67,7 @@ public class ProfileController {
         displayOnProfile();
       } else {
         // Feedback
-        //illegalArgument.setText(resp);
+        feedBack.setText(resp);
         System.out.println(resp);
       }
     } catch (IllegalArgumentException e) {
@@ -82,8 +81,8 @@ public class ProfileController {
    * Logs the user out.
    */
   public void logOut() {
-    app.changeScene("login.fxml", null);
-
+    //app.changeScene("login.fxml", null);
+    super.changeScene("login.fxml",null);
   }
 
   /**
@@ -95,12 +94,13 @@ public class ProfileController {
       logOut();
     } else {
       // Feedback
-      illegalArgument.setText(resp);
+      feedBack.setText(resp);
     }
   }
 
   public void toMain() {
-    app.changeScene("mainPage.fxml", user);
+    //app.changeScene("mainPage.fxml", user);
+    super.changeScene("mainPage.fxml", user);
   }
 
 

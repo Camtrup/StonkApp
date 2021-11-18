@@ -10,21 +10,18 @@ import javafx.scene.control.TextField;
 /**
  * Controller for stockpage.
  */
-public class StockPageController {
+public class StockPageController extends SuperController {
 
   // DataHandler handler = new DataHandler(); Bruker ikke ifølge spotbugs
   private User user = null;
-  private static Stonk stock = null; // Is static and public so the mainController
+  private Stonk stock = null; // Is static and public so the mainController
   // can access it and send the stock-object forward
 
   HttpHandler handler = new HttpHandler();
 
-  public StockPageController(User user) {
+  public StockPageController(User user, Stonk stock) {
     this.user = handler.getUser(user.getUsername(), user.getPassword());
-  }
-
-  public static void setStaticStock(Stonk s) {
-    stock = new Stonk(s.getTicker(), s.getCount());
+    this.stock = new Stonk(stock.getTicker(), stock.getPrice(), stock.getCount(), stock.getName(), stock.getPriceChange());
   }
 
   @FXML
@@ -44,7 +41,7 @@ public class StockPageController {
   @FXML
   private TextField username;
   @FXML
-  private Label illegalArgument;
+  private Label feedBack;
   @FXML
   private Button buyBtn;
   @FXML
@@ -58,8 +55,7 @@ public class StockPageController {
    * Is fired when the user clicks "EXIT".
    */
   public void backToMain() {
-    StonkApp app = new StonkApp();
-    app.changeScene("mainPage.fxml", user);
+    super.changeScene("mainPage.fxml", user);
   }
 
   /**
@@ -91,6 +87,15 @@ public class StockPageController {
 
   }
 
+  @FXML
+  private void userFeedback(String resp){
+    if (resp.contains("4")){
+      resp = resp.substring(4);
+    }
+    feedBack.setText(resp);
+    System.out.println(resp);
+  }
+
   /**
    * Updates the total price.
    *
@@ -120,11 +125,9 @@ public class StockPageController {
     try {
       Integer.parseInt(number.getText());
       if (number.getText().equals("")) {
-        illegalArgument.setText("Cannot be blank");
         throw new IllegalArgumentException("Cannot be blank");
       }
     } catch (NumberFormatException e) {
-      illegalArgument.setText("Amount must be a number");
       throw new IllegalArgumentException("Amount must be a number");
     }
   }
@@ -138,9 +141,7 @@ public class StockPageController {
     if (resp.contains("200")) {
       backToMain();
     } else {
-      // Feedback
-      illegalArgument.setText(resp);
-      System.out.println(resp);
+      userFeedback(resp);
     }
   }
 
@@ -153,9 +154,7 @@ public class StockPageController {
     if (resp.contains("200")) {
       backToMain();
     } else {
-      // Feedback
-      illegalArgument.setText(resp);
-      System.out.println(resp);
+      userFeedback(resp);
     }
   }
 
@@ -170,14 +169,11 @@ public class StockPageController {
       if (resp.contains("200")) {
         backToMain();
       } else {
-        // Feedback
-        illegalArgument.setText(resp);
-        System.out.println(resp);
+
+        userFeedback(resp);
       }
     } catch (IllegalArgumentException e) {
-      // Feedback
-
-      System.out.println(e);
+      userFeedback(e.getMessage());
     }
   }
 
@@ -192,13 +188,10 @@ public class StockPageController {
       if (resp.contains("200")) {
         backToMain();
       } else {
-        // Feedback
-        illegalArgument.setText(resp);
-        System.out.println(resp);
+        userFeedback(resp);
       }
     } catch (IllegalArgumentException e) {
-      // Feedback
-      System.out.println(e);
+      userFeedback(e.getMessage());
     }
   }
 
@@ -233,5 +226,10 @@ public class StockPageController {
 
   public void btnNormalWatchList() {
     addWatchList.setStyle("-fx-background-color: #090a0c;");
+  }
+
+  @FXML
+  private void initialize(){
+    updateStockPage();
   }
 }
