@@ -59,7 +59,7 @@ public class User {
   // Used for login
   public User(String username, String password) {
     this.username = username;
-    setPassword(password);
+    this.password = encryptPassword(password);
   }
 
   private void setWatchList(ArrayList<Stonk> watchList2) {
