@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="CENTER" hgap="10.0" maxHeight="576.0" maxWidth="270.0" prefHeight="576.0" prefWidth="270.0" vgap="10.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.LoginController">
+<GridPane alignment="CENTER" hgap="10.0" maxHeight="576.0" maxWidth="270.0" prefHeight="576.0" prefWidth="270.0" vgap="10.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.LoginController">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
@@ -30,12 +30,12 @@
             </ImageView>
             <TextField fx:id="username" layoutX="73.0" layoutY="470.0" promptText="Brukernavn" />
             <PasswordField fx:id="password" layoutX="73.0" layoutY="499.0" promptText="Passord" />
-            <Button fx:id="login" layoutX="156.0" layoutY="534.0" mnemonicParsing="false" onAction="#isLoginValid" prefHeight="25.0" prefWidth="76.0" style="-fx-background-color: #090a0c;" text="LOGIN" textFill="#fcf6f6">
+            <Button fx:id="login" layoutX="156.0" layoutY="534.0" mnemonicParsing="false" onAction="#isLoginValid" onMouseEntered="#btnHoverLogin" onMouseExited="#btnNormalLogin"  prefHeight="25.0" prefWidth="76.0" style="-fx-background-color: #090a0c;" text="LOGIN" textFill="#fcf6f6">
                <font>
                   <Font size="13.5" />
                </font></Button>
-            <Button fx:id="registerUserNew" layoutX="71.0" layoutY="534.0" mnemonicParsing="false" onAction="#registerUserNew" prefHeight="25.0" prefWidth="76.0" style="-fx-background-color: #090a0c;" text="REGISTER" textFill="#fffbfb" />
-            <Label fx:id="feedBack" layoutX="73.0" layoutY="391.0" prefHeight="17.0" prefWidth="169.0" style="-fx-alignment: center; -fx-text-alignment: center; -fx-text-fill: red;" />
+            <Button fx:id="registerUserNew" layoutX="71.0" layoutY="534.0" mnemonicParsing="false" onAction="#registerUserNew" onMouseEntered="#btnHoverRegister" onMouseExited="#btnNormalRegister" prefHeight="25.0" prefWidth="76.0" style="-fx-background-color: #090a0c;" text="REGISTER" textFill="#fffbfb" />
+            <Label fx:id="error" layoutX="73.0" layoutY="391.0" prefHeight="17.0" prefWidth="169.0" style="-fx-alignment: center; -fx-text-alignment: center; -fx-text-fill: red;" />
          </children>
       </AnchorPane>
    </children>

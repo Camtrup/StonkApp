@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane fx:id="gridane" alignment="CENTER" hgap="10.0" maxHeight="585.0" maxWidth="292.0" minHeight="585.0" minWidth="292.0" prefHeight="585.0" prefWidth="292.0" vgap="10.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane fx:id="gridane" alignment="CENTER" hgap="10.0" maxHeight="585.0" maxWidth="292.0" minHeight="585.0" minWidth="292.0" prefHeight="585.0" prefWidth="292.0" vgap="10.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
@@ -57,7 +57,7 @@
                   </VBox>
                </content>
             </ScrollPane>
-            <Button fx:id="myProfile" layoutX="215.0" layoutY="15.0" mnemonicParsing="false" onAction="#toProfile" onMouseEntered="#btnHoverProfile" onMouseExited="#btnNormalProfile" prefHeight="34.0" prefWidth="76.0" style=" -fx-background-color: #090a0c;  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 ); -fx-text-fill: white;" text="Profile" textFill="#fff9f9" />
+            <Button fx:id="myProfile" layoutX="215.0" layoutY="15.0" mnemonicParsing="false" onAction="#toProfile" onMouseEntered="#btnHoverProfile"  onMouseExited="#btnNormalProfile" prefHeight="34.0" prefWidth="76.0" style=" -fx-background-color: #090a0c;  -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 ); -fx-text-fill: white;" text="Profile" textFill="#fff9f9" />
             <Text fx:id="balanceString1" fill="#f0f0f0" layoutX="-11.0" layoutY="-1.0" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
                   <Font name="Arial" size="17.0" />
@@ -94,7 +94,6 @@
                </font></Button>
             <Button fx:id="watchList" layoutX="230.0" layoutY="324.0" mnemonicParsing="false" onAction="#showWatchList" prefHeight="34.0" prefWidth="44.0" style="-fx-graphic: url('https://img.icons8.com/ios/30/000000/star--v2.png')" />
             <Label fx:id="llegalArgument" layoutX="29.0" layoutY="301.0" prefHeight="17.0" prefWidth="264.0" style="-fx-alignment: center; -fx-text-alignment: center; -fx-text-fill: red;" text="    " />
-            <Label fx:id="feedBack" layoutX="92.0" layoutY="197.0" prefHeight="17.0" prefWidth="105.0" />
          </children>
       </AnchorPane>
    </children>
