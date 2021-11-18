@@ -91,6 +91,15 @@ public class StockPageController {
 
   }
 
+  @FXML
+  private void userFeedback(String resp){
+    if (resp.contains("4")){
+      resp = resp.substring(4);
+    }
+    illegalArgument.setText(resp);
+    System.out.println(resp);
+  }
+
   /**
    * Updates the total price.
    *
@@ -120,11 +129,9 @@ public class StockPageController {
     try {
       Integer.parseInt(number.getText());
       if (number.getText().equals("")) {
-        illegalArgument.setText("Cannot be blank");
         throw new IllegalArgumentException("Cannot be blank");
       }
     } catch (NumberFormatException e) {
-      illegalArgument.setText("Amount must be a number");
       throw new IllegalArgumentException("Amount must be a number");
     }
   }
@@ -138,9 +145,7 @@ public class StockPageController {
     if (resp.contains("200")) {
       backToMain();
     } else {
-      // Feedback
-      illegalArgument.setText(resp);
-      System.out.println(resp);
+      userFeedback(resp);
     }
   }
 
@@ -153,9 +158,7 @@ public class StockPageController {
     if (resp.contains("200")) {
       backToMain();
     } else {
-      // Feedback
-      illegalArgument.setText(resp);
-      System.out.println(resp);
+      userFeedback(resp);
     }
   }
 
@@ -170,14 +173,11 @@ public class StockPageController {
       if (resp.contains("200")) {
         backToMain();
       } else {
-        // Feedback
-        illegalArgument.setText(resp);
-        System.out.println(resp);
+
+        userFeedback(resp);
       }
     } catch (IllegalArgumentException e) {
-      // Feedback
-
-      System.out.println(e);
+      userFeedback(e.getMessage());
     }
   }
 
@@ -192,13 +192,10 @@ public class StockPageController {
       if (resp.contains("200")) {
         backToMain();
       } else {
-        // Feedback
-        illegalArgument.setText(resp);
-        System.out.println(resp);
+        userFeedback(resp);
       }
     } catch (IllegalArgumentException e) {
-      // Feedback
-      System.out.println(e);
+      userFeedback(e.getMessage());
     }
   }
 

@@ -65,25 +65,32 @@ public class RegisterController {
     try {
       tempInt = Integer.parseInt(age.getText());
       tempFloat = Float.parseFloat(cash.getText());
+
+      if(firstname.getText().isBlank() || lastname.getText().isBlank() || username.getText().isBlank() || password.getText().isBlank()){
+        throw new IllegalArgumentException("All fields must be filled out");
+      }
+
+      User temp = new User(username.getText(), password.getText());
+      String resp = handler.newUser(firstname.getText(), lastname.getText(), username.getText(),
+          password.getText(), tempFloat, tempInt);
+      if (resp.contains("200")) {
+        user = handler.getUser(temp.getUsername(), temp.getPassword());
+        loginFromRegister();
+      } else {
+        //Feedback
+        error.setText(resp);
+        System.out.println(resp);
+      }
+
     } catch (IllegalArgumentException e) {
       if (tempInt == -1) {
         error.setText("Age must be an integer");
-        System.out.println(new IllegalArgumentException("Age must be an integer"));
       } else if (tempFloat == -1) {
         error.setText("Cash must be a number");
-        System.out.println(new IllegalArgumentException("Cash must be a number"));
       } 
-    }
-    User temp = new User(username.getText(), password.getText());
-    String resp = handler.newUser(firstname.getText(), lastname.getText(), username.getText(),
-        password.getText(), tempFloat, tempInt);
-    if (resp.contains("200")) {
-      user = handler.getUser(temp.getUsername(), temp.getPassword());
-      loginFromRegister();
-    } else {
-      //Feedback
-      error.setText(resp);
-      System.out.println(resp);
+      else {
+        error.setText(e.getMessage());
+      }
     }
   }
 
