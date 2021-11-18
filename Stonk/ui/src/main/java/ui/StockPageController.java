@@ -10,22 +10,23 @@ import javafx.scene.control.TextField;
 /**
  * Controller for stockpage.
  */
-public class StockPageController {
+public class StockPageController extends SuperController {
 
   // DataHandler handler = new DataHandler(); Bruker ikke ifølge spotbugs
   private User user = null;
-  private static Stonk stock = null; // Is static and public so the mainController
+  private Stonk stock = null; // Is static and public so the mainController
   // can access it and send the stock-object forward
 
   HttpHandler handler = new HttpHandler();
 
-  public StockPageController(User user) {
+  public StockPageController(User user, Stonk stock) {
     this.user = handler.getUser(user.getUsername(), user.getPassword());
+    this.stock = stock;
   }
 
-  public static void setStaticStock(Stonk s) {
-    stock = new Stonk(s.getTicker(), s.getCount());
-  }
+  //public static void setStaticStock(Stonk s) {
+    //stock = new Stonk(s.getTicker(), s.getCount());
+  //}
 
   @FXML
   private Label moneyFlow;
@@ -58,8 +59,9 @@ public class StockPageController {
    * Is fired when the user clicks "EXIT".
    */
   public void backToMain() {
-    StonkApp app = new StonkApp();
-    app.changeScene("mainPage.fxml", user);
+    //StonkApp app = new StonkApp();
+    //app.changeScene("mainPage.fxml", user);
+    super.changeScene("mainPage.fxml", user);
   }
 
   /**

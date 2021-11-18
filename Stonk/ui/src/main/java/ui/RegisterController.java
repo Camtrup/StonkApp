@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
 /**
  * Controller for register page.
  */
-public class RegisterController {
+public class RegisterController extends SuperController{
   
   @FXML
   private TextField age;
@@ -41,16 +41,18 @@ public class RegisterController {
    * @throws IOException if not possible.
    */
   public void loginFromRegister() throws IOException {
-    StonkApp app = new StonkApp();
-    app.changeScene("mainPage.fxml", user);
+    //StonkApp app = new StonkApp();
+    //app.changeScene("mainPage.fxml", user);
+    super.changeScene("mainpage.fxml", user);
   }
 
   /**
    * Back to login.
    */
   public void backToLogin() {
-    StonkApp app = new StonkApp();
-    app.changeScene("login.fxml", user);
+    //StonkApp app = new StonkApp();
+    //app.changeScene("login.fxml", user);
+    super.changeScene("login.fxml", user);
   }
 
   /**
