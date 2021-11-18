@@ -37,6 +37,6 @@
       </Text>
       <Line endX="110.5" layoutX="137.0" layoutY="280.0" startX="-100.0" />
       <Label fx:id="addedPrompt" layoutX="16.0" layoutY="348.0" prefHeight="17.0" prefWidth="262.0" style="-fx-alignment: center;" textFill="#35f31c" />
-      <Label fx:id="illegalArgument" layoutX="29.0" layoutY="373.0" prefHeight="17.0" prefWidth="212.0" style="-fx-alignment: center; -fx-text-alignment: center; -fx-text-fill: red;" text="         " />
+      <Label fx:id="feedBack" layoutX="29.0" layoutY="373.0" prefHeight="17.0" prefWidth="212.0" style="-fx-alignment: center; -fx-text-alignment: center; -fx-text-fill: red;" text="         " />
    </children>
 </AnchorPane>
