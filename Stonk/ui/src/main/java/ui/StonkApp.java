@@ -58,6 +58,9 @@ public class StonkApp extends Application {
     stg.getScene().setRoot(pane);
   }
 
+  protected Scene getScene(){
+    return stg.getScene();
+  }
 
   protected static void setStage(Stage stage) {
     stg = stage;

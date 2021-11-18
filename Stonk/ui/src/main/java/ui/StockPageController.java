@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
 /**
  * Controller for stockpage.
  */
-public class StockPageController {
+public class StockPageController extends SuperController {
 
   // DataHandler handler = new DataHandler(); Bruker ikke ifølge spotbugs
   private User user = null;
@@ -58,8 +58,9 @@ public class StockPageController {
    * Is fired when the user clicks "EXIT".
    */
   public void backToMain() {
-    StonkApp app = new StonkApp();
-    app.changeScene("mainPage.fxml", user);
+    //StonkApp app = new StonkApp();
+    //app.changeScene("mainPage.fxml", user);
+    super.changeScene("mainPage.fxml", user);
   }
 
   /**

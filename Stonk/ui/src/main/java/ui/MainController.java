@@ -22,7 +22,7 @@ import javafx.scene.text.Text;
 /**
  * Controller for main.
  */
-public class MainController {
+public class MainController extends SuperController{
   private User user = null;
   // Stonk stock = new Stonk(); Bruker ikke ifølge spotbugs
   
@@ -141,14 +141,15 @@ public class MainController {
    * Navigates to stockpage.
    */
   public void toStockPage() {
-    StonkApp app = new StonkApp();
+    //StonkApp app = new StonkApp();
     try {
       Stonk temp = new Stonk(searchBar.getText(), 0);
       if (Objects.isNull(temp)) {
         throw new IllegalArgumentException("Could not find stock");
       }
       StockPageController.setStaticStock(temp);
-      app.changeScene("stockPage.fxml", user);
+      //app.changeScene("stockPage.fxml", user);
+      super.changeScene("stockPage.fxml", user);
     } catch (IllegalArgumentException | NullPointerException e) {
       System.out.println(e);
     }
@@ -297,8 +298,9 @@ public class MainController {
    * Navigates to profile.
    */
   public void toProfile() {
-    StonkApp app = new StonkApp();
-    app.changeScene("profile.fxml", user);
+    //StonkApp app = new StonkApp();
+    //app.changeScene("profile.fxml", user);
+    super.changeScene("profile.fxml", user);
 
   }
 
