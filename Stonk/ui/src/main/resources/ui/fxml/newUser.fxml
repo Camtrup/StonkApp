@@ -26,7 +26,7 @@
    <children>
       <AnchorPane maxHeight="585.0" maxWidth="292.0" minHeight="585.0" minWidth="292.0" prefHeight="585.0" prefWidth="292.0" GridPane.rowIndex="3">
          <children>
-            <ImageView fitHeight="617.0" fitWidth="316.0" layoutX="-6.0" layoutY="-25.0">
+            <ImageView fitHeight="617.0" fitWidth="302.0" layoutX="-6.0" layoutY="-25.0">
                <image>
                   <Image url="@../images/registerPage.png" />
                </image>
@@ -42,8 +42,8 @@
             <TextField fx:id="firstname" layoutX="83.0" layoutY="136.0" promptText="First Name " />
             <TextField fx:id="lastname" layoutX="83.0" layoutY="167.0" promptText="Last Name " />
             <TextField fx:id="age" layoutX="82.0" layoutY="197.0" prefHeight="26.0" prefWidth="160.0" promptText="Age" />
-            <TextField fx:id="cash" layoutX="85.0" layoutY="318.0" promptText="eg: 1000 " />
-            <Text layoutX="6.0" layoutY="336.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Balance:">
+            <TextField fx:id="cash" layoutX="85.0" layoutY="318.0" promptText="eg: 10000" />
+            <Text layoutX="13.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Balance" wrappingWidth="48.80859375">
                <font>
                   <Font size="12.0" />
                </font></Text>

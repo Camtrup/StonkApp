@@ -186,7 +186,7 @@ public class HttpHandler {
           HttpResponse.BodyHandlers.ofString());
       resp = response.body();
     } catch (InterruptedException | IOException | URISyntaxException e) {
-      System.out.println(e);
+      System.out.println(e.getMessage());
     }
     return resp;
   }

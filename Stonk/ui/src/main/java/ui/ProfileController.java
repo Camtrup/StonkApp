@@ -49,7 +49,6 @@ public class ProfileController extends SuperController{
   public void displayOnProfile() {
     name.setText(user.getFirstName() + " " + (user.getLastName()));
     balance.setText(Float.toString(user.getCash()) + " $");
-
   }
 
   /**
@@ -58,11 +57,14 @@ public class ProfileController extends SuperController{
   public void addValue() {
     try {
       float cash = Float.parseFloat(moneyAdd.getText());
+      if (cash<0){
+        throw new IllegalArgumentException("write a positive number");
+      }
       String resp = handler.addMoreValue(user.getUsername(), user.getPassword(), cash);
       if (resp.contains("200")) {
-        // user.addCash(cash);
         balance.setText(Float.toString(user.getCash()) + " $");
         addedPrompt.setText("Congrats, funds have been added");
+        displayOnProfile();
       } else {
         // Feedback
         feedBack.setText(resp);
@@ -70,7 +72,8 @@ public class ProfileController extends SuperController{
       }
     } catch (IllegalArgumentException e) {
       // Feedback
-      System.out.println(e);
+      feedBack.setText(e.getMessage());
+      System.out.println(e.getMessage());
     }
   }
 
