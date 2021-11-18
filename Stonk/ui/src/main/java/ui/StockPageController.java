@@ -234,4 +234,9 @@ public class StockPageController {
   public void btnNormalWatchList() {
     addWatchList.setStyle("-fx-background-color: #090a0c;");
   }
+
+  @FXML
+  private void initialize(){
+    updateStockPage();
+  }
 }
