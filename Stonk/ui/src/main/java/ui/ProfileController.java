@@ -50,7 +50,6 @@ public class ProfileController {
   public void displayOnProfile() {
     name.setText(user.getFirstName() + " " + (user.getLastName()));
     balance.setText(Float.toString(user.getCash()) + " $");
-
   }
 
   /**
@@ -59,19 +58,23 @@ public class ProfileController {
   public void addValue() {
     try {
       float cash = Float.parseFloat(moneyAdd.getText());
+      if (cash<0){
+        throw new IllegalArgumentException("write a positive number");
+      }
       String resp = handler.addMoreValue(user.getUsername(), user.getPassword(), cash);
       if (resp.contains("200")) {
-        // user.addCash(cash);
         balance.setText(Float.toString(user.getCash()) + " $");
         addedPrompt.setText("Congrats, funds have been added");
+        displayOnProfile();
       } else {
         // Feedback
-        illegalArgument.setText(resp);
+        //illegalArgument.setText(resp);
         System.out.println(resp);
       }
     } catch (IllegalArgumentException e) {
       // Feedback
-      System.out.println(e);
+      illegalArgument.setText(e.getMessage());
+      System.out.println(e.getMessage());
     }
   }
 
@@ -99,6 +102,8 @@ public class ProfileController {
   public void toMain() {
     app.changeScene("mainPage.fxml", user);
   }
+
+
 
   // Functions for changing the colour of the buttons when hovering.
   public void btnHoverAddMoney() {

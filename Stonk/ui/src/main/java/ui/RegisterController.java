@@ -67,11 +67,9 @@ public class RegisterController {
       tempFloat = Float.parseFloat(cash.getText());
     } catch (IllegalArgumentException e) {
       if (tempInt == -1) {
-        error.setText("Age must be an integer");
-        System.out.println(new IllegalArgumentException("Age must be an integer"));
+        throw new IllegalArgumentException("Age must be an integer");
       } else if (tempFloat == -1) {
-        error.setText("Cash must be a number");
-        System.out.println(new IllegalArgumentException("Cash must be a number"));
+        throw new IllegalArgumentException("Cash must be a number");
       } 
     }
     User temp = new User(username.getText(), password.getText());
@@ -86,6 +84,9 @@ public class RegisterController {
       System.out.println(resp);
     }
   }
+
+
+
 
   public void btnHoverExit() {
     exitBtn.setStyle("-fx-background-color: #0b4199;");
