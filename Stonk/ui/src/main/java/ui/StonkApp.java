@@ -25,7 +25,6 @@ public class StonkApp extends Application {
     setStage(stage);
     FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("fxml/login.fxml"));
     Parent parent = fxmlLoader.load();
-    parent.getStylesheets().add(this.getClass().getResource("fxml/css/main.css").toExternalForm());
     stage.setTitle("Stonk");
     stage.setScene(new Scene(parent, 292, 580));
     stage.setResizable(false);
