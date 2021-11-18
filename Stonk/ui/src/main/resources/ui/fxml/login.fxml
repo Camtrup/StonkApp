@@ -35,7 +35,7 @@
                   <Font size="13.5" />
                </font></Button>
             <Button fx:id="registerUserNew" layoutX="71.0" layoutY="534.0" mnemonicParsing="false" onAction="#registerUserNew" onMouseEntered="#btnHoverRegister" onMouseExited="#btnNormalRegister" prefHeight="26.0" prefWidth="82.0" style="-fx-background-color: #090a0c;" text="REGISTER" textFill="#fffbfb" />
-            <Label fx:id="error" layoutX="73.0" layoutY="391.0" prefHeight="17.0" prefWidth="169.0" style="-fx-alignment: center; -fx-text-alignment: center; -fx-text-fill: red;" />
+            <Label fx:id="error" layoutX="11.0" layoutY="392.0" prefHeight="17.0" prefWidth="276.0" style="-fx-alignment: center; -fx-text-alignment: center; -fx-text-fill: red;" />
          </children>
       </AnchorPane>
    </children>

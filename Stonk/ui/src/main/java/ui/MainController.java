@@ -262,7 +262,7 @@ public class MainController {
         h1.setStyle("-fx-background-color: #dbdbdb");
         HBox hbox = new HBox(b, more);
         hbox.setSpacing(15);
-        hbox.setMargin(b, new Insets(0, 0, 0, 55));
+        hbox.setMargin(b, new Insets(0, 0, 0, 45));
         hbox.setStyle("-fx-background-color: #dbdbdb; -fx-margin: auto");
 
         b.setOnMouseClicked(event -> {
@@ -272,7 +272,7 @@ public class MainController {
         more.setOnMouseClicked(event -> {
           stockOnWeb = row.get(0);
           openBrowser();
-        });
+        }); 
         scrollPane.getChildren().addAll(h1);
         scrollPane.getChildren().addAll(hbox);
       }

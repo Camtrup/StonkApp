@@ -26,7 +26,7 @@
    <children>
       <AnchorPane maxHeight="585.0" maxWidth="292.0" minHeight="585.0" minWidth="292.0" prefHeight="585.0" prefWidth="292.0" GridPane.rowIndex="3">
          <children>
-            <ImageView fitHeight="617.0" fitWidth="316.0" layoutX="-6.0" layoutY="-25.0">
+            <ImageView fitHeight="617.0" fitWidth="302.0" layoutX="-6.0" layoutY="-25.0">
                <image>
                   <Image url="@../images/registerPage.png" />
                </image>
@@ -43,14 +43,14 @@
             <TextField fx:id="lastname" layoutX="83.0" layoutY="167.0" promptText="Last Name " />
             <TextField fx:id="age" layoutX="82.0" layoutY="197.0" prefHeight="26.0" prefWidth="160.0" promptText="Age" />
             <TextField fx:id="cash" layoutX="85.0" layoutY="318.0" promptText="eg: 10000" />
-            <Text layoutX="14.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Balance:" wrappingWidth="48.80859375">
+            <Text layoutX="13.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Balance" wrappingWidth="48.80859375">
                <font>
                   <Font size="12.0" />
                </font></Text>
             <Text layoutX="244.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$" />
             <Button fx:id="exitBtn" layoutX="20.0" layoutY="63.0" mnemonicParsing="false" onAction="#backToLogin" onMouseEntered="#btnHoverExit" onMouseExited="#btnNormalExit" prefHeight="26.0" prefWidth="55.0" style="-fx-background-color: #4849bf #4849bf;" text="Exit" textFill="#fffdfd" />
-            <Pane layoutX="-11.0" layoutY="519.0" prefHeight="78.0" prefWidth="324.0" style="-fx-background-color: #4849bf #4849bf;" />
-            <Label fx:id="error" layoutX="45.0" layoutY="427.0" prefHeight="17.0" prefWidth="222.0" style="-fx-alignment: center; -fx-text-alignment: center; -fx-text-fill: red;" text="     " />
+            <Pane layoutX="-11.0" layoutY="519.0" prefHeight="77.0" prefWidth="310.0" style="-fx-background-color: #4849bf #4849bf;" />
+            <Label fx:id="error" layoutX="13.0" layoutY="427.0" prefHeight="17.0" prefWidth="269.0" style="-fx-alignment: center; -fx-text-alignment: center; -fx-text-fill: red;" text="     " />
          </children>
       </AnchorPane>
    </children>
