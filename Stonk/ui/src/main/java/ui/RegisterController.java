@@ -86,15 +86,18 @@ public class RegisterController extends SuperController{
 
     } catch (IllegalArgumentException e) {
       if (tempInt == -1) {
-        feedBack.setText("Age must be an integer");
+        throw new IllegalArgumentException("Age must be an integer");
       } else if (tempFloat == -1) {
-        feedBack.setText("Cash must be a number");
+        throw new IllegalArgumentException("Cash must be a number");
       } 
       else {
         feedBack.setText(e.getMessage());
       }
     }
   }
+
+
+
 
   public void btnHoverExit() {
     exitBtn.setStyle("-fx-background-color: #0b4199;");

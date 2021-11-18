@@ -212,7 +212,7 @@ public class MainController extends SuperController{
             - Float.parseFloat(row.get(1)) * Float.parseFloat(row.get(2)));
         stockPriceChanged += growthPerStock;
         // Adds info
-        Label l = new Label("____________________\n" 
+        Label l = new Label("_____________________\n" 
             + row.get(0).toUpperCase());
             
             
@@ -258,7 +258,7 @@ public class MainController extends SuperController{
         h1.setStyle("-fx-background-color: #dbdbdb");
         HBox hbox = new HBox(b, more);
         hbox.setSpacing(15);
-        hbox.setMargin(b, new Insets(0, 0, 0, 55));
+        hbox.setMargin(b, new Insets(0, 0, 0, 45));
         hbox.setStyle("-fx-background-color: #dbdbdb; -fx-margin: auto");
 
         b.setOnMouseClicked(event -> {
@@ -268,7 +268,7 @@ public class MainController extends SuperController{
         more.setOnMouseClicked(event -> {
           stockOnWeb = row.get(0);
           openBrowser();
-        });
+        }); 
         scrollPane.getChildren().addAll(h1);
         scrollPane.getChildren().addAll(hbox);
       }
