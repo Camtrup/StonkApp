@@ -50,7 +50,7 @@
             <Text layoutX="247.0" layoutY="336.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$" />
             <Button styleClass="regularButton" fx:id="exitBtn" layoutX="20.0" layoutY="63.0" mnemonicParsing="false" onAction="#backToLogin" prefHeight="26.0" prefWidth="55.0" text="Exit"/>
             <Pane layoutX="-11.0" layoutY="519.0" prefHeight="78.0" prefWidth="324.0"/>
-            <Label styleClass="feedBack" fx:id="error" layoutX="45.0" layoutY="427.0" prefHeight="17.0" prefWidth="222.0" text="     " />
+            <Label styleClass="feedBack" fx:id="feedBack" layoutX="45.0" layoutY="427.0" prefHeight="17.0" prefWidth="222.0" text="     " />
          </children>
       </AnchorPane>
    </children>
