@@ -2,7 +2,6 @@
 
 In this section we will write about how the code is built, everything from which libraries we are using to illustrations and the functioning of the different files.
 
-
 ## Maven build
 Maven is a software project management and building tool. Based on the concept of a project object model (POM). The Maven-build for our app needs at least Java version 14, and JavaFX version 11.
 
@@ -20,10 +19,6 @@ JSON-simple is s much simpler version og JSON. It uses a Java library library fo
 JavaFX is a Java library that simplifies the development of Rich Internet Applications (RIA). Applications written using this library can be run across different platforms. The applications can also be run on various devices such as computers, mobile phones, TVs and tablets.
 ### Spring Boot
 Spring Boot is an open source, micro-service-based Java network. The Spring Boot framework creates a completely production-ready environment that is fully configurable using the pre-built code in the code base. The Microservice architecture provides developers with a full-featured application, including embedded application servers.
-## Maven build
-Maven is a software project management and building tool. Based on the concept of a project object model (POM). The Maven-build for our app needs at least Java version 14, and JavaFX version 11.
-
-The reason we went with maven isntead of gradle is because It uses an XML file for declaring the project, its dependencies, the build order, and its required plugin. This is something we find familiar and easy to understand from doing former projects.
 ### SpotBugs, CheckStyle and JaCoCo
 - Spotbugs has helped with finding unused codes and errors or bugs we were not able to find ourselves. 
 
@@ -39,13 +34,15 @@ The miniumum requirments we set for ourselves was to meet once a week, but we fo
 Pair programming has helped us to higher the quality of the code by prrogramming out loud with a driver and navigator working together. We started meeting more often to pair program as much as possible.
 
 ### SCRUM
-SCRUM has been central for our coding. We have participated and are aware of all sorts of agile ceremonies (user story grooming, sprint planning, sprint retrospective). This helped to impact the end product, by having fixed deliveries in short iterations with a fixed length in close, ongoing collaboration between customer and supplier. Apart from the Sprints, the QA (who does it, when it gets done) helped alot. Being able to asign and set a deadline og gitlabs really helped having control over our project. 
+SCRUM has been central for our coding. We have participated and are aware of all sorts of agile ceremonies (user story grooming, sprint planning, sprint retrospective). This helped to impact the end product, by having fixed deliveries in short iterations with a fixed length in close, ongoing collaboration between customer and supplier. Apart from the Sprints, the QA (who does it, when it gets done) helped alot. Being able to asign and set a deadline on gitlabs really helped having control over our project. 
 
 SCRUM was a powerful tool that empowered us to fix our mistakes quickly and made the whole team feel acountabel for the delivery, and in addition it is really easy not to get stuck on problems because if you do, you can simply ask the team in the next meeting.
 
+####how gitlab helped
+Gitlab is great for enabling lean and agile project management especially for scrum projects. Here we were able to add issues, which had a deadline, labels and could be issued to grup members. THe milestone and board functionalities also helped us hold upå with deadlines.
 
 ## Files
-  
+
 CORE:
   - Stonk.java: Pulls information about the stock using JSoup.
   - User.java: Creation and editing of user information.
@@ -101,19 +98,26 @@ REST:
 ## Illustrations
 
 <a href="https://ibb.co/LCt19wK"><img src="https://i.ibb.co/RC0cQn8/Skjermbilde-2021-11-20-kl-17-27-51.png"  height="400"
- alt="Skjermbilde-2021-11-20-kl-17-27-51" border="0"></a> *Profile side where you can add more money to you account*
+ alt="Skjermbilde-2021-11-20-kl-17-27-51" border="0"></a> *  Profile side where you can add more money to you account*
  
 
-<a href="https://ibb.co/sw5Ccv9"><img src="https://i.ibb.co/85zbGDg/Skjermbilde-2021-11-20-kl-17-28-27.png"  height="400" alt="Skjermbilde-2021-11-20-kl-17-28-27" border="0"></a> *Stockpage to buy, sell og add stocks to watch List*
+<a href="https://ibb.co/sw5Ccv9"><img src="https://i.ibb.co/85zbGDg/Skjermbilde-2021-11-20-kl-17-28-27.png"  height="400" alt="Skjermbilde-2021-11-20-kl-17-28-27" border="0"></a> *  Stockpage to buy, sell og add stocks to watch List*
 
-<a href="https://ibb.co/cTNk138"><img src="https://i.ibb.co/f0Cq2FN/Skjermbilde-2021-11-20-kl-17-28-55.png"  height="400" alt="Skjermbilde-2021-11-20-kl-17-28-55" border="0"></a>*Homepage showing balance and stocks you own*
-
-
-<a href="https://ibb.co/CbX8MGL"><img src="https://i.ibb.co/Pcbj9Hk/Skjermbilde-2021-11-20-kl-17-33-03.png" height="400" alt="Skjermbilde-2021-11-20-kl-17-33-03" border="0"></a>*Login site*
+<a href="https://ibb.co/cTNk138"><img src="https://i.ibb.co/f0Cq2FN/Skjermbilde-2021-11-20-kl-17-28-55.png"  height="400" alt="Skjermbilde-2021-11-20-kl-17-28-55" border="0"></a>*  Homepage showing balance and stocks you own*
 
 
-<a href="https://ibb.co/fvwNJVg"><img src="https://i.ibb.co/16WXcYg/Skjermbilde-2021-11-20-kl-17-33-16.png" height="400" alt="Skjermbilde-2021-11-20-kl-17-33-16" border="0"></a>*Register a new user site*
+<a href="https://ibb.co/CbX8MGL"><img src="https://i.ibb.co/Pcbj9Hk/Skjermbilde-2021-11-20-kl-17-33-03.png" height="400" alt="Skjermbilde-2021-11-20-kl-17-33-03" border="0"></a>*  Login site*
+
+
+<a href="https://ibb.co/fvwNJVg"><img src="https://i.ibb.co/16WXcYg/Skjermbilde-2021-11-20-kl-17-33-16.png" height="400" alt="Skjermbilde-2021-11-20-kl-17-33-16" border="0"></a>*  Register a new user site*
 
 
 ## Diagrams
+
+#### sequence diagram:
+
+
+#### class diagram:
+
+
 
