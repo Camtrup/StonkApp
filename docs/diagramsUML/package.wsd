@@ -1,0 +1,35 @@
+@startuml
+
+package "rest" #DDDDDD {
+  package stonk.rest 
+}
+package "ui" #DDDDDD {
+  package stonk.ui 
+  component fxml
+
+}
+package "core" #DDDDDD {
+  package stonk.core 
+}
+package "data" #DDDDDD {
+  package stonk.data 
+}
+
+component springBoot
+
+
+rest ..> springBoot
+rest ..> core 
+rest ..> data
+ui ..> rest
+ui ..> core   
+
+
+/' 
+node1 -- node2 : label1
+node1 .. node3 : label2
+node1 ~~ node4 : label3
+node1 == node5
+'/
+
+@enduml

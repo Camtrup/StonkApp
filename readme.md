@@ -12,8 +12,8 @@ Our initial thought was to pull the stock prices using an API, but we decided ag
 ## How to use Stonk:
 You can choose between registering a new account or use one of ours.
 If you want to see how an account with bought stocks looks like. You can log in with:
-- Username: casper
-- Password: 12345
+- Username: test
+- Password: 123
 
 ### Run Stonk locally:
 ```
@@ -33,7 +33,7 @@ The repository also includes Gitpod configuration files. Follow theese steps to 
 3. If you want to run the tests you can run mvn verify in (Stonk/)
 ```
 
-### Run Stonk-Server:
+### Run Stonk-Server (NEED TO DO!):
 ```
 Steps to run server:
 
@@ -52,7 +52,6 @@ Steps to run server:
 - Add more money
 - Log out
 - Delete user
-
 
 ## Project file
 You can find more information about the code in the project file. It is divided into four parts. Core, data, UI and rest.
@@ -88,7 +87,7 @@ continuously thorughout the use of the application. The server is made up of thr
 
 
 ## Project architecture
-The structure in UI was too complex and large to put in with the rest of the structure of the app in the image. 
+
 
 ### Structure of the app:
 ```
@@ -176,11 +175,14 @@ The structure in UI was too complex and large to put in with the rest of the str
 ```
 
 ### Tree Structure visualized:
-<a href="https://ibb.co/ChM8gLZ"><img src="https://i.ibb.co/gzP9NYp/tree-arc-all-IT-project.png" alt="tree-arc-all-IT-project" border="0"></a>
+The structure in UI was too complex and large to put in with the rest of the structure of the app in the image. 
 
-(click on the image for better quality)
+<a href="https://ibb.co/WcN81PG"><img src="https://i.ibb.co/vJCy8QV/stonk-tree-structure.png" alt="stonk-tree-structure" border="0"></a>
+
 
 ### Tree Structure of UI:
-<a href="https://ibb.co/fxy20kd"><img src="https://i.ibb.co/qrcd1NY/tre-arkitektur.png" alt="tre-arkitektur" height="150px" width="100%" border="0"></a>
+(click on the image for better quality)
+
+<a href="https://ibb.co/fQkKgdT"><img src="https://i.ibb.co/0QCW7yz/Ui-tree.png" alt="tre-arkitektur" height="150px" width="100%" border="0"></a>
 
 (click on the image for better quality)
