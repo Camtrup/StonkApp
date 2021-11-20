@@ -51,6 +51,7 @@ public class RegisterController extends SuperController{
     super.changeScene("login.fxml", user);
   }
 
+  
   /**
    * Register new user. 
    *
