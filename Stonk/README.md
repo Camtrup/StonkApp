@@ -7,7 +7,7 @@ In this section we will write about how the code is built, everything from which
 Using this we are able to get information about every given stock in real-time.
 
 ## Maven build
-Maven is a software project management and comprehension tool. Based on the concept of a project object model (POM), Maven can manage a project's build, reporting and documentation from a central piece of information. The Maven-build for our app needs at least Java version 14, and JavaFX version 11.
+Maven is a software project management and building tool. Based on the concept of a project object model (POM), Maven can manage a project's build, reporting and documentation from a central piece of information. The Maven-build for our app needs at least Java version 14, and JavaFX version 11.
 
 
 ## SpotBugs, CheckStyle and JaCoCo
@@ -85,15 +85,24 @@ REST:
 
 
 ## Illustrations
-***The illustrations are due to change as we will keep making changes to the UI going forward.***
+*Profile side where you can add more money to you account*
+<a href="https://ibb.co/LCt19wK"><img src="https://i.ibb.co/RC0cQn8/Skjermbilde-2021-11-20-kl-17-27-51.png"  height="400"
+ alt="Skjermbilde-2021-11-20-kl-17-27-51" border="0"></a>
+ 
+ *Stockpage to buy, sell og add stocks to watch List*
+<a href="https://ibb.co/sw5Ccv9"><img src="https://i.ibb.co/85zbGDg/Skjermbilde-2021-11-20-kl-17-28-27.png"  height="400" alt="Skjermbilde-2021-11-20-kl-17-28-27" border="0"></a>
 
-<img src="https://i.ibb.co/hDPYfz3/Skjermbilde-2021-09-22-kl-14-08-24.png"  height="400">
+*Homepage showing balance and stocks you own*
+<a href="https://ibb.co/cTNk138"><img src="https://i.ibb.co/f0Cq2FN/Skjermbilde-2021-11-20-kl-17-28-55.png"  height="400" alt="Skjermbilde-2021-11-20-kl-17-28-55" border="0"></a>
 
-*Homepage showing balance and recent transactions.*
+*Login site*
+<a href="https://ibb.co/CbX8MGL"><img src="https://i.ibb.co/Pcbj9Hk/Skjermbilde-2021-11-20-kl-17-33-03.png" height="400" alt="Skjermbilde-2021-11-20-kl-17-33-03" border="0"></a>
+
+*Register a new user site*
+<a href="https://ibb.co/fvwNJVg"><img src="https://i.ibb.co/16WXcYg/Skjermbilde-2021-11-20-kl-17-33-16.png" height="400" alt="Skjermbilde-2021-11-20-kl-17-33-16" border="0"></a>
 
 
-<img src="https://i.ibb.co/PzvRwBW/Skjermbilde-2021-09-22-kl-14-08-40.png"  height="400">
+## Diagrams
 
-*After you have completed a purchase there will be a confirmation screen that shows what you bought, total price and how much each stock cost.*
-
-These are just some of the many thoughts and ideas we have, and we will keep updating these as we see fit as the project proceeds.
+*Package diagram*
+<a href="https://ibb.co/QbJXYvN"><img src="https://i.ibb.co/vwcDL4P/Skjermbilde-2021-11-20-kl-18-25-38.png" alt="Skjermbilde-2021-11-20-kl-18-25-38"  height="400" border="0"></a>
