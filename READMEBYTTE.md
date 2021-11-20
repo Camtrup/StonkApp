@@ -42,6 +42,9 @@ Steps to run server:
 3. Type "mvn spring-boot:run" into the commandline and your server will be generated. The backend of the app is now functional!
 ```
 
+## Package diagram
+<a href="https://ibb.co/svyvnHm"><img src="https://i.ibb.co/4ZPZzdm/Skjermbilde-2021-11-20-kl-19-34-21.png" alt="Skjermbilde-2021-11-20-kl-19-34-21" border="0"></a>
+
 ## Functionalities: 
 - Log in
 - Register

@@ -2,18 +2,32 @@
 
 In this section we will write about how the code is built, everything from which libraries we are using to illustrations and the functioning of the different files.
 
-## JSoup
-**Stonk** is built with the library [JSoup](https://jsoup.org). Jsoup allows us to scrape and parse data from a website using DOM traversal and CSS selectors. 
-Using this we are able to get information about every given stock in real-time.
 
 ## Maven build
-Maven is a software project management and building tool. Based on the concept of a project object model (POM), Maven can manage a project's build, reporting and documentation from a central piece of information. The Maven-build for our app needs at least Java version 14, and JavaFX version 11.
+Maven is a software project management and building tool. Based on the concept of a project object model (POM). The Maven-build for our app needs at least Java version 14, and JavaFX version 11.
+
+The reason we went with maven isntead of gradle is because It uses an XML file for declaring the project, its dependencies, the build order, and its required plugin. This is something we find familiar and easy to understand from doing former projects.
 
 
-## SpotBugs, CheckStyle and JaCoCo
+### JSoup
+**Stonk** is built with the library [JSoup](https://jsoup.org). Jsoup allows us to scrape and parse data from a website using DOM traversal and CSS selectors. 
+Using this we are able to get information about every given stock in real-time.
+### Gson 
+Gson is a great Java library that primary use is to convert Java Objects into their JSON representation. It also gets used to convert a JSON string to an equivalent Java object. 
+### JSON-simple
+JSON-simple is s much simpler version og JSON. It uses a Java library library for JSON processing, read and write JSON data and full compliance with JSON specification.
+### JAVAFX
+JavaFX is a Java library that simplifies the development of Rich Internet Applications (RIA). Applications written using this library can be run across different platforms. The applications can also be run on various devices such as computers, mobile phones, TVs and tablets.
+### Spring Boot
+Spring Boot is an open source, micro-service-based Java network. The Spring Boot framework creates a completely production-ready environment that is fully configurable using the pre-built code in the code base. The Microservice architecture provides developers with a full-featured application, including embedded application servers.
+## Maven build
+Maven is a software project management and building tool. Based on the concept of a project object model (POM). The Maven-build for our app needs at least Java version 14, and JavaFX version 11.
+
+The reason we went with maven isntead of gradle is because It uses an XML file for declaring the project, its dependencies, the build order, and its required plugin. This is something we find familiar and easy to understand from doing former projects.
+### SpotBugs, CheckStyle and JaCoCo
 - Spotbugs has helped with finding unused codes and errors or bugs we were not able to find ourselves. 
 
-- Checkstyle made the code quality much better by helping us keep up with coding standards.
+- Checkstyle made the code quality much better by helping standardizing our formatting to Google coding conventions
 
 - We use jacoco which is a Code Coverage Library, to check how much coverage our tests have. Our goal is to have at least 80% test coverage at each of our modules.
 
@@ -85,24 +99,21 @@ REST:
 
 
 ## Illustrations
-*Profile side where you can add more money to you account*
+
 <a href="https://ibb.co/LCt19wK"><img src="https://i.ibb.co/RC0cQn8/Skjermbilde-2021-11-20-kl-17-27-51.png"  height="400"
- alt="Skjermbilde-2021-11-20-kl-17-27-51" border="0"></a>
+ alt="Skjermbilde-2021-11-20-kl-17-27-51" border="0"></a> *Profile side where you can add more money to you account*
  
- *Stockpage to buy, sell og add stocks to watch List*
-<a href="https://ibb.co/sw5Ccv9"><img src="https://i.ibb.co/85zbGDg/Skjermbilde-2021-11-20-kl-17-28-27.png"  height="400" alt="Skjermbilde-2021-11-20-kl-17-28-27" border="0"></a>
 
-*Homepage showing balance and stocks you own*
-<a href="https://ibb.co/cTNk138"><img src="https://i.ibb.co/f0Cq2FN/Skjermbilde-2021-11-20-kl-17-28-55.png"  height="400" alt="Skjermbilde-2021-11-20-kl-17-28-55" border="0"></a>
+<a href="https://ibb.co/sw5Ccv9"><img src="https://i.ibb.co/85zbGDg/Skjermbilde-2021-11-20-kl-17-28-27.png"  height="400" alt="Skjermbilde-2021-11-20-kl-17-28-27" border="0"></a> *Stockpage to buy, sell og add stocks to watch List*
 
-*Login site*
-<a href="https://ibb.co/CbX8MGL"><img src="https://i.ibb.co/Pcbj9Hk/Skjermbilde-2021-11-20-kl-17-33-03.png" height="400" alt="Skjermbilde-2021-11-20-kl-17-33-03" border="0"></a>
+<a href="https://ibb.co/cTNk138"><img src="https://i.ibb.co/f0Cq2FN/Skjermbilde-2021-11-20-kl-17-28-55.png"  height="400" alt="Skjermbilde-2021-11-20-kl-17-28-55" border="0"></a>*Homepage showing balance and stocks you own*
 
-*Register a new user site*
-<a href="https://ibb.co/fvwNJVg"><img src="https://i.ibb.co/16WXcYg/Skjermbilde-2021-11-20-kl-17-33-16.png" height="400" alt="Skjermbilde-2021-11-20-kl-17-33-16" border="0"></a>
+
+<a href="https://ibb.co/CbX8MGL"><img src="https://i.ibb.co/Pcbj9Hk/Skjermbilde-2021-11-20-kl-17-33-03.png" height="400" alt="Skjermbilde-2021-11-20-kl-17-33-03" border="0"></a>*Login site*
+
+
+<a href="https://ibb.co/fvwNJVg"><img src="https://i.ibb.co/16WXcYg/Skjermbilde-2021-11-20-kl-17-33-16.png" height="400" alt="Skjermbilde-2021-11-20-kl-17-33-16" border="0"></a>*Register a new user site*
 
 
 ## Diagrams
 
-*Package diagram*
-<a href="https://ibb.co/QbJXYvN"><img src="https://i.ibb.co/vwcDL4P/Skjermbilde-2021-11-20-kl-18-25-38.png" alt="Skjermbilde-2021-11-20-kl-18-25-38"  height="400" border="0"></a>
