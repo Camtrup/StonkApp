@@ -16,6 +16,11 @@ public class StonkRestController {
   @Autowired
   private StonkRestService stonkRestService;
 
+  @RequestMapping("/test")
+  public String testMode(){
+    return stonkRestService.testMode();
+  }
+
   @RequestMapping("/user")
   public ArrayList<User> userArray() {
     return stonkRestService.getAllUsers();
@@ -79,6 +84,11 @@ public class StonkRestController {
   @RequestMapping("/save")
   public String save() {
     return stonkRestService.saveJson();
+  }
+
+  @RequestMapping("/test")
+  public String test() {
+    return stonkRestService.testMode();
   }
 
 }

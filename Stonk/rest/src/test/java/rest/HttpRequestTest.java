@@ -36,7 +36,7 @@ public class HttpRequestTest {
     public void testRequests(){
         //Test if saving is completed
         assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/save", String.class)).contains("200");
-        
+        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/test", String.class)).contains("200");
         //Testing that a new user is made
         assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/new/test/test/test/test/1000/20", String.class)).contains("200");
         assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/isLoginValid/test/" + user.getPassword(), String.class).contains("200"));

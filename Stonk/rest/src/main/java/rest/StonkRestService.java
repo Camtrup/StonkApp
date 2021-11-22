@@ -19,6 +19,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class StonkRestService {
 
+  boolean testMode = false;
+
   DataHandler handler = new DataHandler();
 
   private ArrayList<User> users = jsonArrayToArrayList();
@@ -232,16 +234,19 @@ public class StonkRestService {
    * @return a response.
    */
   public String saveJson() {
-    Gson gson = new GsonBuilder().create();
-    JsonArray arr = gson.toJsonTree(users).getAsJsonArray();
-    try {
-      handler.writeToFile(arr.toString());
-    } catch (FileNotFoundException e) {
-      e.printStackTrace();
-      return "408" + e.getMessage();
-    } catch (IOException e) {
-      e.printStackTrace();
-      return "409" + e.getMessage();
+    if(!testMode){
+      Gson gson = new GsonBuilder().create();
+      JsonArray arr = gson.toJsonTree(users).getAsJsonArray();
+      try {
+        handler.writeToFile(arr.toString());
+      } catch (FileNotFoundException e) {
+        e.printStackTrace();
+        return "408" + e.getMessage();
+      } catch (IOException e) {
+        e.printStackTrace();
+        return "409" + e.getMessage();
+      }
+      return "200";
     }
     return "200";
   }
@@ -308,4 +313,12 @@ public class StonkRestService {
     users.remove(index);
     return "200";
   }
+
+public String testMode() {
+    User temp = new User("test", "test","test","test",20,10000, new ArrayList<Stonk>(), new ArrayList<Stonk>(), testMode);
+    users = new ArrayList<User>();
+    users.add(temp);
+    testMode = true;
+    return "200";
+}
 }

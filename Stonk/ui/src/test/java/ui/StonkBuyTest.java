@@ -2,6 +2,7 @@ package ui;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
 
@@ -22,6 +23,14 @@ public class StonkBuyTest extends ApplicationTest{
         stage.show();
         StonkApp.setStage(stage);
     }
+
+    @BeforeEach
+    public void setup(){
+        HttpHandler handler = new HttpHandler();
+        String s = handler.testMode();
+        assertEquals(s , "200");
+    }
+
     //Tests all the vital functions around buying and selling stocks
     //Iterates through the array and sends the arguments into the clickOn- and write-functions
     //Compares the output with the last argument which is the throwable
