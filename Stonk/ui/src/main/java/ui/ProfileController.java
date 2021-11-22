@@ -1,6 +1,5 @@
 package ui;
 
-import core.Stonk;
 import core.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
