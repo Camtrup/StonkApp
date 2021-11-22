@@ -98,8 +98,7 @@ public class MainController extends SuperController{
   public void displayOnMain() {
     displayPortfolio();
     // Float difference = (ecuityChange - user.getCash());
-    cashMoneyFlow.setText(Float.toString(user.getCash()) + "$");
-    cashMoneyFlow.setStyle("-fx-text-fill: white;");
+    cashMoneyFlow.setText((decimalform(user.getCash())) + "$");
     fullName.setText((user.getFirstName()) + " " + (user.getLastName()));
     equity.setText((decimalform(user.getCash() + stockPriceChanged + ecuityChange)) + "$");
     growthPercent();
