@@ -85,10 +85,4 @@ public class StonkRestController {
   public String save() {
     return stonkRestService.saveJson();
   }
-
-  @RequestMapping("/test")
-  public String test() {
-    return stonkRestService.testMode();
-  }
-
 }

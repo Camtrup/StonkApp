@@ -315,7 +315,7 @@ public class StonkRestService {
   }
 
 public String testMode() {
-    User temp = new User("test", "test","test","test",20,10000, new ArrayList<Stonk>(), new ArrayList<Stonk>(), testMode);
+    User temp = new User("test", "test","test","test",20000000,10000, new ArrayList<Stonk>(), new ArrayList<Stonk>(), testMode);
     users = new ArrayList<User>();
     users.add(temp);
     testMode = true;
