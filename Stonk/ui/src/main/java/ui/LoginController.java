@@ -41,14 +41,18 @@ public class LoginController extends SuperController {
    */
   @FXML
   public void isLoginValid() {
-    User temp = new User(username.getText(), password.getText());
-    String resp = handler.isLoginValid(temp.getUsername(), temp.getPassword());
-    if (resp.contains("200")) {
-      user =  handler.getUser(temp.getUsername(), temp.getPassword());
-      login();
-    } else {
-      feedBack.setStyle("-fx-text-fill: red; -fx-text-alignment: center;");
-      feedBack.setText(resp.substring(4));
+    if(username.getText().isBlank() || password.getText().isBlank()){
+      feedBack.setText("All fields must be filled out");
+    }
+    else {
+      User temp = new User(username.getText(), password.getText());
+      String resp = handler.isLoginValid(temp.getUsername(), temp.getPassword());
+      if (resp.contains("200")) {
+        user =  handler.getUser(temp.getUsername(), temp.getPassword());
+        login();
+      } else {
+        feedBack.setText(resp.substring(4));
+      }
     }
   }
 
