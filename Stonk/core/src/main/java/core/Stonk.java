@@ -12,7 +12,7 @@ public class Stonk {
   private String ticker;
   private float price;
   private String name;
-  private String priceChange;
+  private float priceChange;
   private int count;
 
   public Stonk(String ticker, int count) {
@@ -41,7 +41,14 @@ public class Stonk {
       this.price = Float
           .parseFloat(doc.select("h2.intraday__price:contains(.)").first().text()
           .replaceAll("[^\\.0123456789]", ""));
-      this.priceChange = doc.select("span.change--percent--q").first().text();
+      String change = doc.select("span.change--percent--q").first().text();
+      change = change.replace("%", "");
+      if(change.contains("-")){
+        this.priceChange = Float.parseFloat(change.substring(1)) * -1;
+      }
+      else {
+        this.priceChange = Float.parseFloat(change);
+      }
       this.count = count;
     } catch (NullPointerException e) {
       String tick = doc.select(".results table tbody tr td a").first().text();
@@ -58,7 +65,7 @@ public class Stonk {
    * @param name string.
    * @param priceChange change of price.
    */
-  public Stonk(String ticker, float price, int count, String name, String priceChange) {
+  public Stonk(String ticker, float price, int count, String name, float priceChange) {
     this.price = price;
     this.ticker = ticker;
     this.count = count;
@@ -119,7 +126,7 @@ public class Stonk {
     return ticker;
   }
 
-  public String getPriceChange() {
+  public float getPriceChange() {
     return priceChange;
   }
 }

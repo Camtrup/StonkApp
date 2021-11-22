@@ -68,8 +68,7 @@ public class StockPageController extends SuperController {
     moneyFlow.setText(Float.toString(user.getCash()) + " $");
     totPrice1.setText(Float.toString(stock.getPrice()) + " $");
 
-    char priceChangeFloat = stock.getPriceChange().charAt(0); // Checks if priceChange is negative
-    priceChange.setText(stock.getPriceChange());
+    priceChange.setText("" + stock.getPriceChange());
 
     for (Stonk i : user.getPortfolio()) {
       if (i.getTicker().equals(stock.getTicker())) {
@@ -78,12 +77,12 @@ public class StockPageController extends SuperController {
     }
 
     // coloring for pricechange
-    if (priceChangeFloat == '-') {
+    if (stock.getPriceChange() < 0) {
       priceChange.setStyle("-fx-text-fill: Red;");
     } else {
       priceChange.setStyle("-fx-text-fill: #7fff00;");
     }
-    priceChange.setText(stock.getPriceChange());
+    priceChange.setText(stock.getPriceChange() + "%");
 
   }
 

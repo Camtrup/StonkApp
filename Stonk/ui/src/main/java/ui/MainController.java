@@ -149,6 +149,7 @@ public class MainController extends SuperController{
       super.changeScene("stockPage.fxml", user, temp);
     } catch (IllegalArgumentException | NullPointerException e) {
       //Give feedback
+      e.printStackTrace();
       feedBack.setText(e.getMessage());
     }
   }

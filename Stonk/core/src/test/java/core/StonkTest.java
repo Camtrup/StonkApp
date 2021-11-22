@@ -38,7 +38,7 @@ public class StonkTest {
 
     @Test
     public void testPriceChange(){
-        assertTrue(stonk.getPriceChange().getClass().equals(String.class));
+        assertTrue(stonk.getPriceChange() == 0);
     }
 
     @Test

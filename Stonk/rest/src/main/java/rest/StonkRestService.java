@@ -50,7 +50,7 @@ public class StonkRestService {
       temp.add(new Stonk(stonk.get("ticker").toString(),
           Float.parseFloat(stonk.get("price").toString()),
           Integer.parseInt(stonk.get("count").toString()), stonk.get("name").toString(),
-          stonk.get("priceChange").toString()));
+          Float.parseFloat(stonk.get("priceChange").toString())));
     }
     return temp;
   }
