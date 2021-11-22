@@ -172,7 +172,7 @@ public class StonkRestService {
       User temp = users.get(index);
       temp.addToPortfoilio(ticker, count);
       users.set(index, temp);
-      if (count < 0){
+      if (count < 0) {
         throw new IllegalArgumentException("Enter a positive number");
       }
     } catch (IllegalArgumentException e) {

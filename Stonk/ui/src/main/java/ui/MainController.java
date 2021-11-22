@@ -1,14 +1,13 @@
 package ui;
 
+import core.Stonk;
+import core.User;
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-
-import core.Stonk;
-import core.User;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -22,14 +21,13 @@ import javafx.scene.text.Text;
 /**
  * Controller for main.
  */
-public class MainController extends SuperController{
+public class MainController extends SuperController {
   private User user = null;
-  // Stonk stock = new Stonk(); Bruker ikke ifølge spotbugs
-  
+
   @FXML
   private GridPane gridpane;
   @FXML
-  private Label cashMoneyFlow; // Added private (wasnt anything before)
+  private Label cashMoneyFlow;
   @FXML
   private Label equity;
   @FXML
@@ -71,11 +69,15 @@ public class MainController extends SuperController{
   private Float stockPriceChanged = (float) 0.0;
   private Float growthPerStock = (float) 0.0;
   private String stockOnWeb;
-  private VBox h1; 
+  private VBox h1;
 
   HttpHandler handler = new HttpHandler();
-  // public Float difference = (float) 0; - spotbugs - unused
 
+  /**
+   * Gets user from httpHandler.
+   *
+   * @param user gets all the information about the logged in user.
+   */
   public MainController(User user) {
     this.user = handler.getUser(user.getUsername(), user.getPassword());
   }
@@ -93,11 +95,10 @@ public class MainController extends SuperController{
   }
 
   /**
-   * Displays your potifolio on main im fxml.
+   * Displays your potifolio and money statistics on main site.
    */
   public void displayOnMain() {
     displayPortfolio();
-    // Float difference = (ecuityChange - user.getCash());
     cashMoneyFlow.setText((decimalform(user.getCash())) + "$");
     fullName.setText((user.getFirstName()) + " " + (user.getLastName()));
     equity.setText((decimalform(user.getCash() + stockPriceChanged + ecuityChange)) + "$");
@@ -105,7 +106,7 @@ public class MainController extends SuperController{
   }
 
   /**
-   * Growth-precent to show.
+   * Growth-precent of you acount balance.
    */
   public void growthPercent() {
     growth.setText(decimalform(stockPriceChanged) + "$");
@@ -151,7 +152,8 @@ public class MainController extends SuperController{
   }
 
   /**
-   * Opens the marketwatch.com website with more information about the stock clicked on.
+   * Opens the marketwatch.com website with more information about the stock
+   * clicked on.
    */
   public void openBrowser() {
     Desktop d = Desktop.getDesktop();
@@ -165,26 +167,23 @@ public class MainController extends SuperController{
   }
 
   /**
-   * PortFolio and WatchList.
+   * for showing PortFolio and WatchList on the main page.
    *
-   * @param portOrWatch Boolean.
-   * @param sellOrBuy String.
+   * @param portOrWatch        Boolean.
+   * @param sellOrBuy          String.
    * @param averageOrWhenAdded String.
-   * @param watchListStar String.
+   * @param watchListStar      String.
    */
-  public void portfolioAndWatchList(Boolean portOrWatch, String sellOrBuy,
+  public void portfolioAndWatchList(Boolean portOrWatch, String sellOrBuy, 
       String averageOrWhenAdded, String watchListStar) {
     scrollPane.getChildren().clear();
     watchList.setStyle(watchListStar);
     ArrayList<Stonk> getStock = null;
-    if (portOrWatch == false) {
+    if (portOrWatch == false) { // Either shows porfolio or watchList
       getStock = user.getWatchList();
     } else {
       getStock = user.getPortfolio();
     }
-
-    //scrollPane.getChildren().clear();
-    //watchList.setStyle("-fx-graphic: url('https://img.icons8.com/ios/25/000000/star--v2.png')");
 
     ArrayList<ArrayList<String>> arr = new ArrayList<ArrayList<String>>();
 
@@ -194,62 +193,69 @@ public class MainController extends SuperController{
       tempArr.add(String.valueOf(i.getPrice()));
       tempArr.add(String.valueOf(i.getCount()));
       tempArr.add(String.valueOf(i.getName()));
-      // LEGG TIL CURRENTS PRICE OG NÅVERENDE VERDI
+      // Adds the current price and the stock information to an ArrayList
       arr.add(tempArr);
     }
 
     if (arr.size() == 0) {
-      // "NO STOCKS IN PORTFOLIO/WATCHLIST"
+      feedBack.setText("No stocks in potfolio/watchList");
+      // "No stocks in potfolio/watchList"
     } else {
       for (ArrayList<String> row : arr) {
-        Stonk s = new Stonk(row.get(0), Integer.parseInt(row.get(2)));
-        // to get how much you have eanred from Stocks
+        // gets a stock from the arrayList:
+        Stonk s = new Stonk(row.get(0), Integer.parseInt(row.get(2))); 
+
+        // to calculate how much you have earned from Stocks
         ecuityChange += (s.getPrice()) * Float.parseFloat(row.get(2));
         growthPerStock = ((s.getPrice()) * Float.parseFloat(row.get(2))
             - Float.parseFloat(row.get(1)) * Float.parseFloat(row.get(2)));
         stockPriceChanged += growthPerStock;
+
         // Adds info
         Label l = new Label("_____________________\n" 
-            + row.get(0).toUpperCase());
-            
-            
+            + row.get(0).toUpperCase()); // shows the stock name
         Label growth = new Label("Growth: " + String.format("%.2f", growthPerStock) + " $ \n");
         growth.setStyle("-fx-font-size: 15;");
-            
+
         Label fullName = new Label(" " + row.get(3) + " ");
         fullName.setStyle("-fx-font-size: 12;");
-        l.setStyle("-fx-font-size: 21; -fx-text-alignment: center;"
+        l.setStyle("-fx-font-size: 21; -fx-text-alignment: center;" 
             + " -fx-alignment:center; -fx-margin:auto;");
-            
-        Label numbers = new Label("Amount: " + row.get(2)
-            + "\n" + averageOrWhenAdded + " " + String.format("%.2f", Float.parseFloat(row.get(1)))
-            + " $" + "\n\nCurrent: " + s.getPrice() + " $");
+
+        Label numbers = new Label("Amount: " + row.get(2) + "\n" + averageOrWhenAdded
+            + " " + String.format("%.2f", Float.parseFloat(row.get(1))) 
+                + " $" + "\n\nCurrent: " + s.getPrice() + " $");
         numbers.setStyle("-fx-font-size: 15;");
 
-        Label valueNow = new Label("Value now: "
-            + String.format("%.2f", (s.getPrice() * (Float.parseFloat(row.get(2))))) + " $");
+        Label valueNow = new Label(
+            "Value now: " + String.format("%.2f", (s.getPrice()
+                * (Float.parseFloat(row.get(2))))) + " $");
         valueNow.setStyle("-fx-font-size: 15;");
-        
+
+        // changes color of growth to red or green if you have lost or earned money
         if (growthPerStock > 0) {
-          growth.setStyle("-fx-font-size: 16; -fx-text-alignment: center;"
-               + " -fx-alignment:center; -fx-text-fill:green;");
+          growth.setStyle("-fx-font-size: 16; -fx-text-alignment: center; -fx-alignment:center;"
+              + "-fx-text-fill:green;");
         } else if (growthPerStock < 0) {
-          growth.setStyle("-fx-font-size: 16; -fx-text-alignment: center;"
-              + " -fx-alignment:center; -fx-text-fill:red;");
+          growth
+              .setStyle("-fx-font-size: 16; -fx-text-alignment: center;" 
+                  + " -fx-alignment:center; -fx-text-fill:red;");
         }
 
         Button more = new Button("more info");
         Button b = new Button(sellOrBuy);
-        more.setStyle("-fx-background-color: #090a0c;" 
-            + " -fx-text-fill: linear-gradient(white, #d0d0d0); -fx-padding:10px;");
+        more.setStyle(
+            "-fx-background-color: #090a0c;" 
+                + " -fx-text-fill: linear-gradient(white, #d0d0d0); -fx-padding:10px;");
         b.setStyle("-fx-background-color: #090a0c;"
             + " -fx-text-fill: linear-gradient(white, #d0d0d0);  -fx-padding:10px 23px;");
 
+        // removes value now if watchlist is showing
         if (portOrWatch == true) {
           h1 = new VBox(l, fullName, numbers, valueNow, growth);
         } else {
           h1 = new VBox(l, fullName, numbers, growth);
-        } 
+        }
 
         h1.setPadding(new Insets(0, 10, 10, 10));
         h1.setStyle("-fx-background-color: #dbdbdb");
@@ -259,15 +265,14 @@ public class MainController extends SuperController{
         hbox.setStyle("-fx-background-color: #dbdbdb; -fx-margin: auto");
 
         b.setOnMouseClicked(event -> {
-          searchBar.setText(row.get(0));
+          searchBar.setText(row.get(0)); // sends you to site for buying/selling stocks
           toStockPage();
         });
         more.setOnMouseClicked(event -> {
-          stockOnWeb = row.get(0);
+          stockOnWeb = row.get(0); // searches up the stock on marketwatch.com
           openBrowser();
-        }); 
-        scrollPane.getChildren().addAll(h1);
-        scrollPane.getChildren().addAll(hbox);
+        });
+        scrollPane.getChildren().addAll(h1, hbox);
       }
     }
   }
@@ -276,18 +281,20 @@ public class MainController extends SuperController{
    * Displays portfoilo on the main page.
    */
   public void displayPortfolio() {
-    portfolioAndWatchList(true, "sell", "average:", "-fx-graphic: url('https://img.icons8.com/ios/25/000000/star--v2.png')");
+    portfolioAndWatchList(true, "sell", "average:",
+        "-fx-graphic: url('https://img.icons8.com/ios/25/000000/star--v2.png')");
   }
-  
+
   /**
    * Displays watchList on the main page when clickking on the star.
    */
   public void showWatchList() {
-    portfolioAndWatchList(false, "Buy", "when added:", "-fx-graphic: url('https://img.icons8.com/fluency/25/000000/star.png')");
+    portfolioAndWatchList(false, "Buy", "when added:",
+        "-fx-graphic: url('https://img.icons8.com/fluency/25/000000/star.png')");
   }
 
   /**
-   * Navigates to profile.
+   * Navigates to profile site.
    */
   public void toProfile() {
     super.changeScene("profile.fxml", user);

@@ -41,21 +41,19 @@ public class LoginController extends SuperController {
    */
   @FXML
   public void isLoginValid() {
-    if(username.getText().isBlank() || password.getText().isBlank()){
+    if (username.getText().isBlank() || password.getText().isBlank()) {
       feedBack.setText("All fields must be filled out");
-    }
-    else {
+    } else {
       User temp = new User(username.getText(), password.getText());
       String resp = handler.isLoginValid(temp.getUsername(), temp.getPassword());
       if (resp.contains("200")) {
-        user =  handler.getUser(temp.getUsername(), temp.getPassword());
+        user = handler.getUser(temp.getUsername(), temp.getPassword());
         login();
       } else {
         feedBack.setText(resp.substring(4));
       }
     }
   }
-
 
   /**
    * Register new user.
@@ -64,7 +62,7 @@ public class LoginController extends SuperController {
    */
   public void registerUserNew() throws IOException {
     super.changeScene("newUser.fxml", null);
-    
+
   }
 
 }

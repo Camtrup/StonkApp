@@ -10,7 +10,7 @@ import javafx.scene.text.Text;
 /**
  * Controller fro profile.
  */
-public class ProfileController extends SuperController{
+public class ProfileController extends SuperController {
 
   @FXML
   private Button moneyAddBtn;
@@ -35,13 +35,18 @@ public class ProfileController extends SuperController{
 
   private User user = null;
   HttpHandler handler = new HttpHandler();
-  
+
+  /**
+   * Displays name and balance on profile side.
+   *
+   * @param user is a parameter for the user that is logged on. 
+   */
   public ProfileController(User user) {
     this.user = handler.getUser(user.getUsername(), user.getPassword());
   }
 
   /**
-   * Display on portfolio.
+   * Displays name and balance on profile side.
    */
   public void displayOnProfile() {
     name.setText(user.getFirstName() + " " + (user.getLastName()));
@@ -49,35 +54,38 @@ public class ProfileController extends SuperController{
   }
 
   /**
-   * Add value.
+   * Adds more cash to the users cash balance.
    */
   public void addValue() {
     try {
       float cash = Float.parseFloat(moneyAdd.getText());
-      if (cash<0){
+      if (cash < 0) {
         throw new IllegalArgumentException("write a positive number");
       }
       String resp = handler.addMoreValue(user.getUsername(), user.getPassword(), cash);
+      this.user = handler.getUser(user.getUsername(), user.getPassword());
+
       if (resp.contains("200")) {
         balance.setText(Float.toString(user.getCash()) + " $");
         feedBack.setText("");
-        addedPrompt.setText("Congrats, funds have been added");
-        displayOnProfile();
+        // super.changeScene("profile.fxml", user);
+        addedPrompt.setText("Congratulations! More money added!");
+
       } else {
-        feedBack.setText(resp);
         System.out.println(resp);
       }
     } catch (IllegalArgumentException e) {
-      feedBack.setText(e.getMessage());
-      System.out.println(e.getMessage());
+      addedPrompt.setText("");
+      feedBack.setText("Error: " + e.getMessage());
     }
+
   }
 
   /**
    * Logs the user out.
    */
   public void logOut() {
-    super.changeScene("login.fxml",null);
+    super.changeScene("login.fxml", null);
   }
 
   /**
@@ -92,6 +100,9 @@ public class ProfileController extends SuperController{
     }
   }
 
+  /**
+   * Back to main page.
+   */
   public void toMain() {
     super.changeScene("mainPage.fxml", user);
   }

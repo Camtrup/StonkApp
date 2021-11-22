@@ -1,7 +1,6 @@
 package ui;
 
 import java.io.IOException;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -28,10 +27,17 @@ public class StonkApp extends Application {
     stage.setResizable(false);
     stage.show();
   }
-  protected Scene getScene(){
+
+  /**
+   * Used for getting scene for testing.
+   */
+  protected Scene getScene() {
     return stg.getScene();
   }
 
+  /**
+   * Used for setting stage for testing.
+   */
   protected static void setStage(Stage stage) {
     stg = stage;
   }
