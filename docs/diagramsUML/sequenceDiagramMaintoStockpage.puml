@@ -1,0 +1,23 @@
+@startuml
+
+actor Client
+participant searchButton
+participant MainController
+participant searchBar
+participant Stonk
+participant StockPageController
+
+Client -> searchButton : "click"
+searchButton -> MainController : toStockPage()
+alt NoText
+MainController -> searchBar : getText()
+searchBar -> MainController : ""
+MainController -> Client : "Cound not find Stock"
+end
+searchBar -> MainController : "Stockname"
+MainController -> Stonk : new Stonk(Stockname,0)
+Stonk -> Stonk : getScraperInfo(Stockname,0)
+Stonk -> MainController : Stonk
+MainController -> StockPageController : changeScene("stockPage.fxml", Client, Stonk)
+
+@enduml
