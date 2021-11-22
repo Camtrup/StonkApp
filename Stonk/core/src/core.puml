@@ -1,0 +1,28 @@
+@startuml core
+
+class Stonk {
+    -ticker: String
+    -price: float
+    -name: String
+    -priceChange: String
+    -count: int
+    -scrapeStockInfo()
+    +setNewCount()
+    +setNewAverage()
+
+}
+
+class User {
+    +cash: float
+    -age: int
+    -firstName: String
+    -lastName: String
+    -password: String
+    -username: String
+    -portfolio: ArrayList
+    -watchlist: ArrayList
+    
+
+}
+
+@enduml
