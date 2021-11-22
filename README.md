@@ -173,8 +173,8 @@ continuously thorughout the use of the application. The server is made up of thr
         │   │       ├── StonkRegisterTest.java
         │   │       └── StonkUserTest.java
         │   └── pom.xml
-        ├── README.md
-        └── pom.xml
+    ├── README.md
+    └── pom.xml
 ```
 
 ### Tree Structure visualized:
@@ -186,6 +186,18 @@ The structure in UI was too complex and large to put in with the rest of the str
 ### Tree Structure of UI:
 (click on the image for better quality)
 
-<a href="https://ibb.co/fQkKgdT"><img src="https://i.ibb.co/0QCW7yz/Ui-tree.png" alt="tre-arkitektur" height="150px" width="100%" border="0"></a>
+<a href="https://ibb.co/fQkKgdT"><img src="https://i.ibb.co/0QCW7yz/Ui-tree.png" alt="Tree-architecture" height="150px" width="100%" border="0"></a>
 
 (click on the image for better quality)
+
+# Class Diagrams
+
+### Class Diagram for Core
+<a href="https://ibb.co/ZTvKspy"><img src="https://i.ibb.co/ggQw1Ls/Skjermbilde-2021-11-22-kl-15-03-00.png" alt="Core-structure" height="100%" width="100%" border="0"></a>
+
+
+### Class Diagram for UI
+<a href="https://ibb.co/fq55Tq6"><img src="https://i.ibb.co/q7ff27q/Skjermbilde-2021-11-22-kl-15-10-07.png" alt="UI-structure" height="100%" width="100%" border="0"></a>
+
+### Class Diagram for Rest
+<a href="https://ibb.co/cCyPTCY"><img src="https://i.ibb.co/YyN6jy0/Skjermbilde-2021-11-22-kl-15-15-19.png" alt="Rest-structure" border="0"></a>
