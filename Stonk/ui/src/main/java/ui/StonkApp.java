@@ -1,8 +1,6 @@
 package ui;
 
-import core.User;
 import java.io.IOException;
-import java.lang.reflect.Constructor;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

@@ -1,6 +1,5 @@
 package ui;
 
-import core.Stonk;
 import core.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -61,6 +60,7 @@ public class ProfileController extends SuperController{
       String resp = handler.addMoreValue(user.getUsername(), user.getPassword(), cash);
       if (resp.contains("200")) {
         balance.setText(Float.toString(user.getCash()) + " $");
+        feedBack.setText("");
         addedPrompt.setText("Congrats, funds have been added");
         displayOnProfile();
       } else {

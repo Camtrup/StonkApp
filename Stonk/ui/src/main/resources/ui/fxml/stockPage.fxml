@@ -75,6 +75,6 @@
       <Button styleClass="regularButton" fx:id="addWatchList" layoutX="24.0" layoutY="365.0" mnemonicParsing="false" onAction="#watchStock" prefHeight="36.0" prefWidth="245.0" text="ADD TO WATCHLIST"/>
       <Pane layoutX="-6.0" layoutY="518.0" prefHeight="78.0" prefWidth="305.0" style="-fx-background-color: #5c26bf#5c26bf;" />
       <Text fill="WHITE" layoutX="62.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="price change today:" />
-      <Label styleClass="feedBack" fx:id="illegalArgument" layoutX="25.0" layoutY="487.0" prefHeight="17.0" prefWidth="243.0" text=" " />
+      <Label styleClass="feedBack" fx:id="feedBack" layoutX="25.0" layoutY="487.0" prefHeight="17.0" prefWidth="243.0" text=" " />
    </children>
 </AnchorPane>
