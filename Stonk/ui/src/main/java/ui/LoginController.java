@@ -47,10 +47,8 @@ public class LoginController extends SuperController {
       user =  handler.getUser(temp.getUsername(), temp.getPassword());
       login();
     } else {
-      // feedback
       feedBack.setStyle("-fx-text-fill: red; -fx-text-alignment: center;");
-      feedBack.setText(resp);
-      System.out.println(resp);
+      feedBack.setText(resp.substring(4));
     }
   }
 
