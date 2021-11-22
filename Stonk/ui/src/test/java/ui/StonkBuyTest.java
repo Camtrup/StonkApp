@@ -62,8 +62,4 @@ public class StonkBuyTest extends ApplicationTest{
             }
         }
     }
-
-
-
-
 }

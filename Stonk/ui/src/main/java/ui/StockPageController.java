@@ -104,8 +104,15 @@ public class StockPageController extends SuperController {
     if (!amountStock.getText().equals("")) {
       amountStock.setStyle("-fx-text-fill: black; -fx-color: black;");
       amountStock.setStyle("-fx-text-fill: black;");
-      Float floatPrice = stock.getPrice() * Float.parseFloat(amountStock.getText());
-      if (Float.parseFloat(amountStock.getText()) <= 0) {
+      int amount = -1;
+      try{
+        amount = Integer.parseInt(amountStock.getText());
+      }
+      catch (NumberFormatException e){
+        totPrice1.setText("Invalid");
+      }
+      Float floatPrice = stock.getPrice() * amount;
+      if (amount <= 0) {
         totPrice1.setText("Invalid");
       } else if (floatPrice > 10000) {
         totPrice1.setText(String.format("%.0f", floatPrice) + " $");

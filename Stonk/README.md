@@ -84,16 +84,5 @@ REST:
 "If I open the homepage I expect to see which stocks I own, and also that it updates when I buy a new stock, or sell one that I already own. I also expect to be able to update the stock prices to see how all of them have performed after I bought them."
 
 
-## Illustrations
-***The illustrations are due to change as we will keep making changes to the UI going forward.***
-
-<img src="https://i.ibb.co/hDPYfz3/Skjermbilde-2021-09-22-kl-14-08-24.png"  height="400">
-
-*Homepage showing balance and recent transactions.*
 
 
-<img src="https://i.ibb.co/PzvRwBW/Skjermbilde-2021-09-22-kl-14-08-40.png"  height="400">
-
-*After you have completed a purchase there will be a confirmation screen that shows what you bought, total price and how much each stock cost.*
-
-These are just some of the many thoughts and ideas we have, and we will keep updating these as we see fit as the project proceeds.
