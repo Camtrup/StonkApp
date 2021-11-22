@@ -12,8 +12,8 @@ Our initial thought was to pull the stock prices using an API, but we decided ag
 ## How to use Stonk:
 You can choose between registering a new account or use one of ours.
 If you want to see how an account with bought stocks looks like. You can log in with:
-- Username: test
-- Password: 123
+- Username: casper
+- Password: 12345
 
 ### Run Stonk locally:
 ```
@@ -60,7 +60,8 @@ Steps to run server:
 You can find more information about the code in the project file. It is divided into four parts. Core, data, UI and rest.
 
 ### CORE:
-Core contains the central logic of the app and is where we have our two main java classes Stonk.java and User.java. 
+Core contains the central logic of the app and is where we have our two main java classes Stonk.java and User.java. It is completely independent of the UI.
+
 - User.java is where the user credentials are made.
 - Stonk.java is the class that gets the information about the stock you want to look for by web scraping the web page matketwatch.
 - This is where you can find theese files.
@@ -83,7 +84,7 @@ The Stonk-server is generated with the Spring-Boot framerwork and stored as a JS
 continuously thorughout the use of the application. The server is made up of three java-classes:
 - StonkRestApplication.java - The class which "fires up" the server.
 - StonkRestController.java - Receives all the requests that server receives, and returns information to the sender via "StonkRestService"
-- StonkRestService.java - Is the logic, or the "backend" of the server. It receives parameters from the controller and then validates and executes the given command. And then returns feedback to the user
+- StonkRestService.java - Is the logic, or the "backend" of the server. It receives parameters from the controller and then validates and executes the given command. And then returns feedback to the user. The server is run on localhost:8080
 
 - The rest-classes can be located here: 
 [Rest](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2135/gr2135/-/tree/master/Stonk/rest/src/main/java/rest)
