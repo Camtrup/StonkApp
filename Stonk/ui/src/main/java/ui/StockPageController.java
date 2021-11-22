@@ -88,9 +88,7 @@ public class StockPageController extends SuperController {
 
   @FXML
   private void userFeedback(String resp){
-    if (resp.contains("4")){
-      resp = resp.substring(4);
-    }
+    resp = resp.replace("400: ", "");
     feedBack.setText(resp);
     System.out.println(resp);
   }

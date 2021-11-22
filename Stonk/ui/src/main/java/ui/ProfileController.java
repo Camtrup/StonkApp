@@ -64,6 +64,7 @@ public class ProfileController extends SuperController{
         addedPrompt.setText("Congrats, funds have been added");
         displayOnProfile();
       } else {
+        resp = resp.replace("400: ", "");
         feedBack.setText(resp);
         System.out.println(resp);
       }
