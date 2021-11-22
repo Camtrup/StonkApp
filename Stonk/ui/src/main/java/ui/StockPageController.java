@@ -154,9 +154,12 @@ public class StockPageController extends SuperController {
       checkIfNum(amountStock);
       String resp = handler.buyOrSellStonk(false, user.getUsername(),
           user.getPassword(), stock.getTicker(), Integer.parseInt(amountStock.getText()));
-      if (resp.contains("4")) {
-        userFeedback(resp);
+      if (resp.contains("200")) {
+        backToMain();
       } 
+      else {
+        userFeedback(resp);
+      }
     } catch (IllegalArgumentException e) {
       userFeedback(e.getMessage());
     }
