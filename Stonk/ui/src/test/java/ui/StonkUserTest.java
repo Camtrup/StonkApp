@@ -1,5 +1,8 @@
 package ui;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
 
@@ -20,25 +23,31 @@ public class StonkUserTest extends ApplicationTest{
         StonkApp.setStage(stage);
     }
 
-    // @Test
-    // public void testRegisterAndDeleteProfile(){
-    //     String[][] arr = new String[][]{{"#firstname","test"},
-    //                                     {"#lastname","test"},
-    //                                     {"#age","20"},
-    //                                     {"#username","test2"},
-    //                                     {"#password","test"},
-    //                                     {"#cash","10000"},
-    //                                     {"#registerUser",""},
-    //                                     {"#myProfile",""},
-    //                                     {"#deleteUser",""}
-    //                                 };
+    @BeforeEach
+    public void setup(){
+        HttpHandler handler = new HttpHandler();
+        String s = handler.testMode();
+        assertEquals(s , "200");
+    }
 
-    //     clickOn("#registerUserNew");
-    //     for(String[] param : arr) {
-    //         clickOn(param[0]).write(param[1]);
-    //     }
-    //     assertEquals(handler.getAllUsers(), users);
-    // }
+    @Test
+    public void testRegisterAndDeleteProfile(){
+        String[][] arr = new String[][]{{"#firstname","test"},
+                                        {"#lastname","test"},
+                                        {"#age","20"},
+                                        {"#username","test2"},
+                                        {"#password","test"},
+                                        {"#cash","10000"},
+                                        {"#registerUser",""},
+                                        {"#myProfile",""},
+                                        {"#deleteUser",""}
+                                    };
+
+        clickOn("#registerUserNew");
+        for(String[] param : arr) {
+            clickOn(param[0]).write(param[1]);
+        }
+    }
     
     @Test
     public void testLoginBackLogout(){
@@ -52,6 +61,5 @@ public class StonkUserTest extends ApplicationTest{
         for(String[] param : arr) {
             clickOn(param[0]).write(param[1]);
         }
-        //assertEquals(StonkApp.getStaticUser(), null);
     }
 }

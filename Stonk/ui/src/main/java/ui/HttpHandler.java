@@ -8,6 +8,7 @@ import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.net.http.HttpRequest.BodyPublishers;
 
 /**
  * Class for HTTP-handler.
@@ -27,7 +28,9 @@ public class HttpHandler {
     User user = null;
     try {
       HttpRequest request = HttpRequest.newBuilder()
-          .uri(new URI("http://localhost:8080/user/" + username + "/" + password)).GET().build();
+          .uri(new URI("http://localhost:8080/user/" + username + "/" + password))
+          .GET()
+          .build();
       final HttpResponse<String> response = HttpClient.newBuilder().build().send(request,
           HttpResponse.BodyHandlers.ofString());
       user = handler.fromJson(response.body(), User.class);
@@ -48,7 +51,7 @@ public class HttpHandler {
    * @return a response.
    */
   public String buyOrSellStonk(boolean sell, String username, String password,
-      String ticker, int count) {
+          String ticker, int count) {
     String resp = "";
     String method = "buy";
     if (sell) {
@@ -58,7 +61,8 @@ public class HttpHandler {
       HttpRequest request = HttpRequest.newBuilder()
           .uri(
               new URI("http://localhost:8080/" + method + "/" + username + "/" + password + "/" + ticker + "/" + count))
-          .GET().build();
+          .POST(BodyPublishers.ofString(""))
+          .build();
       final HttpResponse<String> response = HttpClient.newBuilder().build().send(request,
           HttpResponse.BodyHandlers.ofString());
       resp = response.body();
@@ -89,7 +93,8 @@ public class HttpHandler {
       HttpRequest request = HttpRequest.newBuilder()
           .uri(
               new URI("http://localhost:8080/" + method + "/" + username + "/" + password + "/" + ticker + "/" + count))
-          .GET().build();
+          .POST(BodyPublishers.ofString(""))
+          .build();
       final HttpResponse<String> response = HttpClient.newBuilder().build().send(request,
           HttpResponse.BodyHandlers.ofString());
       resp = response.body();
@@ -116,7 +121,9 @@ public class HttpHandler {
     try {
       HttpRequest request = HttpRequest.newBuilder().uri(new URI("http://localhost:8080/new/"
           + firstName + "/" + lastName + "/" + username + "/"
-              + password + "/" + cash + "/" + age)).GET().build();
+              + password + "/" + cash + "/" + age))
+              .POST(BodyPublishers.ofString(""))
+              .build();
       final HttpResponse<String> response = HttpClient.newBuilder().build().send(request,
           HttpResponse.BodyHandlers.ofString());
       resp = response.body();
@@ -137,7 +144,9 @@ public class HttpHandler {
     String resp = "";
     try {
       HttpRequest request = HttpRequest.newBuilder()
-          .uri(new URI("http://localhost:8080/delete/" + username + "/" + password)).GET().build();
+          .uri(new URI("http://localhost:8080/delete/" + username + "/" + password))
+          .POST(BodyPublishers.ofString(""))
+          .build();
       final HttpResponse<String> response = HttpClient.newBuilder().build().send(request,
           HttpResponse.BodyHandlers.ofString());
       resp = response.body();
@@ -180,8 +189,9 @@ public class HttpHandler {
     String resp = "";
     try {
       HttpRequest request = HttpRequest.newBuilder()
-          .uri(new URI("http://localhost:8080/value/" + username + "/" + password
-              + "/" + cash)).GET().build();
+          .uri(new URI("http://localhost:8080/value/" + username + "/" + password + "/" + cash))
+          .POST(BodyPublishers.ofString(""))
+          .build();
       final HttpResponse<String> response = HttpClient.newBuilder().build().send(request,
           HttpResponse.BodyHandlers.ofString());
       resp = response.body();
@@ -209,7 +219,8 @@ public class HttpHandler {
     }
     try {
       HttpRequest request = HttpRequest.newBuilder()
-          .uri(new URI("http://localhost:8080/" + method + "/" + username + "/" + password + "/" + ticker)).GET()
+          .uri(new URI("http://localhost:8080/" + method + "/" + username + "/" + password + "/" + ticker))
+          .POST(BodyPublishers.ofString(""))
           .build();
       final HttpResponse<String> response = HttpClient.newBuilder().build().send(request,
           HttpResponse.BodyHandlers.ofString());
@@ -229,6 +240,24 @@ public class HttpHandler {
     String resp = "";
     try {
       HttpRequest request = HttpRequest.newBuilder().uri(new URI("http://localhost:8080/save")).GET().build();
+      final HttpResponse<String> response = HttpClient.newBuilder().build().send(request,
+          HttpResponse.BodyHandlers.ofString());
+      resp = response.body();
+    } catch (InterruptedException | IOException | URISyntaxException e) {
+      System.out.println(e);
+    }
+    return resp;
+  }
+
+  /**
+   * For saving.
+   *
+   * @return a response.
+   */
+  public String testMode() {
+    String resp = "";
+    try {
+      HttpRequest request = HttpRequest.newBuilder().uri(new URI("http://localhost:8080/test")).GET().build();
       final HttpResponse<String> response = HttpClient.newBuilder().build().send(request,
           HttpResponse.BodyHandlers.ofString());
       resp = response.body();

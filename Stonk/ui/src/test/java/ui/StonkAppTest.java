@@ -1,4 +1,8 @@
 package ui;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
 
@@ -11,6 +15,13 @@ import javafx.stage.Stage;
 
 public class StonkAppTest extends ApplicationTest {
 
+
+    @BeforeEach
+    public void setup(){
+        HttpHandler handler = new HttpHandler();
+        String s = handler.testMode();
+        assertEquals(s , "200");
+    }
 
     @Override
     public void start(final Stage stage) throws Exception{
