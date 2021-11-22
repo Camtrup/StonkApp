@@ -38,7 +38,7 @@ public class StonkTest {
 
     @Test
     public void testPriceChange(){
-        assertTrue(stonk.getPriceChange().getClass().equals(String.class));
+        assertTrue(!Float.valueOf(stonk.getPriceChange()).isNaN());
     }
 
     @Test
