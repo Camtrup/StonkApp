@@ -1,0 +1,110 @@
+@startuml treeStruct
+package Stonk #DDDDDD {
+    package stonk
+    
+    package ui #DDDDDD {
+        package stonk.ui
+        package ui.main.resources {
+            component login
+            component mainPage
+            component newUser
+            component profile
+            component stockPage
+        }
+        package ui.main.resources.css {
+            component main.css
+        }
+        package ui.main
+        package ui.test{
+            component StonkAppTest
+            component StonkBuyTest
+            component StonkLoginTest
+            component StonkRegisterTest
+            component StonkUserTest
+        }
+        package ui.main.resources.images {
+            component main
+            component registerPage
+            component signup
+            component star_icon
+            component stockPage
+            component stonkPicture
+        }
+        package ui.main.java {
+            component HttpHandler
+            component LoginController
+            component MainController
+            component ProfileController
+            component RegisterController
+            component StartApp
+            component StockPageController
+            component StonkApp
+            component SuperController
+        }
+    }
+    package rest #DDDDDD {
+        package stonk.rest
+        package stonk.rest.java {
+            component StonkRestApplication
+            component StonkRestService
+            component StonkRestController
+        }
+        package stonk.rest.test {
+            component ApplicationTest
+            component HttpRequestTest
+        }
+    }
+    package core #DDDDDD {
+        package stonk.core 
+        package stonk.core.java {
+            component User
+            component Stonk.java
+        }
+        package stonk.core.test {
+            component UserTest
+        }
+    }
+    package data #DDDDDD {
+        package stonk.data 
+        package data.main
+        package data.main.resources {
+            component database
+        }
+        package data.main.java {
+            component datahandler
+        }
+        package data.test {
+            component datahandlertest
+        }
+    }
+}
+
+stonk <.. ui
+stonk <.. data
+stonk <.. core
+stonk <.. rest
+
+
+stonk.ui <.. ui.main
+stonk.ui <.. ui.test
+ui.main <.. ui.main.java
+ui.main <.. ui.main.resources
+ui.main.resources <.. ui.main.resources.css
+ui.main.resources <.. ui.main.resources.images
+
+stonk.data <.. data.main
+stonk.data <.. data.test
+data.main <.. data.main.java
+data.main <.. data.main.resources
+
+stonk.core <.. stonk.core.java
+stonk.core <.. stonk.core.test
+
+stonk.rest <.. stonk.rest.java
+stonk.rest <.. stonk.rest.test
+
+
+
+
+
+@enduml

@@ -203,17 +203,9 @@ continuously throughout the use of the application. The server is made up of thr
 </details>
 
 ### Tree Structure visualized:
-The structure in UI was too complex and large to put in with the rest of the structure of the app in the image. 
 
-<a href="https://ibb.co/WcN81PG"><img src="https://i.ibb.co/vJCy8QV/stonk-tree-structure.png" alt="stonk-tree-structure" border="0"></a>
+<img src="out/docs/diagramsUML/structureStonk/treeStruct.png">
 
-
-### Tree Structure of UI:
-(click on the image for better quality)
-
-<a href="https://ibb.co/fQkKgdT"><img src="https://i.ibb.co/0QCW7yz/Ui-tree.png" alt="Tree-architecture" height="150px" width="100%" border="0"></a>
-
-(click on the image for better quality)
 
 # Class Diagrams
 
