@@ -108,7 +108,7 @@ continuously throughout the use of the application. The server is made up of thr
 ## Project architecture
 
 
-### Structure of the app:
+<details><summary> Full strucutre of the app: </summary>
 ```
  .
 └── gr2135/
@@ -192,6 +192,7 @@ continuously throughout the use of the application. The server is made up of thr
     ├── README.md
     └── pom.xml
 ```
+</details>
 
 ### Tree Structure visualized:
 The structure in UI was too complex and large to put in with the rest of the structure of the app in the image. 
