@@ -22,7 +22,7 @@ component Gson
 
 component JSoup
 
-component JSON-Simple
+component JSONSimple
 
 component springBoot
 
@@ -33,9 +33,9 @@ stonk.rest ..> stonk.json
 stonk.ui ..> stonk.rest
 stonk.ui ..> fxml
 stonk.ui ..> stonk.core   
-stonk.json ..>Gson
-stonk.json ..>JSON-Simple
-stonk.core ..>JSoup
+stonk.json ..> Gson
+stonk.json ..> JSONSimple
+stonk.core ..> JSoup
 
 
 /' 
