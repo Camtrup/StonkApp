@@ -13,7 +13,7 @@ public class SuperController {
     public void changeScene(String fxml, User user, Stonk... stock){
         Parent pane = null;
         try {
-          FXMLLoader load = new FXMLLoader(getClass().getResource("fxml/" + fxml));
+          FXMLLoader load = new FXMLLoader(SuperController.class.getResource("fxml/" + fxml));
           if(fxml.contains("main")){
             load.setController(new MainController(user));
           }

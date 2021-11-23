@@ -1,14 +1,14 @@
 package ui;
 
-import core.Stonk;
-import core.User;
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Objects;
+
+import core.Stonk;
+import core.User;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -98,8 +98,7 @@ public class MainController extends SuperController{
   public void displayOnMain() {
     displayPortfolio();
     // Float difference = (ecuityChange - user.getCash());
-    cashMoneyFlow.setText(Float.toString(user.getCash()) + "$");
-    cashMoneyFlow.setStyle("-fx-text-fill: white;");
+    cashMoneyFlow.setText((decimalform(user.getCash())) + "$");
     fullName.setText((user.getFirstName()) + " " + (user.getLastName()));
     equity.setText((decimalform(user.getCash() + stockPriceChanged + ecuityChange)) + "$");
     growthPercent();
@@ -143,13 +142,11 @@ public class MainController extends SuperController{
   public void toStockPage() {
     try {
       Stonk temp = new Stonk(searchBar.getText(), 0);
-      if (Objects.isNull(temp)) {
-        throw new IllegalArgumentException("Could not find stock");
-      }
       super.changeScene("stockPage.fxml", user, temp);
     } catch (IllegalArgumentException | NullPointerException e) {
-      //Give feedback
-      feedBack.setText(e.getMessage());
+      e.printStackTrace();
+      feedBack.setStyle("-fx-text-fill: Red;");
+      feedBack.setText("Could not find stock");
     }
   }
 
@@ -258,7 +255,7 @@ public class MainController extends SuperController{
         h1.setStyle("-fx-background-color: #dbdbdb");
         HBox hbox = new HBox(b, more);
         hbox.setSpacing(15);
-        hbox.setMargin(b, new Insets(0, 0, 0, 45));
+        HBox.setMargin(b, new Insets(0, 0, 0, 45));
         hbox.setStyle("-fx-background-color: #dbdbdb; -fx-margin: auto");
 
         b.setOnMouseClicked(event -> {

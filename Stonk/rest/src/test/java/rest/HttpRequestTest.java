@@ -36,30 +36,30 @@ public class HttpRequestTest {
     public void testRequests(){
         //Test if saving is completed
         assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/save", String.class)).contains("200");
-        
+        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/test", String.class)).contains("200");
         //Testing that a new user is made
-        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/new/test/test/test/test/1000/20", String.class)).contains("200");
-        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/isLoginValid/test/" + user.getPassword(), String.class).contains("200"));
+        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/new/test/test/test2/test/1000/20", String.class)).contains("200");
+        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/isLoginValid/test2/" + user.getPassword(), String.class).contains("200"));
 
         //Testing if trasanctions go through
-        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/buy/test/" + user.getPassword() +"/gme/1", String.class)).contains("200");
-        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/sell/test/" + user.getPassword() +"/gme/1", String.class)).contains("200");
+        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/buy/test2/" + user.getPassword() +"/gme/1", String.class)).contains("200");
+        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/sell/test2/" + user.getPassword() +"/gme/1", String.class)).contains("200");
 
         //Testing if watchlist-items are added and removed
-        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/add/test/" + user.getPassword() +"/gme", String.class)).contains("200");
-        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/remove/test/" + user.getPassword() +"/gme", String.class)).contains("200");
+        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/add/test2/" + user.getPassword() +"/gme", String.class)).contains("200");
+        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/remove/test2/" + user.getPassword() +"/gme", String.class)).contains("200");
 
         //Testing addmore value
-        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/value/test/" + user.getPassword() +"/100", String.class)).contains("200");
+        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/value/test2/" + user.getPassword() +"/100", String.class)).contains("200");
 
-        String tem = this.restTemplate.getForObject("http://localhost:" + port + "/user/test/" + user.getPassword(), String.class);
+        String tem = this.restTemplate.getForObject("http://localhost:" + port + "/user/test2/" + user.getPassword(), String.class);
 
         User temp = gson.fromJson(tem, User.class);
         assertThat(temp.getPortfolio().size() == 0);
         assertThat(temp.getWatchList().size() == 0);
         assertThat(temp.getCash() > 1000);
 
-        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/delete/test/" + user.getPassword(), String.class)).contains("200");
+        assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/delete/test2/" + user.getPassword(), String.class)).contains("200");
     }
 
 }

@@ -68,8 +68,7 @@ public class StockPageController extends SuperController {
     moneyFlow.setText(Float.toString(user.getCash()) + " $");
     totPrice1.setText(Float.toString(stock.getPrice()) + " $");
 
-    char priceChangeFloat = stock.getPriceChange().charAt(0); // Checks if priceChange is negative
-    priceChange.setText(stock.getPriceChange());
+    priceChange.setText("" + stock.getPriceChange());
 
     for (Stonk i : user.getPortfolio()) {
       if (i.getTicker().equals(stock.getTicker())) {
@@ -78,20 +77,18 @@ public class StockPageController extends SuperController {
     }
 
     // coloring for pricechange
-    if (priceChangeFloat == '-') {
+    if (stock.getPriceChange() < 0) {
       priceChange.setStyle("-fx-text-fill: Red;");
     } else {
       priceChange.setStyle("-fx-text-fill: #7fff00;");
     }
-    priceChange.setText(stock.getPriceChange());
+    priceChange.setText(stock.getPriceChange() + "%");
 
   }
 
   @FXML
   private void userFeedback(String resp){
-    if (resp.contains("4")){
-      resp = resp.substring(4);
-    }
+    resp = resp.replace("400: ", "");
     feedBack.setText(resp);
     System.out.println(resp);
   }
@@ -105,8 +102,15 @@ public class StockPageController extends SuperController {
     if (!amountStock.getText().equals("")) {
       amountStock.setStyle("-fx-text-fill: black; -fx-color: black;");
       amountStock.setStyle("-fx-text-fill: black;");
-      Float floatPrice = stock.getPrice() * Float.parseFloat(amountStock.getText());
-      if (Float.parseFloat(amountStock.getText()) <= 0) {
+      int amount = -1;
+      try{
+        amount = Integer.parseInt(amountStock.getText());
+      }
+      catch (NumberFormatException e){
+        totPrice1.setText("Invalid");
+      }
+      Float floatPrice = stock.getPrice() * amount;
+      if (amount <= 0) {
         totPrice1.setText("Invalid");
       } else if (floatPrice > 10000) {
         totPrice1.setText(String.format("%.0f", floatPrice) + " $");
@@ -155,9 +159,12 @@ public class StockPageController extends SuperController {
       checkIfNum(amountStock);
       String resp = handler.buyOrSellStonk(false, user.getUsername(),
           user.getPassword(), stock.getTicker(), Integer.parseInt(amountStock.getText()));
-      if (resp.contains("4")) {
-        userFeedback(resp);
+      if (resp.contains("200")) {
+        backToMain();
       } 
+      else {
+        userFeedback(resp);
+      }
     } catch (IllegalArgumentException e) {
       userFeedback(e.getMessage());
     }

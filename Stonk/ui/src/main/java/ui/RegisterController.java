@@ -41,7 +41,7 @@ public class RegisterController extends SuperController{
    * @throws IOException if not possible.
    */
   public void loginFromRegister() throws IOException {
-    super.changeScene("mainpage.fxml", user);
+    super.changeScene("mainPage.fxml", user);
   }
 
   /**
@@ -51,6 +51,7 @@ public class RegisterController extends SuperController{
     super.changeScene("login.fxml", user);
   }
 
+  
   /**
    * Register new user. 
    *
@@ -75,15 +76,16 @@ public class RegisterController extends SuperController{
         user = handler.getUser(temp.getUsername(), temp.getPassword());
         loginFromRegister();
       } else {
+        resp = resp.replace("400: ", "");
         feedBack.setText(resp);
         System.out.println(resp);
       }
 
     } catch (IllegalArgumentException e) {
       if (tempInt == -1) {
-        throw new IllegalArgumentException("Age must be an integer");
+        feedBack.setText("Age must be an integer");
       } else if (tempFloat == -1) {
-        throw new IllegalArgumentException("Cash must be a number");
+        feedBack.setText("Cash must be a number");
       } 
       else {
         feedBack.setText(e.getMessage());
