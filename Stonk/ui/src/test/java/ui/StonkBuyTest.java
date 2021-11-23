@@ -28,7 +28,6 @@ public class StonkBuyTest extends ApplicationTest{
     public void setup(){
         HttpHandler handler = new HttpHandler();
         String s = handler.testMode();
-        assertEquals(s , "200");
     }
 
     //Tests all the vital functions around buying and selling stocks

@@ -27,7 +27,6 @@ public class StonkUserTest extends ApplicationTest{
     public void setup(){
         HttpHandler handler = new HttpHandler();
         String s = handler.testMode();
-        assertEquals(s , "200");
     }
 
     @Test

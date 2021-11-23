@@ -76,6 +76,7 @@ public class RegisterController extends SuperController{
         user = handler.getUser(temp.getUsername(), temp.getPassword());
         loginFromRegister();
       } else {
+        resp = resp.replace("400: ", "");
         feedBack.setText(resp);
         System.out.println(resp);
       }

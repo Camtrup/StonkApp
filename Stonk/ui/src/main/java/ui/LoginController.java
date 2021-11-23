@@ -51,7 +51,8 @@ public class LoginController extends SuperController {
         user =  handler.getUser(temp.getUsername(), temp.getPassword());
         login();
       } else {
-        feedBack.setText(resp.substring(4));
+        resp = resp.replace("400: ", "");
+        feedBack.setText(resp);
       }
     }
   }
