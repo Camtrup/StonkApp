@@ -6,6 +6,11 @@ participant MainController
 participant searchBar
 participant Stonk
 participant StockPageController
+participant HttpHandler
+box Rest API
+participant StonkRestService
+end box
+participant User
 
 Client -> searchButton : "click"
 searchButton -> MainController : toStockPage()
@@ -19,5 +24,9 @@ MainController -> Stonk : new Stonk(Stockname,0)
 Stonk -> Stonk : getScraperInfo(Stockname,0)
 Stonk -> MainController : Stonk
 MainController -> StockPageController : changeScene("stockPage.fxml", Client, Stonk)
+StockPageController -> HttpHandler : buyOrSellStock()
+HttpHandler -> StonkRestService : buyStonks()
+StonkRestService -> User : addToPortfolio(Stonk, amount)
+StonkRestService -> StockPageController : "200"
 
 @enduml

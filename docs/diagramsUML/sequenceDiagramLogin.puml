@@ -6,8 +6,8 @@ participant LoginController
 participant username
 participant password
 participant User
-box Rest API
 participant HttpHandler
+box Rest API
 participant StonkRestService
 end box
 
