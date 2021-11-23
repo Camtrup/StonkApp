@@ -95,7 +95,7 @@ UI is the package for where the user interface is made. Here the two main compon
 
 ### REST
 The Stonk-server is generated with the Spring-Boot framerwork and stored as a JSON-format on your local network. This is where the state of your user is saved 
-continuously thorughout the use of the application. The server is made up of three java-classes:
+continuously throughout the use of the application. The server is made up of three java-classes:
 - StonkRestApplication.java - The class which "fires up" the server.
 - StonkRestController.java - Receives all the requests that server receives, and returns information to the sender via "StonkRestService"
 - StonkRestService.java - Is the logic, or the "backend" of the server. It receives parameters from the controller and then validates and executes the given command. And then returns feedback to the user. The server is run on localhost:8080

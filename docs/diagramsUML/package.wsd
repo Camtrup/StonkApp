@@ -20,6 +20,10 @@ component javafx{
 
 component Gson
 
+component JSoup
+
+component JSON-Simple
+
 component springBoot
 
 
@@ -30,6 +34,8 @@ stonk.ui ..> stonk.rest
 stonk.ui ..> fxml
 stonk.ui ..> stonk.core   
 stonk.json ..>Gson
+stonk.json ..>JSON-Simple
+stonk.core ..>JSoup
 
 
 /' 
