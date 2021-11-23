@@ -1,4 +1,4 @@
-@startuml
+@startuml packageDiag
 
 package "rest" #DDDDDD {
   package stonk.rest 

@@ -57,7 +57,8 @@ If you want to see how an account with bought stocks looks like. You can log in 
 
 
 ## Package diagram
-<a href="https://ibb.co/svyvnHm"><img src="https://i.ibb.co/4ZPZzdm/Skjermbilde-2021-11-20-kl-19-34-21.png" alt="Skjermbilde-2021-11-20-kl-19-34-21" border="0"></a>
+
+<img src="out/docs/diagramsUML/package/package.png">
 
 ## Functionalities: 
 - Log in
@@ -208,11 +209,14 @@ The structure in UI was too complex and large to put in with the rest of the str
 # Class Diagrams
 
 ### Class Diagram for Core
-<a href="https://ibb.co/ZTvKspy"><img src="https://i.ibb.co/ggQw1Ls/Skjermbilde-2021-11-22-kl-15-03-00.png" alt="Core-structure" height="100%" width="100%" border="0"></a>
+<img src="out/docs/diagramsUML/classCore/classCore.png">
 
 
 ### Class Diagram for UI
-<a href="https://ibb.co/fq55Tq6"><img src="https://i.ibb.co/q7ff27q/Skjermbilde-2021-11-22-kl-15-10-07.png" alt="UI-structure" height="100%" width="100%" border="0"></a>
+<img src="out/docs/diagramsUML/classUi/UIClass.png">
 
 ### Class Diagram for Rest
-<a href="https://ibb.co/cCyPTCY"><img src="https://i.ibb.co/YyN6jy0/Skjermbilde-2021-11-22-kl-15-15-19.png" alt="Rest-structure" border="0"></a>
+<img src="out/docs/diagramsUML/classRest/classRest.png">
+
+### Class Diagram for Data
+<img src="out/docs/diagramsUML/classData/classData.png">

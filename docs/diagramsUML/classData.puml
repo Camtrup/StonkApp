@@ -1,0 +1,15 @@
+@startuml classData
+
+class data.DataHandler {
+- String file
+- void adaptFilePath()
++ JSONArray getAllUsers()
++ void writeToFile(String)
+}
+
+class data.DataHandlerTest {
+~ DataHandler handler
++ void checkReadAndWrite()
+}
+
+@enduml

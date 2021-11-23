@@ -110,7 +110,13 @@ REST:
 
 ## Diagrams
 
-#### sequence diagram:
+### sequence diagram:
+
+#### Diagram for logging in
+<img src="../out/docs/diagramsUML/sequenceDiagramLogin/sequenceDiagramLogin.png">
+
+#### Diagram for buying a single stock
+<img src="../out/docs/diagramsUML/sequenceDiagramBuyStock/sequenceDiagramBuyStock.png">
 
 
 #### class diagram:

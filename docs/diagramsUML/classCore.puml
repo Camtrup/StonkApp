@@ -1,0 +1,51 @@
+@startuml coreClass
+class core.User {
++ float cash
+- int age
+- String firstName
+- String lastName
+- String password
+- String username
+- ArrayList<Stonk> portfolio
+- ArrayList<Stonk> watchList
+- void setWatchList(ArrayList<Stonk>)
++ void addToPortfoilio(String,int)
++ void addToWatchList(String,int)
++ void removeFromWatchList(String,int)
++ void removeFromPortfolio(String,int)
++ ArrayList<Stonk> getPortfolio()
+- void setPortfolio(ArrayList<Stonk>)
++ ArrayList<Stonk> getWatchList()
++ void setFirstName(String)
++ void setLastName(String)
++ void setUserName(String)
+# void setPassword(String)
++ void addCash(float)
+# void removeCash(float)
++ void setAge(int)
++ String encryptPassword(String)
++ String getUsername()
++ String getPassword()
++ String getFirstName()
++ String getLastName()
++ float getCash()
++ int getAge()
+}
+class core.Stonk {
+- String ticker
+- float price
+- String name
+- String priceChange
+- int count
+- void scrapeStockInfo(String,int)
++ int getCount()
+- void setCount(int)
++ void setNewCount(Stonk)
++ void setNewAverage(Stonk)
+- void setPrice(float)
++ String getName()
++ float getPrice()
++ String getTicker()
++ String getPriceChange()
+}
+@enduml
