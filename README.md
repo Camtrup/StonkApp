@@ -108,7 +108,15 @@ continuously throughout the use of the application. The server is made up of thr
 ## Project architecture
 
 
-<details><summary> Full strucutre of the app: </summary>
+### Structure of the app:
+
+<details>
+
+<summary> 
+
+#### Full Structure (clickable)
+</summary>
+
 ```
  .
 └── gr2135/
