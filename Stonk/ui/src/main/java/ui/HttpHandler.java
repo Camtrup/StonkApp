@@ -73,38 +73,6 @@ public class HttpHandler {
   }
 
   /**
-   * Adds or removes a Stock.
-   *
-   * @param remove boolean.
-   * @param username String.
-   * @param password String.
-   * @param ticker String.
-   * @param count Int.
-   * @return a response.
-   */
-  public String addOrRemoveStonk(boolean remove, String username, String password,
-      String ticker, int count) {
-    String resp = "";
-    String method = "add";
-    if (remove) {
-      method = "remove";
-    }
-    try {
-      HttpRequest request = HttpRequest.newBuilder()
-          .uri(
-              new URI("http://localhost:8080/" + method + "/" + username + "/" + password + "/" + ticker + "/" + count))
-          .POST(BodyPublishers.ofString(""))
-          .build();
-      final HttpResponse<String> response = HttpClient.newBuilder().build().send(request,
-          HttpResponse.BodyHandlers.ofString());
-      resp = response.body();
-    } catch (InterruptedException | IOException | URISyntaxException e) {
-      System.out.println(e);
-    }
-    return resp;
-  }
-
-  /**
    * New user.
    *
    * @param firstName String.

@@ -1,11 +1,10 @@
 package ui;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
 
+import core.User;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -23,10 +22,12 @@ public class StonkUserTest extends ApplicationTest{
         StonkApp.setStage(stage);
     }
 
+    HttpHandler handler = new HttpHandler();
+    User user = new User("test","test");
+
     @BeforeEach
     public void setup(){
-        HttpHandler handler = new HttpHandler();
-        String s = handler.testMode();
+        handler.testMode();
     }
 
     @Test
@@ -39,6 +40,8 @@ public class StonkUserTest extends ApplicationTest{
                                         {"#cash","10000"},
                                         {"#registerUser",""},
                                         {"#myProfile",""},
+                                        {"#moneyAdd","10"},
+                                        {"#moneyAddBtn","0"},
                                         {"#deleteUser",""}
                                     };
 
