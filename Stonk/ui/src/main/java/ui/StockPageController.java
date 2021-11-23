@@ -89,6 +89,10 @@ public class StockPageController extends SuperController {
   @FXML
   private void userFeedback(String resp){
     resp = resp.replace("400: ", "");
+    resp = resp.replace("403: ", "");
+    resp = resp.replace("404: ", "");
+    resp = resp.replace("405: ", "");
+    resp = resp.replace("406: ", "");
     feedBack.setText(resp);
     System.out.println(resp);
   }

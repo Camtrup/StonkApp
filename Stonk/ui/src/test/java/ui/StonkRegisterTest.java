@@ -26,7 +26,7 @@ public class StonkRegisterTest extends ApplicationTest{
     @BeforeEach
     public void setup(){
         HttpHandler handler = new HttpHandler();
-        String s = handler.testMode();
+        handler.testMode();
     }
 
     @Test 

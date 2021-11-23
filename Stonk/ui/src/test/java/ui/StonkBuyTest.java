@@ -27,7 +27,7 @@ public class StonkBuyTest extends ApplicationTest{
     @BeforeEach
     public void setup(){
         HttpHandler handler = new HttpHandler();
-        String s = handler.testMode();
+        handler.testMode();
     }
 
     //Tests all the vital functions around buying and selling stocks
@@ -42,6 +42,8 @@ public class StonkBuyTest extends ApplicationTest{
                                         {"#searchButton","","0","Cannot be blank"},
                                         {"#searchBar","apple","0",""},
                                         {"#searchButton","","0",""},
+                                        {"#addWatchList","","0",""},
+                                        {"#addWatchList","","0",""},
                                         {"#amountStock","-1","0",""},
                                         {"#sellBtn","","0","Amount of stocks cant be negative or 0"},
                                         {"#buyBtn","","0","Amount of stocks cant be negative or 0"},
