@@ -1,0 +1,42 @@
+@startuml
+
+package "rest" #DDDDDD {
+  package stonk.rest 
+}
+package "ui" #DDDDDD {
+  package stonk.ui
+}
+package "core" #DDDDDD {
+  package stonk.core 
+}
+package "data" #DDDDDD {
+  package stonk.data 
+  package stonk.json 
+}
+
+component javafx{
+  component fxml
+}
+
+component Gson
+
+component springBoot
+
+
+stonk.rest ..> springBoot
+stonk.rest ..> stonk.core 
+stonk.rest ..> stonk.json
+stonk.ui ..> stonk.rest
+stonk.ui ..> fxml
+stonk.ui ..> stonk.core   
+stonk.json ..>Gson
+
+
+/' 
+node1 -- node2 : label1
+node1 .. node3 : label2
+node1 ~~ node4 : label3
+node1 == node5
+'/
+
+@enduml

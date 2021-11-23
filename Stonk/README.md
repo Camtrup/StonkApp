@@ -2,36 +2,49 @@
 
 In this section we will write about how the code is built, everything from which libraries we are using to illustrations and the functioning of the different files.
 
-## JSoup
+## Maven build
+Maven is a software project management and building tool. Based on the concept of a project object model (POM). The Maven-build for our app needs at least Java version 14, and JavaFX version 11.
+
+The reason we went with maven instead of gradle is because it uses an XML file for declaring the project, its dependencies, the build order, and its required plugin. This is something we find familiar and easy to understand from doing former projects.
+
+### JSoup
 **Stonk** is built with the library [JSoup](https://jsoup.org). Jsoup allows us to scrape and parse data from a website using DOM traversal and CSS selectors. 
 Using this we are able to get information about every given stock in real-time.
+### Gson 
+Gson is a great Java library that primary use is to convert Java Objects into their JSON representation. It also gets used to convert a JSON string to an equivalent Java object. 
+### JSON-simple
+JSON-simple is s much simpler version of JSON. It uses a Java library library for JSON processing, read and write JSON data and full compliance with JSON specification.
+### JAVAFX
+JavaFX is a Java library that simplifies the development of Rich Internet Applications (RIA). Applications written using this library can be run across different platforms. The applications can also be run on various devices such as computers, mobile phones, TVs and tablets.
+### Spring Boot
+Spring Boot is an open source, micro-service-based Java network. The Spring Boot framework creates a completely production-ready environment that is fully configurable using the pre-built code in the code base. The Microservice architecture provides developers with a full-featured application, including embedded application servers.
 
-## Maven build
-Maven is a software project management and comprehension tool. Based on the concept of a project object model (POM), Maven can manage a project's build, reporting and documentation from a central piece of information. The Maven-build for our app needs at least Java version 14, and JavaFX version 11.
-
-
-## SpotBugs, CheckStyle and JaCoCo
+### Jlink
+Jlink is a tool that generates a custom Java runtime image that has only the platform modules that are required for an application.
+### SpotBugs, CheckStyle and JaCoCo
 - Spotbugs has helped with finding unused codes and errors or bugs we were not able to find ourselves. 
 
-- Checkstyle made the code quality much better by helping us keep up with coding standards.
+- Checkstyle made the code quality much better by helping standardizing our formatting to Google coding conventions
 
 - We use jacoco which is a Code Coverage Library, to check how much coverage our tests have. Our goal is to have at least 80% test coverage at each of our modules.
 
 ## How we have Coded
 ### Meetings
-The miniumum requirments we set for ourselves was to meet once a week, but we found it better to meet around 3 times a week to more easily pair code(parr-programmering) and communicate better. We also focused on following the coding commit rules given from [conventionalCommits](https://www.conventionalcommits.org/en/v1.0.0/)
+The miniumum requirments we set for ourselves was to meet once a week, but we found it better to meet around 3 times a week to more easily pair code(parr-programmering) and communicate better. We also focused on following the coding commit rules given from [conventionalCommits](https://www.conventionalcommits.org/en/v1.0.0/) 
 
 ### Pair coding
 Pair programming has helped us to higher the quality of the code by prrogramming out loud with a driver and navigator working together. We started meeting more often to pair program as much as possible.
 
 ### SCRUM
-SCRUM has been central for our coding. We have participated and are aware of all sorts of agile ceremonies (user story grooming, sprint planning, sprint retrospective). This helped to impact the end product, by having fixed deliveries in short iterations with a fixed length in close, ongoing collaboration between customer and supplier. Apart from the Sprints, the QA (who does it, when it gets done) helped alot. Being able to asign and set a deadline og gitlabs really helped having control over our project. 
+SCRUM has been central for our coding. We have participated and are aware of all sorts of agile ceremonies (user story grooming, sprint planning, sprint retrospective). This helped to impact the end product, by having fixed deliveries in short iterations with a fixed length in close, ongoing collaboration between customer and supplier. Apart from the Sprints, the QA (who does it, when it gets done) helped alot. Being able to asign and set a deadline on gitlabs really helped having control over our project. 
 
 SCRUM was a powerful tool that empowered us to fix our mistakes quickly and made the whole team feel acountabel for the delivery, and in addition it is really easy not to get stuck on problems because if you do, you can simply ask the team in the next meeting.
 
+#### How gitlab helped
+Gitlab is great for enabling lean and agile project management especially for scrum projects. Here we were able to add issues, which had a deadline, labels and could be issued to grup members. THe milestone and board functionalities also helped us hold upå with deadlines.
 
 ## Files
-  
+
 CORE:
   - Stonk.java: Pulls information about the stock using JSoup.
   - User.java: Creation and editing of user information.
@@ -78,22 +91,29 @@ REST:
 
 "As a user who watches some stocks more closely than others, I would like a watchlist so that I could easily be updated on all of them."
 
-
-**Acceptance criteria**:
-
-"If I open the homepage I expect to see which stocks I own, and also that it updates when I buy a new stock, or sell one that I already own. I also expect to be able to update the stock prices to see how all of them have performed after I bought them."
-
-
 ## Illustrations
-***The illustrations are due to change as we will keep making changes to the UI going forward.***
 
-<img src="https://i.ibb.co/hDPYfz3/Skjermbilde-2021-09-22-kl-14-08-24.png"  height="400">
+<a href="https://ibb.co/LCt19wK"><img src="https://i.ibb.co/RC0cQn8/Skjermbilde-2021-11-20-kl-17-27-51.png"  height="400"
+ alt="Skjermbilde-2021-11-20-kl-17-27-51" border="0"></a>   Profile side where you can add more money to you account
+ 
 
-*Homepage showing balance and recent transactions.*
+<a href="https://ibb.co/sw5Ccv9"><img src="https://i.ibb.co/85zbGDg/Skjermbilde-2021-11-20-kl-17-28-27.png"  height="400" alt="Skjermbilde-2021-11-20-kl-17-28-27" border="0"></a>   Stockpage to buy, sell and add stocks to watch List
+
+<a href="https://ibb.co/cTNk138"><img src="https://i.ibb.co/f0Cq2FN/Skjermbilde-2021-11-20-kl-17-28-55.png"  height="400" alt="Skjermbilde-2021-11-20-kl-17-28-55" border="0"></a>  Homepage showing balance and stocks you own
 
 
-<img src="https://i.ibb.co/PzvRwBW/Skjermbilde-2021-09-22-kl-14-08-40.png"  height="400">
+<a href="https://ibb.co/CbX8MGL"><img src="https://i.ibb.co/Pcbj9Hk/Skjermbilde-2021-11-20-kl-17-33-03.png" height="400" alt="Skjermbilde-2021-11-20-kl-17-33-03" border="0"></a>  Login site
 
-*After you have completed a purchase there will be a confirmation screen that shows what you bought, total price and how much each stock cost.*
 
-These are just some of the many thoughts and ideas we have, and we will keep updating these as we see fit as the project proceeds.
+<a href="https://ibb.co/fvwNJVg"><img src="https://i.ibb.co/16WXcYg/Skjermbilde-2021-11-20-kl-17-33-16.png" height="400" alt="Skjermbilde-2021-11-20-kl-17-33-16" border="0"></a>  Register a new user site
+
+
+## Diagrams
+
+#### sequence diagram:
+
+
+#### class diagram:
+
+
+

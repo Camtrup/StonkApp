@@ -36,13 +36,11 @@ public class ProfileController extends SuperController{
 
   private User user = null;
   HttpHandler handler = new HttpHandler();
-  // private Object putCash; checkstyle - unused field
-
+  
   public ProfileController(User user) {
     this.user = handler.getUser(user.getUsername(), user.getPassword());
   }
 
-  // Float differ = MainController.difference;
   /**
    * Display on portfolio.
    */
@@ -66,13 +64,11 @@ public class ProfileController extends SuperController{
         addedPrompt.setText("Congrats, funds have been added");
         displayOnProfile();
       } else {
-        // Feedback
         feedBack.setText(resp);
         System.out.println(resp);
       }
     } catch (IllegalArgumentException e) {
-      // Feedback
-      illegalArgument.setText(e.getMessage());
+      feedBack.setText(e.getMessage());
       System.out.println(e.getMessage());
     }
   }
@@ -81,7 +77,6 @@ public class ProfileController extends SuperController{
    * Logs the user out.
    */
   public void logOut() {
-    //app.changeScene("login.fxml", null);
     super.changeScene("login.fxml",null);
   }
 
@@ -93,49 +88,11 @@ public class ProfileController extends SuperController{
     if (resp.contains("200")) {
       logOut();
     } else {
-      // Feedback
       feedBack.setText(resp);
     }
   }
 
   public void toMain() {
-    //app.changeScene("mainPage.fxml", user);
     super.changeScene("mainPage.fxml", user);
   }
-
-
-
-  // Functions for changing the colour of the buttons when hovering.
-  public void btnHoverAddMoney() {
-    moneyAddBtn.setStyle("-fx-background-color: #3f4652;");
-  }
-
-  public void btnNormalAddMoney() {
-    moneyAddBtn.setStyle("-fx-background-color: #090a0c;");
-  }
-
-  public void btnHoverLogOut() {
-    logOut.setStyle("-fx-background-color: black;");
-  }
-
-  public void btnNormalLogOut() {
-    logOut.setStyle("-fx-background-color: grey;");
-  }
-
-  public void btnHoverDelete() {
-    deleteUser.setStyle("-fx-background-color: black;");
-  }
-
-  public void btnNormalDelete() {
-    deleteUser.setStyle("-fx-background-color: grey;");
-  }
-
-  public void btnHoverBack() {
-    toMain.setStyle("-fx-background-color: #3f4652;");
-  }
-
-  public void btnNormalBack() {
-    toMain.setStyle("-fx-background-color: #090a0c;");
-  }
-
 }

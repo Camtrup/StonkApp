@@ -33,7 +33,7 @@ The repository also includes Gitpod configuration files. Follow theese steps to 
 3. If you want to run the tests you can run mvn verify in (Stonk/)
 ```
 
-### Run Stonk-Server:
+### Run Stonk-Server (NEED TO DO!):
 ```
 Steps to run server:
 
@@ -41,6 +41,9 @@ Steps to run server:
 2. Navigate yourself into the "rest" directory with the "cd" command. Example: "cd Stonk/rest"
 3. Type "mvn spring-boot:run" into the commandline and your server will be generated. The backend of the app is now functional!
 ```
+
+## Package diagram
+<a href="https://ibb.co/svyvnHm"><img src="https://i.ibb.co/4ZPZzdm/Skjermbilde-2021-11-20-kl-19-34-21.png" alt="Skjermbilde-2021-11-20-kl-19-34-21" border="0"></a>
 
 ## Functionalities: 
 - Log in
@@ -53,12 +56,12 @@ Steps to run server:
 - Log out
 - Delete user
 
-
 ## Project file
 You can find more information about the code in the project file. It is divided into four parts. Core, data, UI and rest.
 
 ### CORE:
-Core contains the central logic of the app and is where we have our two main java classes Stonk.java and User.java. 
+Core contains the central logic of the app and is where we have our two main java classes Stonk.java and User.java. It is completely independent of the UI.
+
 - User.java is where the user credentials are made.
 - Stonk.java is the class that gets the information about the stock you want to look for by web scraping the web page matketwatch.
 - This is where you can find theese files.
@@ -81,14 +84,14 @@ The Stonk-server is generated with the Spring-Boot framerwork and stored as a JS
 continuously thorughout the use of the application. The server is made up of three java-classes:
 - StonkRestApplication.java - The class which "fires up" the server.
 - StonkRestController.java - Receives all the requests that server receives, and returns information to the sender via "StonkRestService"
-- StonkRestService.java - Is the logic, or the "backend" of the server. It receives parameters from the controller and then validates and executes the given command. And then returns feedback to the user
+- StonkRestService.java - Is the logic, or the "backend" of the server. It receives parameters from the controller and then validates and executes the given command. And then returns feedback to the user. The server is run on localhost:8080
 
 - The rest-classes can be located here: 
 [Rest](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2135/gr2135/-/tree/master/Stonk/rest/src/main/java/rest)
 
 
 ## Project architecture
-The structure in UI was too complex and large to put in with the rest of the structure of the app in the image. 
+
 
 ### Structure of the app:
 ```
@@ -171,16 +174,31 @@ The structure in UI was too complex and large to put in with the rest of the str
         │   │       ├── StonkRegisterTest.java
         │   │       └── StonkUserTest.java
         │   └── pom.xml
-        ├── README.md
-        └── pom.xml
+    ├── README.md
+    └── pom.xml
 ```
 
 ### Tree Structure visualized:
-<a href="https://ibb.co/ChM8gLZ"><img src="https://i.ibb.co/gzP9NYp/tree-arc-all-IT-project.png" alt="tree-arc-all-IT-project" border="0"></a>
+The structure in UI was too complex and large to put in with the rest of the structure of the app in the image. 
 
-(click on the image for better quality)
+<a href="https://ibb.co/WcN81PG"><img src="https://i.ibb.co/vJCy8QV/stonk-tree-structure.png" alt="stonk-tree-structure" border="0"></a>
+
 
 ### Tree Structure of UI:
-<a href="https://ibb.co/fxy20kd"><img src="https://i.ibb.co/qrcd1NY/tre-arkitektur.png" alt="tre-arkitektur" height="150px" width="100%" border="0"></a>
+(click on the image for better quality)
+
+<a href="https://ibb.co/fQkKgdT"><img src="https://i.ibb.co/0QCW7yz/Ui-tree.png" alt="Tree-architecture" height="150px" width="100%" border="0"></a>
 
 (click on the image for better quality)
+
+# Class Diagrams
+
+### Class Diagram for Core
+<a href="https://ibb.co/ZTvKspy"><img src="https://i.ibb.co/ggQw1Ls/Skjermbilde-2021-11-22-kl-15-03-00.png" alt="Core-structure" height="100%" width="100%" border="0"></a>
+
+
+### Class Diagram for UI
+<a href="https://ibb.co/fq55Tq6"><img src="https://i.ibb.co/q7ff27q/Skjermbilde-2021-11-22-kl-15-10-07.png" alt="UI-structure" height="100%" width="100%" border="0"></a>
+
+### Class Diagram for Rest
+<a href="https://ibb.co/cCyPTCY"><img src="https://i.ibb.co/YyN6jy0/Skjermbilde-2021-11-22-kl-15-15-19.png" alt="Rest-structure" border="0"></a>

@@ -1,0 +1,37 @@
+@startuml
+
+actor Client
+participant login
+participant LoginController
+participant username
+participant password
+participant User
+participant HttpHandler
+box Rest API
+participant StonkRestService
+end box
+
+
+Client -> "login": login()
+login -> "LoginController" : isLoginValid()
+LoginController -> "username": TextField : getText
+LoginController -> "password": Textfield : getText
+LoginController -> "User" : new User(username, password)
+LoginController -> "HttpHandler" : isLoginValid(username, password)
+HttpHandler -> "StonkRestService" : isLoginValid(username, password)
+alt Non-existent username
+    StonkRestService -> "HttpHandler" : "400 Username not found" 
+    HttpHandler -> "LoginController" : "400 Username not found"
+    LoginController -> "~#feedBack" : setText()
+else Wrong password
+    StonkRestService -> "HttpHandler" : "400 Password is incorrect" 
+    HttpHandler -> "LoginController" : "400 Password is Incorrect"
+    LoginController -> "~#feedBack" : setText()
+end
+StonkRestService -> "HttpHandler" : "200"
+HttpHandler -> "LoginController" : "200" 
+LoginController -> "HttpHandler" : getUser()
+HttpHandler -> "LoginController" : User
+LoginController -> "Client" : login()
+
+@enduml
