@@ -41,6 +41,7 @@ public class LoginController extends SuperController {
    */
   @FXML
   public void isLoginValid() {
+    feedBack.setText(" ");
     if (username.getText().isBlank() || password.getText().isBlank()) {
       feedBack.setText("All fields must be filled out");
     } else {

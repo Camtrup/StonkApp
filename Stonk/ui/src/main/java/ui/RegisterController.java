@@ -71,8 +71,9 @@ public class RegisterController extends SuperController {
       }
 
       User temp = new User(username.getText(), password.getText());
-      String resp = handler.newUser(firstname.getText(), lastname.getText(), 
-          username.getText(), password.getText(),
+      String resp = handler.newUser(firstname.getText().split(" ")[0],
+          lastname.getText().split(" ")[(lastname.getText().lastIndexOf(' ')) - 1], 
+          username.getText().replaceAll(" ", ""), password.getText().replaceAll(" ", ""),
           tempFloat, tempInt);
       if (resp.contains("200")) {
         user = handler.getUser(temp.getUsername(), temp.getPassword());

@@ -130,6 +130,7 @@ public class StockPageController extends SuperController {
    * Checks is number for validation.
    *
    * @param number getting from textfield.
+   * @throws IllegalArgumentException if argument is not allowed.
    */
   public void checkIfNum(TextField number) {
     try {
@@ -194,6 +195,9 @@ public class StockPageController extends SuperController {
 
   }
 
+  /**
+   * checks if stock is already in watchList.
+   */
   @FXML
   private boolean checkForWatchList() {
     for (Stonk i : user.getWatchList()) {

@@ -15,10 +15,18 @@ public class Stonk {
   private String priceChange;
   private int count;
 
+  /**
+   * scrapes the stock from marketwatch by running ScrapeStockInfo.
+   */
   public Stonk(String ticker, int count) {
     scrapeStockInfo(ticker, count);
   }
-
+  /**
+   * Uses JSoup for scraping an Stock from marketwatch.
+   *
+   * @param ticker string
+   * @param count int
+   */
   private void scrapeStockInfo(String ticker, int count) {
     if (ticker == null) {
       throw new IllegalArgumentException("Could not find stock");

@@ -17,7 +17,8 @@ public class SuperController {
    *
    * @param fxml  is a parameter for wich fxml file to access.
    * @param user  is a parameter for the user that is logged on.
-   * @param stock is a parameter for what stock you are searching up
+   * @param stock is a parameter for what stock you are searching up.
+   * @throws IllegalArgumentException if argument is not allowed
    */
   public void changeScene(String fxml, User user, Stonk... stock) {
     Parent pane = null;

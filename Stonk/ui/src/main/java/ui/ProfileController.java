@@ -55,6 +55,8 @@ public class ProfileController extends SuperController {
 
   /**
    * Adds more cash to the users cash balance.
+   *
+   * @throws IllegalArgumentException if argument is not allowed.
    */
   public void addValue() {
     try {
