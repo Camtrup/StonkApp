@@ -119,7 +119,4 @@ REST:
 <img src="../out/docs/diagramsUML/sequenceDiagramBuyStock/sequenceDiagramBuyStock.png">
 
 
-#### class diagram:
-
-
 

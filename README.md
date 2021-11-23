@@ -15,15 +15,14 @@ If you want to see how an account with bought stocks looks like. You can log in 
 - Username: casper
 - Password: 12345
 
-### Run Stonk locally:
-```
-1. Clone (https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2135/gr2135/-/tree/master)
-2. Open the folder in a IDE as a Maven project.
-3. Navigate into the Stonk-directory via the commandline. Example: "cd Stonk".
-4. Run ("mvn clean install -DskipTests") via the command-line inside the project folder.
-5. Run the spring-boot server.(Process descrived right below)
-6. To start the app navigate into the ui package (Stonk/ui) and run: `mvn javafx:run`.
-```
+> ### Run Stonk locally:
+
+> 1. Clone (https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2135/gr2135/-/tree/master)
+> 2. Open the folder in a IDE as a Maven project.
+> 3. Navigate into the Stonk-directory via the commandline. Example: "cd Stonk".
+> 4. Run ("mvn clean install -DskipTests") via the command-line inside the project folder.
+> 5. Run the spring-boot server.(Process descrived right below)
+> 6. To start the app navigate into the ui package (Stonk/ui) and run: `mvn javafx:run`.
 
 
 > ### Run Stonk-Server:
