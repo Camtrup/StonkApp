@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  * Controller for loginpage.
@@ -33,7 +34,7 @@ public class LoginController extends SuperController {
    * @throws IOException if not possible.
    */
   public void login() {
-    super.changeScene("mainPage.fxml", user);
+    super.changeScene("mainPage.fxml", user, (Stage) feedBack.getScene().getWindow());
   }
 
   /**
@@ -64,7 +65,7 @@ public class LoginController extends SuperController {
    * @throws IOException if something is wrong.
    */
   public void registerUserNew() throws IOException {
-    super.changeScene("newUser.fxml", null);
+    super.changeScene("newUser.fxml", null, (Stage) feedBack.getScene().getWindow());
     
   }
 

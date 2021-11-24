@@ -21,7 +21,6 @@ public class StonkRegisterTest extends ApplicationTest{
         final Parent root = loader.load();
         stage.setScene(new Scene(root,800,600));
         stage.show();
-        StonkApp.setStage(stage);
     }
     
     MockServerTest mock = new MockServerTest();

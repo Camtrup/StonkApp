@@ -5,13 +5,13 @@ import java.io.IOException;
 import core.Stonk;
 import core.User;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
+import javafx.stage.Stage;
 
 public class SuperController {
     private StonkApp app = new StonkApp();
 
-    public void changeScene(String fxml, User user, Stonk... stock){
-        Parent pane = null;
+    public void changeScene(String fxml, User user,Stage stage, Stonk... stock){
+        stage.close();
         try {
           FXMLLoader load = new FXMLLoader(SuperController.class.getResource("fxml/" + fxml));
           if(fxml.contains("main")){
@@ -23,13 +23,9 @@ public class SuperController {
           else if(fxml.contains("stock")){
             load.setController(new StockPageController((user), stock[0]));
           }
-          pane = load.load();
+          app.newPane(load);
         } catch (IOException e) {
           e.printStackTrace();
         }
-        if (pane == null) {
-          throw new IllegalArgumentException("file does not exist.");
-        }
-        app.getScene().setRoot(pane);
     }
 }

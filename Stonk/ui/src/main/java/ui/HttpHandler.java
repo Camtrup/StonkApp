@@ -15,6 +15,8 @@ import java.net.http.HttpRequest.BodyPublishers;
  */
 public class HttpHandler {
 
+  private int port = 8080;
+
   private Gson handler = new Gson();
   
 
@@ -29,7 +31,7 @@ public class HttpHandler {
     User user = null;
     try {
       HttpRequest request = HttpRequest.newBuilder()
-          .uri(new URI("http://localhost:8080/user/" + username + "/" + password))
+          .uri(new URI("http://localhost:" + port + "/user/" + username + "/" + password))
           .GET()
           .build();
       final HttpResponse<String> response = HttpClient.newBuilder().build().send(request,
@@ -61,7 +63,7 @@ public class HttpHandler {
     try {
       HttpRequest request = HttpRequest.newBuilder()
           .uri(
-              new URI("http://localhost:8080/" + method + "/" + username + "/" + password + "/" + ticker + "/" + count))
+              new URI("http://localhost:" + port + "/" + method + "/" + username + "/" + password + "/" + ticker + "/" + count))
           .POST(BodyPublishers.ofString(""))
           .build();
       final HttpResponse<String> response = HttpClient.newBuilder().build().send(request,
@@ -88,7 +90,7 @@ public class HttpHandler {
       String password, Float cash, int age) {
     String resp = "";
     try {
-      HttpRequest request = HttpRequest.newBuilder().uri(new URI("http://localhost:8080/new/"
+      HttpRequest request = HttpRequest.newBuilder().uri(new URI("http://localhost:" + port + "/new/"
           + firstName + "/" + lastName + "/" + username + "/"
               + password + "/" + cash + "/" + age))
               .POST(BodyPublishers.ofString(""))
@@ -113,7 +115,7 @@ public class HttpHandler {
     String resp = "";
     try {
       HttpRequest request = HttpRequest.newBuilder()
-          .uri(new URI("http://localhost:8080/delete/" + username + "/" + password))
+          .uri(new URI("http://localhost:" + port + "/delete/" + username + "/" + password))
           .POST(BodyPublishers.ofString(""))
           .build();
       final HttpResponse<String> response = HttpClient.newBuilder().build().send(request,
@@ -136,7 +138,7 @@ public class HttpHandler {
     String resp = "";
     try {
       HttpRequest request = HttpRequest.newBuilder()
-          .uri(new URI("http://localhost:8080/isLoginValid/" + username + "/" + password)).GET().build();
+          .uri(new URI("http://localhost:" + port + "/isLoginValid/" + username + "/" + password)).GET().build();
       final HttpResponse<String> response = HttpClient.newBuilder().build().send(request,
           HttpResponse.BodyHandlers.ofString());
       resp = response.body();
@@ -158,7 +160,7 @@ public class HttpHandler {
     String resp = "";
     try {
       HttpRequest request = HttpRequest.newBuilder()
-          .uri(new URI("http://localhost:8080/value/" + username + "/" + password + "/" + cash))
+          .uri(new URI("http://localhost:" + port + "/value/" + username + "/" + password + "/" + cash))
           .POST(BodyPublishers.ofString(""))
           .build();
       final HttpResponse<String> response = HttpClient.newBuilder().build().send(request,
@@ -188,7 +190,7 @@ public class HttpHandler {
     }
     try {
       HttpRequest request = HttpRequest.newBuilder()
-          .uri(new URI("http://localhost:8080/" + method + "/" + username + "/" + password + "/" + ticker))
+          .uri(new URI("http://localhost:" + port + "/" + method + "/" + username + "/" + password + "/" + ticker))
           .POST(BodyPublishers.ofString(""))
           .build();
       final HttpResponse<String> response = HttpClient.newBuilder().build().send(request,

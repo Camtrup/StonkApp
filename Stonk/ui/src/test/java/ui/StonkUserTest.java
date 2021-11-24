@@ -30,7 +30,6 @@ public class StonkUserTest extends ApplicationTest{
         final Parent root = loader.load();
         stage.setScene(new Scene(root,800,600));
         stage.show();
-        StonkApp.setStage(stage);
     }
 
     HttpHandler handler = new HttpHandler();
@@ -62,6 +61,8 @@ public class StonkUserTest extends ApplicationTest{
         String[][] arr = new String[][]{{"#username","test","0",""},
                                         {"#password","test","0",""},
                                         {"#login","","0",""},
+                                        {"#watchList","","0",""},
+                                        {"#myStocks","","0",""},
                                         {"#myProfile",""},
                                         {"#toMain",""},
                                         {"#myProfile",""},

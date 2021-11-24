@@ -31,7 +31,6 @@ public class StonkAppTest extends ApplicationTest {
         final Parent root = loader.load();
         stage.setScene(new Scene(root,800,600));
         stage.show();
-        StonkApp.setStage(stage);
     }
 
     @Test

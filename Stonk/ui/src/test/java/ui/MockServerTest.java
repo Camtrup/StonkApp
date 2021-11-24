@@ -6,7 +6,6 @@ import static com.github.tomakehurst.wiremock.client.WireMock.get;
 import static com.github.tomakehurst.wiremock.client.WireMock.post;
 import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlPathMatching;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 
@@ -15,7 +14,6 @@ import com.github.tomakehurst.wiremock.junit.WireMockRule;
 import com.google.gson.Gson;
 
 import org.junit.Rule;
-import org.junit.Test;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
