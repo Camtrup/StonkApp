@@ -19,9 +19,9 @@ If you want to see how an account with bought stocks looks like. You can log in 
 
 > 1. Clone (https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2135/gr2135/-/tree/master)
 > 2. Open the folder in a IDE as a Maven project.
-> 3. Navigate into the Stonk-directory via the commandline. Example: "cd Stonk".
-> 4. Run ("mvn clean install -DskipTests") via the command-line inside the project folder.
-> 5. Run the spring-boot server.(Process descrived right below)
+> 3. Navigate into the Stonk-directory via the commandline. Example: `cd Stonk`.
+> 4. Run `mvn clean install -DskipTests` via the command-line inside the project folder.
+> 5. Run the spring-boot server.(Process described right below)
 > 6. To start the app navigate into the ui package (Stonk/ui) and run: `mvn javafx:run`.
 
 
@@ -29,9 +29,9 @@ If you want to see how an account with bought stocks looks like. You can log in 
 
 > Steps to run server:
 >
-> 1. Make sure the project is clean, you can make sure of that by using the "mvn clean install -DskipTests" command in the command-line from the "Stonk" directory
-> 2. Navigate yourself into the "rest" directory with the "cd" command. Example: "cd Stonk/rest"
-> 3. Type "mvn spring-boot:run" into the commandline and your server will be generated. The backend of the app is now functional!
+> 1. Make sure the project is clean, you can make sure of that by using the `mvn clean install -DskipTests` command in the command-line from the "Stonk" directory
+> 2. Navigate yourself into the "rest" directory with the "cd" command. Example: `cd Stonk/rest`
+> 3. Type `mvn spring-boot:run` into the commandline and your server will be generated. The backend of the app is now functional!
 
 
 > ### Run Stonk in Gitpod:
@@ -39,19 +39,19 @@ If you want to see how an account with bought stocks looks like. You can log in 
 > The repository also includes Gitpod configuration files. Follow theese steps to run the app.
 
 > 1. Enter GitPod via the first link in this readme, or [here](https://gitpod.stud.ntnu.no/#https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2135/gr2135)
-> 3. Navigate into the "Stonk" directory via the commandline. Example "cd Stonk".
+> 3. Navigate into the "Stonk" directory via the commandline. Example `cd Stonk`.
 > 4. Initialize the project with the "mvn clean install -DskipTests" -command.
->5. When the build is done, start the server by navigating into the rest-directory and running "mvn spring-boot:run".
->6. When the server is running, navigate into the ui-directory and run: "mvn javafx:run"
+>5. When the build is done, start the server by navigating into the rest-directory and running `mvn spring-boot:run`.
+>6. When the server is running, navigate into the ui-directory and run: `mvn javafx:run`
 
 > ### Additional Commands
 
 > - To run various tests:
->    - First, make sure the server is running to test the UI. Ref [here](#-run-stonk-server:)
->    - To run the test, use the command "mvn clean install"
+>    - To run the tests, use the command "mvn clean install"
+         - The tests can be run seperately in each module, or in the entire project via their respective directories (Stonk, ui, rest, core, integration, data)
 >        - If the project is cleaned already, use "mvn test" or "mvn verify"
-> - For a report by jacoco, use "mvn jacoco:report" in any given module.
->    - Example: "cd Stonk/core" followed by "mvn jacoco:report"
+> - For a report by jacoco, use `mvn jacoco:report` in any given module.
+>    - Example: `cd Stonk/core` followed by `mvn jacoco:report`
 >    - The report will then be generated inside "target/site/index.html" in the given module.
 
 
