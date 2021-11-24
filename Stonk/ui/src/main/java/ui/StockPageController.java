@@ -12,17 +12,22 @@ import javafx.stage.Stage;
  * Controller for stockpage.
  */
 public class StockPageController extends SuperController {
-
-  // DataHandler handler = new DataHandler(); Bruker ikke ifølge spotbugs
   private User user = null;
   private Stonk stock = null; // Is static and public so the mainController
   // can access it and send the stock-object forward
 
   HttpHandler handler = new HttpHandler();
 
+  /**
+   * Sets the value for user and stock.
+   *
+   * @param user  is the useryou are searching up.
+   * @param stock is the stock.
+   */
   public StockPageController(User user, Stonk stock) {
     this.user = handler.getUser(user.getUsername(), user.getPassword());
-    this.stock = new Stonk(stock.getTicker(), stock.getPrice(), stock.getCount(), stock.getName(), stock.getPriceChange());
+    this.stock = new Stonk(stock.getTicker(), stock.getPrice(), stock.getCount(),
+        stock.getName(), stock.getPriceChange());
   }
 
   @FXML
@@ -103,15 +108,15 @@ public class StockPageController extends SuperController {
    *
    * @throws NumberFormatException if it doesnt work.
    */
+  @FXML
   public void updateTotalPrice() throws NumberFormatException {
     if (!amountStock.getText().equals("")) {
       amountStock.setStyle("-fx-text-fill: black; -fx-color: black;");
       amountStock.setStyle("-fx-text-fill: black;");
       int amount = -1;
-      try{
+      try {
         amount = Integer.parseInt(amountStock.getText());
-      }
-      catch (NumberFormatException e){
+      } catch (NumberFormatException e) {
         totPrice1.setText("Invalid");
       }
       Float floatPrice = stock.getPrice() * amount;
@@ -129,6 +134,7 @@ public class StockPageController extends SuperController {
    * Checks is number for validation.
    *
    * @param number getting from textfield.
+   * @throws IllegalArgumentException if argument is not allowed.
    */
   public void checkIfNum(TextField number) {
     try {
@@ -146,15 +152,14 @@ public class StockPageController extends SuperController {
    */
   public void watchStock() {
     boolean isInWatchlist = checkForWatchList();
-    String resp = handler.addOrRemoveWatchList(isInWatchlist, user.getUsername(), user.getPassword(),
-        stock.getTicker());
+    String resp = handler.addOrRemoveWatchList(isInWatchlist, user.getUsername(),
+        user.getPassword(), stock.getTicker());
     if (resp.contains("400")) {
       userFeedback(resp);
-    } 
+    }
     user = handler.getUser(user.getUsername(), user.getPassword());
     checkForWatchList();
   }
-
 
   /**
    * Buys stock if amount is valid.
@@ -162,12 +167,12 @@ public class StockPageController extends SuperController {
   public void buy() {
     try {
       checkIfNum(amountStock);
-      String resp = handler.buyOrSellStonk(false, user.getUsername(),
-          user.getPassword(), stock.getTicker(), Integer.parseInt(amountStock.getText()));
+      String resp = handler.buyOrSellStonk(false, user.getUsername(), user.getPassword(),
+          stock.getTicker(),
+          Integer.parseInt(amountStock.getText()));
       if (resp.contains("200")) {
         backToMain();
-      } 
-      else {
+      } else {
         userFeedback(resp);
       }
     } catch (IllegalArgumentException e) {
@@ -181,8 +186,8 @@ public class StockPageController extends SuperController {
   public void sell() {
     try {
       checkIfNum(amountStock);
-      String resp = handler.buyOrSellStonk(true, user.getUsername(),
-          user.getPassword(), stock.getTicker(), Integer.parseInt(amountStock.getText()));
+      String resp = handler.buyOrSellStonk(true, user.getUsername(), user.getPassword(),
+          stock.getTicker(), Integer.parseInt(amountStock.getText()));
       if (resp.contains("200")) {
         backToMain();
       } else {
@@ -191,12 +196,16 @@ public class StockPageController extends SuperController {
     } catch (IllegalArgumentException e) {
       userFeedback(e.getMessage());
     }
+
   }
 
+  /**
+   * checks if stock is already in watchList.
+   */
   @FXML
-  private boolean checkForWatchList(){
-    for(Stonk i : user.getWatchList()){
-      if(i.getTicker().equals(stock.getTicker())){
+  private boolean checkForWatchList() {
+    for (Stonk i : user.getWatchList()) {
+      if (i.getTicker().equals(stock.getTicker())) {
         addWatchList.setText("REMOVE FROM WATCHLIST");
         return true;
       }
@@ -206,8 +215,9 @@ public class StockPageController extends SuperController {
   }
 
   @FXML
-  private void initialize(){
+  private void initialize() {
     updateStockPage();
     checkForWatchList();
   }
+
 }

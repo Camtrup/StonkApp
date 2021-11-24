@@ -11,8 +11,8 @@ import javafx.stage.Stage;
 /**
  * Controller for register page.
  */
-public class RegisterController extends SuperController{
-  
+public class RegisterController extends SuperController {
+
   @FXML
   private TextField age;
   @FXML
@@ -37,7 +37,7 @@ public class RegisterController extends SuperController{
   HttpHandler handler = new HttpHandler();
 
   /**
-   * Login from the register page. 
+   * Login from the register page.
    *
    * @throws IOException if not possible.
    */
@@ -52,9 +52,8 @@ public class RegisterController extends SuperController{
     super.changeScene("login.fxml", user,(Stage) feedBack.getScene().getWindow());
   }
 
-  
   /**
-   * Register new user. 
+   * Register new user.
    *
    * @throws IOException if one or more of the fields are not OK.
    */
@@ -66,13 +65,17 @@ public class RegisterController extends SuperController{
       tempInt = Integer.parseInt(age.getText());
       tempFloat = Float.parseFloat(cash.getText());
 
-      if(firstname.getText().isBlank() || lastname.getText().isBlank() || username.getText().isBlank() || password.getText().isBlank()){
+      if (firstname.getText().isBlank() || lastname.getText().isBlank() 
+          || username.getText().isBlank()
+          || password.getText().isBlank()) {
         throw new IllegalArgumentException("All fields must be filled out");
       }
 
       User temp = new User(username.getText(), password.getText());
-      String resp = handler.newUser(firstname.getText(), lastname.getText(), username.getText(),
-          password.getText(), tempFloat, tempInt);
+      String resp = handler.newUser(firstname.getText().split(" ")[0],
+          lastname.getText().split(" ")[(lastname.getText().lastIndexOf(' ')) - 1], 
+          username.getText().replaceAll(" ", ""), password.getText().replaceAll(" ", ""),
+          tempFloat, tempInt);
       if (resp.contains("200")) {
         user = handler.getUser(temp.getUsername(), temp.getPassword());
         loginFromRegister();
@@ -87,8 +90,7 @@ public class RegisterController extends SuperController{
         feedBack.setText("Age must be an integer");
       } else if (tempFloat == -1) {
         feedBack.setText("Cash must be a number");
-      } 
-      else {
+      } else {
         feedBack.setText(e.getMessage());
       }
     }

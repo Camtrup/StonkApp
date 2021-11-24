@@ -46,15 +46,15 @@ public class HttpHandler {
   /**
    * Funk for buying or selling with resp return.
    *
-   * @param sell boolean.
+   * @param sell     boolean.
    * @param username String.
    * @param password String.
-   * @param ticker String.
-   * @param count Int.
+   * @param ticker   String.
+   * @param count    Int.
    * @return a response.
    */
-  public String buyOrSellStonk(boolean sell, String username, String password,
-          String ticker, int count) {
+  public String buyOrSellStonk(boolean sell, String username, String password, 
+        String ticker, int count) {
     String resp = "";
     String method = "buy";
     if (sell) {
@@ -76,18 +76,49 @@ public class HttpHandler {
   }
 
   /**
+   * Adds or removes a Stock.
+   *
+   * @param remove   boolean.
+   * @param username String.
+   * @param password String.
+   * @param ticker   String.
+   * @param count    Int.
+   * @return a response.
+   */
+  public String addOrRemoveStonk(boolean remove, String username, String password, 
+        String ticker, int count) {
+    String resp = "";
+    String method = "add";
+    if (remove) {
+      method = "remove";
+    }
+    try {
+      HttpRequest request = HttpRequest.newBuilder()
+          .uri(
+              new URI("http://localhost:8080/" + method + "/" + username + "/" 
+                  + password + "/" + ticker + "/" + count)).GET().build();
+      final HttpResponse<String> response = HttpClient.newBuilder().build().send(request,
+          HttpResponse.BodyHandlers.ofString());
+      resp = response.body();
+    } catch (InterruptedException | IOException | URISyntaxException e) {
+      System.out.println(e);
+    }
+    return resp;
+  }
+
+  /**
    * New user.
    *
    * @param firstName String.
-   * @param lastName String.
-   * @param username String.
-   * @param password String.
-   * @param cash Float.
-   * @param age int.
+   * @param lastName  String.
+   * @param username  String.
+   * @param password  String.
+   * @param cash      Float.
+   * @param age       int.
    * @return A response.
    */
-  public String newUser(String firstName, String lastName, String username,
-      String password, Float cash, int age) {
+  public String newUser(String firstName, String lastName, 
+      String username, String password, Float cash, int age) {
     String resp = "";
     try {
       HttpRequest request = HttpRequest.newBuilder().uri(new URI("http://localhost:" + port + "/new/"
@@ -153,7 +184,7 @@ public class HttpHandler {
    *
    * @param username String.
    * @param password String.
-   * @param cash Float.
+   * @param cash     Float.
    * @return response.
    */
   public String addMoreValue(String username, String password, Float cash) {
@@ -175,14 +206,14 @@ public class HttpHandler {
   /**
    * Add or removes from WatchList.
    *
-   * @param remove Boolean.
+   * @param remove   Boolean.
    * @param username String.
    * @param password String.
-   * @param ticker String.
+   * @param ticker   String.
    * @return a response.
    */
-  public String addOrRemoveWatchList(boolean remove,
-      String username, String password, String ticker) {
+  public String addOrRemoveWatchList(boolean remove, String username, 
+      String password, String ticker) {
     String resp = "";
     String method = "add";
     if (remove) {

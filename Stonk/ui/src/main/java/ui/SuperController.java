@@ -1,14 +1,16 @@
 package ui;
 
-import java.io.IOException;
-
 import core.Stonk;
 import core.User;
+import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 
+/**
+ * The function for running stonkApp.
+ */
 public class SuperController {
-    private StonkApp app = new StonkApp();
+  private StonkApp app = new StonkApp();
 
     public void changeScene(String fxml, User user,Stage stage, Stonk... stock){
         stage.close();
@@ -28,4 +30,6 @@ public class SuperController {
           e.printStackTrace();
         }
     }
+    app.getScene().setRoot(pane);
+  }
 }
