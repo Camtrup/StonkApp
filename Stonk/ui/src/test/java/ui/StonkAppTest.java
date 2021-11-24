@@ -12,12 +12,13 @@ import javafx.stage.Stage;
 
 public class StonkAppTest extends ApplicationTest {
 
+    MockServerTest mock = new MockServerTest();
 
     @BeforeEach
     public void setup(){
         HttpHandler handler = new HttpHandler();
         handler.testMode();
-        
+        mock.server.start();
     }
 
     @Override
@@ -34,6 +35,7 @@ public class StonkAppTest extends ApplicationTest {
         clickOn("#username").write("test");
         clickOn("#password").write("test");
         clickOn("#login");
+        clickOn("#myProfile");
     }
 
 }

@@ -15,16 +15,8 @@ import java.net.http.HttpRequest.BodyPublishers;
  */
 public class HttpHandler {
 
-  public HttpHandler(){
-
-  }
-
-  private int port = 8080;
   private Gson handler = new Gson();
   
-  public HttpHandler(int port){
-    this.port = port;
-  }
 
   /**
    * Getter for User.
@@ -37,7 +29,7 @@ public class HttpHandler {
     User user = null;
     try {
       HttpRequest request = HttpRequest.newBuilder()
-          .uri(new URI("http://localhost:" + port + "/user/" + username + "/" + password))
+          .uri(new URI("http://localhost:8080/user/" + username + "/" + password))
           .GET()
           .build();
       final HttpResponse<String> response = HttpClient.newBuilder().build().send(request,

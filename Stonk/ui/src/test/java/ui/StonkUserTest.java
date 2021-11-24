@@ -1,9 +1,17 @@
 package ui;
 
+import java.util.ArrayList;
+
+import com.github.tomakehurst.wiremock.WireMockServer;
+import com.github.tomakehurst.wiremock.junit.WireMockRule;
+import com.google.gson.Gson;
+
+import org.junit.Rule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
 
+import core.Stonk;
 import core.User;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,6 +20,14 @@ import javafx.stage.Stage;
 
 
 public class StonkUserTest extends ApplicationTest{
+
+    WireMockServer server = new WireMockServer(8080);
+    Gson gson = new Gson();
+
+    @Rule
+    public WireMockRule wireMockRule = new WireMockRule(8080);
+    User user = new User("test", "test","test","test",20000000,10000, new ArrayList<Stonk>(), new ArrayList<Stonk>(), false);
+
 
     @Override
     public void start(final Stage stage) throws Exception{
@@ -23,7 +39,6 @@ public class StonkUserTest extends ApplicationTest{
     }
 
     HttpHandler handler = new HttpHandler();
-    User user = new User("test","test");
 
     @BeforeEach
     public void setup(){
