@@ -35,6 +35,9 @@ The miniumum requirments we set for ourselves was to meet once a week, but we fo
 ### Pair coding
 Pair programming has helped us to higher the quality of the code by prrogramming out loud with a driver and navigator working together. We started meeting more often to pair program as much as possible.
 
+### Checking each others code
+we set ourself a goal that evereyone in the group should know how all the libraries we use, actually work. That is why we met at school at least 3 times for pair program but also for evaluating each others code. We also made it mandatory to never merge someones code without reading it and if you found it necesaary to also add a comment in the merge request. 
+
 ### SCRUM
 SCRUM has been central for our coding. We have participated and are aware of all sorts of agile ceremonies (user story grooming, sprint planning, sprint retrospective). This helped to impact the end product, by having fixed deliveries in short iterations with a fixed length in close, ongoing collaboration between customer and supplier. Apart from the Sprints, the QA (who does it, when it gets done) helped alot. Being able to asign and set a deadline on gitlabs really helped having control over our project. 
 
@@ -42,6 +45,9 @@ SCRUM was a powerful tool that empowered us to fix our mistakes quickly and made
 
 #### How gitlab helped
 Gitlab is great for enabling lean and agile project management especially for scrum projects. Here we were able to add issues, which had a deadline, labels and could be issued to grup members. THe milestone and board functionalities also helped us hold upå with deadlines.
+
+
+## Rest services
 
 ## Files
 
