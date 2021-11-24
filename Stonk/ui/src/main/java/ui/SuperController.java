@@ -30,6 +30,4 @@ public class SuperController {
           e.printStackTrace();
         }
     }
-    app.getScene().setRoot(pane);
-  }
 }
