@@ -2,6 +2,7 @@ package ui;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
@@ -24,10 +25,15 @@ public class StonkBuyTest extends ApplicationTest{
         StonkApp.setStage(stage);
     }
 
+    MockServerTest mock = new MockServerTest();
+
     @BeforeEach
     public void setup(){
-        HttpHandler handler = new HttpHandler();
-        handler.testMode();
+        mock.setup();
+    }
+    @AfterEach
+    public void stop(){
+        mock.stop();
     }
 
     //Tests all the vital functions around buying and selling stocks
@@ -49,15 +55,7 @@ public class StonkBuyTest extends ApplicationTest{
                                         {"#buyBtn","","0","Amount of stocks cant be negative or 0"},
                                         {"#amountStock","","2",""},
                                         {"#amountStock","1","0",""},
-                                        {"#sellBtn","","0","Stock not in portfolio"},
-                                        {"#buyBtn","","0",""},
-                                        {"#searchBar","apple","0",""},
-                                        {"#searchButton","","0",""},
-                                        {"#amountStock","12","0",""},
-                                        {"#sellBtn","","0","Not enough stocks to sell"},
-                                        {"#amountStock","","2",""},
-                                        {"#amountStock","1","0",""},
-                                        {"#sellBtn","","0",""}            
+                                        {"#sellBtn","","0",""},  
                                         };
 
         for(String[] param : arr) {

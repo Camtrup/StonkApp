@@ -16,10 +16,6 @@ public class StonkRestController {
   @Autowired
   private StonkRestService stonkRestService;
 
-  @RequestMapping("/test")
-  public String testMode(){
-    return stonkRestService.testMode();
-  }
 
   @RequestMapping("/user")
   public ArrayList<User> userArray() {

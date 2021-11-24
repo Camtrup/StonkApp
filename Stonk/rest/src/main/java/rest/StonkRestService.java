@@ -314,11 +314,4 @@ public class StonkRestService {
     return "200";
   }
 
-public String testMode() {
-    User temp = new User("test", "test","test","test",20000000,10000, new ArrayList<Stonk>(), new ArrayList<Stonk>(), testMode);
-    users = new ArrayList<User>();
-    users.add(temp);
-    testMode = true;
-    return "200";
-}
 }

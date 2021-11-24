@@ -2,6 +2,7 @@ package ui;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
@@ -23,10 +24,15 @@ public class StonkRegisterTest extends ApplicationTest{
         StonkApp.setStage(stage);
     }
     
+    MockServerTest mock = new MockServerTest();
+
     @BeforeEach
     public void setup(){
-        HttpHandler handler = new HttpHandler();
-        handler.testMode();
+        mock.setup();
+    }
+    @AfterEach
+    public void stop(){
+        mock.stop();
     }
 
     @Test 

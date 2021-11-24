@@ -1,4 +1,5 @@
 package ui;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
@@ -12,13 +13,16 @@ import javafx.stage.Stage;
 
 public class StonkAppTest extends ApplicationTest {
 
+    
     MockServerTest mock = new MockServerTest();
 
     @BeforeEach
     public void setup(){
-        HttpHandler handler = new HttpHandler();
-        handler.testMode();
-        mock.server.start();
+        mock.setup();
+    }
+    @AfterEach
+    public void stop(){
+        mock.stop();
     }
 
     @Override
@@ -32,10 +36,11 @@ public class StonkAppTest extends ApplicationTest {
 
     @Test
     public void testLoginTrue() {
+        mock.setup();
         clickOn("#username").write("test");
         clickOn("#password").write("test");
         clickOn("#login");
         clickOn("#myProfile");
+        mock.stop();
     }
-
 }

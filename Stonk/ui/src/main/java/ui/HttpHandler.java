@@ -217,22 +217,4 @@ public class HttpHandler {
     }
     return resp;
   }
-
-  /**
-   * For saving.
-   *
-   * @return a response.
-   */
-  public String testMode() {
-    String resp = "";
-    try {
-      HttpRequest request = HttpRequest.newBuilder().uri(new URI("http://localhost:8080/test")).GET().build();
-      final HttpResponse<String> response = HttpClient.newBuilder().build().send(request,
-          HttpResponse.BodyHandlers.ofString());
-      resp = response.body();
-    } catch (InterruptedException | IOException | URISyntaxException e) {
-      System.out.println(e);
-    }
-    return resp;
-  }
 }
