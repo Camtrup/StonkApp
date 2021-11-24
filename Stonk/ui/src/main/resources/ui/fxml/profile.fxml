@@ -24,7 +24,7 @@
       <Text fx:id="startedWith" layoutX="80.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Balance:" />
       <Label fx:id="balance" layoutX="151.0" layoutY="202.0" text="Balance" />
       <Button styleClass="regularButton" fx:id="moneyAddBtn" layoutX="97.0" layoutY="292.0" mnemonicParsing="false" onAction="#addValue" text="Add  Balance" />
-      <TextField fx:id="moneyAdd" alignment="TOP_RIGHT" layoutX="110.0" layoutY="238.0" opacity="0.29" prefHeight="48.0" prefWidth="120.0" promptText="1" style="-fx-background-color: fffffff;">
+      <TextField fx:id="moneyAdd" alignment="TOP_RIGHT" layoutX="110.0" layoutY="238.0" opacity="0.29" prefHeight="48.0" prefWidth="120.0" promptText="1" >
          <font>
             <Font name="Arial" size="26.0" />
          </font>
