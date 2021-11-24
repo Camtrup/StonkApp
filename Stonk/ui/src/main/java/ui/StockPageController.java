@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  * Controller for stockpage.
@@ -60,7 +61,7 @@ public class StockPageController extends SuperController {
    * Is fired when the user clicks "EXIT".
    */
   public void backToMain() {
-    super.changeScene("mainPage.fxml", user);
+    super.changeScene("mainPage.fxml", user,(Stage) feedBack.getScene().getWindow());
   }
 
   /**

@@ -12,33 +12,26 @@ import javafx.stage.Stage;
  */
 public class StonkApp extends Application {
 
-  private static Stage stg; // Used staticly for tests
-
   /**
    * Starts the app.
    */
   @Override
   public void start(Stage stage) throws IOException {
-    setStage(stage);
     FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("fxml/login.fxml"));
     Parent parent = fxmlLoader.load();
     stage.setTitle("Stonk");
-    stage.setScene(new Scene(parent, 292, 580));
+    stage.setScene(new Scene(parent));
     stage.setResizable(false);
     stage.show();
   }
 
-  /**
-   * Used for getting scene for testing.
-   */
-  protected Scene getScene() {
-    return stg.getScene();
+  public void newPane(FXMLLoader load) throws IOException{
+    Stage stage = new Stage();
+    Parent parent = load.load();
+    stage.setTitle("Stonk");
+    stage.setScene(new Scene(parent));
+    stage.setResizable(false);
+    stage.show();
   }
 
-  /**
-   * Used for setting stage for testing.
-   */
-  protected static void setStage(Stage stage) {
-    stg = stage;
-  }
 }

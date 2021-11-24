@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  * Controller for register page.
@@ -41,14 +42,14 @@ public class RegisterController extends SuperController {
    * @throws IOException if not possible.
    */
   public void loginFromRegister() throws IOException {
-    super.changeScene("mainPage.fxml", user);
+    super.changeScene("mainPage.fxml", user,(Stage) feedBack.getScene().getWindow());
   }
 
   /**
    * Back to login.
    */
   public void backToLogin() {
-    super.changeScene("login.fxml", user);
+    super.changeScene("login.fxml", user,(Stage) feedBack.getScene().getWindow());
   }
 
   /**

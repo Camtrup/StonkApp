@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 /**
  * Controller fro profile.
@@ -89,7 +90,7 @@ public class ProfileController extends SuperController {
    * Logs the user out.
    */
   public void logOut() {
-    super.changeScene("login.fxml", null);
+    super.changeScene("login.fxml",null,(Stage) feedBack.getScene().getWindow());
   }
 
   /**
@@ -97,10 +98,11 @@ public class ProfileController extends SuperController {
    */
   public void deleteUser() {
     String resp = handler.removeUser(user.getUsername(), user.getPassword());
-    if (resp.contains("200")) {
+    String resp2 = handler.save();
+    if (resp.contains("200") && resp2.contains("200")) {
       logOut();
     } else {
-      feedBack.setText(resp);
+      feedBack.setText((resp + ", " + resp2).replace("200", ""));
     }
   }
 
@@ -108,6 +110,6 @@ public class ProfileController extends SuperController {
    * Back to main page.
    */
   public void toMain() {
-    super.changeScene("mainPage.fxml", user);
+    super.changeScene("mainPage.fxml", user,(Stage) feedBack.getScene().getWindow());
   }
 }

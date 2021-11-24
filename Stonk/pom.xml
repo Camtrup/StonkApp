@@ -10,7 +10,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>16</maven.compiler.source>
         <maven.compiler.target>16</maven.compiler.target>
-        <skipTests>true</skipTests>
+        <skipTests>false</skipTests>
     </properties>
 
     <dependencyManagement>
@@ -184,5 +184,6 @@
         <module>core</module>
         <module>ui</module>
         <module>rest</module>
+        <module>integration</module>
     </modules>
 </project>
