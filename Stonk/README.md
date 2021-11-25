@@ -22,15 +22,11 @@ The shippable product of our application comes in the form of a .jar file that i
 Using this we are able to get information about every given stock in real-time.
 ### Gson 
 Gson is a great Java library that primary use is to convert Java Objects into their JSON representation. It also gets used to convert a JSON string to an equivalent Java object. 
-### JSON-simple
-JSON-simple is s much simpler version of JSON. It uses a Java library library for JSON processing, read and write JSON data and full compliance with JSON specification.
 ### JAVAFX
 JavaFX is a Java library that simplifies the development of Rich Internet Applications (RIA). Applications written using this library can be run across different platforms. The applications can also be run on various devices such as computers, mobile phones, TVs and tablets.
 ### Spring Boot
 Spring Boot is an open source, micro-service-based Java network. The Spring Boot framework creates a completely production-ready environment that is fully configurable using the pre-built code in the code base. The Microservice architecture provides developers with a full-featured application, including embedded application servers.
 
-### Jlink
-Jlink is a tool that generates a custom Java runtime image that has only the platform modules that are required for an application.
 ### SpotBugs, CheckStyle and JaCoCo
 - Spotbugs has helped with finding unused codes and errors or bugs we were not able to find ourselves. 
 
@@ -57,34 +53,6 @@ SCRUM was a powerful tool that empowered us to fix our mistakes quickly and made
 Gitlab is great for enabling lean and agile project management especially for scrum projects. Here we were able to add issues, which had a deadline, labels and could be issued to grup members. THe milestone and board functionalities also helped us hold upå with deadlines.
 
 
-## Rest services
-
-All files will have the standard mapping "http://localhost:8080/ + the name of our requestmappings. 
-Here is a full list over all the mappings: 
-
-- test: 
-
-- user: Will return an ArrayList<User> of our users. 
-
-- isLoginValid/{username}/{password}: username and password will be based on input values, and the function checks that the values follows our specific criterias for logging in.
-
-- user/{username}/{password}: Username and password are from the current user. This method is for getting a specific users data, eg the corresponding stocks.
-
-- buy/{username}/{password}/{ticker}/{count}: username and password comes from the current user. Ticker is for searching up the stock and count says how many the user wants to buy. This adds the stock to your stocks and updates balance.
-
-- sell/{username}/{password}/{ticker}/{count}: username and password comes from the current user. Ticker is for searching up the stock and count says how many the user wants to sell. This removes the stock from your stocks and updates balance.
-
-- add/{username}/{password}/{ticker}: Username and password from the current user. Ticker for finding the stock. This will add the specific stock to the users watchlist.
-
-- remove/{username}/{password}/{ticker}: Username and password from the current user. Ticker for finding the stock. This will remove the specific stock from the users watchlist.
-
-- new/{firstname}/{lastname}/{username}/{password}/{cash}/{age}: This will create a new user with these values, and updates in database.
-
-- delete/{username}/{password}: This will delete the current user.
-
-- value/{username}/{password}/{cash}: This is used for adding more cash to your current balance.
-
-- save: Saves the updated information to the JSON-file.
 
 
 ## Files
