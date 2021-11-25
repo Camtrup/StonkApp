@@ -1,19 +1,27 @@
 package data;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
-import org.json.simple.JSONArray;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.stream.JsonReader;
+
 
 /**
  * Class datahandler.
  */
 public class DataHandler {
+
+  Gson gson = new Gson();
 
   // The filepath now dynamiclly finds the working directory of the user, and the
   // adds the path to the database
@@ -31,16 +39,19 @@ public class DataHandler {
    *
    * @return array of all users.
    */
-  public JSONArray getAllUsers() {
+  public JsonArray getAllUsers() {
     adaptFilePath();
-    JSONParser parser = new JSONParser();
-    JSONArray obj = new JSONArray();
-    try (FileReader reader = new FileReader(file, StandardCharsets.UTF_8)) {
-      obj = (JSONArray) parser.parse(reader);
-    } catch (IOException | ParseException e) {
-      System.out.println(e);
+    JsonArray object = null;
+    JsonReader reader;
+    try {
+      InputStream inputStream = new FileInputStream(file);
+      reader = new JsonReader(new InputStreamReader(inputStream, "UTF-8"));
+      object = gson.fromJson(reader, JsonArray.class);
+    } catch (FileNotFoundException | UnsupportedEncodingException e) {
+      e.printStackTrace();
     }
-    return obj;
+
+    return object;
   }
 
   /**

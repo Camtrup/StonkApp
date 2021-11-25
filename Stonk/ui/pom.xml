@@ -115,7 +115,7 @@
                 <configuration>
                   <archive>
                     <manifest>
-                      <mainClass>ui.StonkApp</mainClass>
+                      <mainClass>ui.StartApp</mainClass>
                     </manifest>
                   </archive>
                   <descriptorRefs>
