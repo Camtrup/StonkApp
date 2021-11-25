@@ -7,6 +7,16 @@ Maven is a software project management and building tool. Based on the concept o
 
 The reason we went with maven instead of gradle is because it uses an XML file for declaring the project, its dependencies, the build order, and its required plugin. This is something we find familiar and easy to understand from doing former projects.
 
+### The "Shippable" Application
+The shippable product of our application comes in the form of a .jar file that is produced in the target-folder. Unfortunately it has to be run from the command-line, which is explained in the section below. The reason of this is we didnt manage to produce a workaround that Jlink didnt allow JSOUP(Our webscraper), to be in the jar-file.
+
+#### How to produce and run shippable application
+1. Make sure the project is clean with the `mvn clean install -DskipTests` command
+2. Navigate into the ui-directory and run `mvn assembly:single`
+3. The .jar-file will then appear in the target-folder.
+4. To run the .jar use `java -jar FILEPATH/ui-0.0.1-SNAPSHOT-jar-with-dependencies.jar`
+
+
 ### JSoup
 **Stonk** is built with the library [JSoup](https://jsoup.org). Jsoup allows us to scrape and parse data from a website using DOM traversal and CSS selectors. 
 Using this we are able to get information about every given stock in real-time.
