@@ -73,7 +73,7 @@ public class RegisterController extends SuperController {
 
       User temp = new User(username.getText(), password.getText());
       String resp = handler.newUser(firstname.getText().split(" ")[0],
-          lastname.getText().split(" ")[(lastname.getText().lastIndexOf(' ')) - 1], 
+          lastname.getText().split(" ")[0], 
           username.getText().replaceAll(" ", ""), password.getText().replaceAll(" ", ""),
           tempFloat, tempInt);
       if (resp.contains("200")) {

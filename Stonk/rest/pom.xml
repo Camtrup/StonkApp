@@ -9,7 +9,6 @@
     </parent>
 	
 	<artifactId>rest</artifactId>
-	<packaging>jar</packaging>
 
 	<properties>
 		<java.version>16</java.version>

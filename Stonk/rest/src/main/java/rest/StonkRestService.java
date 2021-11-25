@@ -3,14 +3,13 @@ package rest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import core.Stonk;
 import core.User;
 import data.DataHandler;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
 /**
@@ -19,58 +18,21 @@ import org.springframework.stereotype.Service;
 @Service
 public class StonkRestService {
 
-  boolean testMode = false;
+  Gson gson = new Gson();
 
   DataHandler handler = new DataHandler();
 
-  private ArrayList<User> users = jsonArrayToArrayList();
+  private ArrayList<User> users = getDatabase();
 
-  /**
-   * User to jsonArrayList.
-   *
-   * @return the arrayList of user.
-   */
-  private ArrayList<User> jsonArrayToArrayList() {
+
+  private ArrayList<User> getDatabase(){
     ArrayList<User> temp = new ArrayList<User>();
-    for (Object i : handler.getAllUsers()) {
-      JSONObject user = (JSONObject) i;
-      temp.add(jsonToUser(user));
+    for (JsonElement i : handler.getAllUsers()){
+      temp.add(gson.fromJson(i, User.class));
     }
     return temp;
   }
 
-  /**
-   * portfolio.
-   *
-   * @param portfolio given.
-   * @return as arraylist with Stonk.
-   */
-  public ArrayList<Stonk> jsonToPortfolio(JSONArray portfolio) {
-    ArrayList<Stonk> temp = new ArrayList<Stonk>();
-    for (Object i : portfolio) {
-      JSONObject stonk = (JSONObject) i;
-      temp.add(new Stonk(stonk.get("ticker").toString(),
-          Float.parseFloat(stonk.get("price").toString()),
-          Integer.parseInt(stonk.get("count").toString()), stonk.get("name").toString(),
-          Float.parseFloat(stonk.get("priceChange").toString())));
-    }
-    return temp;
-  }
-
-  /**
-   * From JSONObject to user.
-   *
-   * @param user for finding.
-   * @return the gives user.
-   */
-  public User jsonToUser(JSONObject user) {
-    return new User(user.get("firstName").toString(), user.get("lastName").toString(),
-        user.get("username").toString(),
-        user.get("password").toString(), Float.parseFloat(user.get("cash").toString()),
-        Integer.parseInt(user.get("age").toString()),
-        jsonToPortfolio((JSONArray) user.get("portfolio")),
-        jsonToPortfolio((JSONArray) user.get("watchList")), false);
-  }
 
   protected ArrayList<User> getAllUsers() {
     return users;
@@ -234,7 +196,6 @@ public class StonkRestService {
    * @return a response.
    */
   public String saveJson() {
-    if(!testMode){
       Gson gson = new GsonBuilder().create();
       JsonArray arr = gson.toJsonTree(users).getAsJsonArray();
       try {
@@ -247,8 +208,6 @@ public class StonkRestService {
         return "409" + e.getMessage();
       }
       return "200";
-    }
-    return "200";
   }
 
   /** Add a Stock to WatchList.
