@@ -21,6 +21,7 @@ public class Stonk {
   public Stonk(String ticker, int count) {
     scrapeStockInfo(ticker, count);
   }
+  
   /**
    * Uses JSoup for scraping an Stock from marketwatch.
    *
@@ -51,10 +52,9 @@ public class Stonk {
           .replaceAll("[^\\.0123456789]", ""));
       String change = doc.select("span.change--percent--q").first().text();
       change = change.replace("%", "");
-      if(change.contains("-")){
+      if (change.contains("-")) {
         this.priceChange = Float.parseFloat(change.substring(1)) * -1;
-      }
-      else {
+      } else {
         this.priceChange = Float.parseFloat(change);
       }
       this.count = count;
