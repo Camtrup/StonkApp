@@ -56,7 +56,12 @@ public class User {
     }
   }
 
-  // Used for login
+  /**
+  * sets the password and username for the user.
+  *
+  * @param username string.
+  * @param password string.
+  */
   public User(String username, String password) {
     this.username = username;
     this.password = encryptPassword(password);
@@ -69,8 +74,8 @@ public class User {
   /**
    * Adds stock to portfolio.
    *
-   * @param ticker for finding stock.
-   * @param count  how many.
+   *@param ticker for finding stock.
+   *@param count  how many.
    */
   public void addToPortfoilio(String ticker, int count) {
     if (count <= 0) {
@@ -249,7 +254,7 @@ public class User {
   }
 
   /**
-   * Sets age.
+   * Sets age and checks if you are over 18.
    *
    * @param age int.
    */

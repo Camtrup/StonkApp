@@ -5,20 +5,23 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 
-import org.json.simple.JSONArray;
-import org.junit.Test;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+
+import org.junit.jupiter.api.Test;
 
 public class DataHandlerTest {
 
+    Gson gson =  new Gson();
     DataHandler handler = new DataHandler();
 
     @Test 
     public void checkReadAndWrite() throws IOException{
-        JSONArray current = handler.getAllUsers();
-        JSONArray test = new JSONArray();
-        handler.writeToFile(test.toJSONString());
+        JsonArray current = handler.getAllUsers();
+        JsonArray test = new JsonArray();
+        handler.writeToFile(gson.toJson(test));
         assertTrue(handler.getAllUsers().equals(test));
-        handler.writeToFile(current.toJSONString());
+        handler.writeToFile(gson.toJson(current));
         
     }
 }

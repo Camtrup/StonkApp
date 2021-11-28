@@ -3,6 +3,7 @@ package ui;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
@@ -21,13 +22,17 @@ public class StonkLoginTest extends ApplicationTest{
         final Parent root = loader.load();
         stage.setScene(new Scene(root,800,600));
         stage.show();
-        StonkApp.setStage(stage);
     }
     
+    MockServerTest mock = new MockServerTest();
+
     @BeforeEach
     public void setup(){
-        HttpHandler handler = new HttpHandler();
-        handler.testMode();
+        mock.setup();
+    }
+    @AfterEach
+    public void stop(){
+        mock.stop();
     }
 
     @Test

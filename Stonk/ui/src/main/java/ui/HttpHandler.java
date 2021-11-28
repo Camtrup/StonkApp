@@ -7,15 +7,18 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.net.http.HttpRequest.BodyPublishers;
+import java.net.http.HttpResponse;
 
 /**
  * Class for HTTP-handler.
  */
 public class HttpHandler {
 
+  private int port = 8080;
+
   private Gson handler = new Gson();
+  
 
   /**
    * Getter for User.
@@ -28,7 +31,7 @@ public class HttpHandler {
     User user = null;
     try {
       HttpRequest request = HttpRequest.newBuilder()
-          .uri(new URI("http://localhost:8080/user/" + username + "/" + password))
+          .uri(new URI("http://localhost:" + port + "/user/" + username + "/" + password))
           .GET()
           .build();
       final HttpResponse<String> response = HttpClient.newBuilder().build().send(request,
@@ -43,15 +46,15 @@ public class HttpHandler {
   /**
    * Funk for buying or selling with resp return.
    *
-   * @param sell boolean.
+   * @param sell     boolean.
    * @param username String.
    * @param password String.
-   * @param ticker String.
-   * @param count Int.
+   * @param ticker   String.
+   * @param count    Int.
    * @return a response.
    */
-  public String buyOrSellStonk(boolean sell, String username, String password,
-          String ticker, int count) {
+  public String buyOrSellStonk(boolean sell, String username, String password, 
+        String ticker, int count) {
     String resp = "";
     String method = "buy";
     if (sell) {
@@ -60,9 +63,40 @@ public class HttpHandler {
     try {
       HttpRequest request = HttpRequest.newBuilder()
           .uri(
-              new URI("http://localhost:8080/" + method + "/" + username + "/" + password + "/" + ticker + "/" + count))
+              new URI("http://localhost:" + port + "/" + method + "/" + username + "/" + password + "/" + ticker + "/" + count))
           .POST(BodyPublishers.ofString(""))
           .build();
+      final HttpResponse<String> response = HttpClient.newBuilder().build().send(request,
+          HttpResponse.BodyHandlers.ofString());
+      resp = response.body();
+    } catch (InterruptedException | IOException | URISyntaxException e) {
+      System.out.println(e);
+    }
+    return resp;
+  }
+
+  /**
+   * Adds or removes a Stock.
+   *
+   * @param remove   boolean.
+   * @param username String.
+   * @param password String.
+   * @param ticker   String.
+   * @param count    Int.
+   * @return a response.
+   */
+  public String addOrRemoveStonk(boolean remove, String username, String password, 
+        String ticker, int count) {
+    String resp = "";
+    String method = "add";
+    if (remove) {
+      method = "remove";
+    }
+    try {
+      HttpRequest request = HttpRequest.newBuilder()
+          .uri(
+              new URI("http://localhost:8080/" + method + "/" + username + "/" 
+                  + password + "/" + ticker + "/" + count)).GET().build();
       final HttpResponse<String> response = HttpClient.newBuilder().build().send(request,
           HttpResponse.BodyHandlers.ofString());
       resp = response.body();
@@ -76,18 +110,18 @@ public class HttpHandler {
    * New user.
    *
    * @param firstName String.
-   * @param lastName String.
-   * @param username String.
-   * @param password String.
-   * @param cash Float.
-   * @param age int.
+   * @param lastName  String.
+   * @param username  String.
+   * @param password  String.
+   * @param cash      Float.
+   * @param age       int.
    * @return A response.
    */
-  public String newUser(String firstName, String lastName, String username,
-      String password, Float cash, int age) {
+  public String newUser(String firstName, String lastName, 
+      String username, String password, Float cash, int age) {
     String resp = "";
     try {
-      HttpRequest request = HttpRequest.newBuilder().uri(new URI("http://localhost:8080/new/"
+      HttpRequest request = HttpRequest.newBuilder().uri(new URI("http://localhost:" + port + "/new/"
           + firstName + "/" + lastName + "/" + username + "/"
               + password + "/" + cash + "/" + age))
               .POST(BodyPublishers.ofString(""))
@@ -112,7 +146,7 @@ public class HttpHandler {
     String resp = "";
     try {
       HttpRequest request = HttpRequest.newBuilder()
-          .uri(new URI("http://localhost:8080/delete/" + username + "/" + password))
+          .uri(new URI("http://localhost:" + port + "/delete/" + username + "/" + password))
           .POST(BodyPublishers.ofString(""))
           .build();
       final HttpResponse<String> response = HttpClient.newBuilder().build().send(request,
@@ -135,7 +169,7 @@ public class HttpHandler {
     String resp = "";
     try {
       HttpRequest request = HttpRequest.newBuilder()
-          .uri(new URI("http://localhost:8080/isLoginValid/" + username + "/" + password)).GET().build();
+          .uri(new URI("http://localhost:" + port + "/isLoginValid/" + username + "/" + password)).GET().build();
       final HttpResponse<String> response = HttpClient.newBuilder().build().send(request,
           HttpResponse.BodyHandlers.ofString());
       resp = response.body();
@@ -150,14 +184,14 @@ public class HttpHandler {
    *
    * @param username String.
    * @param password String.
-   * @param cash Float.
+   * @param cash     Float.
    * @return response.
    */
   public String addMoreValue(String username, String password, Float cash) {
     String resp = "";
     try {
       HttpRequest request = HttpRequest.newBuilder()
-          .uri(new URI("http://localhost:8080/value/" + username + "/" + password + "/" + cash))
+          .uri(new URI("http://localhost:" + port + "/value/" + username + "/" + password + "/" + cash))
           .POST(BodyPublishers.ofString(""))
           .build();
       final HttpResponse<String> response = HttpClient.newBuilder().build().send(request,
@@ -172,14 +206,14 @@ public class HttpHandler {
   /**
    * Add or removes from WatchList.
    *
-   * @param remove Boolean.
+   * @param remove   Boolean.
    * @param username String.
    * @param password String.
-   * @param ticker String.
+   * @param ticker   String.
    * @return a response.
    */
-  public String addOrRemoveWatchList(boolean remove,
-      String username, String password, String ticker) {
+  public String addOrRemoveWatchList(boolean remove, String username, 
+      String password, String ticker) {
     String resp = "";
     String method = "add";
     if (remove) {
@@ -187,7 +221,7 @@ public class HttpHandler {
     }
     try {
       HttpRequest request = HttpRequest.newBuilder()
-          .uri(new URI("http://localhost:8080/" + method + "/" + username + "/" + password + "/" + ticker))
+          .uri(new URI("http://localhost:" + port + "/" + method + "/" + username + "/" + password + "/" + ticker))
           .POST(BodyPublishers.ofString(""))
           .build();
       final HttpResponse<String> response = HttpClient.newBuilder().build().send(request,
@@ -208,24 +242,6 @@ public class HttpHandler {
     String resp = "";
     try {
       HttpRequest request = HttpRequest.newBuilder().uri(new URI("http://localhost:8080/save")).GET().build();
-      final HttpResponse<String> response = HttpClient.newBuilder().build().send(request,
-          HttpResponse.BodyHandlers.ofString());
-      resp = response.body();
-    } catch (InterruptedException | IOException | URISyntaxException e) {
-      System.out.println(e);
-    }
-    return resp;
-  }
-
-  /**
-   * For saving.
-   *
-   * @return a response.
-   */
-  public String testMode() {
-    String resp = "";
-    try {
-      HttpRequest request = HttpRequest.newBuilder().uri(new URI("http://localhost:8080/test")).GET().build();
       final HttpResponse<String> response = HttpClient.newBuilder().build().send(request,
           HttpResponse.BodyHandlers.ofString());
       resp = response.body();
