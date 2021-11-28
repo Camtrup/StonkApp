@@ -90,7 +90,7 @@ public class ProfileController extends SuperController {
    * Logs the user out.
    */
   public void logOut() {
-    super.changeScene("login.fxml",null,(Stage) feedBack.getScene().getWindow());
+    super.changeScene("login.fxml", null, (Stage) feedBack.getScene().getWindow());
   }
 
   /**
@@ -110,6 +110,6 @@ public class ProfileController extends SuperController {
    * Back to main page.
    */
   public void toMain() {
-    super.changeScene("mainPage.fxml", user,(Stage) feedBack.getScene().getWindow());
+    super.changeScene("mainPage.fxml", user, (Stage) feedBack.getScene().getWindow());
   }
 }

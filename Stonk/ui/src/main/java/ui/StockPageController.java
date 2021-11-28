@@ -61,7 +61,7 @@ public class StockPageController extends SuperController {
    * Is fired when the user clicks "EXIT".
    */
   public void backToMain() {
-    super.changeScene("mainPage.fxml", user,(Stage) feedBack.getScene().getWindow());
+    super.changeScene("mainPage.fxml", user, (Stage) feedBack.getScene().getWindow());
   }
 
   /**
@@ -93,7 +93,7 @@ public class StockPageController extends SuperController {
   }
 
   @FXML
-  private void userFeedback(String resp){
+  private void userFeedback(String resp) {
     resp = resp.replace("400: ", "");
     resp = resp.replace("403: ", "");
     resp = resp.replace("404: ", "");

@@ -144,7 +144,7 @@ public class MainController extends SuperController {
   public void toStockPage() {
     try {
       Stonk temp = new Stonk(searchBar.getText(), 0);
-      super.changeScene("stockPage.fxml", user,(Stage) feedBack.getScene().getWindow(),  temp);
+      super.changeScene("stockPage.fxml", user, (Stage) feedBack.getScene().getWindow(), temp);
     } catch (IllegalArgumentException | NullPointerException e) {
       e.printStackTrace();
       feedBack.setStyle("-fx-text-fill: Red;");
@@ -298,7 +298,7 @@ public class MainController extends SuperController {
    * Navigates to profile site.
    */
   public void toProfile() {
-    super.changeScene("profile.fxml", user,(Stage) feedBack.getScene().getWindow());
+    super.changeScene("profile.fxml", user, (Stage) feedBack.getScene().getWindow());
   }
 
   /**

@@ -1,5 +1,8 @@
 package data;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.stream.JsonReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -10,10 +13,6 @@ import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.stream.JsonReader;
 
 
 /**

@@ -42,14 +42,14 @@ public class RegisterController extends SuperController {
    * @throws IOException if not possible.
    */
   public void loginFromRegister() throws IOException {
-    super.changeScene("mainPage.fxml", user,(Stage) feedBack.getScene().getWindow());
+    super.changeScene("mainPage.fxml", user, (Stage) feedBack.getScene().getWindow());
   }
 
   /**
    * Back to login.
    */
   public void backToLogin() {
-    super.changeScene("login.fxml", user,(Stage) feedBack.getScene().getWindow());
+    super.changeScene("login.fxml", user, (Stage) feedBack.getScene().getWindow());
   }
 
   /**

@@ -25,7 +25,13 @@ public class StonkApp extends Application {
     stage.show();
   }
 
-  public void newPane(FXMLLoader load) throws IOException{
+  /**
+   * new pane.
+   *
+   * @param load the fxmlloader.
+   * @throws IOException .
+   */
+  public void newPane(FXMLLoader load) throws IOException {
     Stage stage = new Stage();
     Parent parent = load.load();
     stage.setTitle("Stonk");

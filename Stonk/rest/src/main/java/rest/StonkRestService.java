@@ -24,15 +24,13 @@ public class StonkRestService {
 
   private ArrayList<User> users = getDatabase();
 
-
-  private ArrayList<User> getDatabase(){
+  private ArrayList<User> getDatabase() {
     ArrayList<User> temp = new ArrayList<User>();
-    for (JsonElement i : handler.getAllUsers()){
+    for (JsonElement i : handler.getAllUsers()) {
       temp.add(gson.fromJson(i, User.class));
     }
     return temp;
   }
-
 
   protected ArrayList<User> getAllUsers() {
     return users;
@@ -92,15 +90,15 @@ public class StonkRestService {
    * New user.
    *
    * @param firstname a string.
-   * @param lastname a string.
-   * @param username a string.
-   * @param password a string.
-   * @param cash float for how much cash.
-   * @param age int.
+   * @param lastname  a string.
+   * @param username  a string.
+   * @param password  a string.
+   * @param cash      float for how much cash.
+   * @param age       int.
    * @return a response.
    */
-  public String newUser(String firstname, String lastname,
-      String username, String password, Float cash, int age) {
+  public String newUser(String firstname, String lastname, String username, String password,
+      Float cash, int age) {
     User temp = null;
     try {
       temp = new User(firstname, lastname, username, password, cash, age, new ArrayList<Stonk>(),
@@ -123,8 +121,8 @@ public class StonkRestService {
    *
    * @param username a string.
    * @param password a string.
-   * @param ticker a string for finding stock.
-   * @param count how many.
+   * @param ticker   a string for finding stock.
+   * @param count    how many.
    * @return a response.
    */
   public String buyStonks(String username, String password, String ticker, int count) {
@@ -151,7 +149,7 @@ public class StonkRestService {
    *
    * @param username a string.
    * @param password a string.
-   * @param cash a float.
+   * @param cash     a float.
    * @return a response.
    */
   public String addMoreCash(String username, String password, Float cash) {
@@ -170,8 +168,8 @@ public class StonkRestService {
    *
    * @param username a string.
    * @param password a string.
-   * @param ticker a string.
-   * @param count int for how many.
+   * @param ticker   a string.
+   * @param count    int for how many.
    * @return a response.
    */
   public String sellStonks(String username, String password, String ticker, int count) {
@@ -196,25 +194,26 @@ public class StonkRestService {
    * @return a response.
    */
   public String saveJson() {
-      Gson gson = new GsonBuilder().create();
-      JsonArray arr = gson.toJsonTree(users).getAsJsonArray();
-      try {
-        handler.writeToFile(arr.toString());
-      } catch (FileNotFoundException e) {
-        e.printStackTrace();
-        return "408" + e.getMessage();
-      } catch (IOException e) {
-        e.printStackTrace();
-        return "409" + e.getMessage();
-      }
-      return "200";
+    Gson gson = new GsonBuilder().create();
+    JsonArray arr = gson.toJsonTree(users).getAsJsonArray();
+    try {
+      handler.writeToFile(arr.toString());
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+      return "408" + e.getMessage();
+    } catch (IOException e) {
+      e.printStackTrace();
+      return "409" + e.getMessage();
+    }
+    return "200";
   }
 
-  /** Add a Stock to WatchList.
+  /**
+   * Add a Stock to WatchList.
    *
    * @param username String.
    * @param password String.
-   * @param ticker String.
+   * @param ticker   String.
    * @return a response.
    */
   public String addStonksToWatchList(String username, String password, String ticker) {
@@ -238,7 +237,7 @@ public class StonkRestService {
    *
    * @param username String.
    * @param password String.
-   * @param ticker String.
+   * @param ticker   String.
    * @return a response.
    */
   public String removeStonksFromWatchList(String username, String password, String ticker) {
