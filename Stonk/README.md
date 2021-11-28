@@ -67,13 +67,14 @@ DATA:
    - Datahandler.java: Saving data to the json file.
 
 UI:
-- LoginController.json: Controller for login page
-- MainController.json: Controller for main page
-- ProfileController.json: Controller for profile page
-- RegisterController.json: Controller for register page
-- StockPageController.json: Controller for Stock page
+- LoginController.java: Controller for login page
+- MainController.java: Controller for main page where you se your cash balance and stocks
+- ProfileController.java: Controller for profile page where you can edit your account
+- RegisterController.java: Controller for register page to make a new account
+- StockPageController.java: Controller for Stock page
 - StonkApp.java: Connects the fxml files to the project.
 - HTTPHandler.java: Sends requests up to our server. 
+- SuperController.java: a Controller sites thath loads all the fxml files.
 
 REST:
 - StonkRestApplication.java: Launches our rest-api.
