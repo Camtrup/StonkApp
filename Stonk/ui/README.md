@@ -17,3 +17,6 @@ UI is the package for where the user interface is made. Here the two main compon
 - StonkApp.java: Connects the fxml files to the project.
 - HTTPHandler.java: Sends requests up to our server. 
 - SuperController.java: a Controller sites that loads all the fxml files.
+
+## Class Diagram for UI
+<img src="out/docs/diagramsUML/classUi/UIClass.png">

@@ -206,17 +206,6 @@ continuously throughout the use of the application. The server is made up of thr
 <img src="out/docs/diagramsUML/structureStonk/treeStruct.png">
 
 
-# Class Diagrams
-
-### Class Diagram for Core
-<img src="out/docs/diagramsUML/classCore/classCore.png">
 
 
-### Class Diagram for UI
-<img src="out/docs/diagramsUML/classUi/UIClass.png">
 
-### Class Diagram for Rest
-<img src="out/docs/diagramsUML/classRest/classRest.png">
-
-### Class Diagram for Data
-<img src="out/docs/diagramsUML/classData/classData.png">

@@ -1,7 +1,5 @@
 # Rest
 
-
-
 ## Rest services
 
 All files will have the standard mapping "http://localhost:8080/ + the name of our requestmappings. 
@@ -31,3 +29,5 @@ Here is a full list over all the mappings:
 
 - save: Saves the updated information to the JSON-file.
 
+### Class Diagram for Rest
+<img src="out/docs/diagramsUML/classRest/classRest.png">
