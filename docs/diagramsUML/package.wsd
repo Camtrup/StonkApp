@@ -1,4 +1,4 @@
-@startuml
+@startuml packageDiag
 
 package "rest" #DDDDDD {
   package stonk.rest 
@@ -20,16 +20,18 @@ component javafx{
 
 component Gson
 
+component JSoup
+
 component springBoot
 
 
 stonk.rest ..> springBoot
 stonk.rest ..> stonk.core 
 stonk.rest ..> stonk.json
-stonk.ui ..> stonk.rest
 stonk.ui ..> fxml
 stonk.ui ..> stonk.core   
-stonk.json ..>Gson
+stonk.json ..> Gson
+stonk.core ..> JSoup
 
 
 /' 

@@ -1,4 +1,4 @@
-@startuml
+@startuml seqDiagLog
 
 actor Client
 participant login

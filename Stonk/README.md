@@ -7,20 +7,26 @@ Maven is a software project management and building tool. Based on the concept o
 
 The reason we went with maven instead of gradle is because it uses an XML file for declaring the project, its dependencies, the build order, and its required plugin. This is something we find familiar and easy to understand from doing former projects.
 
+### The "Shippable" Application
+The shippable product of our application comes in the form of a .jar file that is produced in the target-folder. Unfortunately it has to be run from the command-line, which is explained in the section below. The reason of this is we didnt manage to produce a workaround that Jlink didnt allow JSOUP(Our webscraper), to be in the jar-file.
+
+#### How to produce and run shippable application
+1. Make sure the project is clean with the `mvn clean install -DskipTests` command
+2. Navigate into the ui-directory and run `mvn assembly:single`
+3. The .jar-file will then appear in the target-folder.
+4. To run the .jar use `java -jar FILEPATH/ui-0.0.1-SNAPSHOT-jar-with-dependencies.jar`
+
+
 ### JSoup
 **Stonk** is built with the library [JSoup](https://jsoup.org). Jsoup allows us to scrape and parse data from a website using DOM traversal and CSS selectors. 
 Using this we are able to get information about every given stock in real-time.
 ### Gson 
 Gson is a great Java library that primary use is to convert Java Objects into their JSON representation. It also gets used to convert a JSON string to an equivalent Java object. 
-### JSON-simple
-JSON-simple is s much simpler version of JSON. It uses a Java library library for JSON processing, read and write JSON data and full compliance with JSON specification.
 ### JAVAFX
 JavaFX is a Java library that simplifies the development of Rich Internet Applications (RIA). Applications written using this library can be run across different platforms. The applications can also be run on various devices such as computers, mobile phones, TVs and tablets.
 ### Spring Boot
 Spring Boot is an open source, micro-service-based Java network. The Spring Boot framework creates a completely production-ready environment that is fully configurable using the pre-built code in the code base. The Microservice architecture provides developers with a full-featured application, including embedded application servers.
 
-### Jlink
-Jlink is a tool that generates a custom Java runtime image that has only the platform modules that are required for an application.
 ### SpotBugs, CheckStyle and JaCoCo
 - Spotbugs has helped with finding unused codes and errors or bugs we were not able to find ourselves. 
 
@@ -35,6 +41,9 @@ The miniumum requirments we set for ourselves was to meet once a week, but we fo
 ### Pair coding
 Pair programming has helped us to higher the quality of the code by prrogramming out loud with a driver and navigator working together. We started meeting more often to pair program as much as possible.
 
+### Checking each others code
+we set ourself a goal that evereyone in the group should know how all the libraries we use, actually work. That is why we met at school at least 3 times for pair program but also for evaluating each others code. We also made it mandatory to never merge someones code without reading it and if you found it necesaary to also add a comment in the merge request. 
+
 ### SCRUM
 SCRUM has been central for our coding. We have participated and are aware of all sorts of agile ceremonies (user story grooming, sprint planning, sprint retrospective). This helped to impact the end product, by having fixed deliveries in short iterations with a fixed length in close, ongoing collaboration between customer and supplier. Apart from the Sprints, the QA (who does it, when it gets done) helped alot. Being able to asign and set a deadline on gitlabs really helped having control over our project. 
 
@@ -43,25 +52,26 @@ SCRUM was a powerful tool that empowered us to fix our mistakes quickly and made
 #### How gitlab helped
 Gitlab is great for enabling lean and agile project management especially for scrum projects. Here we were able to add issues, which had a deadline, labels and could be issued to grup members. THe milestone and board functionalities also helped us hold upå with deadlines.
 
+
 ## Files
 
 CORE:
   - Stonk.java: Pulls information about the stock using JSoup.
   - User.java: Creation and editing of user information.
-  
 
 DATA:
    - database.json: Saves information like username, password and balance.
    - Datahandler.java: Saving data to the json file.
 
 UI:
-- LoginController.json: Controller for login page
-- MainController.json: Controller for main page
-- ProfileController.json: Controller for profile page
-- RegisterController.json: Controller for register page
-- StockPageController.json: Controller for Stock page
+- LoginController.java: Controller for login page
+- MainController.java: Controller for main page where you se your cash balance and stocks
+- ProfileController.java: Controller for profile page where you can edit your account
+- RegisterController.java: Controller for register page to make a new account
+- StockPageController.java: Controller for Stock page
 - StonkApp.java: Connects the fxml files to the project.
 - HTTPHandler.java: Sends requests up to our server. 
+- SuperController.java: a Controller sites thath loads all the fxml files.
 
 REST:
 - StonkRestApplication.java: Launches our rest-api.
@@ -110,10 +120,13 @@ REST:
 
 ## Diagrams
 
-#### sequence diagram:
+### sequence diagram:
 
+#### Diagram for logging in
+<img src="../out/docs/diagramsUML/sequenceDiagramLogin/sequenceDiagramLogin.png">
 
-#### class diagram:
+#### Diagram for buying a single stock
+<img src="../out/docs/diagramsUML/sequenceDiagramBuyStock/sequenceDiagramBuyStock.png">
 
 
 

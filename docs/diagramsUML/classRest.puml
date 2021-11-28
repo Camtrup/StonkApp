@@ -1,0 +1,56 @@
+@startuml classRest
+class rest.HttpRequestTest {
+- int port
+- TestRestTemplate restTemplate
+~ Gson gson
+~ User user
++ void testEmptyServer()
++ void testRequests()
+}
+
+class rest.ApplicationTest {
+- StonkRestController controller
++ void contextLoads()
+}
+class rest.StonkRestService {
+~ DataHandler handler
+- ArrayList<User> users
+- ArrayList<User> jsonArrayToArrayList()
++ ArrayList<Stonk> jsonToPortfolio(JSONArray)
++ User jsonToUser(JSONObject)
+# ArrayList<User> getAllUsers()
++ User getUser(String,String)
++ String isLoginValid(String,String)
+- int getUserIndex(String)
++ String newUser(String,String,String,String,Float,int)
++ String buyStonks(String,String,String,int)
++ String addMoreCash(String,String,Float)
++ String sellStonks(String,String,String,int)
++ String saveJson()
++ String addStonksToWatchList(String,String,String)
++ String removeStonksFromWatchList(String,String,String)
++ String removeUser(String,String)
+}
+class rest.StonkRestController {
+- StonkRestService stonkRestService
++ ArrayList<User> userArray()
++ String isLoginValid(String,String)
++ User getUser(String,String)
++ String buyStonks(String,String,String,int)
++ String sellStonks(String,String,String,int)
++ String addStonksToWatchList(String,String,String)
++ String removeStonksToWatchList(String,String,String)
++ String newUser(String,String,String,String,Float,int)
++ String removeUser(String,String)
++ String addMoreValue(String,String,Float)
++ String save()
+}
+class rest.StonkRestApplication {
++ {static} void main(String[])
+}
+rest.StonkRestController <|-- rest.StonkRestService
+org.springframework.boot.test.context.SpringBootTest  <|-- rest.HttpRequestTest
+org.springframework.boot.test.context.SpringBootTest  <|-- rest.ApplicationTest
+org.springframework.boot.SpringApplication <|-- rest.StonkRestApplication
+
+@enduml

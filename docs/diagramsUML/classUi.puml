@@ -1,83 +1,10 @@
-@startuml testPackMaker
+@startuml UIClass
 class ui.StonkLoginTest {
 + void start(Stage)
 + void testLoginFalse()
 + void testLoginTrue()
 }
-class core.Stonk {
-- String ticker
-- float price
-- String name
-- String priceChange
-- int count
-- void scrapeStockInfo(String,int)
-+ int getCount()
-- void setCount(int)
-+ void setNewCount(Stonk)
-+ void setNewAverage(Stonk)
-- void setPrice(float)
-+ String getName()
-+ float getPrice()
-+ String getTicker()
-+ String getPriceChange()
-}
-class MavenWrapperDownloader {
-- {static} String WRAPPER_VERSION
-- {static} String DEFAULT_DOWNLOAD_URL
-- {static} String MAVEN_WRAPPER_PROPERTIES_PATH
-- {static} String MAVEN_WRAPPER_JAR_PATH
-- {static} String PROPERTY_NAME_WRAPPER_URL
-+ {static} void main(String[])
-- {static} void downloadFileFromURL(String,File)
-}
-class rest.HttpRequestTest {
-- int port
-- TestRestTemplate restTemplate
-~ Gson gson
-~ User user
-+ void testEmptyServer()
-+ void testRequests()
-}
-class rest.ApplicationTest {
-- StonkRestController controller
-+ void contextLoads()
-}
-class rest.StonkRestService {
-~ DataHandler handler
-- ArrayList<User> users
-- ArrayList<User> jsonArrayToArrayList()
-+ ArrayList<Stonk> jsonToPortfolio(JSONArray)
-+ User jsonToUser(JSONObject)
-# ArrayList<User> getAllUsers()
-+ User getUser(String,String)
-+ String isLoginValid(String,String)
-- int getUserIndex(String)
-+ String newUser(String,String,String,String,Float,int)
-+ String buyStonks(String,String,String,int)
-+ String addMoreCash(String,String,Float)
-+ String sellStonks(String,String,String,int)
-+ String saveJson()
-+ String addStonksToWatchList(String,String,String)
-+ String removeStonksFromWatchList(String,String,String)
-+ String removeUser(String,String)
-}
-class rest.StonkRestController {
-- StonkRestService stonkRestService
-+ ArrayList<User> userArray()
-+ String isLoginValid(String,String)
-+ User getUser(String,String)
-+ String buyStonks(String,String,String,int)
-+ String sellStonks(String,String,String,int)
-+ String addStonksToWatchList(String,String,String)
-+ String removeStonksToWatchList(String,String,String)
-+ String newUser(String,String,String,String,Float,int)
-+ String removeUser(String,String)
-+ String addMoreValue(String,String,Float)
-+ String save()
-}
-class rest.StonkRestApplication {
-+ {static} void main(String[])
-}
+
 class ui.LoginController {
 - Button login
 - Button registerUserNew
@@ -90,6 +17,7 @@ class ui.LoginController {
 + void isLoginValid()
 + void registerUserNew()
 }
+
 class ui.StonkAppTest {
 + void start(Stage)
 + void testLoginTrue()
@@ -98,16 +26,7 @@ class ui.StonkRegisterTest {
 + void start(Stage)
 + void testRegisterFalse()
 }
-class data.DataHandlerTest {
-~ DataHandler handler
-+ void checkReadAndWrite()
-}
-class data.DataHandler {
-- String file
-- void adaptFilePath()
-+ JSONArray getAllUsers()
-+ void writeToFile(String)
-}
+
 class ui.StonkBuyTest {
 + void start(Stage)
 + void testStocks()
@@ -152,20 +71,7 @@ class ui.StockPageController {
 - boolean checkForWatchList()
 - void initialize()
 }
-class core.UserTest {
-- User user
-~ String username
-+ void setup()
-+ void testAge()
-+ void testCash()
-+ void testUsername()
-+ void testName()
-+ void testPassword()
-+ void testEncrypted()
-+ void testPortfolio()
-+ void testWatchlist()
-+ void testUser()
-}
+
 class ui.RegisterController {
 - TextField age
 - TextField cash
@@ -222,21 +128,12 @@ class ui.MainController {
 + void toProfile()
 - void initialize()
 }
-class core.StonkTest {
-- Stonk stonk
-+ void setup()
-+ void testName()
-+ void testPrice()
-+ void testTicker()
-+ void testPriceChange()
-+ void testContructor()
-+ void testAverage()
-+ void testCount()
-}
+
 class ui.SuperController {
 - StonkApp app
 + void changeScene(String,User,Stonk)
 }
+
 class ui.ProfileController {
 - Button moneyAddBtn
 - Button logOut
@@ -256,38 +153,7 @@ class ui.ProfileController {
 + void deleteUser()
 + void toMain()
 }
-class core.User {
-+ float cash
-- int age
-- String firstName
-- String lastName
-- String password
-- String username
-- ArrayList<Stonk> portfolio
-- ArrayList<Stonk> watchList
-- void setWatchList(ArrayList<Stonk>)
-+ void addToPortfoilio(String,int)
-+ void addToWatchList(String,int)
-+ void removeFromWatchList(String,int)
-+ void removeFromPortfolio(String,int)
-+ ArrayList<Stonk> getPortfolio()
-- void setPortfolio(ArrayList<Stonk>)
-+ ArrayList<Stonk> getWatchList()
-+ void setFirstName(String)
-+ void setLastName(String)
-+ void setUserName(String)
-# void setPassword(String)
-+ void addCash(float)
-# void removeCash(float)
-+ void setAge(int)
-+ String encryptPassword(String)
-+ String getUsername()
-+ String getPassword()
-+ String getFirstName()
-+ String getLastName()
-+ float getCash()
-+ int getAge()
-}
+
 class ui.StartApp {
 + {static} void main(String[])
 }
@@ -302,7 +168,6 @@ class ui.StonkUserTest {
 + void testLoginBackLogout()
 }
 
-
 org.testfx.framework.junit5.ApplicationTest <|-- ui.StonkLoginTest
 ui.SuperController <|-- ui.LoginController
 org.testfx.framework.junit5.ApplicationTest <|-- ui.StonkAppTest
@@ -314,4 +179,7 @@ ui.SuperController <|-- ui.MainController
 ui.SuperController <|-- ui.ProfileController
 javafx.application.Application <|-- ui.StonkApp
 org.testfx.framework.junit5.ApplicationTest <|-- ui.StonkUserTest
+
+
+
 @enduml
