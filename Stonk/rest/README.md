@@ -1,11 +1,9 @@
 # Rest
 
+A REST API is in an object (or set of objects) that is called using HTTP requests (HTTP URLs). Receipt of the request is handled by an HTTP server, and then the request is "transformed" into a call to an associated method in a "REST service" object.
 ## Rest services
-
 All files will have the standard mapping "http://localhost:8080/ + the name of our requestmappings. 
 Here is a full list over all the mappings: 
-
-- test: 
 
 - user: Will return an ArrayList<User> of our users. 
 
@@ -31,3 +29,6 @@ Here is a full list over all the mappings:
 
 ### Class Diagram for Rest
 <img src="out/docs/diagramsUML/classRest/classRest.png">
+
+### packages used:
+You can find more information about our build and the packages used [here](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2135/gr2135/-/tree/master/Stonk)

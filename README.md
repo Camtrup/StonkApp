@@ -10,10 +10,6 @@
 Our initial thought was to pull the stock prices using an API, but we decided against it as we needed a service that was free-of-charge. Therefore we get the stocks current price by web-scraping from marketwatch.com. We use .json files for saving information such as username, password and your balance. The reasoning behind this is that more advanced systems is not needed for a game like Stonk.
 
 ## How to use Stonk:
-You can choose between registering a new account or use one of ours.
-If you want to see how an account with bought stocks looks like. You can log in with:
-- Username: casper
-- Password: 12345
 
 > ### Run Stonk locally:
 
@@ -113,7 +109,7 @@ continuously throughout the use of the application. The server is made up of thr
 
 <summary> 
 
-#### Full Structure (clickable)
+#### Full Structure (click on the arrow)
 </summary>
 
 ```

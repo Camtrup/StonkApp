@@ -11,4 +11,7 @@ DATA:
    - Datahandler.java: Saves data to the json file.
 
 ### Class Diagram for Data
-<img src="out/out/out/docs/diagramsUML/classData/classData.png">
+<img src="out/docs/diagramsUML/classData/classData.png">
+
+### packages used:
+You can find more information about our build and the packages used [here](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2135/gr2135/-/tree/master/Stonk)

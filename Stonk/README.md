@@ -53,14 +53,11 @@ SCRUM was a powerful tool that empowered us to fix our mistakes quickly and made
 Gitlab is great for enabling lean and agile project management especially for scrum projects. Here we were able to add issues, which had a deadline, labels and could be issued to grup members. THe milestone and board functionalities also helped us hold upå with deadlines.
 
 
-
-
 ## Files
 
 CORE:
   - Stonk.java: Pulls information about the stock using JSoup.
   - User.java: Creation and editing of user information.
-  
 
 DATA:
    - database.json: Saves information like username, password and balance.

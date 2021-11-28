@@ -1,7 +1,7 @@
 # UI 
 
 ## what is UI:
-UI is the package for where the user interface is made. Here the two main components are the fxml and Controller classes. The FXML files are where the actual user interface is made with scene buidler. THe controller classes it where the connection between the frontend and backend is. Here for instance the buttons from the fxml get their functions that tell them what to do.
+UI is the package for where the user interface is made. Here the two main components are the fxml and Controller classes. The FXML files are where the actual user interface is made with scene buidler. THe controller classes it where the connection between the frontend and backend(core) is. Here for instance the buttons from the fxml get their functions that tell them what to do.
 - You can find the fxml files here:
 [UI FXML](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2135/gr2135/-/tree/master/Stonk/ui/src/main/resources/ui/fxml)
 - You can find the Controller classes here:
@@ -20,3 +20,8 @@ UI is the package for where the user interface is made. Here the two main compon
 
 ## Class Diagram for UI
 <img src="out/docs/diagramsUML/classUi/UIClass.png">
+
+
+### packages used:
+You can find more information about our build and the packages used [here](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2135/gr2135/-/tree/master/Stonk)
+
